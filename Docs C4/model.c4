@@ -1,0 +1,50 @@
+model {
+
+    admin = actor "Администратор узла"
+    abonent = actor "Абонент"
+
+    phoneOperator = system "PhoneOperator" {
+        acc = container "Тарификатор звонков" 
+        auth = container "Маршрутизатор звонков" 
+        db =  database "Хранилище" {
+         technology "postgres"
+        }
+
+        lkApi = backend        
+        lkFront = frontend
+
+        adminApi = backend        
+        adminFront = frontend
+
+
+        lkFront -> lkApi "Запросы к Апи" {
+           technology 'http-RestAPi/port: 80'    
+        }
+
+        lkApi -> db "управляет настройками, статистикой"
+
+        adminFront -> adminApi "Запросы к Апи" {
+           technology 'http-RestAPi/port: 80'    
+        }
+
+        adminApi -> db "управляет настройками узла"
+
+        acc -> db "Сохраняет cdr"
+        auth -> db "Вычисляет маршрут/проверяет баланс"
+    }
+
+    openSwitch = externalSystem "Телефонный коммутатор"
+
+
+    openSwitch -> phoneOperator.auth "Авторизирует звонок" {
+        technology 'radius/port: 1812'
+    }
+    openSwitch -> phoneOperator.acc "Тарифицирет звонок звонок" {
+        technology 'radius/port: 1813'
+    }
+    abonent -> phoneOperator.lkFront "Пользуется Личным кабинетом"
+    admin -> phoneOperator.adminFront "Управляет узлом связи"
+
+
+
+}

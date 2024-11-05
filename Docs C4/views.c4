@@ -1,0 +1,14 @@
+views {
+
+    view index {
+        title "Context: Diplom"
+        include * 
+        // exclude element.tag = #deployment
+    }
+
+    view phoneOperator of phoneOperator {
+        title "Container: phoneOperator"
+        include *
+    }
+
+}

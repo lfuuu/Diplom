@@ -1,0 +1,114 @@
+// Иконки https://techicons.dev/
+
+specification {
+    color custom #6BD731
+
+    element scaling {
+        style {
+            color secondary
+            opacity 30%
+        }
+    }
+
+
+    element server {
+        style {
+            color secondary
+            opacity 30%
+        }
+    }
+
+    element frontend {
+      style {
+        shape browser
+      }
+    }
+
+    element backend {
+    }
+
+    element actor {
+        notation "Person"
+        style {
+            shape person
+        }
+    }
+
+    element system {
+        notation "Software system"
+        style {
+            opacity 10%
+        }
+    }
+
+    element externalSystem {
+        notation "External System"
+        style {
+            color amber
+            opacity 10%
+        }
+    }
+
+    element container {
+        style {
+            opacity 50%
+        }
+    }
+    element app {
+        notation "Application"
+    }
+    element component {
+        style {
+            opacity 50%
+        }
+    }
+
+    element mobileApp {
+        notation "Mobile Application"
+        style {
+            shape mobile
+            icon tech:swift
+            //icon https://icon.icepanel.io/Technology/svg/Swift.svg
+        }
+    }
+
+    element messageBroker {
+        style {
+            shape queue
+            color secondary
+            icon tech:kafka
+        }
+    }
+
+    element k8s {
+        notation "Kubernetes"        
+        style {
+            icon tech:kubernetes
+            opacity 10%
+        }
+    }
+
+
+    element database {
+        notation "Database"        
+        style {
+            shape storage
+        }
+    }
+    element table {
+        notation "Database Table"
+        style {
+            shape storage
+        }
+    }
+
+    relationship uses
+    relationship requests
+
+    tag deployment
+    tag deprecated
+    tag next
+    tag api
+    tag db
+
+}
