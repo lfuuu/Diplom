@@ -4,21 +4,62 @@ model {
     abonent = actor "Абонент"
 
     phoneOperator = system "PhoneOperator" {
-        acc = container "Тарификатор звонков" 
-        auth = container "Маршрутизатор звонков" 
+        acc = container "Тарификатор звонков" {
+            radiusServer = component "RadiusServer"
+            cdrRepo = component "cdrRepo"
+            radiusServer -> cdrRepo 'Сохранение звонка'
+            cdrRepo -> db 'Сохранение CDR '
+        }
+        auth = container "Маршрутизатор звонков"{
+            radiusServer = component "RadiusServer"
+            clientRepo = component "clientRepo"
+            callsRepo = component "callsRepo"
+            radiusServer -> clientRepo 'Проверка баланса'
+            clientRepo -> db 'Баланс Пакетов'
+            callsRepo -> db 'Тарификация звонка'
+        }
         db =  database "Хранилище" {
          technology "postgres"
         }
 
-        lkApi = backend        
-        lkFront = frontend
+        lkApi = backend {
+            httpServer = component 'httpServer'
+            balanceClientApi = component 'Сервис баланса'
+            callsClientApi = component 'Сервис звонков'
+            httpServer -> balanceClientApi ''
+            httpServer -> callsClientApi ''
+            balanceClientApi -> db ''
+            callsClientApi -> db ''
+        }       
+        lkFront = frontend {
+            balanceClientPage = component 'Страница баланса'
+            callsClientPage = component 'Отчет по звонкам'
+            callsClientPage -> lkApi.httpServer ''
+            balanceClientPage -> lkApi.httpServer ''
 
-        adminApi = backend        
-        adminFront = frontend
+        }
 
-
-        lkFront -> lkApi "Запросы к Апи" {
-           technology 'http-RestAPi/port: 80'    
+        adminApi = backend{
+            httpServer = component 'httpServer'
+            serviceCallsApi = component 'Сервис звонков'
+            serviceUsersApi = component 'Сервис пользователей'
+            serviceOpsApi = component 'Сервис операторов'
+            serviceCallsApi -> db ''
+            serviceUsersApi -> db ''
+            serviceOpsApi -> db ''
+            httpServer -> serviceCallsApi
+            httpServer -> serviceUsersApi
+            httpServer -> serviceOpsApi
+        }        
+        adminFront = frontend{
+            usersPage = component 'Страница с пользователями узла'
+            opsPage = component 'Страница со внешними операторами(аплинки)'
+            userForm = component 'Настройки пользователя'
+            opForm = component 'Настройки оператора'
+            usersPage -> adminApi.httpServer ''
+            opsPage -> adminApi.httpServer ''
+            userForm -> adminApi.httpServer ''
+            opForm -> adminApi.httpServer ''
         }
 
         lkApi -> db "управляет настройками, статистикой"
@@ -27,7 +68,6 @@ model {
            technology 'http-RestAPi/port: 80'    
         }
 
-        adminApi -> db "управляет настройками узла"
 
         acc -> db "Сохраняет cdr"
         auth -> db "Вычисляет маршрут/проверяет баланс"
@@ -40,7 +80,7 @@ model {
     openSwitch -> phoneOperator.auth "Авторизирует звонок" {
         technology 'radius/port: 1812'
     }
-    openSwitch -> phoneOperator.acc "Тарифицирет звонок звонок" {
+    openSwitch -> phoneOperator.acc.radiusServer "Тарифицирет звонок звонок" {
         technology 'radius/port: 1813'
     }
 

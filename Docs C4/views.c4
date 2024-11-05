@@ -11,4 +11,27 @@ views {
         include *
     }
 
+    view acc of phoneOperator.acc {
+        title "Container: acc"
+        include *
+    }
+
+    view lkApi of phoneOperator.lkApi {
+        title "Container: lkApi"
+        include *
+    }
+     view adminApi of phoneOperator.adminApi {
+        title "Container: adminApi"
+        include *
+    }
+
+    view lkFront of phoneOperator.lkFront {
+        title "Container: lkFront"
+        include *
+    }
+    view adminFront of phoneOperator.adminFront {
+        title "Container: adminFront"
+        include *
+    }
+
 }
