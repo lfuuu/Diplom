@@ -34,6 +34,7 @@ model {
     }
 
     openSwitch = externalSystem "Телефонный коммутатор"
+    accounting = externalSystem "Бухгалтерия"
 
 
     openSwitch -> phoneOperator.auth "Авторизирует звонок" {
@@ -42,6 +43,11 @@ model {
     openSwitch -> phoneOperator.acc "Тарифицирет звонок звонок" {
         technology 'radius/port: 1813'
     }
+
+    accounting -> phoneOperator.db "Учет расходов и доходов" {
+        technology 'postgres/port: 5432'
+    }
+
     abonent -> phoneOperator.lkFront "Пользуется Личным кабинетом"
     admin -> phoneOperator.adminFront "Управляет узлом связи"
 
