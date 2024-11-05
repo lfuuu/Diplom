@@ -15,6 +15,7 @@ model {
             clientRepo = component "clientRepo"
             callsRepo = component "callsRepo"
             radiusServer -> clientRepo 'Проверка баланса'
+            radiusServer -> callsRepo 'Запись данных звонков'
             clientRepo -> db 'Баланс Пакетов'
             callsRepo -> db 'Тарификация звонка'
         }

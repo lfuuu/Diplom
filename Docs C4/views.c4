@@ -29,6 +29,12 @@ views {
         title "Container: lkFront"
         include *
     }
+
+    view auth of phoneOperator.auth {
+        title "Container: auth"
+        include *
+    }
+
     view adminFront of phoneOperator.adminFront {
         title "Container: adminFront"
         include *
