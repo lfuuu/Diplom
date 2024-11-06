@@ -56,4 +56,5 @@
 - https://c4model.com - архитектурный паттерн моделирования C4model
 - https://likec4.dev/tutorial/ - документация по плагину likec4
 - https://plantuml.com/ru/ - рендер диаграмм по текстовому описанию
-- https://plantuml.com/ru/sequence-diagram - документация по диаграммам последовательности 
+- https://plantuml.com/ru/sequence-diagram - документация по диаграммам последовательности
+- https://plantuml.com/ru/ie-diagram - диаграмма отношений (схема БД) 
