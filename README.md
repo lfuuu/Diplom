@@ -51,3 +51,4 @@
 - https://habr.com/ru/articles/802617/ - Статья про архитектурные слои приложения
 - https://c4model.com - архитектурный паттерн моделирования C4model
 - https://likec4.dev/tutorial/ - документация по плагину likec4
+- https://plantuml.com/ru/ - рендер диаграмм по текстовому описанию
