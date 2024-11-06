@@ -1,7 +1,7 @@
 views {
 
     view index {
-        title "Context: Diplom"
+        title "Context: ИС УС"
         include * 
         // exclude element.tag = #deployment
     }
