@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "jebbs.plantuml",
-        "likec4.likec4-vscode"
+        "likec4.likec4-vscode",
+        "tintinweb.graphviz-interactive-preview"
     ]
 }
