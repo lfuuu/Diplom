@@ -58,3 +58,5 @@
 - https://plantuml.com/ru/ - рендер диаграмм по текстовому описанию
 - https://plantuml.com/ru/sequence-diagram - документация по диаграммам последовательности
 - https://plantuml.com/ru/ie-diagram - диаграмма отношений (схема БД) 
+- https://dev.to/sualeh/create-nice-looking-schema-diagrams-in-plantuml-1jo5
+- 

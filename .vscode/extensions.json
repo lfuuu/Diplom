@@ -2,6 +2,7 @@
     "recommendations": [
         "jebbs.plantuml",
         "likec4.likec4-vscode",
-        "tintinweb.graphviz-interactive-preview"
+        "tintinweb.graphviz-interactive-preview",
+        "james-yu.latex-workshop"
     ]
 }
