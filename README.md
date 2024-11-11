@@ -36,6 +36,14 @@
 
 ![Временная диаграма обработки звонка](out/docs/diagrams/calls/calls.png "Title")
 
+## Архитектурная модель системы C4
+
+![Диаграмма контекста системы](out/docs/c4-dsl/plantuml/structurizr-tellbillServiceContext/structurizr-tellbillServiceContext.png "Диаграмма контекста системы")
+
+![Диаграмма контейнера tellbillService](out/docs/c4-dsl/plantuml/structurizr-Containers/structurizr-Containers.png "Диаграмма контейнера tellbillService")
+
+
+
 ## Сокращения:
 - CDR - Call Detail Record - запись о звонке, содержит время начала, длительность, входящий, исходящий транк, номера А,Б,С, статус завершения звонка. Не содержит коммерческую инрфмацию (стоимость, лс и т.д.)
 - ИС - информационная система

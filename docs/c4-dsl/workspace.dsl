@@ -4,7 +4,9 @@ workspace "telbill" "ИС управления телефонным узлом" 
 
     #softwareSystem <name> [description] [tags]
     #container <name> [description] [tags]
-     
+
+    !identifiers hierarchical
+
     model {
       
       properties {
@@ -17,22 +19,43 @@ workspace "telbill" "ИС управления телефонным узлом" 
       openSwitch = softwareSystem "openSwitch" "Телефонный коммутатор" "ExternalSystem"
       accounting = softwareSystem "accounting" "Бухгалтерия" "ExternalSystem"
       elk = softwareSystem "elk" "Аналитическая система" "ExternalSystem"
+      sorm = softwareSystem "sorm" "Выгрузка в спецслужбы" "ExternalSystem"
 
       tellbillService = softwareSystem "tellbill" "ИС управления телефонным узлом" "InternalSystem" {
         acc = container "Тарификатор звонков" "" "typescript" "next.js"
         auth = container "Маршрутизатор звонков" "" "typescript" "next.js"
         db = container "Хранилище состояний" "" "posgresql" "Database"
 
-        lkApi = container "backend" "" "typescript" "next.js"
-        lkFront = container "front" "" "typescript" "next.js"
+        lkApiBackend = container "lkApiBackend" "" "typescript" "next.js"
+        lkApiFront = container "lkApiFront" "" "typescript" "next.js"
 
+        adminApiBackend = container "AdminApiBackend" "" "typescript" "next.js"
+        adminApiFront = container "AdminApiFront" "" "typescript" "next.js"
+
+
+        acc -> db
+        auth -> db
+
+        db -> elk
+        db -> sorm
+        db -> accounting
+
+        lkApiFront -> lkApiBackend
+        adminApiFront -> adminApiBackend
+
+        lkApiBackend -> db
+        adminApiBackend -> db
       }
 
-      openSwitch ->  acc "Тарифицирует звонок"
-      openSwitch ->  auth "Маршрутизирует звонок"
+      openSwitch ->  tellbillService.acc "Тарифицирует звонок"
+      openSwitch ->  tellbillService.auth "Маршрутизирует звонок"
       
-      abonent -> lkFront "Смотрит ЛК"
-      admin   -> lkApi "Смотрит ЛК"
+      abonent -> tellbillService.lkApiFront "Смотрит ЛК"
+      admin   -> tellbillService.adminApiFront "Смотрит ЛК"
+
+      tellbillService -> accounting "Передает данные о звонках"
+      tellbillService -> sorm "Передает данные о звонках"
+      tellbillService -> elk "Передает данные о звонках"
 
     }
     views {
@@ -51,6 +74,17 @@ workspace "telbill" "ИС управления телефонным узлом" 
            autoLayout
         }
     
+        container tellbillService "Containers" {
+            include *
+            animation {
+                tellbillService.acc
+                tellbillService.auth
+                tellbillService.db
+            }
+
+            description "The container diagram for the Internet Banking System."
+        }
+
 
     }
 }
