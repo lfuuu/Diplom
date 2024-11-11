@@ -36,9 +36,9 @@ workspace "telbill" "ИС управления телефонным узлом" 
         acc -> db
         auth -> db
 
-        db -> elk
-        db -> sorm
-        db -> accounting
+        db -> elk "Передает данные о звонках"
+        db -> sorm "Передает данные о звонках"
+        db -> accounting "Передает данные о звонках"
 
         lkApiFront -> lkApiBackend
         adminApiFront -> adminApiBackend
@@ -52,10 +52,6 @@ workspace "telbill" "ИС управления телефонным узлом" 
       
       abonent -> tellbillService.lkApiFront "Смотрит ЛК"
       admin   -> tellbillService.adminApiFront "Смотрит ЛК"
-
-      tellbillService -> accounting "Передает данные о звонках"
-      tellbillService -> sorm "Передает данные о звонках"
-      tellbillService -> elk "Передает данные о звонках"
 
     }
     views {
