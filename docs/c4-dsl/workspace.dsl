@@ -11,6 +11,8 @@ workspace "telbill" "ИС управления телефонным узлом" 
       
       properties {
         "structrurizr.groupseparator" "/"
+        "plantuml.animation" "true"
+        "plantuml.shadow" "true"
       }
       
       admin = person "Администратор узла"
@@ -24,7 +26,7 @@ workspace "telbill" "ИС управления телефонным узлом" 
       tellbillService = softwareSystem "tellbill" "ИС управления телефонным узлом" "InternalSystem" {
         acc = container "Тарификатор звонков" "" "typescript" "next.js"
         auth = container "Маршрутизатор звонков" "" "typescript" "next.js"
-        db = container "Хранилище состояний" "" "posgresql" "Database"
+        db = container "Хранилище состояний" "Database" "posgresql" "Database"
 
         lkApiBackend = container "lkApiBackend" "" "typescript" "next.js"
         lkApiFront = container "lkApiFront" "" "typescript" "next.js"
@@ -83,4 +85,5 @@ workspace "telbill" "ИС управления телефонным узлом" 
 
 
     }
+
 }

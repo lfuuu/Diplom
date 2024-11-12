@@ -1,20 +1,47 @@
 styles {
             element "Element" {
-                background #1168bd
-                color #ffffff
-                shape RoundedBox
+                color white
             }
             element "Person" {
+                color #ffffff
+                fontSize 22
+                shape Person
+            }
+            element "SoftwareSystem" {
                 background #1168bd
                 color #ffffff
-                shape person
             }
-            relationship "sync" {
-                color #000000
-                dashed false
-            }
-            element "Container" {
+
+            element  "ExternalSystem" {
+                background #999999
                 color #ffffff
-                shape Pipe
-            }   
+            }
+
+            element "Database" {
+                shape Cylinder
+            }
+
+            element "Container" {
+                background #438dd5
+                color #ffffff
+            }
+            element "Web Browser" {
+                shape WebBrowser
+            }
+            element "Mobile App" {
+                shape MobileDeviceLandscape
+            }
+            element "Database" {
+                shape Cylinder
+            }
+            element "Component" {
+                background #85bbf0
+                color #000000
+            }
+
+            element "Failover" {
+                opacity 25
+            }
+
+
 }
