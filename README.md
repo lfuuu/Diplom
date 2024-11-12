@@ -38,9 +38,9 @@
 
 ## Архитектурная модель системы C4
 
-![Диаграмма контекста системы](out/docs/c4-dsl/plantuml/structurizr-tellbillServiceContext/structurizr-tellbillServiceContext.png "Диаграмма контекста системы")
+![Диаграмма контекста системы](docs/c4-dsl/plantuml/png/structurizr-tellbillServiceContext.png "Диаграмма контекста системы")
 
-![Диаграмма контейнера tellbillService](out/docs/c4-dsl/plantuml/structurizr-Containers/structurizr-Containers.png "Диаграмма контейнера tellbillService")
+![Диаграмма контейнера tellbillService](docs/c4-dsl/plantuml/png/structurizr-Containers.png "Диаграмма контейнера tellbillService")
 
 
 

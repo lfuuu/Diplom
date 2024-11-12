@@ -1,0 +1,26 @@
+@startuml
+set separator none
+title System Landscape
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+
+Person(Администраторузла, "Администратор узла", $descr="", $tags="", $link="")
+Person(Абонент, "Абонент", $descr="", $tags="", $link="")
+System(openSwitch, "openSwitch", $descr="Телефонный коммутатор", $tags="", $link="")
+System(accounting, "accounting", $descr="Бухгалтерия", $tags="", $link="")
+System(elk, "elk", $descr="Аналитическая система", $tags="", $link="")
+System(sorm, "sorm", $descr="Выгрузка в спецслужбы", $tags="", $link="")
+System(tellbill, "tellbill", $descr="ИС управления телефонным узлом", $tags="", $link="")
+
+Rel(tellbill, elk, "Передает данные о звонках", $techn="", $tags="", $link="")
+Rel(tellbill, sorm, "Передает данные о звонках", $techn="", $tags="", $link="")
+Rel(tellbill, accounting, "Передает данные о звонках", $techn="", $tags="", $link="")
+Rel(openSwitch, tellbill, "Тарифицирует звонок", $techn="", $tags="", $link="")
+Rel(Абонент, tellbill, "Смотрит ЛК", $techn="", $tags="", $link="")
+Rel(Администраторузла, tellbill, "Смотрит ЛК", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

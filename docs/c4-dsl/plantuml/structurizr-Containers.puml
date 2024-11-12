@@ -1,0 +1,43 @@
+@startuml
+set separator none
+title tellbill - Containers
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+
+Person(Администраторузла, "Администратор узла", $descr="", $tags="", $link="")
+Person(Абонент, "Абонент", $descr="", $tags="", $link="")
+System(openSwitch, "openSwitch", $descr="Телефонный коммутатор", $tags="", $link="")
+System(accounting, "accounting", $descr="Бухгалтерия", $tags="", $link="")
+System(elk, "elk", $descr="Аналитическая система", $tags="", $link="")
+System(sorm, "sorm", $descr="Выгрузка в спецслужбы", $tags="", $link="")
+
+System_Boundary("tellbill_boundary", "tellbill", $tags="") {
+  ContainerQueue(tellbill.Хранилищесостояний, "Хранилище состояний", $techn="posgresql", $descr="", $tags="", $link="")
+  ContainerQueue(tellbill.lkApiBackend, "lkApiBackend", $techn="typescript", $descr="", $tags="", $link="")
+  ContainerQueue(tellbill.lkApiFront, "lkApiFront", $techn="typescript", $descr="", $tags="", $link="")
+  ContainerQueue(tellbill.AdminApiBackend, "AdminApiBackend", $techn="typescript", $descr="", $tags="", $link="")
+  ContainerQueue(tellbill.AdminApiFront, "AdminApiFront", $techn="typescript", $descr="", $tags="", $link="")
+  ContainerQueue(tellbill.Тарификаторзвонков, "Тарификатор звонков", $techn="typescript", $descr="", $tags="", $link="")
+  ContainerQueue(tellbill.Маршрутизаторзвонков, "Маршрутизатор звонков", $techn="typescript", $descr="", $tags="", $link="")
+}
+
+Rel(tellbill.Тарификаторзвонков, tellbill.Хранилищесостояний, "", $techn="", $tags="", $link="")
+Rel(tellbill.Маршрутизаторзвонков, tellbill.Хранилищесостояний, "", $techn="", $tags="", $link="")
+Rel(tellbill.Хранилищесостояний, elk, "Передает данные о звонках", $techn="", $tags="", $link="")
+Rel(tellbill.Хранилищесостояний, sorm, "Передает данные о звонках", $techn="", $tags="", $link="")
+Rel(tellbill.Хранилищесостояний, accounting, "Передает данные о звонках", $techn="", $tags="", $link="")
+Rel(tellbill.lkApiFront, tellbill.lkApiBackend, "", $techn="", $tags="", $link="")
+Rel(tellbill.AdminApiFront, tellbill.AdminApiBackend, "", $techn="", $tags="", $link="")
+Rel(tellbill.lkApiBackend, tellbill.Хранилищесостояний, "", $techn="", $tags="", $link="")
+Rel(tellbill.AdminApiBackend, tellbill.Хранилищесостояний, "", $techn="", $tags="", $link="")
+Rel(openSwitch, tellbill.Тарификаторзвонков, "Тарифицирует звонок", $techn="", $tags="", $link="")
+Rel(openSwitch, tellbill.Маршрутизаторзвонков, "Маршрутизирует звонок", $techn="", $tags="", $link="")
+Rel(Абонент, tellbill.lkApiFront, "Смотрит ЛК", $techn="", $tags="", $link="")
+Rel(Администраторузла, tellbill.AdminApiFront, "Смотрит ЛК", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml
