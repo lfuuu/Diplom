@@ -24,7 +24,13 @@ workspace "telbill" "ИС управления телефонным узлом" 
       sorm = softwareSystem "sorm" "Выгрузка в спецслужбы" "ExternalSystem"
 
       tellbillService = softwareSystem "tellbill" "ИС управления телефонным узлом" "InternalSystem" {
-        acc = container "Тарификатор звонков" "" "typescript" "next.js"
+        acc = container "Тарификатор звонков" "" "typescript" "next.js" {
+           radiusServer = component "Радиус сервер" "" "" ""
+           cdrRepo = component "Репозиторий CDR" "" "" ""        
+           
+           radiusServer -> cdrRepo "Сохраняет звонки"
+        }
+
         auth = container "Маршрутизатор звонков" "" "typescript" "next.js"
         db = container "Хранилище состояний" "Database" "posgresql" "Database"
 
@@ -34,6 +40,7 @@ workspace "telbill" "ИС управления телефонным узлом" 
         adminApiBackend = container "AdminApiBackend" "" "typescript" "next.js"
         adminApiFront = container "AdminApiFront" "" "typescript" "next.js"
 
+        acc.cdrRepo -> db "Сохраняет звонки"
 
         acc -> db
         auth -> db
@@ -79,6 +86,17 @@ workspace "telbill" "ИС управления телефонным узлом" 
                 tellbillService.auth
                 tellbillService.db
             }
+            description "The container diagram for the Internet Banking System."
+        }
+
+        component tellbillService.acc "Component_acc" {
+            include *
+            exclude *->*
+            include *->tellbillService.acc
+            include tellbillService.acc->*
+            # animation {
+            #      tellbillService.acc
+            # }
 
             description "The container diagram for the Internet Banking System."
         }

@@ -1,0 +1,47 @@
+@startuml
+set separator none
+title tellbill - Тарификатор звонков - Components
+
+top to bottom direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<tellbill.Тарификаторзвонков.Радиуссервер>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<tellbill.Тарификаторзвонков.РепозиторийCDR>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam database<<tellbill.Хранилищесостояний>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<tellbill.Тарификаторзвонков>> {
+  BorderColor #2e6295
+  FontColor #2e6295
+  shadowing false
+}
+
+database "==Хранилище состояний\n<size:10>[Container: posgresql]</size>\n\nDatabase" <<tellbill.Хранилищесостояний>> as tellbill.Хранилищесостояний
+
+rectangle "Тарификатор звонков\n<size:10>[Container: typescript]</size>" <<tellbill.Тарификаторзвонков>> {
+  rectangle "==Репозиторий CDR\n<size:10>[Component]</size>" <<tellbill.Тарификаторзвонков.РепозиторийCDR>> as tellbill.Тарификаторзвонков.РепозиторийCDR
+  rectangle "==Радиус сервер\n<size:10>[Component]</size>" <<tellbill.Тарификаторзвонков.Радиуссервер>> as tellbill.Тарификаторзвонков.Радиуссервер
+}
+
+@enduml

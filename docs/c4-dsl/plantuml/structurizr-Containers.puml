@@ -105,15 +105,16 @@ rectangle "==elk\n<size:10>[Software System]</size>\n\nАналитическа�
 rectangle "==sorm\n<size:10>[Software System]</size>\n\nВыгрузка в спецслужбы" <<sorm>> as sorm
 
 rectangle "tellbill\n<size:10>[Software System]</size>" <<tellbill>> {
+  rectangle "==Маршрутизатор звонков\n<size:10>[Container: typescript]</size>" <<tellbill.Маршрутизаторзвонков>> as tellbill.Маршрутизаторзвонков
   database "==Хранилище состояний\n<size:10>[Container: posgresql]</size>\n\nDatabase" <<tellbill.Хранилищесостояний>> as tellbill.Хранилищесостояний
   rectangle "==lkApiBackend\n<size:10>[Container: typescript]</size>" <<tellbill.lkApiBackend>> as tellbill.lkApiBackend
   rectangle "==lkApiFront\n<size:10>[Container: typescript]</size>" <<tellbill.lkApiFront>> as tellbill.lkApiFront
   rectangle "==AdminApiBackend\n<size:10>[Container: typescript]</size>" <<tellbill.AdminApiBackend>> as tellbill.AdminApiBackend
   rectangle "==AdminApiFront\n<size:10>[Container: typescript]</size>" <<tellbill.AdminApiFront>> as tellbill.AdminApiFront
   rectangle "==Тарификатор звонков\n<size:10>[Container: typescript]</size>" <<tellbill.Тарификаторзвонков>> as tellbill.Тарификаторзвонков
-  rectangle "==Маршрутизатор звонков\n<size:10>[Container: typescript]</size>" <<tellbill.Маршрутизаторзвонков>> as tellbill.Маршрутизаторзвонков
 }
 
+tellbill.Тарификаторзвонков .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>Сохраняет звонки"
 tellbill.Тарификаторзвонков .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
 tellbill.Маршрутизаторзвонков .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
 tellbill.Хранилищесостояний .[#707070,thickness=2].> elk : "<color:#707070>Передает данные о звонках"
