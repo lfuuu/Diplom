@@ -38,11 +38,11 @@
 
 - [Диаграмма контекста](docs/DiagramaContext.md)
 - [Диаграмма контейнеров](docs/DiagramaContainers.md)
-  - Диаграмма контейнера AdminApiFront
+  - [Диаграмма контейнера AdminFront](docs/DiagramaContainerAdminFront.md)
   - Диаграмма контейнера AdminApiBAckend
-  - Диаграмма контейнера lkApiFront
+  - [Диаграмма контейнера lkApiFront](docs/DiagramaContainerLkFront.md)
   - Диаграмма контейнера lkApiBackand
-  - [Диаграмма компонентов контейнера Тарификатор звонков](docs/DiagramaContainersAcc.md)
+  - [Диаграмма компонентов контейнера Тарификатор звонков](docs/DiagramaContainerAcc.md)
   - Диаграмма контейнера Маршрутизатор звонков
 - Диаграмма развертывания
 - [Временная диаграмма обработки звонка](docs/SeqDiagramaBillCall.md)

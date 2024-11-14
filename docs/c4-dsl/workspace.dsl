@@ -24,7 +24,10 @@ workspace "telbill" "ИС управления телефонным узлом" 
       sorm = softwareSystem "sorm" "Выгрузка в спецслужбы" "ExternalSystem"
 
       tellbillService = softwareSystem "tellbill" "ИС управления телефонным узлом" "InternalSystem" {
-        acc = container "Тарификатор звонков" "" "typescript" "next.js" {
+
+        ##############################################################################
+
+        acc = container "acc (Тарификатор звонков)" "" "typescript" "next.js" {
            radiusServer = component "Радиус сервер" "" "" ""
            cdrRepo = component "Репозиторий CDR" "" "" ""        
            
@@ -34,33 +37,88 @@ workspace "telbill" "ИС управления телефонным узлом" 
         auth = container "Маршрутизатор звонков" "" "typescript" "next.js"
         db = container "Хранилище состояний" "Database" "posgresql" "Database"
 
-        lkApiBackend = container "lkApiBackend" "" "typescript" "next.js"
-        lkApiFront = container "lkApiFront" "" "typescript" "next.js"
+        ##############################################################################
 
-        adminApiBackend = container "AdminApiBackend" "" "typescript" "next.js"
-        adminApiFront = container "AdminApiFront" "" "typescript" "next.js"
+        lkApiBackend = container "lkApiBackend" "" "typescript" "next.js"
+        lkApiFront = container "lkApiFront" "" "typescript" "next.js" {
+          httpServer = component "http сервер" "" "" ""
+
+          authPage = component "авторизация пользователя" "" "" ""
+          accountPage = component "Страница баланс пользователя" "" "" ""
+          callsPage = component "Страница звонки пользователя" "" "" ""
+          billsPage = component "Страница расходы пользователя" "" "" ""
+
+          authRepo = component "Репозиторий пользователей" "" "" ""
+          accountRepo = component "Репозиторий баланс пользователя" "" "" ""
+          callsRepo = component "Peпозиторий звонки пользователя" "" "" ""
+          billsRepo = component "Peпозиторий расходы пользователя" "" "" ""
+
+
+          httpServer -> authPage
+          httpServer -> accountPage
+          httpServer -> callsPage
+          httpServer -> billsPage
+
+          authPage -> authRepo
+          accountPage -> accountRepo
+          callsPage -> callsRepo 
+          billsPage -> billsRepo
+          
+        }
+
+        lkApiFront.authRepo -> lkApiBackend
+        lkApiFront.accountRepo -> lkApiBackend
+        lkApiFront.callsRepo -> lkApiBackend
+        lkApiFront.billsRepo -> lkApiBackend
+
+        ##############################################################################
+
+        adminApiBackend = container "AdminApiBackend" "" "typescript" "next.js" 
+
+        ##############################################################################
+
+        adminApiFront = container "AdminApiFront" "" "typescript" "next.js"        {
+
+          httpServer = component "http сервер" "" "" ""
+
+          authPage = component "авторизация пользователя" "" "" ""
+          authRepo = component "Репозиторий пользователей" "" "" ""
+          authPage -> authRepo
+          httpServer -> authPage
+
+        }
+    
+        adminApiFront.authRepo -> adminApiBackend
+        
+
+        ##############################################################################
+
 
         acc.cdrRepo -> db "Сохраняет звонки"
 
-        acc -> db
+        # acc -> db
         auth -> db
 
         db -> elk "Передает данные о звонках"
         db -> sorm "Передает данные о звонках"
         db -> accounting "Передает данные о звонках"
 
-        lkApiFront -> lkApiBackend
-        adminApiFront -> adminApiBackend
+        #lkApiFront -> lkApiBackend
+        #adminApiFront -> adminApiBackend
 
         lkApiBackend -> db
         adminApiBackend -> db
+
+        #adminApiBackend -> db
       }
 
+      abonent -> tellbillService.lkApiFront.httpServer
+      
       openSwitch ->  tellbillService.acc.radiusServer "Тарифицирует звонок"
       openSwitch ->  tellbillService.auth "Маршрутизирует звонок"
       
-      abonent -> tellbillService.lkApiFront "Смотрит ЛК"
-      admin   -> tellbillService.adminApiFront "Смотрит ЛК"
+      #abonent -> tellbillService.lkApiFront "Смотрит ЛК"
+      admin   -> tellbillService.adminApiFront.httpServer "Смотрит ЛК"
 
     }
     views {
@@ -98,8 +156,19 @@ workspace "telbill" "ИС управления телефонным узлом" 
             #      tellbillService.acc
             # }
 
-            description "The container diagram for the Internet Banking System."
+            description "acc (Тарификатор звонков)"
         }
+
+        component tellbillService.lkApiFront "Component_lkFront" {
+            include *
+            description "lkApiFront (Веб интерфейс ЛК-пользователя)"
+        }
+
+        component tellbillService.AdminApiFront "Component_AdminFront" {
+            include *
+            description "AdminApiFront (Веб интерфейс админимстратора)"
+        }
+
 
 
     }

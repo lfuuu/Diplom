@@ -1,6 +1,6 @@
 @startuml
 set separator none
-title tellbill - Тарификатор звонков - Components
+title tellbill - acc (Тарификатор звонков) - Components
 
 top to bottom direction
 
@@ -19,13 +19,13 @@ skinparam rectangle<<openSwitch>> {
   BorderColor #6b6b6b
   shadowing false
 }
-skinparam rectangle<<tellbill.Тарификаторзвонков.Радиуссервер>> {
+skinparam rectangle<<tellbill.accТарификаторзвонков.Радиуссервер>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   shadowing false
 }
-skinparam rectangle<<tellbill.Тарификаторзвонков.РепозиторийCDR>> {
+skinparam rectangle<<tellbill.accТарификаторзвонков.РепозиторийCDR>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -37,7 +37,7 @@ skinparam database<<tellbill.Хранилищесостояний>> {
   BorderColor #2e6295
   shadowing false
 }
-skinparam rectangle<<tellbill.Тарификаторзвонков>> {
+skinparam rectangle<<tellbill.accТарификаторзвонков>> {
   BorderColor #2e6295
   FontColor #2e6295
   shadowing false
@@ -46,12 +46,12 @@ skinparam rectangle<<tellbill.Тарификаторзвонков>> {
 rectangle "==openSwitch\n<size:10>[Software System]</size>\n\nТелефонный коммутатор" <<openSwitch>> as openSwitch
 database "==Хранилище состояний\n<size:10>[Container: posgresql]</size>\n\nDatabase" <<tellbill.Хранилищесостояний>> as tellbill.Хранилищесостояний
 
-rectangle "Тарификатор звонков\n<size:10>[Container: typescript]</size>" <<tellbill.Тарификаторзвонков>> {
-  rectangle "==Репозиторий CDR\n<size:10>[Component]</size>" <<tellbill.Тарификаторзвонков.РепозиторийCDR>> as tellbill.Тарификаторзвонков.РепозиторийCDR
-  rectangle "==Радиус сервер\n<size:10>[Component]</size>" <<tellbill.Тарификаторзвонков.Радиуссервер>> as tellbill.Тарификаторзвонков.Радиуссервер
+rectangle "acc (Тарификатор звонков)\n<size:10>[Container: typescript]</size>" <<tellbill.accТарификаторзвонков>> {
+  rectangle "==Репозиторий CDR\n<size:10>[Component]</size>" <<tellbill.accТарификаторзвонков.РепозиторийCDR>> as tellbill.accТарификаторзвонков.РепозиторийCDR
+  rectangle "==Радиус сервер\n<size:10>[Component]</size>" <<tellbill.accТарификаторзвонков.Радиуссервер>> as tellbill.accТарификаторзвонков.Радиуссервер
 }
 
-tellbill.Тарификаторзвонков.Радиуссервер .[#707070,thickness=2].> tellbill.Тарификаторзвонков.РепозиторийCDR : "<color:#707070>Сохраняет звонки"
-tellbill.Тарификаторзвонков.РепозиторийCDR .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>Сохраняет звонки"
-openSwitch .[#707070,thickness=2].> tellbill.Тарификаторзвонков.Радиуссервер : "<color:#707070>Тарифицирует звонок"
+tellbill.accТарификаторзвонков.Радиуссервер .[#707070,thickness=2].> tellbill.accТарификаторзвонков.РепозиторийCDR : "<color:#707070>Сохраняет звонки"
+tellbill.accТарификаторзвонков.РепозиторийCDR .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>Сохраняет звонки"
+openSwitch .[#707070,thickness=2].> tellbill.accТарификаторзвонков.Радиуссервер : "<color:#707070>Тарифицирует звонок"
 @enduml

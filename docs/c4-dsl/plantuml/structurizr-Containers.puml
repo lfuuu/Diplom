@@ -25,6 +25,12 @@ skinparam rectangle<<tellbill.AdminApiFront>> {
   BorderColor #2e6295
   shadowing false
 }
+skinparam rectangle<<tellbill.accТарификаторзвонков>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
 skinparam rectangle<<accounting>> {
   BackgroundColor #999999
   FontColor #ffffff
@@ -79,12 +85,6 @@ skinparam rectangle<<tellbill.Маршрутизаторзвонков>> {
   BorderColor #2e6295
   shadowing false
 }
-skinparam rectangle<<tellbill.Тарификаторзвонков>> {
-  BackgroundColor #438dd5
-  FontColor #ffffff
-  BorderColor #2e6295
-  shadowing false
-}
 skinparam database<<tellbill.Хранилищесостояний>> {
   BackgroundColor #438dd5
   FontColor #ffffff
@@ -111,21 +111,20 @@ rectangle "tellbill\n<size:10>[Software System]</size>" <<tellbill>> {
   rectangle "==lkApiFront\n<size:10>[Container: typescript]</size>" <<tellbill.lkApiFront>> as tellbill.lkApiFront
   rectangle "==AdminApiBackend\n<size:10>[Container: typescript]</size>" <<tellbill.AdminApiBackend>> as tellbill.AdminApiBackend
   rectangle "==AdminApiFront\n<size:10>[Container: typescript]</size>" <<tellbill.AdminApiFront>> as tellbill.AdminApiFront
-  rectangle "==Тарификатор звонков\n<size:10>[Container: typescript]</size>" <<tellbill.Тарификаторзвонков>> as tellbill.Тарификаторзвонков
+  rectangle "==acc (Тарификатор звонков)\n<size:10>[Container: typescript]</size>" <<tellbill.accТарификаторзвонков>> as tellbill.accТарификаторзвонков
 }
 
-tellbill.Тарификаторзвонков .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>Сохраняет звонки"
-tellbill.Тарификаторзвонков .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
+tellbill.lkApiFront .[#707070,thickness=2].> tellbill.lkApiBackend : "<color:#707070>"
+tellbill.AdminApiFront .[#707070,thickness=2].> tellbill.AdminApiBackend : "<color:#707070>"
+tellbill.accТарификаторзвонков .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>Сохраняет звонки"
 tellbill.Маршрутизаторзвонков .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
 tellbill.Хранилищесостояний .[#707070,thickness=2].> elk : "<color:#707070>Передает данные о звонках"
 tellbill.Хранилищесостояний .[#707070,thickness=2].> sorm : "<color:#707070>Передает данные о звонках"
 tellbill.Хранилищесостояний .[#707070,thickness=2].> accounting : "<color:#707070>Передает данные о звонках"
-tellbill.lkApiFront .[#707070,thickness=2].> tellbill.lkApiBackend : "<color:#707070>"
-tellbill.AdminApiFront .[#707070,thickness=2].> tellbill.AdminApiBackend : "<color:#707070>"
 tellbill.lkApiBackend .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
 tellbill.AdminApiBackend .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
-openSwitch .[#707070,thickness=2].> tellbill.Тарификаторзвонков : "<color:#707070>Тарифицирует звонок"
+Абонент .[#707070,thickness=2].> tellbill.lkApiFront : "<color:#707070>"
+openSwitch .[#707070,thickness=2].> tellbill.accТарификаторзвонков : "<color:#707070>Тарифицирует звонок"
 openSwitch .[#707070,thickness=2].> tellbill.Маршрутизаторзвонков : "<color:#707070>Маршрутизирует звонок"
-Абонент .[#707070,thickness=2].> tellbill.lkApiFront : "<color:#707070>Смотрит ЛК"
 Администраторузла .[#707070,thickness=2].> tellbill.AdminApiFront : "<color:#707070>Смотрит ЛК"
 @enduml

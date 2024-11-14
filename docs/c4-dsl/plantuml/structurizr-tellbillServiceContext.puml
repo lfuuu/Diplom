@@ -67,7 +67,7 @@ rectangle "==tellbill\n<size:10>[Software System]</size>\n\nИС управле�
 tellbill .[#707070,thickness=2].> elk : "<color:#707070>Передает данные о звонках"
 tellbill .[#707070,thickness=2].> sorm : "<color:#707070>Передает данные о звонках"
 tellbill .[#707070,thickness=2].> accounting : "<color:#707070>Передает данные о звонках"
+Абонент .[#707070,thickness=2].> tellbill : "<color:#707070>"
 openSwitch .[#707070,thickness=2].> tellbill : "<color:#707070>Тарифицирует звонок"
-Абонент .[#707070,thickness=2].> tellbill : "<color:#707070>Смотрит ЛК"
 Администраторузла .[#707070,thickness=2].> tellbill : "<color:#707070>Смотрит ЛК"
 @enduml
