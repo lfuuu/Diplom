@@ -1,0 +1,73 @@
+@startuml
+set separator none
+title System Landscape
+
+top to bottom direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<accounting>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+  shadowing false
+}
+skinparam rectangle<<elk>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+  shadowing false
+}
+skinparam rectangle<<openSwitch>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+  shadowing false
+}
+skinparam rectangle<<sorm>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+  shadowing false
+}
+skinparam rectangle<<tellbill>> {
+  BackgroundColor #dddddd
+  FontColor #ffffff
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam person<<Абонент>> {
+  BackgroundColor #dddddd
+  FontColor #ffffff
+  BorderColor #9a9a9a
+  shadowing false
+}
+skinparam person<<Администраторузла>> {
+  BackgroundColor #dddddd
+  FontColor #ffffff
+  BorderColor #9a9a9a
+  shadowing false
+}
+
+person "==Администратор узла\n<size:10>[Person]</size>" <<Администраторузла>> as Администраторузла
+person "==Абонент\n<size:10>[Person]</size>" <<Абонент>> as Абонент
+rectangle "==openSwitch\n<size:10>[Software System]</size>\n\nТелефонный коммутатор" <<openSwitch>> as openSwitch
+rectangle "==accounting\n<size:10>[Software System]</size>\n\nБухгалтерия" <<accounting>> as accounting
+rectangle "==elk\n<size:10>[Software System]</size>\n\nАналитическая система" <<elk>> as elk
+rectangle "==sorm\n<size:10>[Software System]</size>\n\nВыгрузка в спецслужбы" <<sorm>> as sorm
+rectangle "==tellbill\n<size:10>[Software System]</size>\n\nИС управления телефонным узлом" <<tellbill>> as tellbill
+
+tellbill .[#707070,thickness=2].> elk : "<color:#707070>Передает данные о звонках"
+tellbill .[#707070,thickness=2].> sorm : "<color:#707070>Передает данные о звонках"
+tellbill .[#707070,thickness=2].> accounting : "<color:#707070>Передает данные о звонках"
+Абонент .[#707070,thickness=2].> tellbill : "<color:#707070>"
+openSwitch .[#707070,thickness=2].> tellbill : "<color:#707070>Тарифицирует звонок"
+Администраторузла .[#707070,thickness=2].> tellbill : "<color:#707070>Смотрит ЛК"
+@enduml
