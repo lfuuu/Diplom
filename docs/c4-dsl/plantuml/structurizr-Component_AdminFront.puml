@@ -31,7 +31,55 @@ skinparam person<<Администраторузла>> {
   BorderColor #9a9a9a
   shadowing false
 }
+skinparam rectangle<<tellbill.AdminApiFront.Отчеты>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<tellbill.AdminApiFront.РепозиторийОтчетов>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<tellbill.AdminApiFront.Репозиторийабонентов>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<tellbill.AdminApiFront.Репозиторийоператоров>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
 skinparam rectangle<<tellbill.AdminApiFront.Репозиторийпользователей>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<tellbill.AdminApiFront.Репозиторийпрайслистов>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<tellbill.AdminApiFront.Управлениеабонентамисписоксвойства>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<tellbill.AdminApiFront.Управлениеоператорамисписоксвойства>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<tellbill.AdminApiFront.Управлениепрайслистамисписоксвойства>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -56,10 +104,30 @@ rectangle "AdminApiFront\n<size:10>[Container: typescript]</size>" <<tellbill.Ad
   rectangle "==http сервер\n<size:10>[Component]</size>" <<tellbill.AdminApiFront.httpсервер>> as tellbill.AdminApiFront.httpсервер
   rectangle "==авторизация пользователя\n<size:10>[Component]</size>" <<tellbill.AdminApiFront.авторизацияпользователя>> as tellbill.AdminApiFront.авторизацияпользователя
   rectangle "==Репозиторий пользователей\n<size:10>[Component]</size>" <<tellbill.AdminApiFront.Репозиторийпользователей>> as tellbill.AdminApiFront.Репозиторийпользователей
+  rectangle "==Управление абонентами список/свойства\n<size:10>[Component]</size>" <<tellbill.AdminApiFront.Управлениеабонентамисписоксвойства>> as tellbill.AdminApiFront.Управлениеабонентамисписоксвойства
+  rectangle "==Репозиторий абонентов\n<size:10>[Component]</size>" <<tellbill.AdminApiFront.Репозиторийабонентов>> as tellbill.AdminApiFront.Репозиторийабонентов
+  rectangle "==Управление операторами список/свойства\n<size:10>[Component]</size>" <<tellbill.AdminApiFront.Управлениеоператорамисписоксвойства>> as tellbill.AdminApiFront.Управлениеоператорамисписоксвойства
+  rectangle "==Репозиторий операторов\n<size:10>[Component]</size>" <<tellbill.AdminApiFront.Репозиторийоператоров>> as tellbill.AdminApiFront.Репозиторийоператоров
+  rectangle "==Управление прайслистами список/свойства\n<size:10>[Component]</size>" <<tellbill.AdminApiFront.Управлениепрайслистамисписоксвойства>> as tellbill.AdminApiFront.Управлениепрайслистамисписоксвойства
+  rectangle "==Репозиторий прайслистов\n<size:10>[Component]</size>" <<tellbill.AdminApiFront.Репозиторийпрайслистов>> as tellbill.AdminApiFront.Репозиторийпрайслистов
+  rectangle "==Отчеты\n<size:10>[Component]</size>" <<tellbill.AdminApiFront.Отчеты>> as tellbill.AdminApiFront.Отчеты
+  rectangle "==Репозиторий Отчетов\n<size:10>[Component]</size>" <<tellbill.AdminApiFront.РепозиторийОтчетов>> as tellbill.AdminApiFront.РепозиторийОтчетов
 }
 
 tellbill.AdminApiFront.авторизацияпользователя .[#707070,thickness=2].> tellbill.AdminApiFront.Репозиторийпользователей : "<color:#707070>"
 tellbill.AdminApiFront.httpсервер .[#707070,thickness=2].> tellbill.AdminApiFront.авторизацияпользователя : "<color:#707070>"
+tellbill.AdminApiFront.Управлениеабонентамисписоксвойства .[#707070,thickness=2].> tellbill.AdminApiFront.Репозиторийабонентов : "<color:#707070>"
+tellbill.AdminApiFront.httpсервер .[#707070,thickness=2].> tellbill.AdminApiFront.Управлениеабонентамисписоксвойства : "<color:#707070>"
+tellbill.AdminApiFront.Управлениеоператорамисписоксвойства .[#707070,thickness=2].> tellbill.AdminApiFront.Репозиторийоператоров : "<color:#707070>"
+tellbill.AdminApiFront.httpсервер .[#707070,thickness=2].> tellbill.AdminApiFront.Управлениеоператорамисписоксвойства : "<color:#707070>"
+tellbill.AdminApiFront.Управлениепрайслистамисписоксвойства .[#707070,thickness=2].> tellbill.AdminApiFront.Репозиторийпрайслистов : "<color:#707070>"
+tellbill.AdminApiFront.httpсервер .[#707070,thickness=2].> tellbill.AdminApiFront.Управлениепрайслистамисписоксвойства : "<color:#707070>"
+tellbill.AdminApiFront.Отчеты .[#707070,thickness=2].> tellbill.AdminApiFront.РепозиторийОтчетов : "<color:#707070>"
+tellbill.AdminApiFront.httpсервер .[#707070,thickness=2].> tellbill.AdminApiFront.Отчеты : "<color:#707070>"
 tellbill.AdminApiFront.Репозиторийпользователей .[#707070,thickness=2].> tellbill.AdminApiBackend : "<color:#707070>"
+tellbill.AdminApiFront.Репозиторийабонентов .[#707070,thickness=2].> tellbill.AdminApiBackend : "<color:#707070>"
+tellbill.AdminApiFront.Репозиторийоператоров .[#707070,thickness=2].> tellbill.AdminApiBackend : "<color:#707070>"
+tellbill.AdminApiFront.Репозиторийпрайслистов .[#707070,thickness=2].> tellbill.AdminApiBackend : "<color:#707070>"
+tellbill.AdminApiFront.РепозиторийОтчетов .[#707070,thickness=2].> tellbill.AdminApiBackend : "<color:#707070>"
 Администраторузла .[#707070,thickness=2].> tellbill.AdminApiFront.httpсервер : "<color:#707070>Смотрит ЛК"
 @enduml

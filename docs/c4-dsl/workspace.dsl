@@ -86,11 +86,35 @@ workspace "telbill" "ИС управления телефонным узлом" 
           authPage -> authRepo
           httpServer -> authPage
 
+          abonentPage = component "Управление абонентами список/свойства" "" "" ""
+          abonentRepo = component "Репозиторий абонентов" "" "" ""
+          abonentPage -> abonentRepo
+          httpServer -> abonentPage
+
+          operatorPage = component "Управление операторами список/свойства" "" "" ""
+          operatorRepo = component "Репозиторий операторов" "" "" ""
+          operatorPage -> operatorRepo
+          httpServer -> operatorPage
+
+          pricelistPage = component "Управление прайслистами список/свойства" "" "" ""
+          pricelistRepo = component "Репозиторий прайслистов" "" "" ""
+          pricelistPage -> pricelistRepo
+          httpServer -> pricelistPage
+
+          reportPage = component "Отчеты" "" "" ""
+          reportRepo = component "Репозиторий Отчетов" "" "" ""
+          reportPage -> reportRepo
+          httpServer -> reportPage
+
+
         }
     
         adminApiFront.authRepo -> adminApiBackend
+        adminApiFront.abonentRepo -> adminApiBackend
+        adminApiFront.operatorRepo -> adminApiBackend
+        adminApiFront.pricelistRepo -> adminApiBackend
+        adminApiFront.reportRepo -> adminApiBackend
         
-
         ##############################################################################
 
 
