@@ -13,6 +13,12 @@ skinparam {
 
 hide stereotype
 
+skinparam rectangle<<openSwitch>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+  shadowing false
+}
 skinparam rectangle<<tellbill.Тарификаторзвонков.Радиуссервер>> {
   BackgroundColor #85bbf0
   FontColor #000000
@@ -37,6 +43,7 @@ skinparam rectangle<<tellbill.Тарификаторзвонков>> {
   shadowing false
 }
 
+rectangle "==openSwitch\n<size:10>[Software System]</size>\n\nТелефонный коммутатор" <<openSwitch>> as openSwitch
 database "==Хранилище состояний\n<size:10>[Container: posgresql]</size>\n\nDatabase" <<tellbill.Хранилищесостояний>> as tellbill.Хранилищесостояний
 
 rectangle "Тарификатор звонков\n<size:10>[Container: typescript]</size>" <<tellbill.Тарификаторзвонков>> {
@@ -44,4 +51,7 @@ rectangle "Тарификатор звонков\n<size:10>[Container: typescrip
   rectangle "==Радиус сервер\n<size:10>[Component]</size>" <<tellbill.Тарификаторзвонков.Радиуссервер>> as tellbill.Тарификаторзвонков.Радиуссервер
 }
 
+tellbill.Тарификаторзвонков.Радиуссервер .[#707070,thickness=2].> tellbill.Тарификаторзвонков.РепозиторийCDR : "<color:#707070>Сохраняет звонки"
+tellbill.Тарификаторзвонков.РепозиторийCDR .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>Сохраняет звонки"
+openSwitch .[#707070,thickness=2].> tellbill.Тарификаторзвонков.Радиуссервер : "<color:#707070>Тарифицирует звонок"
 @enduml

@@ -56,7 +56,7 @@ workspace "telbill" "ИС управления телефонным узлом" 
         adminApiBackend -> db
       }
 
-      openSwitch ->  tellbillService.acc "Тарифицирует звонок"
+      openSwitch ->  tellbillService.acc.radiusServer "Тарифицирует звонок"
       openSwitch ->  tellbillService.auth "Маршрутизирует звонок"
       
       abonent -> tellbillService.lkApiFront "Смотрит ЛК"
@@ -91,9 +91,9 @@ workspace "telbill" "ИС управления телефонным узлом" 
 
         component tellbillService.acc "Component_acc" {
             include *
-            exclude *->*
-            include *->tellbillService.acc
-            include tellbillService.acc->*
+            # exclude *->*
+            # include *->tellbillService.acc
+            # include tellbillService.acc->*
             # animation {
             #      tellbillService.acc
             # }
