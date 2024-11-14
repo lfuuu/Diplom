@@ -39,9 +39,9 @@
 - [Диаграмма контекста](docs/DiagramaContext.md)
 - [Диаграмма контейнеров](docs/DiagramaContainers.md)
   - [Диаграмма контейнера AdminFront](docs/DiagramaContainerAdminFront.md)
-  - Диаграмма контейнера AdminApiBAckend
+  - Диаграмма контейнера AdminApiBackend
   - [Диаграмма контейнера lkApiFront](docs/DiagramaContainerLkFront.md)
-  - Диаграмма контейнера lkApiBackand
+  - Диаграмма контейнера lkApiBackend
   - [Диаграмма компонентов контейнера Тарификатор звонков](docs/DiagramaContainerAcc.md)
   - Диаграмма контейнера Маршрутизатор звонков
 - Диаграмма развертывания
