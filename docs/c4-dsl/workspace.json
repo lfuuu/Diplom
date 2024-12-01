@@ -4,7 +4,7 @@
   "documentation" : { },
   "id" : 1,
   "lastModifiedAgent" : "structurizr-ui",
-  "lastModifiedDate" : "2024-12-01T13:18:33Z",
+  "lastModifiedDate" : "2024-12-01T13:19:28Z",
   "model" : {
     "deploymentNodes" : [ {
       "containerInstances" : [ {
@@ -1185,7 +1185,7 @@
   "views" : {
     "componentViews" : [ {
       "automaticLayout" : {
-        "applied" : false,
+        "applied" : true,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -1195,50 +1195,69 @@
       },
       "containerId" : "18",
       "description" : "acc (Тарификатор звонков)",
+      "dimensions" : {
+        "height" : 2591,
+        "width" : 3028
+      },
       "elements" : [ {
         "id" : "3",
-        "x" : 0,
-        "y" : 0
+        "x" : 220,
+        "y" : 199
       }, {
         "id" : "19",
-        "x" : 0,
-        "y" : 0
+        "x" : 220,
+        "y" : 799
       }, {
         "id" : "20",
-        "x" : 0,
-        "y" : 0
+        "x" : 282,
+        "y" : 1399
       }, {
         "id" : "21",
-        "x" : 0,
-        "y" : 0
+        "x" : 970,
+        "y" : 799
       }, {
         "id" : "22",
-        "x" : 0,
-        "y" : 0
+        "x" : 1720,
+        "y" : 799
       }, {
         "id" : "23",
-        "x" : 0,
-        "y" : 0
+        "x" : 1091,
+        "y" : 1399
       }, {
         "id" : "24",
-        "x" : 0,
-        "y" : 0
+        "x" : 1357,
+        "y" : 1999
       }, {
         "id" : "29",
-        "x" : 0,
-        "y" : 0
+        "x" : 2378,
+        "y" : 1999
       } ],
       "externalContainerBoundariesVisible" : false,
       "key" : "Component_acc",
       "order" : 4,
       "relationships" : [ {
-        "id" : "125"
+        "id" : "125",
+        "vertices" : [ {
+          "x" : 941,
+          "y" : 1699
+        } ]
       }, {
-        "id" : "129"
+        "id" : "129",
+        "vertices" : [ {
+          "x" : 2224,
+          "y" : 1399
+        } ]
       }, {
         "id" : "131"
       }, {
-        "id" : "132"
+        "id" : "132",
+        "vertices" : [ {
+          "x" : 1922,
+          "y" : 2149
+        }, {
+          "x" : 2263,
+          "y" : 2149
+        } ]
       }, {
         "id" : "142"
       }, {
@@ -1252,7 +1271,7 @@
       } ]
     }, {
       "automaticLayout" : {
-        "applied" : false,
+        "applied" : true,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -1262,30 +1281,34 @@
       },
       "containerId" : "8",
       "description" : "auth (Маршрутизатор звонков)",
+      "dimensions" : {
+        "height" : 3120,
+        "width" : 1929
+      },
       "elements" : [ {
         "id" : "3",
-        "x" : 0,
-        "y" : 0
+        "x" : 200,
+        "y" : 819
       }, {
         "id" : "9",
-        "x" : 0,
-        "y" : 0
+        "x" : 950,
+        "y" : 219
       }, {
         "id" : "10",
-        "x" : 0,
-        "y" : 0
+        "x" : 950,
+        "y" : 1419
       }, {
         "id" : "11",
-        "x" : 0,
-        "y" : 0
+        "x" : 1259,
+        "y" : 819
       }, {
         "id" : "12",
-        "x" : 0,
-        "y" : 0
+        "x" : 1104,
+        "y" : 2019
       }, {
         "id" : "29",
-        "x" : 0,
-        "y" : 0
+        "x" : 1104,
+        "y" : 2619
       } ],
       "externalContainerBoundariesVisible" : false,
       "key" : "Component_auth",
@@ -1293,7 +1316,14 @@
       "relationships" : [ {
         "id" : "127"
       }, {
-        "id" : "13"
+        "id" : "13",
+        "vertices" : [ {
+          "x" : 1109,
+          "y" : 819
+        }, {
+          "x" : 1109,
+          "y" : 1119
+        } ]
       }, {
         "id" : "14"
       }, {
@@ -1301,13 +1331,20 @@
       }, {
         "id" : "15"
       }, {
-        "id" : "16"
+        "id" : "16",
+        "vertices" : [ {
+          "x" : 1550,
+          "y" : 1719
+        }, {
+          "x" : 1550,
+          "y" : 1419
+        } ]
       }, {
         "id" : "17"
       } ]
     }, {
       "automaticLayout" : {
-        "applied" : false,
+        "applied" : true,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -1317,50 +1354,54 @@
       },
       "containerId" : "40",
       "description" : "lkApiFront (Веб интерфейс ЛК-пользователя)",
+      "dimensions" : {
+        "height" : 2611,
+        "width" : 3800
+      },
       "elements" : [ {
         "id" : "2",
-        "x" : 0,
-        "y" : 0
+        "x" : 200,
+        "y" : 1069
       }, {
         "id" : "30",
-        "x" : 0,
-        "y" : 0
+        "x" : 3150,
+        "y" : 1119
       }, {
         "id" : "41",
-        "x" : 0,
-        "y" : 0
+        "x" : 900,
+        "y" : 1119
       }, {
         "id" : "42",
-        "x" : 0,
-        "y" : 0
+        "x" : 1650,
+        "y" : 2019
       }, {
         "id" : "43",
-        "x" : 0,
-        "y" : 0
+        "x" : 1650,
+        "y" : 1419
       }, {
         "id" : "44",
-        "x" : 0,
-        "y" : 0
+        "x" : 1650,
+        "y" : 819
       }, {
         "id" : "45",
-        "x" : 0,
-        "y" : 0
+        "x" : 1650,
+        "y" : 219
       }, {
         "id" : "46",
-        "x" : 0,
-        "y" : 0
+        "x" : 2400,
+        "y" : 2019
       }, {
         "id" : "47",
-        "x" : 0,
-        "y" : 0
+        "x" : 2400,
+        "y" : 1419
       }, {
         "id" : "48",
-        "x" : 0,
-        "y" : 0
+        "x" : 2400,
+        "y" : 819
       }, {
         "id" : "49",
-        "x" : 0,
-        "y" : 0
+        "x" : 2400,
+        "y" : 219
       } ],
       "externalContainerBoundariesVisible" : false,
       "key" : "Component_lkFront",
@@ -1384,17 +1425,25 @@
       }, {
         "id" : "57"
       }, {
-        "id" : "59"
+        "id" : "59",
+        "vertices" : [ {
+          "x" : 2954,
+          "y" : 1869
+        } ]
       }, {
         "id" : "63"
       }, {
         "id" : "65"
       }, {
-        "id" : "67"
+        "id" : "67",
+        "vertices" : [ {
+          "x" : 2954,
+          "y" : 669
+        } ]
       } ]
     }, {
       "automaticLayout" : {
-        "applied" : false,
+        "applied" : true,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -1404,58 +1453,62 @@
       },
       "containerId" : "80",
       "description" : "AdminApiFront (Веб интерфейс админимстратора)",
+      "dimensions" : {
+        "height" : 3211,
+        "width" : 3800
+      },
       "elements" : [ {
         "id" : "1",
-        "x" : 0,
-        "y" : 0
+        "x" : 200,
+        "y" : 1369
       }, {
         "id" : "68",
-        "x" : 0,
-        "y" : 0
+        "x" : 3150,
+        "y" : 1419
       }, {
         "id" : "81",
-        "x" : 0,
-        "y" : 0
+        "x" : 900,
+        "y" : 1419
       }, {
         "id" : "82",
-        "x" : 0,
-        "y" : 0
+        "x" : 1650,
+        "y" : 2619
       }, {
         "id" : "83",
-        "x" : 0,
-        "y" : 0
+        "x" : 2400,
+        "y" : 2619
       }, {
         "id" : "86",
-        "x" : 0,
-        "y" : 0
+        "x" : 1650,
+        "y" : 2019
       }, {
         "id" : "87",
-        "x" : 0,
-        "y" : 0
+        "x" : 2400,
+        "y" : 2019
       }, {
         "id" : "90",
-        "x" : 0,
-        "y" : 0
+        "x" : 1650,
+        "y" : 1419
       }, {
         "id" : "91",
-        "x" : 0,
-        "y" : 0
+        "x" : 2400,
+        "y" : 1419
       }, {
         "id" : "94",
-        "x" : 0,
-        "y" : 0
+        "x" : 1650,
+        "y" : 819
       }, {
         "id" : "95",
-        "x" : 0,
-        "y" : 0
+        "x" : 2400,
+        "y" : 819
       }, {
         "id" : "98",
-        "x" : 0,
-        "y" : 0
+        "x" : 1650,
+        "y" : 219
       }, {
         "id" : "99",
-        "x" : 0,
-        "y" : 0
+        "x" : 2400,
+        "y" : 219
       } ],
       "externalContainerBoundariesVisible" : false,
       "key" : "Component_AdminFront",
@@ -1463,9 +1516,17 @@
       "relationships" : [ {
         "id" : "100"
       }, {
-        "id" : "101"
+        "id" : "101",
+        "vertices" : [ {
+          "x" : 1650,
+          "y" : 669
+        } ]
       }, {
-        "id" : "103"
+        "id" : "103",
+        "vertices" : [ {
+          "x" : 2954,
+          "y" : 2469
+        } ]
       }, {
         "id" : "107"
       }, {
@@ -1473,13 +1534,21 @@
       }, {
         "id" : "111"
       }, {
-        "id" : "113"
+        "id" : "113",
+        "vertices" : [ {
+          "x" : 2954,
+          "y" : 669
+        } ]
       }, {
         "id" : "147"
       }, {
         "id" : "84"
       }, {
-        "id" : "85"
+        "id" : "85",
+        "vertices" : [ {
+          "x" : 1650,
+          "y" : 2469
+        } ]
       }, {
         "id" : "88"
       }, {
@@ -1495,7 +1564,7 @@
       } ]
     }, {
       "automaticLayout" : {
-        "applied" : false,
+        "applied" : true,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -1505,38 +1574,42 @@
       },
       "containerId" : "68",
       "description" : "adminApiBackend (бекенд интерфейса админимстратора)",
+      "dimensions" : {
+        "height" : 3211,
+        "width" : 3100
+      },
       "elements" : [ {
         "id" : "29",
-        "x" : 0,
-        "y" : 0
+        "x" : 2450,
+        "y" : 1419
       }, {
         "id" : "69",
-        "x" : 0,
-        "y" : 0
+        "x" : 950,
+        "y" : 1419
       }, {
         "id" : "70",
-        "x" : 0,
-        "y" : 0
+        "x" : 1700,
+        "y" : 2619
       }, {
         "id" : "71",
-        "x" : 0,
-        "y" : 0
+        "x" : 1700,
+        "y" : 2019
       }, {
         "id" : "72",
-        "x" : 0,
-        "y" : 0
+        "x" : 1700,
+        "y" : 1419
       }, {
         "id" : "73",
-        "x" : 0,
-        "y" : 0
+        "x" : 1700,
+        "y" : 819
       }, {
         "id" : "74",
-        "x" : 0,
-        "y" : 0
+        "x" : 1700,
+        "y" : 219
       }, {
         "id" : "80",
-        "x" : 0,
-        "y" : 0
+        "x" : 200,
+        "y" : 1419
       } ],
       "externalContainerBoundariesVisible" : false,
       "key" : "Component_adminApiBackend",
@@ -1544,7 +1617,11 @@
       "relationships" : [ {
         "id" : "104"
       }, {
-        "id" : "114"
+        "id" : "114",
+        "vertices" : [ {
+          "x" : 2254,
+          "y" : 2469
+        } ]
       }, {
         "id" : "116"
       }, {
@@ -1552,7 +1629,11 @@
       }, {
         "id" : "118"
       }, {
-        "id" : "119"
+        "id" : "119",
+        "vertices" : [ {
+          "x" : 2254,
+          "y" : 669
+        } ]
       }, {
         "id" : "75"
       }, {
@@ -1560,13 +1641,21 @@
       }, {
         "id" : "77"
       }, {
-        "id" : "78"
+        "id" : "78",
+        "vertices" : [ {
+          "x" : 1700,
+          "y" : 669
+        } ]
       }, {
-        "id" : "79"
+        "id" : "79",
+        "vertices" : [ {
+          "x" : 1700,
+          "y" : 2469
+        } ]
       } ]
     }, {
       "automaticLayout" : {
-        "applied" : false,
+        "applied" : true,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -1576,46 +1665,58 @@
       },
       "containerId" : "30",
       "description" : "lkApiBackend (бекенд интерфейса абонента)",
+      "dimensions" : {
+        "height" : 2611,
+        "width" : 3100
+      },
       "elements" : [ {
         "id" : "29",
-        "x" : 0,
-        "y" : 0
+        "x" : 2450,
+        "y" : 1119
       }, {
         "id" : "31",
-        "x" : 0,
-        "y" : 0
+        "x" : 950,
+        "y" : 1119
       }, {
         "id" : "32",
-        "x" : 0,
-        "y" : 0
+        "x" : 1700,
+        "y" : 2019
       }, {
         "id" : "33",
-        "x" : 0,
-        "y" : 0
+        "x" : 1700,
+        "y" : 1419
       }, {
         "id" : "34",
-        "x" : 0,
-        "y" : 0
+        "x" : 1700,
+        "y" : 819
       }, {
         "id" : "35",
-        "x" : 0,
-        "y" : 0
+        "x" : 1700,
+        "y" : 219
       }, {
         "id" : "40",
-        "x" : 0,
-        "y" : 0
+        "x" : 200,
+        "y" : 1119
       } ],
       "externalContainerBoundariesVisible" : false,
       "key" : "Component_lkApiBackend",
       "order" : 9,
       "relationships" : [ {
-        "id" : "120"
+        "id" : "120",
+        "vertices" : [ {
+          "x" : 2254,
+          "y" : 1869
+        } ]
       }, {
         "id" : "122"
       }, {
         "id" : "123"
       }, {
-        "id" : "124"
+        "id" : "124",
+        "vertices" : [ {
+          "x" : 2254,
+          "y" : 669
+        } ]
       }, {
         "id" : "36"
       }, {
@@ -1630,7 +1731,7 @@
     } ],
     "configuration" : {
       "branding" : { },
-      "lastSavedView" : "SystemLandscape",
+      "lastSavedView" : "Component_lkFront",
       "metadataSymbols" : "SquareBrackets",
       "styles" : {
         "elements" : [ {
@@ -1686,7 +1787,7 @@
         "relationships" : [ "126", "128", "130" ]
       } ],
       "automaticLayout" : {
-        "applied" : false,
+        "applied" : true,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -1695,58 +1796,62 @@
         "vertices" : false
       },
       "description" : "Диаграмма контейнера ТелБилл",
+      "dimensions" : {
+        "height" : 3291,
+        "width" : 5175
+      },
       "elements" : [ {
         "id" : "1",
-        "x" : 0,
-        "y" : 0
+        "x" : 2384,
+        "y" : 200
       }, {
         "id" : "2",
-        "x" : 0,
-        "y" : 0
+        "x" : 3134,
+        "y" : 200
       }, {
         "id" : "3",
-        "x" : 0,
-        "y" : 0
+        "x" : 4525,
+        "y" : 900
       }, {
         "id" : "4",
-        "x" : 0,
-        "y" : 0
+        "x" : 200,
+        "y" : 2700
       }, {
         "id" : "5",
-        "x" : 0,
-        "y" : 0
+        "x" : 950,
+        "y" : 2700
       }, {
         "id" : "6",
-        "x" : 0,
-        "y" : 0
+        "x" : 1700,
+        "y" : 2700
       }, {
         "id" : "8",
-        "x" : 0,
-        "y" : 0
+        "x" : 3317,
+        "y" : 2700
       }, {
         "id" : "18",
-        "x" : 0,
-        "y" : 0
+        "x" : 3859,
+        "y" : 1500
       }, {
         "id" : "29",
-        "x" : 0,
-        "y" : 0
+        "x" : 2779,
+        "y" : 2100
       }, {
         "id" : "30",
-        "x" : 0,
-        "y" : 0
+        "x" : 3109,
+        "y" : 1500
       }, {
         "id" : "40",
-        "x" : 0,
-        "y" : 0
+        "x" : 3109,
+        "y" : 900
       }, {
         "id" : "68",
-        "x" : 0,
-        "y" : 0
+        "x" : 2359,
+        "y" : 1500
       }, {
         "id" : "80",
-        "x" : 0,
-        "y" : 0
+        "x" : 2359,
+        "y" : 900
       } ],
       "externalSoftwareSystemBoundariesVisible" : false,
       "key" : "Containers",
@@ -1758,23 +1863,43 @@
       }, {
         "id" : "121"
       }, {
-        "id" : "126"
+        "id" : "126",
+        "vertices" : [ {
+          "x" : 3471,
+          "y" : 1818
+        } ]
       }, {
         "id" : "128"
       }, {
-        "id" : "130"
+        "id" : "130",
+        "vertices" : [ {
+          "x" : 3616,
+          "y" : 2081
+        } ]
       }, {
-        "id" : "133"
+        "id" : "133",
+        "vertices" : [ {
+          "x" : 1550,
+          "y" : 2700
+        } ]
       }, {
         "id" : "135"
       }, {
-        "id" : "137"
+        "id" : "137",
+        "vertices" : [ {
+          "x" : 800,
+          "y" : 2700
+        } ]
       }, {
         "id" : "140"
       }, {
         "id" : "143"
       }, {
-        "id" : "146"
+        "id" : "146",
+        "vertices" : [ {
+          "x" : 4459,
+          "y" : 1800
+        } ]
       }, {
         "id" : "148"
       }, {
