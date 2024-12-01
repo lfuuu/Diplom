@@ -368,8 +368,9 @@ workspace "telbill" "ИС управления телефонным узлом" 
         deployment * "Development" "DevelopmentDeployment" {
             include *
             include *->*
+            # exclude tellbillService.*->tellbillService.*
             description "Схема разворота окружения разработчика"
-            autoLayout
+            autoLayout lr
 
         }
 
