@@ -27,14 +27,40 @@ workspace "telbill" "ИС управления телефонным узлом" 
 
         ##############################################################################
 
-        acc = container "acc (Тарификатор звонков)" "" "typescript" "next.js" {
+        auth = container "auth (Маршрутизатор звонков)" "" "typescript" "next.js" {
            radiusServer = component "Радиус сервер" "" "" ""
-           cdrRepo = component "Репозиторий CDR" "" "" ""        
-           
-           radiusServer -> cdrRepo "Сохраняет звонки"
+           auth = component "Авторизатор" "" "" ""
+           router = component "Маршрутизатор" "" "" ""
+           dictRepo = component "Репозиторий Справочники" "" "" ""
+           radiusServer -> auth "Авторизация вызова"
+           auth -> router "Вычисление маршрута"
+           router -> radiusServer "Маршруты"
+
+           dictRepo -> router "Узнаем настройки"
+           dictRepo -> auth "Узнаем настройки"
         }
 
-        auth = container "Маршрутизатор звонков" "" "typescript" "next.js"
+
+        ##############################################################################
+
+        acc = container "acc (Тарификатор звонков)" "" "typescript" "next.js" {
+           radiusServer = component "Радиус сервер" "" "" ""
+           cdrRepo = component "Репозиторий CDR" "" "" ""
+           dictRepo = component "Репозиторий Справочники" "" "" ""
+
+           cdrBuff =  component "Буфер новых cdr" "" "" ""
+           billing = component "Биллингация вызовов" "" "" ""
+
+           rawRepo = component "Репозиторий Calls-Raw" "" "" ""
+           radiusServer -> cdrRepo "Сохраняет звонки"
+
+           billing -> rawRepo "Передаем в созранение звонки"
+
+           cdrBuff -> billing "Новые звонки"
+           dictRepo -> billing "Узнаем прайслисты"
+
+        }
+
         db = container "Хранилище состояний" "Database" "posgresql" "Database"
 
         ##############################################################################
@@ -121,7 +147,10 @@ workspace "telbill" "ИС управления телефонным узлом" 
         acc.cdrRepo -> db "Сохраняет звонки"
 
         # acc -> db
-        auth -> db
+        db -> auth.dictRepo "Получаем сведения"
+        db -> acc.cdrBuff "Получаем новые звонки"
+        db -> acc.dictRepo "Получаем сведения"
+        acc.rawRepo -> db "Сохраняет отбиллингованные звонки"
 
         db -> elk "Передает данные о звонках"
         db -> sorm "Передает данные о звонках"
@@ -139,7 +168,7 @@ workspace "telbill" "ИС управления телефонным узлом" 
       abonent -> tellbillService.lkApiFront.httpServer
       
       openSwitch ->  tellbillService.acc.radiusServer "Тарифицирует звонок"
-      openSwitch ->  tellbillService.auth "Маршрутизирует звонок"
+      openSwitch ->  tellbillService.auth.radiusServer "Маршрутизирует звонок"
       
       #abonent -> tellbillService.lkApiFront "Смотрит ЛК"
       admin   -> tellbillService.adminApiFront.httpServer "Смотрит ЛК"
@@ -151,6 +180,7 @@ workspace "telbill" "ИС управления телефонным узлом" 
 
         systemLandscape  "SystemLandscape" {
             include *
+            autoLayout lr
         }
 
         systemContext tellbillService "tellbillServiceContext" "Диаграмма контекта сервиса tellbill" {
@@ -158,7 +188,7 @@ workspace "telbill" "ИС управления телефонным узлом" 
            exclude *->*
            include *->tellbillService
            include tellbillService->*
-           autoLayout
+           autoLayout lr
         }
     
         container tellbillService "Containers" {
@@ -168,7 +198,9 @@ workspace "telbill" "ИС управления телефонным узлом" 
                 tellbillService.auth
                 tellbillService.db
             }
-            description "The container diagram for the Internet Banking System."
+            description "Диаграмма контейнера ТелБилл"
+            autoLayout tb
+
         }
 
         component tellbillService.acc "Component_acc" {
@@ -181,16 +213,34 @@ workspace "telbill" "ИС управления телефонным узлом" 
             # }
 
             description "acc (Тарификатор звонков)"
+            autoLayout tb
         }
+
+
+        component tellbillService.auth "Component_auth" {
+            include *
+            # exclude *->*
+            # include *->tellbillService.acc
+            # include tellbillService.acc->*
+            # animation {
+            #      tellbillService.acc
+            # }
+
+            description "auth (Маршрутизатор звонков)"
+            autoLayout bt
+        }
+
 
         component tellbillService.lkApiFront "Component_lkFront" {
             include *
             description "lkApiFront (Веб интерфейс ЛК-пользователя)"
+            autoLayout lr
         }
 
         component tellbillService.AdminApiFront "Component_AdminFront" {
             include *
             description "AdminApiFront (Веб интерфейс админимстратора)"
+            autoLayout lr
         }
 
 
