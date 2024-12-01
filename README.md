@@ -39,13 +39,13 @@
 - [Диаграмма контекста](docs/DiagramaContext.md)
 - [Диаграмма контейнеров](docs/DiagramaContainers.md)
   - [Диаграмма контейнера AdminFront](docs/DiagramaContainerAdminFront.md)
-  - Диаграмма контейнера AdminApiBackend
+  - [Диаграмма контейнера AdminApiBackend](docs/DiagramaContainerAdminBackend.md)
   - [Диаграмма контейнера lkApiFront](docs/DiagramaContainerLkFront.md)
-  - Диаграмма контейнера lkApiBackend
+  - [Диаграмма контейнера lkApiBackend](docs/DiagramaContainerLkBackend.md)
   - [Диаграмма компонентов контейнера Тарификатор звонков](docs/DiagramaContainerAcc.md)
-  - Диаграмма контейнера Маршрутизатор звонков
+  - [Диаграмма контейнера Маршрутизатор звонков](docs/DiagramaContainerAuth.md)
 - Диаграмма развертывания
-  - окружение разработчика
+  - [окружение разработчика]()
   - окружение продуктовое
 - [Временная диаграмма обработки звонка](docs/SeqDiagramaBillCall.md)
 
