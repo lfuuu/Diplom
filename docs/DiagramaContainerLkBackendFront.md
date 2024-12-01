@@ -1,3 +1,3 @@
-# Диаграмма компонентов контейнера LkFront
+# Диаграмма компонентов контейнера LkApiBackend
 
-![Диаграмма контейнера LkBackend](c4-dsl/plantuml/png/structurizr-Component_LkBackend.png "Диаграмма контейнера LkBackend")
+![Диаграмма контейнера LkApiBackend](c4-dsl/plantuml/png/structurizr-Component_lkApiBackend.png "Диаграмма контейнера LkApiBackend")
