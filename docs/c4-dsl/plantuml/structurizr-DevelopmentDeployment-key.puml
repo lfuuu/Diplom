@@ -1,0 +1,58 @@
+@startuml
+set separator none
+
+skinparam {
+  shadowing false
+  arrowFontSize 15
+  defaultTextAlignment center
+  wrapWidth 100
+  maxMessageSize 100
+}
+hide stereotype
+
+skinparam rectangle<<_transparent>> {
+  BorderColor transparent
+  BackgroundColor transparent
+  FontColor transparent
+}
+
+skinparam rectangle<<1>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+rectangle "==Container" <<1>>
+
+skinparam database<<2>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+database "==Container, Database" <<2>>
+
+skinparam rectangle<<3>> {
+  BackgroundColor #008000
+  FontColor #ffffff
+  BorderColor #005900
+}
+rectangle "==Container, Infrastructure" <<3>>
+
+skinparam folder<<4>> {
+  BackgroundColor #888888
+  FontColor #ffffff
+  BorderColor #5f5f5f
+}
+folder "==Container, Volume" <<4>>
+
+skinparam rectangle<<5>> {
+  BackgroundColor #ffffff
+  FontColor #008000
+  BorderColor #888888
+}
+rectangle "==Deployment Node" <<5>>
+
+rectangle "." <<_transparent>> as 6
+6 .[#707070,thickness=2].> 6 : "<color:#707070>Relationship"
+
+
+@enduml

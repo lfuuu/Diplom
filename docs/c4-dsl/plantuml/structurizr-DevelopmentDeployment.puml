@@ -1,0 +1,125 @@
+@startuml
+set separator none
+title Deployment - Development
+
+left to right direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<Development.telbill.telbilldev.AdminApiBackend_1>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<Development.telbill.telbilldev.AdminApiFront_1>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<Development.telbill.telbilldev.accТарификаторзвонков_1>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<Development.telbill.telbilldev.authМаршрутизаторзвонков_1>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam folder<<Development.telbill.telbilldev.db_vol_1>> {
+  BackgroundColor #888888
+  FontColor #ffffff
+  BorderColor #5f5f5f
+  shadowing false
+}
+skinparam rectangle<<Development.telbill.telbilldev.lkApiBackend_1>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<Development.telbill.telbilldev.lkApiFront_1>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<Development.telbill.telbilldev.nginx_1>> {
+  BackgroundColor #008000
+  FontColor #ffffff
+  BorderColor #005900
+  shadowing false
+}
+skinparam folder<<Development.telbill.telbilldev.src_vol_1>> {
+  BackgroundColor #888888
+  FontColor #ffffff
+  BorderColor #5f5f5f
+  shadowing false
+}
+skinparam rectangle<<Development.telbill>> {
+  BackgroundColor #ffffff
+  FontColor #008000
+  BorderColor #888888
+  shadowing false
+}
+skinparam rectangle<<Development.telbill.telbilldev>> {
+  BackgroundColor #ffffff
+  FontColor #008000
+  BorderColor #888888
+  shadowing false
+}
+skinparam database<<Development.telbill.telbilldev.Хранилищесостояний_1>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+
+rectangle "telbill\n<size:10>[Deployment Node: Ubuntu]</size>" <<Development.telbill>> as Development.telbill {
+  rectangle "telbill-dev\n<size:10>[Deployment Node]</size>" <<Development.telbill.telbilldev>> as Development.telbill.telbilldev {
+    rectangle "==nginx\n<size:10>[Container: Infrastructure]</size>\n\nIngress" <<Development.telbill.telbilldev.nginx_1>> as Development.telbill.telbilldev.nginx_1
+    rectangle "==auth (Маршрутизатор звонков)\n<size:10>[Container: typescript]</size>" <<Development.telbill.telbilldev.authМаршрутизаторзвонков_1>> as Development.telbill.telbilldev.authМаршрутизаторзвонков_1
+    rectangle "==acc (Тарификатор звонков)\n<size:10>[Container: typescript]</size>" <<Development.telbill.telbilldev.accТарификаторзвонков_1>> as Development.telbill.telbilldev.accТарификаторзвонков_1
+    rectangle "==lkApiBackend\n<size:10>[Container: typescript]</size>" <<Development.telbill.telbilldev.lkApiBackend_1>> as Development.telbill.telbilldev.lkApiBackend_1
+    rectangle "==lkApiFront\n<size:10>[Container: typescript]</size>" <<Development.telbill.telbilldev.lkApiFront_1>> as Development.telbill.telbilldev.lkApiFront_1
+    rectangle "==AdminApiBackend\n<size:10>[Container: typescript]</size>" <<Development.telbill.telbilldev.AdminApiBackend_1>> as Development.telbill.telbilldev.AdminApiBackend_1
+    rectangle "==AdminApiFront\n<size:10>[Container: typescript]</size>" <<Development.telbill.telbilldev.AdminApiFront_1>> as Development.telbill.telbilldev.AdminApiFront_1
+    database "==Хранилище состояний\n<size:10>[Container: posgresql]</size>\n\nDatabase" <<Development.telbill.telbilldev.Хранилищесостояний_1>> as Development.telbill.telbilldev.Хранилищесостояний_1
+    folder "==src_vol\n<size:10>[Container: Infrastructure]</size>\n\nSource volume" <<Development.telbill.telbilldev.src_vol_1>> as Development.telbill.telbilldev.src_vol_1
+    folder "==db_vol\n<size:10>[Container: Infrastructure]</size>\n\nDatabase volume" <<Development.telbill.telbilldev.db_vol_1>> as Development.telbill.telbilldev.db_vol_1
+  }
+
+}
+
+Development.telbill.telbilldev.nginx_1 .[#707070,thickness=2].> Development.telbill.telbilldev.authМаршрутизаторзвонков_1 : "<color:#707070>"
+Development.telbill.telbilldev.nginx_1 .[#707070,thickness=2].> Development.telbill.telbilldev.accТарификаторзвонков_1 : "<color:#707070>"
+Development.telbill.telbilldev.nginx_1 .[#707070,thickness=2].> Development.telbill.telbilldev.lkApiBackend_1 : "<color:#707070>"
+Development.telbill.telbilldev.lkApiFront_1 .[#707070,thickness=2].> Development.telbill.telbilldev.lkApiBackend_1 : "<color:#707070>"
+Development.telbill.telbilldev.nginx_1 .[#707070,thickness=2].> Development.telbill.telbilldev.lkApiFront_1 : "<color:#707070>"
+Development.telbill.telbilldev.nginx_1 .[#707070,thickness=2].> Development.telbill.telbilldev.AdminApiBackend_1 : "<color:#707070>"
+Development.telbill.telbilldev.AdminApiFront_1 .[#707070,thickness=2].> Development.telbill.telbilldev.AdminApiBackend_1 : "<color:#707070>"
+Development.telbill.telbilldev.nginx_1 .[#707070,thickness=2].> Development.telbill.telbilldev.AdminApiFront_1 : "<color:#707070>"
+Development.telbill.telbilldev.Хранилищесостояний_1 .[#707070,thickness=2].> Development.telbill.telbilldev.accТарификаторзвонков_1 : "<color:#707070>Получаем новые звонки"
+Development.telbill.telbilldev.accТарификаторзвонков_1 .[#707070,thickness=2].> Development.telbill.telbilldev.Хранилищесостояний_1 : "<color:#707070>Сохраняет звонки"
+Development.telbill.telbilldev.AdminApiBackend_1 .[#707070,thickness=2].> Development.telbill.telbilldev.Хранилищесостояний_1 : "<color:#707070>"
+Development.telbill.telbilldev.Хранилищесостояний_1 .[#707070,thickness=2].> Development.telbill.telbilldev.authМаршрутизаторзвонков_1 : "<color:#707070>Получаем сведения"
+Development.telbill.telbilldev.lkApiBackend_1 .[#707070,thickness=2].> Development.telbill.telbilldev.Хранилищесостояний_1 : "<color:#707070>"
+Development.telbill.telbilldev.src_vol_1 .[#707070,thickness=2].> Development.telbill.telbilldev.AdminApiFront_1 : "<color:#707070>"
+Development.telbill.telbilldev.src_vol_1 .[#707070,thickness=2].> Development.telbill.telbilldev.accТарификаторзвонков_1 : "<color:#707070>"
+Development.telbill.telbilldev.src_vol_1 .[#707070,thickness=2].> Development.telbill.telbilldev.AdminApiBackend_1 : "<color:#707070>"
+Development.telbill.telbilldev.src_vol_1 .[#707070,thickness=2].> Development.telbill.telbilldev.authМаршрутизаторзвонков_1 : "<color:#707070>"
+Development.telbill.telbilldev.src_vol_1 .[#707070,thickness=2].> Development.telbill.telbilldev.lkApiFront_1 : "<color:#707070>"
+Development.telbill.telbilldev.src_vol_1 .[#707070,thickness=2].> Development.telbill.telbilldev.lkApiBackend_1 : "<color:#707070>"
+Development.telbill.telbilldev.db_vol_1 .[#707070,thickness=2].> Development.telbill.telbilldev.Хранилищесостояний_1 : "<color:#707070>"
+@enduml

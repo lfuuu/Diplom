@@ -19,13 +19,37 @@ skinparam rectangle<<openSwitch>> {
   BorderColor #6b6b6b
   shadowing false
 }
-skinparam rectangle<<tellbill.accТарификаторзвонков.Радиуссервер>> {
+skinparam component<<tellbill.accТарификаторзвонков.Биллингациявызовов>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   shadowing false
 }
-skinparam rectangle<<tellbill.accТарификаторзвонков.РепозиторийCDR>> {
+skinparam component<<tellbill.accТарификаторзвонков.Буферновыхcdr>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam component<<tellbill.accТарификаторзвонков.Радиуссервер>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam component<<tellbill.accТарификаторзвонков.РепозиторийCDR>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam component<<tellbill.accТарификаторзвонков.РепозиторийCallsRaw>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam component<<tellbill.accТарификаторзвонков.РепозиторийСправочники>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -47,11 +71,21 @@ rectangle "==openSwitch\n<size:10>[Software System]</size>\n\nТелефонны
 database "==Хранилище состояний\n<size:10>[Container: posgresql]</size>\n\nDatabase" <<tellbill.Хранилищесостояний>> as tellbill.Хранилищесостояний
 
 rectangle "acc (Тарификатор звонков)\n<size:10>[Container: typescript]</size>" <<tellbill.accТарификаторзвонков>> {
-  rectangle "==Репозиторий CDR\n<size:10>[Component]</size>" <<tellbill.accТарификаторзвонков.РепозиторийCDR>> as tellbill.accТарификаторзвонков.РепозиторийCDR
-  rectangle "==Радиус сервер\n<size:10>[Component]</size>" <<tellbill.accТарификаторзвонков.Радиуссервер>> as tellbill.accТарификаторзвонков.Радиуссервер
+  component "==Радиус сервер\n<size:10>[Component]</size>" <<tellbill.accТарификаторзвонков.Радиуссервер>> as tellbill.accТарификаторзвонков.Радиуссервер
+  component "==Репозиторий CDR\n<size:10>[Component]</size>" <<tellbill.accТарификаторзвонков.РепозиторийCDR>> as tellbill.accТарификаторзвонков.РепозиторийCDR
+  component "==Репозиторий Справочники\n<size:10>[Component]</size>" <<tellbill.accТарификаторзвонков.РепозиторийСправочники>> as tellbill.accТарификаторзвонков.РепозиторийСправочники
+  component "==Буфер новых cdr\n<size:10>[Component]</size>" <<tellbill.accТарификаторзвонков.Буферновыхcdr>> as tellbill.accТарификаторзвонков.Буферновыхcdr
+  component "==Биллингация вызовов\n<size:10>[Component]</size>" <<tellbill.accТарификаторзвонков.Биллингациявызовов>> as tellbill.accТарификаторзвонков.Биллингациявызовов
+  component "==Репозиторий Calls-Raw\n<size:10>[Component]</size>" <<tellbill.accТарификаторзвонков.РепозиторийCallsRaw>> as tellbill.accТарификаторзвонков.РепозиторийCallsRaw
 }
 
-tellbill.accТарификаторзвонков.Радиуссервер .[#707070,thickness=2].> tellbill.accТарификаторзвонков.РепозиторийCDR : "<color:#707070>Сохраняет звонки"
 tellbill.accТарификаторзвонков.РепозиторийCDR .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>Сохраняет звонки"
+tellbill.Хранилищесостояний .[#707070,thickness=2].> tellbill.accТарификаторзвонков.Буферновыхcdr : "<color:#707070>Получаем новые звонки"
+tellbill.Хранилищесостояний .[#707070,thickness=2].> tellbill.accТарификаторзвонков.РепозиторийСправочники : "<color:#707070>Получаем сведения"
+tellbill.accТарификаторзвонков.РепозиторийCallsRaw .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>Сохраняет отбиллингованные звонки"
 openSwitch .[#707070,thickness=2].> tellbill.accТарификаторзвонков.Радиуссервер : "<color:#707070>Тарифицирует звонок"
+tellbill.accТарификаторзвонков.Радиуссервер .[#707070,thickness=2].> tellbill.accТарификаторзвонков.РепозиторийCDR : "<color:#707070>Сохраняет звонки"
+tellbill.accТарификаторзвонков.Биллингациявызовов .[#707070,thickness=2].> tellbill.accТарификаторзвонков.РепозиторийCallsRaw : "<color:#707070>Передаем в созранение звонки"
+tellbill.accТарификаторзвонков.Буферновыхcdr .[#707070,thickness=2].> tellbill.accТарификаторзвонков.Биллингациявызовов : "<color:#707070>Новые звонки"
+tellbill.accТарификаторзвонков.РепозиторийСправочники .[#707070,thickness=2].> tellbill.accТарификаторзвонков.Биллингациявызовов : "<color:#707070>Узнаем прайслисты"
 @enduml

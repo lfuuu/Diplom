@@ -1,0 +1,75 @@
+@startuml
+set separator none
+title tellbill - auth (Маршрутизатор звонков) - Components
+
+top to bottom direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<openSwitch>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+  shadowing false
+}
+skinparam component<<tellbill.authМаршрутизаторзвонков.Авторизатор>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam component<<tellbill.authМаршрутизаторзвонков.Маршрутизатор>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam component<<tellbill.authМаршрутизаторзвонков.Радиуссервер>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam component<<tellbill.authМаршрутизаторзвонков.РепозиторийСправочники>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam database<<tellbill.Хранилищесостояний>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<tellbill.authМаршрутизаторзвонков>> {
+  BorderColor #2e6295
+  FontColor #2e6295
+  shadowing false
+}
+
+rectangle "==openSwitch\n<size:10>[Software System]</size>\n\nТелефонный коммутатор" <<openSwitch>> as openSwitch
+database "==Хранилище состояний\n<size:10>[Container: posgresql]</size>\n\nDatabase" <<tellbill.Хранилищесостояний>> as tellbill.Хранилищесостояний
+
+rectangle "auth (Маршрутизатор звонков)\n<size:10>[Container: typescript]</size>" <<tellbill.authМаршрутизаторзвонков>> {
+  component "==Радиус сервер\n<size:10>[Component]</size>" <<tellbill.authМаршрутизаторзвонков.Радиуссервер>> as tellbill.authМаршрутизаторзвонков.Радиуссервер
+  component "==Авторизатор\n<size:10>[Component]</size>" <<tellbill.authМаршрутизаторзвонков.Авторизатор>> as tellbill.authМаршрутизаторзвонков.Авторизатор
+  component "==Маршрутизатор\n<size:10>[Component]</size>" <<tellbill.authМаршрутизаторзвонков.Маршрутизатор>> as tellbill.authМаршрутизаторзвонков.Маршрутизатор
+  component "==Репозиторий Справочники\n<size:10>[Component]</size>" <<tellbill.authМаршрутизаторзвонков.РепозиторийСправочники>> as tellbill.authМаршрутизаторзвонков.РепозиторийСправочники
+}
+
+tellbill.Хранилищесостояний .[#707070,thickness=2].> tellbill.authМаршрутизаторзвонков.РепозиторийСправочники : "<color:#707070>Получаем сведения"
+tellbill.authМаршрутизаторзвонков.Радиуссервер .[#707070,thickness=2].> tellbill.authМаршрутизаторзвонков.Авторизатор : "<color:#707070>Авторизация вызова"
+openSwitch .[#707070,thickness=2].> tellbill.authМаршрутизаторзвонков.Радиуссервер : "<color:#707070>Маршрутизирует звонок"
+tellbill.authМаршрутизаторзвонков.Авторизатор .[#707070,thickness=2].> tellbill.authМаршрутизаторзвонков.Маршрутизатор : "<color:#707070>Вычисление маршрута"
+tellbill.authМаршрутизаторзвонков.Маршрутизатор .[#707070,thickness=2].> tellbill.authМаршрутизаторзвонков.Радиуссервер : "<color:#707070>Маршруты"
+tellbill.authМаршрутизаторзвонков.РепозиторийСправочники .[#707070,thickness=2].> tellbill.authМаршрутизаторзвонков.Маршрутизатор : "<color:#707070>Узнаем настройки"
+tellbill.authМаршрутизаторзвонков.РепозиторийСправочники .[#707070,thickness=2].> tellbill.authМаршрутизаторзвонков.Авторизатор : "<color:#707070>Узнаем настройки"
+@enduml

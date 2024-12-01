@@ -2,7 +2,7 @@
 set separator none
 title tellbill - lkApiFront - Components
 
-top to bottom direction
+left to right direction
 
 skinparam {
   arrowFontSize 10
@@ -13,19 +13,13 @@ skinparam {
 
 hide stereotype
 
-skinparam rectangle<<tellbill.lkApiFront.Peпозиторийзвонкипользователя>> {
+skinparam component<<tellbill.lkApiFront.Peпозиторийзвонкипользователя>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   shadowing false
 }
-skinparam rectangle<<tellbill.lkApiFront.Peпозиторийрасходыпользователя>> {
-  BackgroundColor #85bbf0
-  FontColor #000000
-  BorderColor #5d82a8
-  shadowing false
-}
-skinparam rectangle<<tellbill.lkApiFront.httpсервер>> {
+skinparam component<<tellbill.lkApiFront.Peпозиторийрасходыпользователя>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -37,43 +31,49 @@ skinparam rectangle<<tellbill.lkApiBackend>> {
   BorderColor #2e6295
   shadowing false
 }
+skinparam component<<tellbill.lkApiFront.pagecontroller>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
 skinparam person<<Абонент>> {
   BackgroundColor #dddddd
   FontColor #ffffff
   BorderColor #9a9a9a
   shadowing false
 }
-skinparam rectangle<<tellbill.lkApiFront.Репозиторийбаланспользователя>> {
+skinparam component<<tellbill.lkApiFront.Репозиторийбаланспользователя>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   shadowing false
 }
-skinparam rectangle<<tellbill.lkApiFront.Репозиторийпользователей>> {
+skinparam component<<tellbill.lkApiFront.Репозиторийпользователей>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   shadowing false
 }
-skinparam rectangle<<tellbill.lkApiFront.Страницабаланспользователя>> {
+skinparam component<<tellbill.lkApiFront.Страницабаланспользователя>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   shadowing false
 }
-skinparam rectangle<<tellbill.lkApiFront.Страницазвонкипользователя>> {
+skinparam component<<tellbill.lkApiFront.Страницазвонкипользователя>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   shadowing false
 }
-skinparam rectangle<<tellbill.lkApiFront.Страницарасходыпользователя>> {
+skinparam component<<tellbill.lkApiFront.Страницарасходыпользователя>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
   shadowing false
 }
-skinparam rectangle<<tellbill.lkApiFront.авторизацияпользователя>> {
+skinparam component<<tellbill.lkApiFront.авторизацияпользователя>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
@@ -89,21 +89,22 @@ person "==Абонент\n<size:10>[Person]</size>" <<Абонент>> as Або
 rectangle "==lkApiBackend\n<size:10>[Container: typescript]</size>" <<tellbill.lkApiBackend>> as tellbill.lkApiBackend
 
 rectangle "lkApiFront\n<size:10>[Container: typescript]</size>" <<tellbill.lkApiFront>> {
-  rectangle "==http сервер\n<size:10>[Component]</size>" <<tellbill.lkApiFront.httpсервер>> as tellbill.lkApiFront.httpсервер
-  rectangle "==авторизация пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiFront.авторизацияпользователя>> as tellbill.lkApiFront.авторизацияпользователя
-  rectangle "==Страница баланс пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiFront.Страницабаланспользователя>> as tellbill.lkApiFront.Страницабаланспользователя
-  rectangle "==Страница звонки пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiFront.Страницазвонкипользователя>> as tellbill.lkApiFront.Страницазвонкипользователя
-  rectangle "==Страница расходы пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiFront.Страницарасходыпользователя>> as tellbill.lkApiFront.Страницарасходыпользователя
-  rectangle "==Репозиторий пользователей\n<size:10>[Component]</size>" <<tellbill.lkApiFront.Репозиторийпользователей>> as tellbill.lkApiFront.Репозиторийпользователей
-  rectangle "==Репозиторий баланс пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiFront.Репозиторийбаланспользователя>> as tellbill.lkApiFront.Репозиторийбаланспользователя
-  rectangle "==Peпозиторий звонки пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiFront.Peпозиторийзвонкипользователя>> as tellbill.lkApiFront.Peпозиторийзвонкипользователя
-  rectangle "==Peпозиторий расходы пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiFront.Peпозиторийрасходыпользователя>> as tellbill.lkApiFront.Peпозиторийрасходыпользователя
+  component "==page controller\n<size:10>[Component]</size>" <<tellbill.lkApiFront.pagecontroller>> as tellbill.lkApiFront.pagecontroller
+  component "==авторизация пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiFront.авторизацияпользователя>> as tellbill.lkApiFront.авторизацияпользователя
+  component "==Страница баланс пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiFront.Страницабаланспользователя>> as tellbill.lkApiFront.Страницабаланспользователя
+  component "==Страница звонки пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiFront.Страницазвонкипользователя>> as tellbill.lkApiFront.Страницазвонкипользователя
+  component "==Страница расходы пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiFront.Страницарасходыпользователя>> as tellbill.lkApiFront.Страницарасходыпользователя
+  component "==Репозиторий пользователей\n<size:10>[Component]</size>" <<tellbill.lkApiFront.Репозиторийпользователей>> as tellbill.lkApiFront.Репозиторийпользователей
+  component "==Репозиторий баланс пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiFront.Репозиторийбаланспользователя>> as tellbill.lkApiFront.Репозиторийбаланспользователя
+  component "==Peпозиторий звонки пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiFront.Peпозиторийзвонкипользователя>> as tellbill.lkApiFront.Peпозиторийзвонкипользователя
+  component "==Peпозиторий расходы пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiFront.Peпозиторийрасходыпользователя>> as tellbill.lkApiFront.Peпозиторийрасходыпользователя
 }
 
-tellbill.lkApiFront.httpсервер .[#707070,thickness=2].> tellbill.lkApiFront.авторизацияпользователя : "<color:#707070>"
-tellbill.lkApiFront.httpсервер .[#707070,thickness=2].> tellbill.lkApiFront.Страницабаланспользователя : "<color:#707070>"
-tellbill.lkApiFront.httpсервер .[#707070,thickness=2].> tellbill.lkApiFront.Страницазвонкипользователя : "<color:#707070>"
-tellbill.lkApiFront.httpсервер .[#707070,thickness=2].> tellbill.lkApiFront.Страницарасходыпользователя : "<color:#707070>"
+Абонент .[#707070,thickness=2].> tellbill.lkApiFront.pagecontroller : "<color:#707070>"
+tellbill.lkApiFront.pagecontroller .[#707070,thickness=2].> tellbill.lkApiFront.авторизацияпользователя : "<color:#707070>"
+tellbill.lkApiFront.pagecontroller .[#707070,thickness=2].> tellbill.lkApiFront.Страницабаланспользователя : "<color:#707070>"
+tellbill.lkApiFront.pagecontroller .[#707070,thickness=2].> tellbill.lkApiFront.Страницазвонкипользователя : "<color:#707070>"
+tellbill.lkApiFront.pagecontroller .[#707070,thickness=2].> tellbill.lkApiFront.Страницарасходыпользователя : "<color:#707070>"
 tellbill.lkApiFront.авторизацияпользователя .[#707070,thickness=2].> tellbill.lkApiFront.Репозиторийпользователей : "<color:#707070>"
 tellbill.lkApiFront.Страницабаланспользователя .[#707070,thickness=2].> tellbill.lkApiFront.Репозиторийбаланспользователя : "<color:#707070>"
 tellbill.lkApiFront.Страницазвонкипользователя .[#707070,thickness=2].> tellbill.lkApiFront.Peпозиторийзвонкипользователя : "<color:#707070>"
@@ -112,5 +113,4 @@ tellbill.lkApiFront.Репозиторийпользователей .[#707070,t
 tellbill.lkApiFront.Репозиторийбаланспользователя .[#707070,thickness=2].> tellbill.lkApiBackend : "<color:#707070>"
 tellbill.lkApiFront.Peпозиторийзвонкипользователя .[#707070,thickness=2].> tellbill.lkApiBackend : "<color:#707070>"
 tellbill.lkApiFront.Peпозиторийрасходыпользователя .[#707070,thickness=2].> tellbill.lkApiBackend : "<color:#707070>"
-Абонент .[#707070,thickness=2].> tellbill.lkApiFront.httpсервер : "<color:#707070>"
 @enduml

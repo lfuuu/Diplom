@@ -1,0 +1,93 @@
+@startuml
+set separator none
+title tellbill - AdminApiBackend - Components
+
+left to right direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<tellbill.AdminApiFront>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam component<<tellbill.AdminApiBackend.httpсервер>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam component<<tellbill.AdminApiBackend.РепозиторийОтчетов>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam component<<tellbill.AdminApiBackend.Репозиторийабонентов>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam component<<tellbill.AdminApiBackend.Репозиторийоператоров>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam component<<tellbill.AdminApiBackend.Репозиторийпользователей>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam component<<tellbill.AdminApiBackend.Репозиторийпрайслистов>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam database<<tellbill.Хранилищесостояний>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<tellbill.AdminApiBackend>> {
+  BorderColor #2e6295
+  FontColor #2e6295
+  shadowing false
+}
+
+database "==Хранилище состояний\n<size:10>[Container: posgresql]</size>\n\nDatabase" <<tellbill.Хранилищесостояний>> as tellbill.Хранилищесостояний
+rectangle "==AdminApiFront\n<size:10>[Container: typescript]</size>" <<tellbill.AdminApiFront>> as tellbill.AdminApiFront
+
+rectangle "AdminApiBackend\n<size:10>[Container: typescript]</size>" <<tellbill.AdminApiBackend>> {
+  component "==http сервер\n<size:10>[Component]</size>" <<tellbill.AdminApiBackend.httpсервер>> as tellbill.AdminApiBackend.httpсервер
+  component "==Репозиторий пользователей\n<size:10>[Component]</size>" <<tellbill.AdminApiBackend.Репозиторийпользователей>> as tellbill.AdminApiBackend.Репозиторийпользователей
+  component "==Репозиторий абонентов\n<size:10>[Component]</size>" <<tellbill.AdminApiBackend.Репозиторийабонентов>> as tellbill.AdminApiBackend.Репозиторийабонентов
+  component "==Репозиторий операторов\n<size:10>[Component]</size>" <<tellbill.AdminApiBackend.Репозиторийоператоров>> as tellbill.AdminApiBackend.Репозиторийоператоров
+  component "==Репозиторий прайслистов\n<size:10>[Component]</size>" <<tellbill.AdminApiBackend.Репозиторийпрайслистов>> as tellbill.AdminApiBackend.Репозиторийпрайслистов
+  component "==Репозиторий Отчетов\n<size:10>[Component]</size>" <<tellbill.AdminApiBackend.РепозиторийОтчетов>> as tellbill.AdminApiBackend.РепозиторийОтчетов
+}
+
+tellbill.AdminApiFront .[#707070,thickness=2].> tellbill.AdminApiBackend.httpсервер : "<color:#707070>"
+tellbill.AdminApiBackend.Репозиторийпользователей .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
+tellbill.AdminApiBackend.Репозиторийабонентов .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
+tellbill.AdminApiBackend.Репозиторийоператоров .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
+tellbill.AdminApiBackend.Репозиторийпрайслистов .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
+tellbill.AdminApiBackend.РепозиторийОтчетов .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
+tellbill.AdminApiBackend.httpсервер .[#707070,thickness=2].> tellbill.AdminApiBackend.Репозиторийабонентов : "<color:#707070>"
+tellbill.AdminApiBackend.httpсервер .[#707070,thickness=2].> tellbill.AdminApiBackend.Репозиторийоператоров : "<color:#707070>"
+tellbill.AdminApiBackend.httpсервер .[#707070,thickness=2].> tellbill.AdminApiBackend.Репозиторийпрайслистов : "<color:#707070>"
+tellbill.AdminApiBackend.httpсервер .[#707070,thickness=2].> tellbill.AdminApiBackend.РепозиторийОтчетов : "<color:#707070>"
+tellbill.AdminApiBackend.httpсервер .[#707070,thickness=2].> tellbill.AdminApiBackend.Репозиторийпользователей : "<color:#707070>"
+@enduml
