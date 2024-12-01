@@ -25,7 +25,7 @@ workspace "telbill" "ИС управления телефонным узлом" 
 
       tellbillService = softwareSystem "tellbill" "ИС управления телефонным узлом" "InternalSystem" {
 
-        nginx = container "nginx" "Ingress" "" {
+        nginx = container "nginx" "Ingress" "Infrastructure" {
           Tag "Infrastructure"
         }
 
@@ -297,22 +297,18 @@ workspace "telbill" "ИС управления телефонным узлом" 
 
         systemContext tellbillService "tellbillServiceContext" "Диаграмма контекта сервиса tellbill" {
            include *
-           exclude *->*
-           include *->tellbillService
-           include tellbillService->*
+          #  exclude *->*
+          #  include *->tellbillService
+          #  include tellbillService->*
            autoLayout lr
            exclude "element.tag==Infrastructure"
         }
     
         container tellbillService "Containers" {
             include *
-            animation {
-                tellbillService.acc
-                tellbillService.auth
-                tellbillService.db
-            }
             description "Диаграмма контейнера ТелБилл"
             autoLayout tb
+            exclude "element.tag==Volume"
             exclude "element.tag==Infrastructure"
         }
 
