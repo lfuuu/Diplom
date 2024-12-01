@@ -6,6 +6,8 @@ pushd $DIR
 
 cd ../docs/c4-dsl
 
+unset DOCKER_HOST
+
 sudo rm plantuml/* -rf
 
 docker run -it --rm -v $PWD:/usr/local/structurizr structurizr/cli export -workspace workspace.dsl  -format plantuml/structurizr -output plantuml
