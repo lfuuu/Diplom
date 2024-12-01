@@ -1,6 +1,17 @@
 styles {
+
+            element "Infrastructure" {
+              background green 
+            }
+
+            element "Volume" {
+               color white
+               shape Folder
+               background #888888
+            }
+
             element "Element" {
-                color white
+                color #000000
             }
             element "Person" {
                 color #ffffff
@@ -8,7 +19,7 @@ styles {
                 shape Person
             }
             element "SoftwareSystem" {
-                background #1168bd
+                background #1168bd                                
                 color #ffffff
             }
 
@@ -19,6 +30,17 @@ styles {
 
             element "Database" {
                 shape Cylinder
+                background #438dd5
+            }
+
+            element "Kafka " {
+                shape Pipe                
+                background #438dd5
+            }
+
+            element "Deployment Node" {
+                background #438dd5
+                color green
             }
 
             element "Container" {
@@ -37,10 +59,16 @@ styles {
             element "Component" {
                 background #85bbf0
                 color #000000
+                shape Component
             }
 
             element "Failover" {
-                opacity 25
+                opacity 05
+            }
+
+            element "Group" {
+                color #ff0000
+                
             }
 
 

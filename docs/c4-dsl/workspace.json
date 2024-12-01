@@ -4,154 +4,314 @@
   "documentation" : { },
   "id" : 1,
   "lastModifiedAgent" : "structurizr-ui",
-  "lastModifiedDate" : "2024-12-01T13:19:28Z",
+  "lastModifiedDate" : "2024-12-01T15:42:46Z",
   "model" : {
     "deploymentNodes" : [ {
       "containerInstances" : [ {
-        "containerId" : "8",
+        "containerId" : "11",
         "deploymentGroups" : [ "Default" ],
         "environment" : "Stage",
-        "id" : "151",
+        "id" : "167",
         "instanceId" : 1,
         "properties" : {
-          "structurizr.dsl.identifier" : "stage.sormvm.0efa607c-d659-4ab4-856a-4f1367d52a92"
+          "structurizr.dsl.identifier" : "stage.sormvm.0c873df6-2d08-49df-8a86-3ee7ebd118ef"
         },
         "tags" : "Container Instance"
       }, {
-        "containerId" : "18",
+        "containerId" : "21",
         "deploymentGroups" : [ "Default" ],
         "environment" : "Stage",
-        "id" : "152",
+        "id" : "168",
         "instanceId" : 1,
         "properties" : {
-          "structurizr.dsl.identifier" : "stage.sormvm.d3022978-2078-4630-bed4-c8c3fa7cffb7"
+          "structurizr.dsl.identifier" : "stage.sormvm.7d184677-56e3-473d-b9c3-62d103f285c4"
         },
         "relationships" : [ {
           "description" : "Сохраняет звонки",
-          "destinationId" : "154",
-          "id" : "157",
-          "linkedRelationshipId" : "126",
-          "sourceId" : "152"
+          "destinationId" : "170",
+          "id" : "173",
+          "linkedRelationshipId" : "129",
+          "sourceId" : "168"
         } ],
         "tags" : "Container Instance"
       } ],
       "environment" : "Stage",
-      "id" : "150",
+      "id" : "166",
       "instances" : "1",
       "name" : "sorm-vm",
       "properties" : {
         "structurizr.dsl.identifier" : "stage.sormvm"
       },
       "tags" : "Element,Deployment Node",
-      "technology" : "Ubuntu 16.04 LTS"
+      "technology" : "Ubuntu"
     }, {
       "containerInstances" : [ {
-        "containerId" : "29",
+        "containerId" : "32",
         "deploymentGroups" : [ "Default" ],
         "description" : "dbname: legs",
         "environment" : "Stage",
-        "id" : "154",
+        "id" : "170",
         "instanceId" : 1,
         "properties" : {
-          "structurizr.dsl.identifier" : "stage.8437afa8-09ca-4ac7-aed2-bbe67719e7c4.b16f118f-515e-4235-95d2-1e5f4a61d198"
+          "structurizr.dsl.identifier" : "stage.a564495f-d177-4696-b706-a04370b9732e.7ff7eec4-2837-4cae-a61c-6d0b4e94658d"
         },
         "relationships" : [ {
           "description" : "Получаем сведения",
-          "destinationId" : "151",
-          "id" : "155",
-          "linkedRelationshipId" : "128",
-          "sourceId" : "154"
+          "destinationId" : "167",
+          "id" : "171",
+          "linkedRelationshipId" : "131",
+          "sourceId" : "170"
         }, {
           "description" : "Получаем новые звонки",
-          "destinationId" : "152",
-          "id" : "156",
-          "linkedRelationshipId" : "130",
-          "sourceId" : "154"
+          "destinationId" : "168",
+          "id" : "172",
+          "linkedRelationshipId" : "133",
+          "sourceId" : "170"
         } ],
         "tags" : "Container Instance"
       } ],
       "description" : "#3",
       "environment" : "Stage",
-      "id" : "153",
+      "id" : "169",
       "instances" : "1",
       "name" : "Database Server",
       "properties" : {
-        "structurizr.dsl.identifier" : "stage.8437afa8-09ca-4ac7-aed2-bbe67719e7c4"
+        "structurizr.dsl.identifier" : "stage.a564495f-d177-4696-b706-a04370b9732e"
       },
       "tags" : "Element,Deployment Node"
     }, {
-      "containerInstances" : [ {
-        "containerId" : "8",
-        "deploymentGroups" : [ "Default" ],
-        "environment" : "Development",
-        "id" : "159",
-        "instanceId" : 1,
-        "properties" : {
-          "structurizr.dsl.identifier" : "development.sormvm.c86927e0-bdb2-440d-b358-dfff2e03d331"
-        },
-        "tags" : "Container Instance"
-      }, {
-        "containerId" : "18",
-        "deploymentGroups" : [ "Default" ],
-        "environment" : "Development",
-        "id" : "160",
-        "instanceId" : 1,
-        "properties" : {
-          "structurizr.dsl.identifier" : "development.sormvm.86c7df79-ad9e-4562-95b6-71d4cd157b57"
-        },
-        "relationships" : [ {
-          "description" : "Сохраняет звонки",
-          "destinationId" : "162",
-          "id" : "164",
-          "linkedRelationshipId" : "126",
-          "sourceId" : "160"
+      "children" : [ {
+        "containerInstances" : [ {
+          "containerId" : "8",
+          "deploymentGroups" : [ "Default" ],
+          "environment" : "Development",
+          "id" : "176",
+          "instanceId" : 1,
+          "properties" : {
+            "structurizr.dsl.identifier" : "development.tellbill.telbilldev.1df36b07-a8cd-4924-9cb2-ed05973718ab"
+          },
+          "relationships" : [ {
+            "destinationId" : "177",
+            "id" : "178",
+            "linkedRelationshipId" : "142",
+            "sourceId" : "176"
+          }, {
+            "destinationId" : "179",
+            "id" : "180",
+            "linkedRelationshipId" : "143",
+            "sourceId" : "176"
+          }, {
+            "destinationId" : "181",
+            "id" : "182",
+            "linkedRelationshipId" : "147",
+            "sourceId" : "176"
+          }, {
+            "destinationId" : "183",
+            "id" : "184",
+            "linkedRelationshipId" : "146",
+            "sourceId" : "176"
+          }, {
+            "destinationId" : "186",
+            "id" : "187",
+            "linkedRelationshipId" : "145",
+            "sourceId" : "176"
+          }, {
+            "destinationId" : "188",
+            "id" : "189",
+            "linkedRelationshipId" : "144",
+            "sourceId" : "176"
+          } ],
+          "tags" : "Container Instance"
+        }, {
+          "containerId" : "11",
+          "deploymentGroups" : [ "Default" ],
+          "environment" : "Development",
+          "id" : "177",
+          "instanceId" : 1,
+          "properties" : {
+            "structurizr.dsl.identifier" : "development.tellbill.telbilldev.aaffab9c-4c09-4b41-9353-e8447a750d9d"
+          },
+          "tags" : "Container Instance"
+        }, {
+          "containerId" : "21",
+          "deploymentGroups" : [ "Default" ],
+          "environment" : "Development",
+          "id" : "179",
+          "instanceId" : 1,
+          "properties" : {
+            "structurizr.dsl.identifier" : "development.tellbill.telbilldev.67553ab7-ca4c-47f4-ad24-90040492a8f6"
+          },
+          "relationships" : [ {
+            "description" : "Сохраняет звонки",
+            "destinationId" : "191",
+            "id" : "194",
+            "linkedRelationshipId" : "129",
+            "sourceId" : "179"
+          } ],
+          "tags" : "Container Instance"
+        }, {
+          "containerId" : "33",
+          "deploymentGroups" : [ "Default" ],
+          "environment" : "Development",
+          "id" : "181",
+          "instanceId" : 1,
+          "properties" : {
+            "structurizr.dsl.identifier" : "development.tellbill.telbilldev.1edfd38c-c957-4308-af7d-1be7f7c8236f"
+          },
+          "relationships" : [ {
+            "destinationId" : "191",
+            "id" : "195",
+            "linkedRelationshipId" : "124",
+            "sourceId" : "181"
+          } ],
+          "tags" : "Container Instance"
+        }, {
+          "containerId" : "43",
+          "deploymentGroups" : [ "Default" ],
+          "environment" : "Development",
+          "id" : "183",
+          "instanceId" : 1,
+          "properties" : {
+            "structurizr.dsl.identifier" : "development.tellbill.telbilldev.8c3379cc-39db-452f-9843-49841660aa59"
+          },
+          "relationships" : [ {
+            "destinationId" : "181",
+            "id" : "185",
+            "linkedRelationshipId" : "64",
+            "sourceId" : "183"
+          } ],
+          "tags" : "Container Instance"
+        }, {
+          "containerId" : "71",
+          "deploymentGroups" : [ "Default" ],
+          "environment" : "Development",
+          "id" : "186",
+          "instanceId" : 1,
+          "properties" : {
+            "structurizr.dsl.identifier" : "development.tellbill.telbilldev.b577d96d-5bf4-4d68-9efd-8a09fc5e6fe0"
+          },
+          "relationships" : [ {
+            "destinationId" : "191",
+            "id" : "196",
+            "linkedRelationshipId" : "118",
+            "sourceId" : "186"
+          } ],
+          "tags" : "Container Instance"
+        }, {
+          "containerId" : "83",
+          "deploymentGroups" : [ "Default" ],
+          "environment" : "Development",
+          "id" : "188",
+          "instanceId" : 1,
+          "properties" : {
+            "structurizr.dsl.identifier" : "development.tellbill.telbilldev.2de2ee1d-5fad-4141-80c4-cf71fca1dbcd"
+          },
+          "relationships" : [ {
+            "destinationId" : "186",
+            "id" : "190",
+            "linkedRelationshipId" : "108",
+            "sourceId" : "188"
+          } ],
+          "tags" : "Container Instance"
+        }, {
+          "containerId" : "32",
+          "deploymentGroups" : [ "Default" ],
+          "environment" : "Development",
+          "id" : "191",
+          "instanceId" : 1,
+          "properties" : {
+            "structurizr.dsl.identifier" : "development.tellbill.telbilldev.12639a9b-e7fa-4456-885b-ee48786b7ca6"
+          },
+          "relationships" : [ {
+            "description" : "Получаем сведения",
+            "destinationId" : "177",
+            "id" : "192",
+            "linkedRelationshipId" : "131",
+            "sourceId" : "191"
+          }, {
+            "description" : "Получаем новые звонки",
+            "destinationId" : "179",
+            "id" : "193",
+            "linkedRelationshipId" : "133",
+            "sourceId" : "191"
+          } ],
+          "tags" : "Container Instance"
+        }, {
+          "containerId" : "9",
+          "deploymentGroups" : [ "Default" ],
+          "environment" : "Development",
+          "id" : "197",
+          "instanceId" : 1,
+          "properties" : {
+            "structurizr.dsl.identifier" : "development.tellbill.telbilldev.a2d01e9c-129e-4b41-b06b-c2b3ffdd0a6d"
+          },
+          "relationships" : [ {
+            "destinationId" : "183",
+            "id" : "198",
+            "linkedRelationshipId" : "153",
+            "sourceId" : "197"
+          }, {
+            "destinationId" : "188",
+            "id" : "199",
+            "linkedRelationshipId" : "151",
+            "sourceId" : "197"
+          }, {
+            "destinationId" : "177",
+            "id" : "200",
+            "linkedRelationshipId" : "149",
+            "sourceId" : "197"
+          }, {
+            "destinationId" : "179",
+            "id" : "201",
+            "linkedRelationshipId" : "150",
+            "sourceId" : "197"
+          }, {
+            "destinationId" : "181",
+            "id" : "202",
+            "linkedRelationshipId" : "154",
+            "sourceId" : "197"
+          }, {
+            "destinationId" : "186",
+            "id" : "203",
+            "linkedRelationshipId" : "152",
+            "sourceId" : "197"
+          } ],
+          "tags" : "Container Instance"
+        }, {
+          "containerId" : "10",
+          "deploymentGroups" : [ "Default" ],
+          "environment" : "Development",
+          "id" : "204",
+          "instanceId" : 1,
+          "properties" : {
+            "structurizr.dsl.identifier" : "development.tellbill.telbilldev.0c90d908-045f-428a-8539-5d273452ef4f"
+          },
+          "relationships" : [ {
+            "destinationId" : "191",
+            "id" : "205",
+            "linkedRelationshipId" : "148",
+            "sourceId" : "204"
+          } ],
+          "tags" : "Container Instance"
         } ],
-        "tags" : "Container Instance"
+        "environment" : "Development",
+        "id" : "175",
+        "instances" : "1",
+        "name" : "telbill-dev",
+        "properties" : {
+          "structurizr.dsl.identifier" : "development.tellbill.telbilldev"
+        },
+        "tags" : "Element,Deployment Node"
       } ],
       "environment" : "Development",
-      "id" : "158",
+      "id" : "174",
       "instances" : "1",
-      "name" : "sorm-vm",
+      "name" : "telbill",
       "properties" : {
-        "structurizr.dsl.identifier" : "development.sormvm"
+        "structurizr.dsl.identifier" : "development.tellbill"
       },
       "tags" : "Element,Deployment Node",
-      "technology" : "Ubuntu 16.04 LTS"
-    }, {
-      "containerInstances" : [ {
-        "containerId" : "29",
-        "deploymentGroups" : [ "Default" ],
-        "description" : "dbname: legs",
-        "environment" : "Development",
-        "id" : "162",
-        "instanceId" : 1,
-        "properties" : {
-          "structurizr.dsl.identifier" : "development.d3acb27e-d954-458d-8cab-5659381945db.98de18be-4085-43d3-9eba-1c6dee4d9239"
-        },
-        "relationships" : [ {
-          "description" : "Получаем новые звонки",
-          "destinationId" : "160",
-          "id" : "163",
-          "linkedRelationshipId" : "130",
-          "sourceId" : "162"
-        }, {
-          "description" : "Получаем сведения",
-          "destinationId" : "159",
-          "id" : "165",
-          "linkedRelationshipId" : "128",
-          "sourceId" : "162"
-        } ],
-        "tags" : "Container Instance"
-      } ],
-      "description" : "#3",
-      "environment" : "Development",
-      "id" : "161",
-      "instances" : "1",
-      "name" : "Database Server",
-      "properties" : {
-        "structurizr.dsl.identifier" : "development.d3acb27e-d954-458d-8cab-5659381945db"
-      },
-      "tags" : "Element,Deployment Node"
+      "technology" : "Ubuntu"
     } ],
     "people" : [ {
       "id" : "1",
@@ -162,21 +322,21 @@
       },
       "relationships" : [ {
         "description" : "Смотрит ЛК",
-        "destinationId" : "81",
-        "id" : "147",
+        "destinationId" : "84",
+        "id" : "163",
         "sourceId" : "1",
         "tags" : "Relationship"
       }, {
         "description" : "Смотрит ЛК",
-        "destinationId" : "80",
-        "id" : "148",
-        "linkedRelationshipId" : "147",
+        "destinationId" : "83",
+        "id" : "164",
+        "linkedRelationshipId" : "163",
         "sourceId" : "1"
       }, {
         "description" : "Смотрит ЛК",
         "destinationId" : "7",
-        "id" : "149",
-        "linkedRelationshipId" : "147",
+        "id" : "165",
+        "linkedRelationshipId" : "163",
         "sourceId" : "1"
       } ],
       "tags" : "Element,Person"
@@ -188,19 +348,19 @@
         "structurizr.dsl.identifier" : "abonent"
       },
       "relationships" : [ {
-        "destinationId" : "41",
-        "id" : "139",
+        "destinationId" : "44",
+        "id" : "155",
         "sourceId" : "2",
         "tags" : "Relationship"
       }, {
-        "destinationId" : "40",
-        "id" : "140",
-        "linkedRelationshipId" : "139",
+        "destinationId" : "43",
+        "id" : "156",
+        "linkedRelationshipId" : "155",
         "sourceId" : "2"
       }, {
         "destinationId" : "7",
-        "id" : "141",
-        "linkedRelationshipId" : "139",
+        "id" : "157",
+        "linkedRelationshipId" : "155",
         "sourceId" : "2"
       } ],
       "tags" : "Element,Person"
@@ -221,33 +381,33 @@
       },
       "relationships" : [ {
         "description" : "Тарифицирует звонок",
-        "destinationId" : "19",
-        "id" : "142",
+        "destinationId" : "22",
+        "id" : "158",
         "sourceId" : "3",
         "tags" : "Relationship"
       }, {
         "description" : "Тарифицирует звонок",
-        "destinationId" : "18",
-        "id" : "143",
-        "linkedRelationshipId" : "142",
+        "destinationId" : "21",
+        "id" : "159",
+        "linkedRelationshipId" : "158",
         "sourceId" : "3"
       }, {
         "description" : "Тарифицирует звонок",
         "destinationId" : "7",
-        "id" : "144",
-        "linkedRelationshipId" : "142",
+        "id" : "160",
+        "linkedRelationshipId" : "158",
         "sourceId" : "3"
       }, {
         "description" : "Маршрутизирует звонок",
-        "destinationId" : "9",
-        "id" : "145",
+        "destinationId" : "12",
+        "id" : "161",
         "sourceId" : "3",
         "tags" : "Relationship"
       }, {
         "description" : "Маршрутизирует звонок",
-        "destinationId" : "8",
-        "id" : "146",
-        "linkedRelationshipId" : "145",
+        "destinationId" : "11",
+        "id" : "162",
+        "linkedRelationshipId" : "161",
         "sourceId" : "3"
       } ],
       "tags" : "Element,Software System,ExternalSystem"
@@ -283,75 +443,172 @@
       "tags" : "Element,Software System,ExternalSystem"
     }, {
       "containers" : [ {
+        "description" : "Ingress",
+        "documentation" : { },
+        "id" : "8",
+        "name" : "nginx",
+        "properties" : {
+          "structurizr.dsl.identifier" : "tellbillservice.nginx"
+        },
+        "relationships" : [ {
+          "destinationId" : "11",
+          "id" : "142",
+          "sourceId" : "8",
+          "tags" : "Relationship"
+        }, {
+          "destinationId" : "21",
+          "id" : "143",
+          "sourceId" : "8",
+          "tags" : "Relationship"
+        }, {
+          "destinationId" : "83",
+          "id" : "144",
+          "sourceId" : "8",
+          "tags" : "Relationship"
+        }, {
+          "destinationId" : "71",
+          "id" : "145",
+          "sourceId" : "8",
+          "tags" : "Relationship"
+        }, {
+          "destinationId" : "43",
+          "id" : "146",
+          "sourceId" : "8",
+          "tags" : "Relationship"
+        }, {
+          "destinationId" : "33",
+          "id" : "147",
+          "sourceId" : "8",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Infrastructure"
+      }, {
+        "description" : "Source volume",
+        "documentation" : { },
+        "id" : "9",
+        "name" : "src_vol",
+        "properties" : {
+          "structurizr.dsl.identifier" : "tellbillservice.src_vol"
+        },
+        "relationships" : [ {
+          "destinationId" : "11",
+          "id" : "149",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "destinationId" : "21",
+          "id" : "150",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "destinationId" : "83",
+          "id" : "151",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "destinationId" : "71",
+          "id" : "152",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "destinationId" : "43",
+          "id" : "153",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "destinationId" : "33",
+          "id" : "154",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Volume",
+        "technology" : "Infrastructure"
+      }, {
+        "description" : "Database volume",
+        "documentation" : { },
+        "id" : "10",
+        "name" : "db_vol",
+        "properties" : {
+          "structurizr.dsl.identifier" : "tellbillservice.db_vol"
+        },
+        "relationships" : [ {
+          "destinationId" : "32",
+          "id" : "148",
+          "sourceId" : "10",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Volume",
+        "technology" : "Infrastructure"
+      }, {
         "components" : [ {
           "documentation" : { },
-          "id" : "9",
+          "id" : "12",
           "name" : "Радиус сервер",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.auth.radiusserver"
           },
           "relationships" : [ {
             "description" : "Авторизация вызова",
-            "destinationId" : "10",
-            "id" : "13",
-            "sourceId" : "9",
+            "destinationId" : "13",
+            "id" : "16",
+            "sourceId" : "12",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
-          "id" : "10",
+          "id" : "13",
           "name" : "Авторизатор",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.auth.auth"
           },
           "relationships" : [ {
             "description" : "Вычисление маршрута",
-            "destinationId" : "11",
-            "id" : "14",
-            "sourceId" : "10",
+            "destinationId" : "14",
+            "id" : "17",
+            "sourceId" : "13",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
-          "id" : "11",
+          "id" : "14",
           "name" : "Маршрутизатор",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.auth.router"
           },
           "relationships" : [ {
             "description" : "Маршруты",
-            "destinationId" : "9",
-            "id" : "15",
-            "sourceId" : "11",
+            "destinationId" : "12",
+            "id" : "18",
+            "sourceId" : "14",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
-          "id" : "12",
+          "id" : "15",
           "name" : "Репозиторий Справочники",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.auth.dictrepo"
           },
           "relationships" : [ {
             "description" : "Узнаем настройки",
-            "destinationId" : "11",
-            "id" : "16",
-            "sourceId" : "12",
+            "destinationId" : "14",
+            "id" : "19",
+            "sourceId" : "15",
             "tags" : "Relationship"
           }, {
             "description" : "Узнаем настройки",
-            "destinationId" : "10",
-            "id" : "17",
-            "sourceId" : "12",
+            "destinationId" : "13",
+            "id" : "20",
+            "sourceId" : "15",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component"
         } ],
         "documentation" : { },
-        "id" : "8",
+        "id" : "11",
         "name" : "auth (Маршрутизатор звонков)",
         "properties" : {
           "structurizr.dsl.identifier" : "tellbillservice.auth"
@@ -361,60 +618,15 @@
       }, {
         "components" : [ {
           "documentation" : { },
-          "id" : "19",
+          "id" : "22",
           "name" : "Радиус сервер",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.acc.radiusserver"
           },
           "relationships" : [ {
             "description" : "Сохраняет звонки",
-            "destinationId" : "20",
-            "id" : "25",
-            "sourceId" : "19",
-            "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "20",
-          "name" : "Репозиторий CDR",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.acc.cdrrepo"
-          },
-          "relationships" : [ {
-            "description" : "Сохраняет звонки",
-            "destinationId" : "29",
-            "id" : "125",
-            "sourceId" : "20",
-            "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "21",
-          "name" : "Репозиторий Справочники",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.acc.dictrepo"
-          },
-          "relationships" : [ {
-            "description" : "Узнаем прайслисты",
             "destinationId" : "23",
             "id" : "28",
-            "sourceId" : "21",
-            "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "22",
-          "name" : "Буфер новых cdr",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.acc.cdrbuff"
-          },
-          "relationships" : [ {
-            "description" : "Новые звонки",
-            "destinationId" : "23",
-            "id" : "27",
             "sourceId" : "22",
             "tags" : "Relationship"
           } ],
@@ -422,14 +634,14 @@
         }, {
           "documentation" : { },
           "id" : "23",
-          "name" : "Биллингация вызовов",
+          "name" : "Репозиторий CDR",
           "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.acc.billing"
+            "structurizr.dsl.identifier" : "tellbillservice.acc.cdrrepo"
           },
           "relationships" : [ {
-            "description" : "Передаем в созранение звонки",
-            "destinationId" : "24",
-            "id" : "26",
+            "description" : "Сохраняет звонки",
+            "destinationId" : "32",
+            "id" : "128",
             "sourceId" : "23",
             "tags" : "Relationship"
           } ],
@@ -437,89 +649,134 @@
         }, {
           "documentation" : { },
           "id" : "24",
+          "name" : "Репозиторий Справочники",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.acc.dictrepo"
+          },
+          "relationships" : [ {
+            "description" : "Узнаем прайслисты",
+            "destinationId" : "26",
+            "id" : "31",
+            "sourceId" : "24",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "25",
+          "name" : "Буфер новых cdr",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.acc.cdrbuff"
+          },
+          "relationships" : [ {
+            "description" : "Новые звонки",
+            "destinationId" : "26",
+            "id" : "30",
+            "sourceId" : "25",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "26",
+          "name" : "Биллингация вызовов",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.acc.billing"
+          },
+          "relationships" : [ {
+            "description" : "Передаем в созранение звонки",
+            "destinationId" : "27",
+            "id" : "29",
+            "sourceId" : "26",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "27",
           "name" : "Репозиторий Calls-Raw",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.acc.rawrepo"
           },
           "relationships" : [ {
             "description" : "Сохраняет отбиллингованные звонки",
-            "destinationId" : "29",
-            "id" : "132",
-            "sourceId" : "24",
+            "destinationId" : "32",
+            "id" : "135",
+            "sourceId" : "27",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component"
         } ],
         "documentation" : { },
-        "id" : "18",
+        "id" : "21",
         "name" : "acc (Тарификатор звонков)",
         "properties" : {
           "structurizr.dsl.identifier" : "tellbillservice.acc"
         },
         "relationships" : [ {
           "description" : "Сохраняет звонки",
-          "destinationId" : "29",
-          "id" : "126",
-          "linkedRelationshipId" : "125",
-          "sourceId" : "18"
+          "destinationId" : "32",
+          "id" : "129",
+          "linkedRelationshipId" : "128",
+          "sourceId" : "21"
         } ],
         "tags" : "Element,Container,next.js",
         "technology" : "typescript"
       }, {
         "description" : "Database",
         "documentation" : { },
-        "id" : "29",
+        "id" : "32",
         "name" : "Хранилище состояний",
         "properties" : {
           "structurizr.dsl.identifier" : "tellbillservice.db"
         },
         "relationships" : [ {
           "description" : "Получаем сведения",
-          "destinationId" : "12",
-          "id" : "127",
-          "sourceId" : "29",
-          "tags" : "Relationship"
-        }, {
-          "description" : "Получаем сведения",
-          "destinationId" : "8",
-          "id" : "128",
-          "linkedRelationshipId" : "127",
-          "sourceId" : "29"
-        }, {
-          "description" : "Получаем новые звонки",
-          "destinationId" : "22",
-          "id" : "129",
-          "sourceId" : "29",
-          "tags" : "Relationship"
-        }, {
-          "description" : "Получаем новые звонки",
-          "destinationId" : "18",
+          "destinationId" : "15",
           "id" : "130",
-          "linkedRelationshipId" : "129",
-          "sourceId" : "29"
+          "sourceId" : "32",
+          "tags" : "Relationship"
         }, {
           "description" : "Получаем сведения",
-          "destinationId" : "21",
+          "destinationId" : "11",
           "id" : "131",
-          "sourceId" : "29",
+          "linkedRelationshipId" : "130",
+          "sourceId" : "32"
+        }, {
+          "description" : "Получаем новые звонки",
+          "destinationId" : "25",
+          "id" : "132",
+          "sourceId" : "32",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Получаем новые звонки",
+          "destinationId" : "21",
+          "id" : "133",
+          "linkedRelationshipId" : "132",
+          "sourceId" : "32"
+        }, {
+          "description" : "Получаем сведения",
+          "destinationId" : "24",
+          "id" : "134",
+          "sourceId" : "32",
           "tags" : "Relationship"
         }, {
           "description" : "Передает данные о звонках",
           "destinationId" : "5",
-          "id" : "133",
-          "sourceId" : "29",
+          "id" : "136",
+          "sourceId" : "32",
           "tags" : "Relationship"
         }, {
           "description" : "Передает данные о звонках",
           "destinationId" : "6",
-          "id" : "135",
-          "sourceId" : "29",
+          "id" : "138",
+          "sourceId" : "32",
           "tags" : "Relationship"
         }, {
           "description" : "Передает данные о звонках",
           "destinationId" : "4",
-          "id" : "137",
-          "sourceId" : "29",
+          "id" : "140",
+          "sourceId" : "32",
           "tags" : "Relationship"
         } ],
         "tags" : "Element,Container,Database",
@@ -527,71 +784,29 @@
       }, {
         "components" : [ {
           "documentation" : { },
-          "id" : "31",
+          "id" : "34",
           "name" : "http сервер",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.lkapibackend.httpserver"
           },
           "relationships" : [ {
-            "destinationId" : "32",
-            "id" : "36",
-            "sourceId" : "31",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "33",
-            "id" : "37",
-            "sourceId" : "31",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "34",
-            "id" : "38",
-            "sourceId" : "31",
-            "tags" : "Relationship"
-          }, {
             "destinationId" : "35",
             "id" : "39",
-            "sourceId" : "31",
+            "sourceId" : "34",
             "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "32",
-          "name" : "Репозиторий пользователей",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.lkapibackend.authrepo"
-          },
-          "relationships" : [ {
-            "destinationId" : "29",
-            "id" : "120",
-            "sourceId" : "32",
+          }, {
+            "destinationId" : "36",
+            "id" : "40",
+            "sourceId" : "34",
             "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "33",
-          "name" : "Репозиторий баланс пользователя",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.lkapibackend.accountrepo"
-          },
-          "relationships" : [ {
-            "destinationId" : "29",
-            "id" : "122",
-            "sourceId" : "33",
+          }, {
+            "destinationId" : "37",
+            "id" : "41",
+            "sourceId" : "34",
             "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "34",
-          "name" : "Peпозиторий звонки пользователя",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.lkapibackend.callsrepo"
-          },
-          "relationships" : [ {
-            "destinationId" : "29",
-            "id" : "123",
+          }, {
+            "destinationId" : "38",
+            "id" : "42",
             "sourceId" : "34",
             "tags" : "Relationship"
           } ],
@@ -599,98 +814,98 @@
         }, {
           "documentation" : { },
           "id" : "35",
+          "name" : "Репозиторий пользователей",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.lkapibackend.authrepo"
+          },
+          "relationships" : [ {
+            "destinationId" : "32",
+            "id" : "123",
+            "sourceId" : "35",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "36",
+          "name" : "Репозиторий баланс пользователя",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.lkapibackend.accountrepo"
+          },
+          "relationships" : [ {
+            "destinationId" : "32",
+            "id" : "125",
+            "sourceId" : "36",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "37",
+          "name" : "Peпозиторий звонки пользователя",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.lkapibackend.callsrepo"
+          },
+          "relationships" : [ {
+            "destinationId" : "32",
+            "id" : "126",
+            "sourceId" : "37",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "38",
           "name" : "Peпозиторий расходы пользователя",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.lkapibackend.billsrepo"
           },
           "relationships" : [ {
-            "destinationId" : "29",
-            "id" : "124",
-            "sourceId" : "35",
+            "destinationId" : "32",
+            "id" : "127",
+            "sourceId" : "38",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component"
         } ],
         "documentation" : { },
-        "id" : "30",
+        "id" : "33",
         "name" : "lkApiBackend",
         "properties" : {
           "structurizr.dsl.identifier" : "tellbillservice.lkapibackend"
         },
         "relationships" : [ {
-          "destinationId" : "29",
-          "id" : "121",
-          "linkedRelationshipId" : "120",
-          "sourceId" : "30"
+          "destinationId" : "32",
+          "id" : "124",
+          "linkedRelationshipId" : "123",
+          "sourceId" : "33"
         } ],
         "tags" : "Element,Container,next.js",
         "technology" : "typescript"
       }, {
         "components" : [ {
           "documentation" : { },
-          "id" : "41",
+          "id" : "44",
           "name" : "page controller",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.lkapifront.pagecontroller"
           },
           "relationships" : [ {
-            "destinationId" : "42",
-            "id" : "50",
-            "sourceId" : "41",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "43",
-            "id" : "51",
-            "sourceId" : "41",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "44",
-            "id" : "52",
-            "sourceId" : "41",
-            "tags" : "Relationship"
-          }, {
             "destinationId" : "45",
             "id" : "53",
-            "sourceId" : "41",
+            "sourceId" : "44",
             "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "42",
-          "name" : "авторизация пользователя",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.lkapifront.authpage"
-          },
-          "relationships" : [ {
+          }, {
             "destinationId" : "46",
             "id" : "54",
-            "sourceId" : "42",
+            "sourceId" : "44",
             "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "43",
-          "name" : "Страница баланс пользователя",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.lkapifront.accountpage"
-          },
-          "relationships" : [ {
+          }, {
             "destinationId" : "47",
             "id" : "55",
-            "sourceId" : "43",
+            "sourceId" : "44",
             "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "44",
-          "name" : "Страница звонки пользователя",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.lkapifront.callspage"
-          },
-          "relationships" : [ {
+          }, {
             "destinationId" : "48",
             "id" : "56",
             "sourceId" : "44",
@@ -700,9 +915,9 @@
         }, {
           "documentation" : { },
           "id" : "45",
-          "name" : "Страница расходы пользователя",
+          "name" : "авторизация пользователя",
           "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.lkapifront.billspage"
+            "structurizr.dsl.identifier" : "tellbillservice.lkapifront.authpage"
           },
           "relationships" : [ {
             "destinationId" : "49",
@@ -714,172 +929,172 @@
         }, {
           "documentation" : { },
           "id" : "46",
-          "name" : "Репозиторий пользователей",
+          "name" : "Страница баланс пользователя",
           "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.lkapifront.authrepo"
+            "structurizr.dsl.identifier" : "tellbillservice.lkapifront.accountpage"
           },
           "relationships" : [ {
-            "destinationId" : "31",
+            "destinationId" : "50",
             "id" : "58",
             "sourceId" : "46",
             "tags" : "Relationship"
-          }, {
-            "destinationId" : "30",
-            "id" : "59",
-            "linkedRelationshipId" : "58",
-            "sourceId" : "46"
           } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
           "id" : "47",
-          "name" : "Репозиторий баланс пользователя",
+          "name" : "Страница звонки пользователя",
           "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.lkapifront.accountrepo"
+            "structurizr.dsl.identifier" : "tellbillservice.lkapifront.callspage"
           },
           "relationships" : [ {
-            "destinationId" : "31",
-            "id" : "62",
+            "destinationId" : "51",
+            "id" : "59",
             "sourceId" : "47",
             "tags" : "Relationship"
-          }, {
-            "destinationId" : "30",
-            "id" : "63",
-            "linkedRelationshipId" : "62",
-            "sourceId" : "47"
           } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
           "id" : "48",
-          "name" : "Peпозиторий звонки пользователя",
+          "name" : "Страница расходы пользователя",
           "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.lkapifront.callsrepo"
+            "structurizr.dsl.identifier" : "tellbillservice.lkapifront.billspage"
           },
           "relationships" : [ {
-            "destinationId" : "31",
-            "id" : "64",
+            "destinationId" : "52",
+            "id" : "60",
             "sourceId" : "48",
             "tags" : "Relationship"
-          }, {
-            "destinationId" : "30",
-            "id" : "65",
-            "linkedRelationshipId" : "64",
-            "sourceId" : "48"
           } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
           "id" : "49",
+          "name" : "Репозиторий пользователей",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.lkapifront.authrepo"
+          },
+          "relationships" : [ {
+            "destinationId" : "34",
+            "id" : "61",
+            "sourceId" : "49",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "33",
+            "id" : "62",
+            "linkedRelationshipId" : "61",
+            "sourceId" : "49"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "50",
+          "name" : "Репозиторий баланс пользователя",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.lkapifront.accountrepo"
+          },
+          "relationships" : [ {
+            "destinationId" : "34",
+            "id" : "65",
+            "sourceId" : "50",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "33",
+            "id" : "66",
+            "linkedRelationshipId" : "65",
+            "sourceId" : "50"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "51",
+          "name" : "Peпозиторий звонки пользователя",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.lkapifront.callsrepo"
+          },
+          "relationships" : [ {
+            "destinationId" : "34",
+            "id" : "67",
+            "sourceId" : "51",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "33",
+            "id" : "68",
+            "linkedRelationshipId" : "67",
+            "sourceId" : "51"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "52",
           "name" : "Peпозиторий расходы пользователя",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.lkapifront.billsrepo"
           },
           "relationships" : [ {
-            "destinationId" : "31",
-            "id" : "66",
-            "sourceId" : "49",
+            "destinationId" : "34",
+            "id" : "69",
+            "sourceId" : "52",
             "tags" : "Relationship"
           }, {
-            "destinationId" : "30",
-            "id" : "67",
-            "linkedRelationshipId" : "66",
-            "sourceId" : "49"
+            "destinationId" : "33",
+            "id" : "70",
+            "linkedRelationshipId" : "69",
+            "sourceId" : "52"
           } ],
           "tags" : "Element,Component"
         } ],
         "documentation" : { },
-        "id" : "40",
+        "id" : "43",
         "name" : "lkApiFront",
         "properties" : {
           "structurizr.dsl.identifier" : "tellbillservice.lkapifront"
         },
         "relationships" : [ {
-          "destinationId" : "31",
-          "id" : "60",
-          "linkedRelationshipId" : "58",
-          "sourceId" : "40"
+          "destinationId" : "34",
+          "id" : "63",
+          "linkedRelationshipId" : "61",
+          "sourceId" : "43"
         }, {
-          "destinationId" : "30",
-          "id" : "61",
-          "linkedRelationshipId" : "58",
-          "sourceId" : "40"
+          "destinationId" : "33",
+          "id" : "64",
+          "linkedRelationshipId" : "61",
+          "sourceId" : "43"
         } ],
         "tags" : "Element,Container,next.js",
         "technology" : "typescript"
       }, {
         "components" : [ {
           "documentation" : { },
-          "id" : "69",
+          "id" : "72",
           "name" : "http сервер",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.adminapibackend.httpserver"
           },
           "relationships" : [ {
-            "destinationId" : "71",
-            "id" : "75",
-            "sourceId" : "69",
+            "destinationId" : "74",
+            "id" : "78",
+            "sourceId" : "72",
             "tags" : "Relationship"
           }, {
-            "destinationId" : "72",
-            "id" : "76",
-            "sourceId" : "69",
+            "destinationId" : "75",
+            "id" : "79",
+            "sourceId" : "72",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "76",
+            "id" : "80",
+            "sourceId" : "72",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "77",
+            "id" : "81",
+            "sourceId" : "72",
             "tags" : "Relationship"
           }, {
             "destinationId" : "73",
-            "id" : "77",
-            "sourceId" : "69",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "74",
-            "id" : "78",
-            "sourceId" : "69",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "70",
-            "id" : "79",
-            "sourceId" : "69",
-            "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "70",
-          "name" : "Репозиторий пользователей",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.adminapibackend.authrepo"
-          },
-          "relationships" : [ {
-            "destinationId" : "29",
-            "id" : "114",
-            "sourceId" : "70",
-            "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "71",
-          "name" : "Репозиторий абонентов",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.adminapibackend.abonentrepo"
-          },
-          "relationships" : [ {
-            "destinationId" : "29",
-            "id" : "116",
-            "sourceId" : "71",
-            "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "72",
-          "name" : "Репозиторий операторов",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.adminapibackend.operatorrepo"
-          },
-          "relationships" : [ {
-            "destinationId" : "29",
-            "id" : "117",
+            "id" : "82",
             "sourceId" : "72",
             "tags" : "Relationship"
           } ],
@@ -887,13 +1102,13 @@
         }, {
           "documentation" : { },
           "id" : "73",
-          "name" : "Репозиторий прайслистов",
+          "name" : "Репозиторий пользователей",
           "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.adminapibackend.pricelistrepo"
+            "structurizr.dsl.identifier" : "tellbillservice.adminapibackend.authrepo"
           },
           "relationships" : [ {
-            "destinationId" : "29",
-            "id" : "118",
+            "destinationId" : "32",
+            "id" : "117",
             "sourceId" : "73",
             "tags" : "Relationship"
           } ],
@@ -901,249 +1116,291 @@
         }, {
           "documentation" : { },
           "id" : "74",
-          "name" : "Репозиторий Отчетов",
+          "name" : "Репозиторий абонентов",
           "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.adminapibackend.reportrepo"
+            "structurizr.dsl.identifier" : "tellbillservice.adminapibackend.abonentrepo"
           },
           "relationships" : [ {
-            "destinationId" : "29",
+            "destinationId" : "32",
             "id" : "119",
             "sourceId" : "74",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "75",
+          "name" : "Репозиторий операторов",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.adminapibackend.operatorrepo"
+          },
+          "relationships" : [ {
+            "destinationId" : "32",
+            "id" : "120",
+            "sourceId" : "75",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "76",
+          "name" : "Репозиторий прайслистов",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.adminapibackend.pricelistrepo"
+          },
+          "relationships" : [ {
+            "destinationId" : "32",
+            "id" : "121",
+            "sourceId" : "76",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "77",
+          "name" : "Репозиторий Отчетов",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.adminapibackend.reportrepo"
+          },
+          "relationships" : [ {
+            "destinationId" : "32",
+            "id" : "122",
+            "sourceId" : "77",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
         } ],
         "documentation" : { },
-        "id" : "68",
+        "id" : "71",
         "name" : "AdminApiBackend",
         "properties" : {
           "structurizr.dsl.identifier" : "tellbillservice.adminapibackend"
         },
         "relationships" : [ {
-          "destinationId" : "29",
-          "id" : "115",
-          "linkedRelationshipId" : "114",
-          "sourceId" : "68"
+          "destinationId" : "32",
+          "id" : "118",
+          "linkedRelationshipId" : "117",
+          "sourceId" : "71"
         } ],
         "tags" : "Element,Container,next.js",
         "technology" : "typescript"
       }, {
         "components" : [ {
           "documentation" : { },
-          "id" : "81",
+          "id" : "84",
           "name" : "page controller",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.adminapifront.pagecontroller"
           },
           "relationships" : [ {
-            "destinationId" : "82",
-            "id" : "85",
-            "sourceId" : "81",
+            "destinationId" : "85",
+            "id" : "88",
+            "sourceId" : "84",
             "tags" : "Relationship"
           }, {
-            "destinationId" : "86",
-            "id" : "89",
-            "sourceId" : "81",
+            "destinationId" : "89",
+            "id" : "92",
+            "sourceId" : "84",
             "tags" : "Relationship"
           }, {
-            "destinationId" : "90",
-            "id" : "93",
-            "sourceId" : "81",
+            "destinationId" : "93",
+            "id" : "96",
+            "sourceId" : "84",
             "tags" : "Relationship"
           }, {
-            "destinationId" : "94",
-            "id" : "97",
-            "sourceId" : "81",
+            "destinationId" : "97",
+            "id" : "100",
+            "sourceId" : "84",
             "tags" : "Relationship"
           }, {
-            "destinationId" : "98",
-            "id" : "101",
-            "sourceId" : "81",
+            "destinationId" : "101",
+            "id" : "104",
+            "sourceId" : "84",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
-          "id" : "82",
+          "id" : "85",
           "name" : "авторизация пользователя",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.adminapifront.authpage"
           },
           "relationships" : [ {
-            "destinationId" : "83",
-            "id" : "84",
-            "sourceId" : "82",
+            "destinationId" : "86",
+            "id" : "87",
+            "sourceId" : "85",
             "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "83",
-          "name" : "Репозиторий пользователей",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.adminapifront.authrepo"
-          },
-          "relationships" : [ {
-            "destinationId" : "69",
-            "id" : "102",
-            "sourceId" : "83",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "68",
-            "id" : "103",
-            "linkedRelationshipId" : "102",
-            "sourceId" : "83"
           } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
           "id" : "86",
+          "name" : "Репозиторий пользователей",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.adminapifront.authrepo"
+          },
+          "relationships" : [ {
+            "destinationId" : "72",
+            "id" : "105",
+            "sourceId" : "86",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "71",
+            "id" : "106",
+            "linkedRelationshipId" : "105",
+            "sourceId" : "86"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "89",
           "name" : "Управление абонентами список/свойства",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.adminapifront.abonentpage"
           },
           "relationships" : [ {
-            "destinationId" : "87",
-            "id" : "88",
-            "sourceId" : "86",
+            "destinationId" : "90",
+            "id" : "91",
+            "sourceId" : "89",
             "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "87",
-          "name" : "Репозиторий абонентов",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.adminapifront.abonentrepo"
-          },
-          "relationships" : [ {
-            "destinationId" : "69",
-            "id" : "106",
-            "sourceId" : "87",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "68",
-            "id" : "107",
-            "linkedRelationshipId" : "106",
-            "sourceId" : "87"
           } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
           "id" : "90",
+          "name" : "Репозиторий абонентов",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.adminapifront.abonentrepo"
+          },
+          "relationships" : [ {
+            "destinationId" : "72",
+            "id" : "109",
+            "sourceId" : "90",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "71",
+            "id" : "110",
+            "linkedRelationshipId" : "109",
+            "sourceId" : "90"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "93",
           "name" : "Управление операторами список/свойства",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.adminapifront.operatorpage"
           },
           "relationships" : [ {
-            "destinationId" : "91",
-            "id" : "92",
-            "sourceId" : "90",
+            "destinationId" : "94",
+            "id" : "95",
+            "sourceId" : "93",
             "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "91",
-          "name" : "Репозиторий операторов",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.adminapifront.operatorrepo"
-          },
-          "relationships" : [ {
-            "destinationId" : "69",
-            "id" : "108",
-            "sourceId" : "91",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "68",
-            "id" : "109",
-            "linkedRelationshipId" : "108",
-            "sourceId" : "91"
           } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
           "id" : "94",
+          "name" : "Репозиторий операторов",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.adminapifront.operatorrepo"
+          },
+          "relationships" : [ {
+            "destinationId" : "72",
+            "id" : "111",
+            "sourceId" : "94",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "71",
+            "id" : "112",
+            "linkedRelationshipId" : "111",
+            "sourceId" : "94"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "97",
           "name" : "Управление прайслистами список/свойства",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.adminapifront.pricelistpage"
           },
           "relationships" : [ {
-            "destinationId" : "95",
-            "id" : "96",
-            "sourceId" : "94",
+            "destinationId" : "98",
+            "id" : "99",
+            "sourceId" : "97",
             "tags" : "Relationship"
-          } ],
-          "tags" : "Element,Component"
-        }, {
-          "documentation" : { },
-          "id" : "95",
-          "name" : "Репозиторий прайслистов",
-          "properties" : {
-            "structurizr.dsl.identifier" : "tellbillservice.adminapifront.pricelistrepo"
-          },
-          "relationships" : [ {
-            "destinationId" : "69",
-            "id" : "110",
-            "sourceId" : "95",
-            "tags" : "Relationship"
-          }, {
-            "destinationId" : "68",
-            "id" : "111",
-            "linkedRelationshipId" : "110",
-            "sourceId" : "95"
           } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
           "id" : "98",
+          "name" : "Репозиторий прайслистов",
+          "properties" : {
+            "structurizr.dsl.identifier" : "tellbillservice.adminapifront.pricelistrepo"
+          },
+          "relationships" : [ {
+            "destinationId" : "72",
+            "id" : "113",
+            "sourceId" : "98",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "71",
+            "id" : "114",
+            "linkedRelationshipId" : "113",
+            "sourceId" : "98"
+          } ],
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "101",
           "name" : "Отчеты",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.adminapifront.reportpage"
           },
           "relationships" : [ {
-            "destinationId" : "99",
-            "id" : "100",
-            "sourceId" : "98",
+            "destinationId" : "102",
+            "id" : "103",
+            "sourceId" : "101",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
-          "id" : "99",
+          "id" : "102",
           "name" : "Репозиторий Отчетов",
           "properties" : {
             "structurizr.dsl.identifier" : "tellbillservice.adminapifront.reportrepo"
           },
           "relationships" : [ {
-            "destinationId" : "69",
-            "id" : "112",
-            "sourceId" : "99",
+            "destinationId" : "72",
+            "id" : "115",
+            "sourceId" : "102",
             "tags" : "Relationship"
           }, {
-            "destinationId" : "68",
-            "id" : "113",
-            "linkedRelationshipId" : "112",
-            "sourceId" : "99"
+            "destinationId" : "71",
+            "id" : "116",
+            "linkedRelationshipId" : "115",
+            "sourceId" : "102"
           } ],
           "tags" : "Element,Component"
         } ],
         "documentation" : { },
-        "id" : "80",
+        "id" : "83",
         "name" : "AdminApiFront",
         "properties" : {
           "structurizr.dsl.identifier" : "tellbillservice.adminapifront"
         },
         "relationships" : [ {
-          "destinationId" : "69",
-          "id" : "104",
-          "linkedRelationshipId" : "102",
-          "sourceId" : "80"
+          "destinationId" : "72",
+          "id" : "107",
+          "linkedRelationshipId" : "105",
+          "sourceId" : "83"
         }, {
-          "destinationId" : "68",
-          "id" : "105",
-          "linkedRelationshipId" : "102",
-          "sourceId" : "80"
+          "destinationId" : "71",
+          "id" : "108",
+          "linkedRelationshipId" : "105",
+          "sourceId" : "83"
         } ],
         "tags" : "Element,Container,next.js",
         "technology" : "typescript"
@@ -1159,20 +1416,20 @@
       "relationships" : [ {
         "description" : "Передает данные о звонках",
         "destinationId" : "5",
-        "id" : "134",
-        "linkedRelationshipId" : "133",
+        "id" : "137",
+        "linkedRelationshipId" : "136",
         "sourceId" : "7"
       }, {
         "description" : "Передает данные о звонках",
         "destinationId" : "6",
-        "id" : "136",
-        "linkedRelationshipId" : "135",
+        "id" : "139",
+        "linkedRelationshipId" : "138",
         "sourceId" : "7"
       }, {
         "description" : "Передает данные о звонках",
         "destinationId" : "4",
-        "id" : "138",
-        "linkedRelationshipId" : "137",
+        "id" : "141",
+        "linkedRelationshipId" : "140",
         "sourceId" : "7"
       } ],
       "tags" : "Element,Software System,InternalSystem"
@@ -1180,7 +1437,7 @@
   },
   "name" : "telbill",
   "properties" : {
-    "structurizr.dsl" : "d29ya3NwYWNlICJ0ZWxiaWxsIiAi0JjQoSDRg9C/0YDQsNCy0LvQtdC90LjRjyDRgtC10LvQtdGE0L7QvdC90YvQvCDRg9C30LvQvtC8IiB7CiAgIAogICAgIyBodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PUFLRll6Tk9vQUxFCgogICAgI3NvZnR3YXJlU3lzdGVtIDxuYW1lPiBbZGVzY3JpcHRpb25dIFt0YWdzXQogICAgI2NvbnRhaW5lciA8bmFtZT4gW2Rlc2NyaXB0aW9uXSBbdGFnc10KCiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCgogICAgbW9kZWwgewogICAgICAKICAgICAgcHJvcGVydGllcyB7CiAgICAgICAgInN0cnVjdHJ1cml6ci5ncm91cHNlcGFyYXRvciIgIi8iCiAgICAgICAgInBsYW50dW1sLmFuaW1hdGlvbiIgInRydWUiCiAgICAgICAgInBsYW50dW1sLnNoYWRvdyIgInRydWUiCiAgICAgIH0KICAgICAgCiAgICAgIGFkbWluID0gcGVyc29uICLQkNC00LzQuNC90LjRgdGC0YDQsNGC0L7RgCDRg9C30LvQsCIKICAgICAgYWJvbmVudCA9IHBlcnNvbiAi0JDQsdC+0L3QtdC90YIiCgogICAgICBvcGVuU3dpdGNoID0gc29mdHdhcmVTeXN0ZW0gIm9wZW5Td2l0Y2giICLQotC10LvQtdGE0L7QvdC90YvQuSDQutC+0LzQvNGD0YLQsNGC0L7RgCIgIkV4dGVybmFsU3lzdGVtIgogICAgICBhY2NvdW50aW5nID0gc29mdHdhcmVTeXN0ZW0gImFjY291bnRpbmciICLQkdGD0YXQs9Cw0LvRgtC10YDQuNGPIiAiRXh0ZXJuYWxTeXN0ZW0iCiAgICAgIGVsayA9IHNvZnR3YXJlU3lzdGVtICJlbGsiICLQkNC90LDQu9C40YLQuNGH0LXRgdC60LDRjyDRgdC40YHRgtC10LzQsCIgIkV4dGVybmFsU3lzdGVtIgogICAgICBzb3JtID0gc29mdHdhcmVTeXN0ZW0gInNvcm0iICLQktGL0LPRgNGD0LfQutCwINCyINGB0L/QtdGG0YHQu9GD0LbQsdGLIiAiRXh0ZXJuYWxTeXN0ZW0iCgogICAgICB0ZWxsYmlsbFNlcnZpY2UgPSBzb2Z0d2FyZVN5c3RlbSAidGVsbGJpbGwiICLQmNChINGD0L/RgNCw0LLQu9C10L3QuNGPINGC0LXQu9C10YTQvtC90L3Ri9C8INGD0LfQu9C+0LwiICJJbnRlcm5hbFN5c3RlbSIgewoKICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKCiAgICAgICAgYXV0aCA9IGNvbnRhaW5lciAiYXV0aCAo0JzQsNGA0YjRgNGD0YLQuNC30LDRgtC+0YAg0LfQstC+0L3QutC+0LIpIiAiIiAidHlwZXNjcmlwdCIgIm5leHQuanMiIHsKICAgICAgICAgICByYWRpdXNTZXJ2ZXIgPSBjb21wb25lbnQgItCg0LDQtNC40YPRgSDRgdC10YDQstC10YAiICIiICIiICIiCiAgICAgICAgICAgYXV0aCA9IGNvbXBvbmVudCAi0JDQstGC0L7RgNC40LfQsNGC0L7RgCIgIiIgIiIgIiIKICAgICAgICAgICByb3V0ZXIgPSBjb21wb25lbnQgItCc0LDRgNGI0YDRg9GC0LjQt9Cw0YLQvtGAIiAiIiAiIiAiIgogICAgICAgICAgIGRpY3RSZXBvID0gY29tcG9uZW50ICLQoNC10L/QvtC30LjRgtC+0YDQuNC5INCh0L/RgNCw0LLQvtGH0L3QuNC60LgiICIiICIiICIiCiAgICAgICAgICAgcmFkaXVzU2VydmVyIC0+IGF1dGggItCQ0LLRgtC+0YDQuNC30LDRhtC40Y8g0LLRi9C30L7QstCwIgogICAgICAgICAgIGF1dGggLT4gcm91dGVyICLQktGL0YfQuNGB0LvQtdC90LjQtSDQvNCw0YDRiNGA0YPRgtCwIgogICAgICAgICAgIHJvdXRlciAtPiByYWRpdXNTZXJ2ZXIgItCc0LDRgNGI0YDRg9GC0YsiCgogICAgICAgICAgIGRpY3RSZXBvIC0+IHJvdXRlciAi0KPQt9C90LDQtdC8INC90LDRgdGC0YDQvtC50LrQuCIKICAgICAgICAgICBkaWN0UmVwbyAtPiBhdXRoICLQo9C30L3QsNC10Lwg0L3QsNGB0YLRgNC+0LnQutC4IgogICAgICAgIH0KCgogICAgICAgICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwoKICAgICAgICBhY2MgPSBjb250YWluZXIgImFjYyAo0KLQsNGA0LjRhNC40LrQsNGC0L7RgCDQt9Cy0L7QvdC60L7QsikiICIiICJ0eXBlc2NyaXB0IiAibmV4dC5qcyIgewogICAgICAgICAgIHJhZGl1c1NlcnZlciA9IGNvbXBvbmVudCAi0KDQsNC00LjRg9GBINGB0LXRgNCy0LXRgCIgIiIgIiIgIiIKICAgICAgICAgICBjZHJSZXBvID0gY29tcG9uZW50ICLQoNC10L/QvtC30LjRgtC+0YDQuNC5IENEUiIgIiIgIiIgIiIKICAgICAgICAgICBkaWN0UmVwbyA9IGNvbXBvbmVudCAi0KDQtdC/0L7Qt9C40YLQvtGA0LjQuSDQodC/0YDQsNCy0L7Rh9C90LjQutC4IiAiIiAiIiAiIgoKICAgICAgICAgICBjZHJCdWZmID0gIGNvbXBvbmVudCAi0JHRg9GE0LXRgCDQvdC+0LLRi9GFIGNkciIgIiIgIiIgIiIKICAgICAgICAgICBiaWxsaW5nID0gY29tcG9uZW50ICLQkdC40LvQu9C40L3Qs9Cw0YbQuNGPINCy0YvQt9C+0LLQvtCyIiAiIiAiIiAiIgoKICAgICAgICAgICByYXdSZXBvID0gY29tcG9uZW50ICLQoNC10L/QvtC30LjRgtC+0YDQuNC5IENhbGxzLVJhdyIgIiIgIiIgIiIKICAgICAgICAgICByYWRpdXNTZXJ2ZXIgLT4gY2RyUmVwbyAi0KHQvtGF0YDQsNC90Y/QtdGCINC30LLQvtC90LrQuCIKCiAgICAgICAgICAgYmlsbGluZyAtPiByYXdSZXBvICLQn9C10YDQtdC00LDQtdC8INCyINGB0L7Qt9GA0LDQvdC10L3QuNC1INC30LLQvtC90LrQuCIKCiAgICAgICAgICAgY2RyQnVmZiAtPiBiaWxsaW5nICLQndC+0LLRi9C1INC30LLQvtC90LrQuCIKICAgICAgICAgICBkaWN0UmVwbyAtPiBiaWxsaW5nICLQo9C30L3QsNC10Lwg0L/RgNCw0LnRgdC70LjRgdGC0YsiCgogICAgICAgIH0KCiAgICAgICAgZGIgPSBjb250YWluZXIgItCl0YDQsNC90LjQu9C40YnQtSDRgdC+0YHRgtC+0Y/QvdC40LkiICJEYXRhYmFzZSIgInBvc2dyZXNxbCIgIkRhdGFiYXNlIgoKICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKCiAgICAgICAgbGtBcGlCYWNrZW5kID0gY29udGFpbmVyICJsa0FwaUJhY2tlbmQiICIiICJ0eXBlc2NyaXB0IiAibmV4dC5qcyIgewogICAgICAgICAgaHR0cFNlcnZlciA9IGNvbXBvbmVudCAiaHR0cCDRgdC10YDQstC10YAiICIiICIiICIiCgogICAgICAgICAgYXV0aFJlcG8gPSBjb21wb25lbnQgItCg0LXQv9C+0LfQuNGC0L7RgNC40Lkg0L/QvtC70YzQt9C+0LLQsNGC0LXQu9C10LkiICIiICIiICIiCiAgICAgICAgICBhY2NvdW50UmVwbyA9IGNvbXBvbmVudCAi0KDQtdC/0L7Qt9C40YLQvtGA0LjQuSDQsdCw0LvQsNC90YEg0L/QvtC70YzQt9C+0LLQsNGC0LXQu9GPIiAiIiAiIiAiIgogICAgICAgICAgY2FsbHNSZXBvID0gY29tcG9uZW50ICJQZdC/0L7Qt9C40YLQvtGA0LjQuSDQt9Cy0L7QvdC60Lgg0L/QvtC70YzQt9C+0LLQsNGC0LXQu9GPIiAiIiAiIiAiIgogICAgICAgICAgYmlsbHNSZXBvID0gY29tcG9uZW50ICJQZdC/0L7Qt9C40YLQvtGA0LjQuSDRgNCw0YHRhdC+0LTRiyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8iICIiICIiICIiCgogICAgICAgICAgaHR0cFNlcnZlciAtPiBhdXRoUmVwbwogICAgICAgICAgaHR0cFNlcnZlciAtPiBhY2NvdW50UmVwbwogICAgICAgICAgaHR0cFNlcnZlciAtPiBjYWxsc1JlcG8KICAgICAgICAgIGh0dHBTZXJ2ZXIgLT4gYmlsbHNSZXBvCiAgICAgICAgfQoKICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKCiAgICAgICAgbGtBcGlGcm9udCA9IGNvbnRhaW5lciAibGtBcGlGcm9udCIgIiIgInR5cGVzY3JpcHQiICJuZXh0LmpzIiB7CgogICAgICAgICAgcGFnZUNvbnRyb2xsZXIgPSBjb21wb25lbnQgInBhZ2UgY29udHJvbGxlciIgIiIgIiIgIiIKCiAgICAgICAgICBhdXRoUGFnZSA9IGNvbXBvbmVudCAi0LDQstGC0L7RgNC40LfQsNGG0LjRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8iICIiICIiICIiCiAgICAgICAgICBhY2NvdW50UGFnZSA9IGNvbXBvbmVudCAi0KHRgtGA0LDQvdC40YbQsCDQsdCw0LvQsNC90YEg0L/QvtC70YzQt9C+0LLQsNGC0LXQu9GPIiAiIiAiIiAiIgogICAgICAgICAgY2FsbHNQYWdlID0gY29tcG9uZW50ICLQodGC0YDQsNC90LjRhtCwINC30LLQvtC90LrQuCDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8iICIiICIiICIiCiAgICAgICAgICBiaWxsc1BhZ2UgPSBjb21wb25lbnQgItCh0YLRgNCw0L3QuNGG0LAg0YDQsNGB0YXQvtC00Ysg0L/QvtC70YzQt9C+0LLQsNGC0LXQu9GPIiAiIiAiIiAiIgoKICAgICAgICAgIGF1dGhSZXBvID0gY29tcG9uZW50ICLQoNC10L/QvtC30LjRgtC+0YDQuNC5INC/0L7Qu9GM0LfQvtCy0LDRgtC10LvQtdC5IiAiIiAiIiAiIgogICAgICAgICAgYWNjb3VudFJlcG8gPSBjb21wb25lbnQgItCg0LXQv9C+0LfQuNGC0L7RgNC40Lkg0LHQsNC70LDQvdGBINC/0L7Qu9GM0LfQvtCy0LDRgtC10LvRjyIgIiIgIiIgIiIKICAgICAgICAgIGNhbGxzUmVwbyA9IGNvbXBvbmVudCAiUGXQv9C+0LfQuNGC0L7RgNC40Lkg0LfQstC+0L3QutC4INC/0L7Qu9GM0LfQvtCy0LDRgtC10LvRjyIgIiIgIiIgIiIKICAgICAgICAgIGJpbGxzUmVwbyA9IGNvbXBvbmVudCAiUGXQv9C+0LfQuNGC0L7RgNC40Lkg0YDQsNGB0YXQvtC00Ysg0L/QvtC70YzQt9C+0LLQsNGC0LXQu9GPIiAiIiAiIiAiIgoKCiAgICAgICAgICBwYWdlQ29udHJvbGxlciAtPiBhdXRoUGFnZQogICAgICAgICAgcGFnZUNvbnRyb2xsZXIgLT4gYWNjb3VudFBhZ2UKICAgICAgICAgIHBhZ2VDb250cm9sbGVyIC0+IGNhbGxzUGFnZQogICAgICAgICAgcGFnZUNvbnRyb2xsZXIgLT4gYmlsbHNQYWdlCgogICAgICAgICAgYXV0aFBhZ2UgLT4gYXV0aFJlcG8KICAgICAgICAgIGFjY291bnRQYWdlIC0+IGFjY291bnRSZXBvCiAgICAgICAgICBjYWxsc1BhZ2UgLT4gY2FsbHNSZXBvIAogICAgICAgICAgYmlsbHNQYWdlIC0+IGJpbGxzUmVwbwogICAgICAgICAgCiAgICAgICAgfQoKICAgICAgICBsa0FwaUZyb250LmF1dGhSZXBvIC0+IGxrQXBpQmFja2VuZC5odHRwU2VydmVyCiAgICAgICAgbGtBcGlGcm9udC5hY2NvdW50UmVwbyAtPiBsa0FwaUJhY2tlbmQuaHR0cFNlcnZlcgogICAgICAgIGxrQXBpRnJvbnQuY2FsbHNSZXBvIC0+IGxrQXBpQmFja2VuZC5odHRwU2VydmVyCiAgICAgICAgbGtBcGlGcm9udC5iaWxsc1JlcG8gLT4gbGtBcGlCYWNrZW5kLmh0dHBTZXJ2ZXIKCiAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCgogICAgICAgIGFkbWluQXBpQmFja2VuZCA9IGNvbnRhaW5lciAiQWRtaW5BcGlCYWNrZW5kIiAiIiAidHlwZXNjcmlwdCIgIm5leHQuanMiIHsKCiAgICAgICAgICBodHRwU2VydmVyID0gY29tcG9uZW50ICJodHRwINGB0LXRgNCy0LXRgCIgIiIgIiIgIiIKICAgICAgICAgIAogICAgICAgICAgYXV0aFJlcG8gPSBjb21wb25lbnQgItCg0LXQv9C+0LfQuNGC0L7RgNC40Lkg0L/QvtC70YzQt9C+0LLQsNGC0LXQu9C10LkiICIiICIiICIiCiAgICAgICAgICBhYm9uZW50UmVwbyA9IGNvbXBvbmVudCAi0KDQtdC/0L7Qt9C40YLQvtGA0LjQuSDQsNCx0L7QvdC10L3RgtC+0LIiICIiICIiICIiCiAgICAgICAgICBvcGVyYXRvclJlcG8gPSBjb21wb25lbnQgItCg0LXQv9C+0LfQuNGC0L7RgNC40Lkg0L7Qv9C10YDQsNGC0L7RgNC+0LIiICIiICIiICIiCiAgICAgICAgICBwcmljZWxpc3RSZXBvID0gY29tcG9uZW50ICLQoNC10L/QvtC30LjRgtC+0YDQuNC5INC/0YDQsNC50YHQu9C40YHRgtC+0LIiICIiICIiICIiCiAgICAgICAgICByZXBvcnRSZXBvID0gY29tcG9uZW50ICLQoNC10L/QvtC30LjRgtC+0YDQuNC5INCe0YLRh9C10YLQvtCyIiAiIiAiIiAiIgogICAgICAgICAgCiAgICAgICAgICAgCiAgICAgICAgICBodHRwU2VydmVyIC0+IGFib25lbnRSZXBvCiAgICAgICAgICBodHRwU2VydmVyIC0+IG9wZXJhdG9yUmVwbwogICAgICAgICAgaHR0cFNlcnZlciAtPiBwcmljZWxpc3RSZXBvCiAgICAgICAgICBodHRwU2VydmVyIC0+IHJlcG9ydFJlcG8KICAgICAgICAgIGh0dHBTZXJ2ZXIgLT4gYXV0aFJlcG8KCiAgICAgICAgfQoKICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKCiAgICAgICAgYWRtaW5BcGlGcm9udCA9IGNvbnRhaW5lciAiQWRtaW5BcGlGcm9udCIgIiIgInR5cGVzY3JpcHQiICJuZXh0LmpzIiAgICAgICAgewoKICAgICAgICAgIHBhZ2VDb250cm9sbGVyID0gY29tcG9uZW50ICJwYWdlIGNvbnRyb2xsZXIiICIiICIiICIiCgogICAgICAgICAgYXV0aFBhZ2UgPSBjb21wb25lbnQgItCw0LLRgtC+0YDQuNC30LDRhtC40Y8g0L/QvtC70YzQt9C+0LLQsNGC0LXQu9GPIiAiIiAiIiAiIgogICAgICAgICAgYXV0aFJlcG8gPSBjb21wb25lbnQgItCg0LXQv9C+0LfQuNGC0L7RgNC40Lkg0L/QvtC70YzQt9C+0LLQsNGC0LXQu9C10LkiICIiICIiICIiCiAgICAgICAgICBhdXRoUGFnZSAtPiBhdXRoUmVwbwogICAgICAgICAgcGFnZUNvbnRyb2xsZXIgLT4gYXV0aFBhZ2UKCiAgICAgICAgICBhYm9uZW50UGFnZSA9IGNvbXBvbmVudCAi0KPQv9GA0LDQstC70LXQvdC40LUg0LDQsdC+0L3QtdC90YLQsNC80Lgg0YHQv9C40YHQvtC6L9GB0LLQvtC50YHRgtCy0LAiICIiICIiICIiCiAgICAgICAgICBhYm9uZW50UmVwbyA9IGNvbXBvbmVudCAi0KDQtdC/0L7Qt9C40YLQvtGA0LjQuSDQsNCx0L7QvdC10L3RgtC+0LIiICIiICIiICIiCiAgICAgICAgICBhYm9uZW50UGFnZSAtPiBhYm9uZW50UmVwbwogICAgICAgICAgcGFnZUNvbnRyb2xsZXIgLT4gYWJvbmVudFBhZ2UKCiAgICAgICAgICBvcGVyYXRvclBhZ2UgPSBjb21wb25lbnQgItCj0L/RgNCw0LLQu9C10L3QuNC1INC+0L/QtdGA0LDRgtC+0YDQsNC80Lgg0YHQv9C40YHQvtC6L9GB0LLQvtC50YHRgtCy0LAiICIiICIiICIiCiAgICAgICAgICBvcGVyYXRvclJlcG8gPSBjb21wb25lbnQgItCg0LXQv9C+0LfQuNGC0L7RgNC40Lkg0L7Qv9C10YDQsNGC0L7RgNC+0LIiICIiICIiICIiCiAgICAgICAgICBvcGVyYXRvclBhZ2UgLT4gb3BlcmF0b3JSZXBvCiAgICAgICAgICBwYWdlQ29udHJvbGxlciAtPiBvcGVyYXRvclBhZ2UKCiAgICAgICAgICBwcmljZWxpc3RQYWdlID0gY29tcG9uZW50ICLQo9C/0YDQsNCy0LvQtdC90LjQtSDQv9GA0LDQudGB0LvQuNGB0YLQsNC80Lgg0YHQv9C40YHQvtC6L9GB0LLQvtC50YHRgtCy0LAiICIiICIiICIiCiAgICAgICAgICBwcmljZWxpc3RSZXBvID0gY29tcG9uZW50ICLQoNC10L/QvtC30LjRgtC+0YDQuNC5INC/0YDQsNC50YHQu9C40YHRgtC+0LIiICIiICIiICIiCiAgICAgICAgICBwcmljZWxpc3RQYWdlIC0+IHByaWNlbGlzdFJlcG8KICAgICAgICAgIHBhZ2VDb250cm9sbGVyIC0+IHByaWNlbGlzdFBhZ2UKCiAgICAgICAgICByZXBvcnRQYWdlID0gY29tcG9uZW50ICLQntGC0YfQtdGC0YsiICIiICIiICIiCiAgICAgICAgICByZXBvcnRSZXBvID0gY29tcG9uZW50ICLQoNC10L/QvtC30LjRgtC+0YDQuNC5INCe0YLRh9C10YLQvtCyIiAiIiAiIiAiIgogICAgICAgICAgcmVwb3J0UGFnZSAtPiByZXBvcnRSZXBvCiAgICAgICAgICBwYWdlQ29udHJvbGxlciAtPiByZXBvcnRQYWdlCgoKICAgICAgICB9CiAgICAKICAgICAgICBhZG1pbkFwaUZyb250LmF1dGhSZXBvIC0+IGFkbWluQXBpQmFja2VuZC5odHRwU2VydmVyCiAgICAgICAgYWRtaW5BcGlGcm9udC5hYm9uZW50UmVwbyAtPiBhZG1pbkFwaUJhY2tlbmQuaHR0cFNlcnZlcgogICAgICAgIGFkbWluQXBpRnJvbnQub3BlcmF0b3JSZXBvIC0+IGFkbWluQXBpQmFja2VuZC5odHRwU2VydmVyCiAgICAgICAgYWRtaW5BcGlGcm9udC5wcmljZWxpc3RSZXBvIC0+IGFkbWluQXBpQmFja2VuZC5odHRwU2VydmVyCiAgICAgICAgYWRtaW5BcGlGcm9udC5yZXBvcnRSZXBvIC0+IGFkbWluQXBpQmFja2VuZC5odHRwU2VydmVyCiAgICAgICAgCiAgICAgICAgYWRtaW5BcGlCYWNrZW5kLmF1dGhSZXBvIC0+IGRiIAogICAgICAgIGFkbWluQXBpQmFja2VuZC5hYm9uZW50UmVwbyAtPiBkYiAKICAgICAgICBhZG1pbkFwaUJhY2tlbmQub3BlcmF0b3JSZXBvIC0+IGRiIAogICAgICAgIGFkbWluQXBpQmFja2VuZC5wcmljZWxpc3RSZXBvIC0+IGRiIAogICAgICAgIGFkbWluQXBpQmFja2VuZC5yZXBvcnRSZXBvIC0+IGRiIAoKICAgICAgICBsa0FwaUJhY2tlbmQuYXV0aFJlcG8gLT4gZGIKICAgICAgICBsa0FwaUJhY2tlbmQuYWNjb3VudFJlcG8gLT4gZGIKICAgICAgICBsa0FwaUJhY2tlbmQuY2FsbHNSZXBvIC0+IGRiCiAgICAgICAgbGtBcGlCYWNrZW5kLmJpbGxzUmVwbyAtPiBkYgoKICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKCgogICAgICAgIGFjYy5jZHJSZXBvIC0+IGRiICLQodC+0YXRgNCw0L3Rj9C10YIg0LfQstC+0L3QutC4IgoKICAgICAgICAjIGFjYyAtPiBkYgogICAgICAgIGRiIC0+IGF1dGguZGljdFJlcG8gItCf0L7Qu9GD0YfQsNC10Lwg0YHQstC10LTQtdC90LjRjyIKICAgICAgICBkYiAtPiBhY2MuY2RyQnVmZiAi0J/QvtC70YPRh9Cw0LXQvCDQvdC+0LLRi9C1INC30LLQvtC90LrQuCIKICAgICAgICBkYiAtPiBhY2MuZGljdFJlcG8gItCf0L7Qu9GD0YfQsNC10Lwg0YHQstC10LTQtdC90LjRjyIKICAgICAgICBhY2MucmF3UmVwbyAtPiBkYiAi0KHQvtGF0YDQsNC90Y/QtdGCINC+0YLQsdC40LvQu9C40L3Qs9C+0LLQsNC90L3Ri9C1INC30LLQvtC90LrQuCIKCiAgICAgICAgZGIgLT4gZWxrICLQn9C10YDQtdC00LDQtdGCINC00LDQvdC90YvQtSDQviDQt9Cy0L7QvdC60LDRhSIKICAgICAgICBkYiAtPiBzb3JtICLQn9C10YDQtdC00LDQtdGCINC00LDQvdC90YvQtSDQviDQt9Cy0L7QvdC60LDRhSIKICAgICAgICBkYiAtPiBhY2NvdW50aW5nICLQn9C10YDQtdC00LDQtdGCINC00LDQvdC90YvQtSDQviDQt9Cy0L7QvdC60LDRhSIKCiAgICAgIH0KCiAgICAgIGFib25lbnQgLT4gdGVsbGJpbGxTZXJ2aWNlLmxrQXBpRnJvbnQucGFnZUNvbnRyb2xsZXIKICAgICAgCiAgICAgIG9wZW5Td2l0Y2ggLT4gIHRlbGxiaWxsU2VydmljZS5hY2MucmFkaXVzU2VydmVyICLQotCw0YDQuNGE0LjRhtC40YDRg9C10YIg0LfQstC+0L3QvtC6IgogICAgICBvcGVuU3dpdGNoIC0+ICB0ZWxsYmlsbFNlcnZpY2UuYXV0aC5yYWRpdXNTZXJ2ZXIgItCc0LDRgNGI0YDRg9GC0LjQt9C40YDRg9C10YIg0LfQstC+0L3QvtC6IgogICAgICAKICAgICAgI2Fib25lbnQgLT4gdGVsbGJpbGxTZXJ2aWNlLmxrQXBpRnJvbnQgItCh0LzQvtGC0YDQuNGCINCb0JoiCiAgICAgIGFkbWluICAgLT4gdGVsbGJpbGxTZXJ2aWNlLmFkbWluQXBpRnJvbnQucGFnZUNvbnRyb2xsZXIgItCh0LzQvtGC0YDQuNGCINCb0JoiCgoKCiAgICAgICAgc3RhZ2UgPSBkZXBsb3ltZW50RW52aXJvbm1lbnQgIlN0YWdlIiB7CgogICAgICAgICAgICAgICAgICAgIHNvcm12bSA9IGRlcGxveW1lbnROb2RlICJzb3JtLXZtIiAiIiAiVWJ1bnR1IDE2LjA0IExUUyIgIiIgMSB7CgogICAgICAgICAgICAgICAgICAgICAgICBjb250YWluZXJJbnN0YW5jZSB0ZWxsYmlsbFNlcnZpY2UuYXV0aAogICAgICAgICAgICAgICAgICAgICAgICBjb250YWluZXJJbnN0YW5jZSB0ZWxsYmlsbFNlcnZpY2UuYWNjCgogICAgICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAgICAgICAgIGRlcGxveW1lbnROb2RlICJEYXRhYmFzZSBTZXJ2ZXIiICIjMyIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgY29udGFpbmVySW5zdGFuY2UgdGVsbGJpbGxTZXJ2aWNlLmRiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiAiZGJuYW1lOiBsZWdzIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CgogICAgICAgIGRldmVsb3BtZW50ID0gZGVwbG95bWVudEVudmlyb25tZW50ICJEZXZlbG9wbWVudCIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzb3Jtdm0gPSBkZXBsb3ltZW50Tm9kZSAic29ybS12bSIgIiIgIlVidW50dSAxNi4wNCBMVFMiICIiIDEgewoKICAgICAgICAgICAgICAgICAgICAgICAgY29udGFpbmVySW5zdGFuY2UgdGVsbGJpbGxTZXJ2aWNlLmF1dGgKICAgICAgICAgICAgICAgICAgICAgICAgY29udGFpbmVySW5zdGFuY2UgdGVsbGJpbGxTZXJ2aWNlLmFjYwoKICAgICAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgICAgICAgICBkZXBsb3ltZW50Tm9kZSAiRGF0YWJhc2UgU2VydmVyIiAiIzMiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbnRhaW5lckluc3RhbmNlIHRlbGxiaWxsU2VydmljZS5kYiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gImRibmFtZTogbGVncyIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgIH0KCiAgICB9CiAgICB2aWV3cyB7CiAgICAgICAgIyDQv9C+0LTQutC70Y7Rh9Cw0LXQvCDRgdGC0LjQu9C4CiAgICAgICAgc3R5bGVzIHsKICAgICAgICAgICAgICAgICAgICBlbGVtZW50ICJFbGVtZW50IiB7CiAgICAgICAgICAgICAgICAgICAgICAgIGNvbG9yIHdoaXRlCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIGVsZW1lbnQgIlBlcnNvbiIgewogICAgICAgICAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgICAgICAgICAgICAgIGZvbnRTaXplIDIyCiAgICAgICAgICAgICAgICAgICAgICAgIHNoYXBlIFBlcnNvbgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBlbGVtZW50ICJTb2Z0d2FyZVN5c3RlbSIgewogICAgICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMxMTY4YmQKICAgICAgICAgICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAKICAgICAgICAgICAgICAgICAgICBlbGVtZW50ICAiRXh0ZXJuYWxTeXN0ZW0iIHsKICAgICAgICAgICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjOTk5OTk5CiAgICAgICAgICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgICAgICAgICAgc2hhcGUgQ3lsaW5kZXIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgZWxlbWVudCAiQ29udGFpbmVyIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzQzOGRkNQogICAgICAgICAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIGVsZW1lbnQgIldlYiBCcm93c2VyIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHNoYXBlIFdlYkJyb3dzZXIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgZWxlbWVudCAiTW9iaWxlIEFwcCIgewogICAgICAgICAgICAgICAgICAgICAgICBzaGFwZSBNb2JpbGVEZXZpY2VMYW5kc2NhcGUKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgICAgICAgICAgc2hhcGUgQ3lsaW5kZXIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgZWxlbWVudCAiQ29tcG9uZW50IiB7CiAgICAgICAgICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzg1YmJmMAogICAgICAgICAgICAgICAgICAgICAgICBjb2xvciAjMDAwMDAwCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgIAogICAgICAgICAgICAgICAgICAgIGVsZW1lbnQgIkZhaWxvdmVyIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIG9wYWNpdHkgMjUKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgCiAgICAgICAgCiAgICAgICAgfQoKICAgICAgICBzeXN0ZW1MYW5kc2NhcGUgICJTeXN0ZW1MYW5kc2NhcGUiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgIHN5c3RlbUNvbnRleHQgdGVsbGJpbGxTZXJ2aWNlICJ0ZWxsYmlsbFNlcnZpY2VDb250ZXh0IiAi0JTQuNCw0LPRgNCw0LzQvNCwINC60L7QvdGC0LXQutGC0LAg0YHQtdGA0LLQuNGB0LAgdGVsbGJpbGwiIHsKICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICBleGNsdWRlICotPioKICAgICAgICAgICBpbmNsdWRlICotPnRlbGxiaWxsU2VydmljZQogICAgICAgICAgIGluY2x1ZGUgdGVsbGJpbGxTZXJ2aWNlLT4qCiAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KICAgIAogICAgICAgIGNvbnRhaW5lciB0ZWxsYmlsbFNlcnZpY2UgIkNvbnRhaW5lcnMiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGFuaW1hdGlvbiB7CiAgICAgICAgICAgICAgICB0ZWxsYmlsbFNlcnZpY2UuYWNjCiAgICAgICAgICAgICAgICB0ZWxsYmlsbFNlcnZpY2UuYXV0aAogICAgICAgICAgICAgICAgdGVsbGJpbGxTZXJ2aWNlLmRiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZGVzY3JpcHRpb24gItCU0LjQsNCz0YDQsNC80LzQsCDQutC+0L3RgtC10LnQvdC10YDQsCDQotC10LvQkdC40LvQuyIKICAgICAgICAgICAgYXV0b0xheW91dCB0YgoKICAgICAgICB9CgogICAgICAgIGNvbXBvbmVudCB0ZWxsYmlsbFNlcnZpY2UuYWNjICJDb21wb25lbnRfYWNjIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICAjIGV4Y2x1ZGUgKi0+KgogICAgICAgICAgICAjIGluY2x1ZGUgKi0+dGVsbGJpbGxTZXJ2aWNlLmFjYwogICAgICAgICAgICAjIGluY2x1ZGUgdGVsbGJpbGxTZXJ2aWNlLmFjYy0+KgogICAgICAgICAgICAjIGFuaW1hdGlvbiB7CiAgICAgICAgICAgICMgICAgICB0ZWxsYmlsbFNlcnZpY2UuYWNjCiAgICAgICAgICAgICMgfQoKICAgICAgICAgICAgZGVzY3JpcHRpb24gImFjYyAo0KLQsNGA0LjRhNC40LrQsNGC0L7RgCDQt9Cy0L7QvdC60L7QsikiCiAgICAgICAgICAgIGF1dG9MYXlvdXQgdGIKICAgICAgICB9CgoKICAgICAgICBjb21wb25lbnQgdGVsbGJpbGxTZXJ2aWNlLmF1dGggIkNvbXBvbmVudF9hdXRoIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICAjIGV4Y2x1ZGUgKi0+KgogICAgICAgICAgICAjIGluY2x1ZGUgKi0+dGVsbGJpbGxTZXJ2aWNlLmFjYwogICAgICAgICAgICAjIGluY2x1ZGUgdGVsbGJpbGxTZXJ2aWNlLmFjYy0+KgogICAgICAgICAgICAjIGFuaW1hdGlvbiB7CiAgICAgICAgICAgICMgICAgICB0ZWxsYmlsbFNlcnZpY2UuYWNjCiAgICAgICAgICAgICMgfQoKICAgICAgICAgICAgZGVzY3JpcHRpb24gImF1dGggKNCc0LDRgNGI0YDRg9GC0LjQt9Cw0YLQvtGAINC30LLQvtC90LrQvtCyKSIKICAgICAgICAgICAgYXV0b0xheW91dCBidAogICAgICAgIH0KCgogICAgICAgIGNvbXBvbmVudCB0ZWxsYmlsbFNlcnZpY2UubGtBcGlGcm9udCAiQ29tcG9uZW50X2xrRnJvbnQiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGRlc2NyaXB0aW9uICJsa0FwaUZyb250ICjQktC10LEg0LjQvdGC0LXRgNGE0LXQudGBINCb0Jot0L/QvtC70YzQt9C+0LLQsNGC0LXQu9GPKSIKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IHRlbGxiaWxsU2VydmljZS5BZG1pbkFwaUZyb250ICJDb21wb25lbnRfQWRtaW5Gcm9udCIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgZGVzY3JpcHRpb24gIkFkbWluQXBpRnJvbnQgKNCS0LXQsSDQuNC90YLQtdGA0YTQtdC50YEg0LDQtNC80LjQvdC40LzRgdGC0YDQsNGC0L7RgNCwKSIKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IHRlbGxiaWxsU2VydmljZS5hZG1pbkFwaUJhY2tlbmQgIkNvbXBvbmVudF9hZG1pbkFwaUJhY2tlbmQiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGRlc2NyaXB0aW9uICJhZG1pbkFwaUJhY2tlbmQgKNCx0LXQutC10L3QtCDQuNC90YLQtdGA0YTQtdC50YHQsCDQsNC00LzQuNC90LjQvNGB0YLRgNCw0YLQvtGA0LApIgogICAgICAgICAgICBhdXRvTGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb21wb25lbnQgdGVsbGJpbGxTZXJ2aWNlLmxrQXBpQmFja2VuZCAiQ29tcG9uZW50X2xrQXBpQmFja2VuZCIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgZGVzY3JpcHRpb24gImxrQXBpQmFja2VuZCAo0LHQtdC60LXQvdC0INC40L3RgtC10YDRhNC10LnRgdCwINCw0LHQvtC90LXQvdGC0LApIgogICAgICAgICAgICBhdXRvTGF5b3V0IGxyCiAgICAgICAgfQoKCiAgICAgICAgZGVwbG95bWVudCAqICJTdGFnZSIgIlN0YWdlRGVwbG95bWVudCIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgaW5jbHVkZSAqLT4qCiAgICAgICAgICAgIGRlc2NyaXB0aW9uICLQodGF0LXQvNCwINGA0LDQt9Cy0L7RgNC+0YLQsCDQvtC60YDRg9C20LXQvdC40Y8g0YLQtdGB0YLQuNGA0L7QstCw0L3QuNGPIgogICAgICAgICAgICBhdXRvTGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBkZXBsb3ltZW50ICogIkRldmVsb3BtZW50IiAiRGV2ZWxvcG1lbnREZXBsb3ltZW50IiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBpbmNsdWRlICotPioKICAgICAgICAgICAgZGVzY3JpcHRpb24gItCh0YXQtdC80LAg0YDQsNC30LLQvtGA0L7RgtCwINC+0LrRgNGD0LbQtdC90LjRjyDRgNCw0LfRgNCw0LHQvtGC0YfQuNC60LAiCiAgICAgICAgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICB9CgoKICAgIH0KCn0="
+    "structurizr.dsl" : "d29ya3NwYWNlICJ0ZWxiaWxsIiAi0JjQoSDRg9C/0YDQsNCy0LvQtdC90LjRjyDRgtC10LvQtdGE0L7QvdC90YvQvCDRg9C30LvQvtC8IiB7CiAgIAogICAgIyBodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PUFLRll6Tk9vQUxFCgogICAgI3NvZnR3YXJlU3lzdGVtIDxuYW1lPiBbZGVzY3JpcHRpb25dIFt0YWdzXQogICAgI2NvbnRhaW5lciA8bmFtZT4gW2Rlc2NyaXB0aW9uXSBbdGFnc10KCiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCgogICAgbW9kZWwgewogICAgICAKICAgICAgcHJvcGVydGllcyB7CiAgICAgICAgInN0cnVjdHJ1cml6ci5ncm91cHNlcGFyYXRvciIgIi8iCiAgICAgICAgInBsYW50dW1sLmFuaW1hdGlvbiIgInRydWUiCiAgICAgICAgInBsYW50dW1sLnNoYWRvdyIgInRydWUiCiAgICAgIH0KICAgICAgCiAgICAgIGFkbWluID0gcGVyc29uICLQkNC00LzQuNC90LjRgdGC0YDQsNGC0L7RgCDRg9C30LvQsCIKICAgICAgYWJvbmVudCA9IHBlcnNvbiAi0JDQsdC+0L3QtdC90YIiCgogICAgICBvcGVuU3dpdGNoID0gc29mdHdhcmVTeXN0ZW0gIm9wZW5Td2l0Y2giICLQotC10LvQtdGE0L7QvdC90YvQuSDQutC+0LzQvNGD0YLQsNGC0L7RgCIgIkV4dGVybmFsU3lzdGVtIgogICAgICBhY2NvdW50aW5nID0gc29mdHdhcmVTeXN0ZW0gImFjY291bnRpbmciICLQkdGD0YXQs9Cw0LvRgtC10YDQuNGPIiAiRXh0ZXJuYWxTeXN0ZW0iCiAgICAgIGVsayA9IHNvZnR3YXJlU3lzdGVtICJlbGsiICLQkNC90LDQu9C40YLQuNGH0LXRgdC60LDRjyDRgdC40YHRgtC10LzQsCIgIkV4dGVybmFsU3lzdGVtIgogICAgICBzb3JtID0gc29mdHdhcmVTeXN0ZW0gInNvcm0iICLQktGL0LPRgNGD0LfQutCwINCyINGB0L/QtdGG0YHQu9GD0LbQsdGLIiAiRXh0ZXJuYWxTeXN0ZW0iCgogICAgICB0ZWxsYmlsbFNlcnZpY2UgPSBzb2Z0d2FyZVN5c3RlbSAidGVsbGJpbGwiICLQmNChINGD0L/RgNCw0LLQu9C10L3QuNGPINGC0LXQu9C10YTQvtC90L3Ri9C8INGD0LfQu9C+0LwiICJJbnRlcm5hbFN5c3RlbSIgewoKICAgICAgICBuZ2lueCA9IGNvbnRhaW5lciAibmdpbngiICJJbmdyZXNzIiAiIiB7CiAgICAgICAgICBUYWcgIkluZnJhc3RydWN0dXJlIgogICAgICAgIH0KCiAgICAgICAgc3JjX3ZvbCA9IGNvbnRhaW5lciAic3JjX3ZvbCIgIlNvdXJjZSB2b2x1bWUiICJJbmZyYXN0cnVjdHVyZSIgewogICAgICAgICAgVGFnICJWb2x1bWUiCiAgICAgICAgfQogICAgICAgIGRiX3ZvbCA9IGNvbnRhaW5lciAiZGJfdm9sIiAiRGF0YWJhc2Ugdm9sdW1lIiAiSW5mcmFzdHJ1Y3R1cmUiIHsKICAgICAgICAgIFRhZyAiVm9sdW1lIgogICAgICAgIH0KCiAgICAgIAogICAgICAgICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwoKICAgICAgICBhdXRoID0gY29udGFpbmVyICJhdXRoICjQnNCw0YDRiNGA0YPRgtC40LfQsNGC0L7RgCDQt9Cy0L7QvdC60L7QsikiICIiICJ0eXBlc2NyaXB0IiAibmV4dC5qcyIgewogICAgICAgICAgIHJhZGl1c1NlcnZlciA9IGNvbXBvbmVudCAi0KDQsNC00LjRg9GBINGB0LXRgNCy0LXRgCIgIiIgIiIgIiIKICAgICAgICAgICBhdXRoID0gY29tcG9uZW50ICLQkNCy0YLQvtGA0LjQt9Cw0YLQvtGAIiAiIiAiIiAiIgogICAgICAgICAgIHJvdXRlciA9IGNvbXBvbmVudCAi0JzQsNGA0YjRgNGD0YLQuNC30LDRgtC+0YAiICIiICIiICIiCiAgICAgICAgICAgZGljdFJlcG8gPSBjb21wb25lbnQgItCg0LXQv9C+0LfQuNGC0L7RgNC40Lkg0KHQv9GA0LDQstC+0YfQvdC40LrQuCIgIiIgIiIgIiIKICAgICAgICAgICByYWRpdXNTZXJ2ZXIgLT4gYXV0aCAi0JDQstGC0L7RgNC40LfQsNGG0LjRjyDQstGL0LfQvtCy0LAiCiAgICAgICAgICAgYXV0aCAtPiByb3V0ZXIgItCS0YvRh9C40YHQu9C10L3QuNC1INC80LDRgNGI0YDRg9GC0LAiCiAgICAgICAgICAgcm91dGVyIC0+IHJhZGl1c1NlcnZlciAi0JzQsNGA0YjRgNGD0YLRiyIKCiAgICAgICAgICAgZGljdFJlcG8gLT4gcm91dGVyICLQo9C30L3QsNC10Lwg0L3QsNGB0YLRgNC+0LnQutC4IgogICAgICAgICAgIGRpY3RSZXBvIC0+IGF1dGggItCj0LfQvdCw0LXQvCDQvdCw0YHRgtGA0L7QudC60LgiCiAgICAgICAgfQoKCiAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCgogICAgICAgIGFjYyA9IGNvbnRhaW5lciAiYWNjICjQotCw0YDQuNGE0LjQutCw0YLQvtGAINC30LLQvtC90LrQvtCyKSIgIiIgInR5cGVzY3JpcHQiICJuZXh0LmpzIiB7CiAgICAgICAgICAgcmFkaXVzU2VydmVyID0gY29tcG9uZW50ICLQoNCw0LTQuNGD0YEg0YHQtdGA0LLQtdGAIiAiIiAiIiAiIgogICAgICAgICAgIGNkclJlcG8gPSBjb21wb25lbnQgItCg0LXQv9C+0LfQuNGC0L7RgNC40LkgQ0RSIiAiIiAiIiAiIgogICAgICAgICAgIGRpY3RSZXBvID0gY29tcG9uZW50ICLQoNC10L/QvtC30LjRgtC+0YDQuNC5INCh0L/RgNCw0LLQvtGH0L3QuNC60LgiICIiICIiICIiCgogICAgICAgICAgIGNkckJ1ZmYgPSAgY29tcG9uZW50ICLQkdGD0YTQtdGAINC90L7QstGL0YUgY2RyIiAiIiAiIiAiIgogICAgICAgICAgIGJpbGxpbmcgPSBjb21wb25lbnQgItCR0LjQu9C70LjQvdCz0LDRhtC40Y8g0LLRi9C30L7QstC+0LIiICIiICIiICIiCgogICAgICAgICAgIHJhd1JlcG8gPSBjb21wb25lbnQgItCg0LXQv9C+0LfQuNGC0L7RgNC40LkgQ2FsbHMtUmF3IiAiIiAiIiAiIgogICAgICAgICAgIHJhZGl1c1NlcnZlciAtPiBjZHJSZXBvICLQodC+0YXRgNCw0L3Rj9C10YIg0LfQstC+0L3QutC4IgoKICAgICAgICAgICBiaWxsaW5nIC0+IHJhd1JlcG8gItCf0LXRgNC10LTQsNC10Lwg0LIg0YHQvtC30YDQsNC90LXQvdC40LUg0LfQstC+0L3QutC4IgoKICAgICAgICAgICBjZHJCdWZmIC0+IGJpbGxpbmcgItCd0L7QstGL0LUg0LfQstC+0L3QutC4IgogICAgICAgICAgIGRpY3RSZXBvIC0+IGJpbGxpbmcgItCj0LfQvdCw0LXQvCDQv9GA0LDQudGB0LvQuNGB0YLRiyIKCiAgICAgICAgfQoKICAgICAgICBkYiA9IGNvbnRhaW5lciAi0KXRgNCw0L3QuNC70LjRidC1INGB0L7RgdGC0L7Rj9C90LjQuSIgIkRhdGFiYXNlIiAicG9zZ3Jlc3FsIiAiRGF0YWJhc2UiCgogICAgICAgICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwoKICAgICAgICBsa0FwaUJhY2tlbmQgPSBjb250YWluZXIgImxrQXBpQmFja2VuZCIgIiIgInR5cGVzY3JpcHQiICJuZXh0LmpzIiB7CiAgICAgICAgICBodHRwU2VydmVyID0gY29tcG9uZW50ICJodHRwINGB0LXRgNCy0LXRgCIgIiIgIiIgIiIKCiAgICAgICAgICBhdXRoUmVwbyA9IGNvbXBvbmVudCAi0KDQtdC/0L7Qt9C40YLQvtGA0LjQuSDQv9C+0LvRjNC30L7QstCw0YLQtdC70LXQuSIgIiIgIiIgIiIKICAgICAgICAgIGFjY291bnRSZXBvID0gY29tcG9uZW50ICLQoNC10L/QvtC30LjRgtC+0YDQuNC5INCx0LDQu9Cw0L3RgSDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8iICIiICIiICIiCiAgICAgICAgICBjYWxsc1JlcG8gPSBjb21wb25lbnQgIlBl0L/QvtC30LjRgtC+0YDQuNC5INC30LLQvtC90LrQuCDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8iICIiICIiICIiCiAgICAgICAgICBiaWxsc1JlcG8gPSBjb21wb25lbnQgIlBl0L/QvtC30LjRgtC+0YDQuNC5INGA0LDRgdGF0L7QtNGLINC/0L7Qu9GM0LfQvtCy0LDRgtC10LvRjyIgIiIgIiIgIiIKCiAgICAgICAgICBodHRwU2VydmVyIC0+IGF1dGhSZXBvCiAgICAgICAgICBodHRwU2VydmVyIC0+IGFjY291bnRSZXBvCiAgICAgICAgICBodHRwU2VydmVyIC0+IGNhbGxzUmVwbwogICAgICAgICAgaHR0cFNlcnZlciAtPiBiaWxsc1JlcG8KICAgICAgICB9CgogICAgICAgICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwoKICAgICAgICBsa0FwaUZyb250ID0gY29udGFpbmVyICJsa0FwaUZyb250IiAiIiAidHlwZXNjcmlwdCIgIm5leHQuanMiIHsKCiAgICAgICAgICBwYWdlQ29udHJvbGxlciA9IGNvbXBvbmVudCAicGFnZSBjb250cm9sbGVyIiAiIiAiIiAiIgoKICAgICAgICAgIGF1dGhQYWdlID0gY29tcG9uZW50ICLQsNCy0YLQvtGA0LjQt9Cw0YbQuNGPINC/0L7Qu9GM0LfQvtCy0LDRgtC10LvRjyIgIiIgIiIgIiIKICAgICAgICAgIGFjY291bnRQYWdlID0gY29tcG9uZW50ICLQodGC0YDQsNC90LjRhtCwINCx0LDQu9Cw0L3RgSDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8iICIiICIiICIiCiAgICAgICAgICBjYWxsc1BhZ2UgPSBjb21wb25lbnQgItCh0YLRgNCw0L3QuNGG0LAg0LfQstC+0L3QutC4INC/0L7Qu9GM0LfQvtCy0LDRgtC10LvRjyIgIiIgIiIgIiIKICAgICAgICAgIGJpbGxzUGFnZSA9IGNvbXBvbmVudCAi0KHRgtGA0LDQvdC40YbQsCDRgNCw0YHRhdC+0LTRiyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8iICIiICIiICIiCgogICAgICAgICAgYXV0aFJlcG8gPSBjb21wb25lbnQgItCg0LXQv9C+0LfQuNGC0L7RgNC40Lkg0L/QvtC70YzQt9C+0LLQsNGC0LXQu9C10LkiICIiICIiICIiCiAgICAgICAgICBhY2NvdW50UmVwbyA9IGNvbXBvbmVudCAi0KDQtdC/0L7Qt9C40YLQvtGA0LjQuSDQsdCw0LvQsNC90YEg0L/QvtC70YzQt9C+0LLQsNGC0LXQu9GPIiAiIiAiIiAiIgogICAgICAgICAgY2FsbHNSZXBvID0gY29tcG9uZW50ICJQZdC/0L7Qt9C40YLQvtGA0LjQuSDQt9Cy0L7QvdC60Lgg0L/QvtC70YzQt9C+0LLQsNGC0LXQu9GPIiAiIiAiIiAiIgogICAgICAgICAgYmlsbHNSZXBvID0gY29tcG9uZW50ICJQZdC/0L7Qt9C40YLQvtGA0LjQuSDRgNCw0YHRhdC+0LTRiyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8iICIiICIiICIiCgoKICAgICAgICAgIHBhZ2VDb250cm9sbGVyIC0+IGF1dGhQYWdlCiAgICAgICAgICBwYWdlQ29udHJvbGxlciAtPiBhY2NvdW50UGFnZQogICAgICAgICAgcGFnZUNvbnRyb2xsZXIgLT4gY2FsbHNQYWdlCiAgICAgICAgICBwYWdlQ29udHJvbGxlciAtPiBiaWxsc1BhZ2UKCiAgICAgICAgICBhdXRoUGFnZSAtPiBhdXRoUmVwbwogICAgICAgICAgYWNjb3VudFBhZ2UgLT4gYWNjb3VudFJlcG8KICAgICAgICAgIGNhbGxzUGFnZSAtPiBjYWxsc1JlcG8gCiAgICAgICAgICBiaWxsc1BhZ2UgLT4gYmlsbHNSZXBvCiAgICAgICAgICAKICAgICAgICB9CgogICAgICAgIGxrQXBpRnJvbnQuYXV0aFJlcG8gLT4gbGtBcGlCYWNrZW5kLmh0dHBTZXJ2ZXIKICAgICAgICBsa0FwaUZyb250LmFjY291bnRSZXBvIC0+IGxrQXBpQmFja2VuZC5odHRwU2VydmVyCiAgICAgICAgbGtBcGlGcm9udC5jYWxsc1JlcG8gLT4gbGtBcGlCYWNrZW5kLmh0dHBTZXJ2ZXIKICAgICAgICBsa0FwaUZyb250LmJpbGxzUmVwbyAtPiBsa0FwaUJhY2tlbmQuaHR0cFNlcnZlcgoKICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKCiAgICAgICAgYWRtaW5BcGlCYWNrZW5kID0gY29udGFpbmVyICJBZG1pbkFwaUJhY2tlbmQiICIiICJ0eXBlc2NyaXB0IiAibmV4dC5qcyIgewoKICAgICAgICAgIGh0dHBTZXJ2ZXIgPSBjb21wb25lbnQgImh0dHAg0YHQtdGA0LLQtdGAIiAiIiAiIiAiIgogICAgICAgICAgCiAgICAgICAgICBhdXRoUmVwbyA9IGNvbXBvbmVudCAi0KDQtdC/0L7Qt9C40YLQvtGA0LjQuSDQv9C+0LvRjNC30L7QstCw0YLQtdC70LXQuSIgIiIgIiIgIiIKICAgICAgICAgIGFib25lbnRSZXBvID0gY29tcG9uZW50ICLQoNC10L/QvtC30LjRgtC+0YDQuNC5INCw0LHQvtC90LXQvdGC0L7QsiIgIiIgIiIgIiIKICAgICAgICAgIG9wZXJhdG9yUmVwbyA9IGNvbXBvbmVudCAi0KDQtdC/0L7Qt9C40YLQvtGA0LjQuSDQvtC/0LXRgNCw0YLQvtGA0L7QsiIgIiIgIiIgIiIKICAgICAgICAgIHByaWNlbGlzdFJlcG8gPSBjb21wb25lbnQgItCg0LXQv9C+0LfQuNGC0L7RgNC40Lkg0L/RgNCw0LnRgdC70LjRgdGC0L7QsiIgIiIgIiIgIiIKICAgICAgICAgIHJlcG9ydFJlcG8gPSBjb21wb25lbnQgItCg0LXQv9C+0LfQuNGC0L7RgNC40Lkg0J7RgtGH0LXRgtC+0LIiICIiICIiICIiCiAgICAgICAgICAKICAgICAgICAgICAKICAgICAgICAgIGh0dHBTZXJ2ZXIgLT4gYWJvbmVudFJlcG8KICAgICAgICAgIGh0dHBTZXJ2ZXIgLT4gb3BlcmF0b3JSZXBvCiAgICAgICAgICBodHRwU2VydmVyIC0+IHByaWNlbGlzdFJlcG8KICAgICAgICAgIGh0dHBTZXJ2ZXIgLT4gcmVwb3J0UmVwbwogICAgICAgICAgaHR0cFNlcnZlciAtPiBhdXRoUmVwbwoKICAgICAgICB9CgogICAgICAgICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwoKICAgICAgICBhZG1pbkFwaUZyb250ID0gY29udGFpbmVyICJBZG1pbkFwaUZyb250IiAiIiAidHlwZXNjcmlwdCIgIm5leHQuanMiICAgICAgICB7CgogICAgICAgICAgcGFnZUNvbnRyb2xsZXIgPSBjb21wb25lbnQgInBhZ2UgY29udHJvbGxlciIgIiIgIiIgIiIKCiAgICAgICAgICBhdXRoUGFnZSA9IGNvbXBvbmVudCAi0LDQstGC0L7RgNC40LfQsNGG0LjRjyDQv9C+0LvRjNC30L7QstCw0YLQtdC70Y8iICIiICIiICIiCiAgICAgICAgICBhdXRoUmVwbyA9IGNvbXBvbmVudCAi0KDQtdC/0L7Qt9C40YLQvtGA0LjQuSDQv9C+0LvRjNC30L7QstCw0YLQtdC70LXQuSIgIiIgIiIgIiIKICAgICAgICAgIGF1dGhQYWdlIC0+IGF1dGhSZXBvCiAgICAgICAgICBwYWdlQ29udHJvbGxlciAtPiBhdXRoUGFnZQoKICAgICAgICAgIGFib25lbnRQYWdlID0gY29tcG9uZW50ICLQo9C/0YDQsNCy0LvQtdC90LjQtSDQsNCx0L7QvdC10L3RgtCw0LzQuCDRgdC/0LjRgdC+0Lov0YHQstC+0LnRgdGC0LLQsCIgIiIgIiIgIiIKICAgICAgICAgIGFib25lbnRSZXBvID0gY29tcG9uZW50ICLQoNC10L/QvtC30LjRgtC+0YDQuNC5INCw0LHQvtC90LXQvdGC0L7QsiIgIiIgIiIgIiIKICAgICAgICAgIGFib25lbnRQYWdlIC0+IGFib25lbnRSZXBvCiAgICAgICAgICBwYWdlQ29udHJvbGxlciAtPiBhYm9uZW50UGFnZQoKICAgICAgICAgIG9wZXJhdG9yUGFnZSA9IGNvbXBvbmVudCAi0KPQv9GA0LDQstC70LXQvdC40LUg0L7Qv9C10YDQsNGC0L7RgNCw0LzQuCDRgdC/0LjRgdC+0Lov0YHQstC+0LnRgdGC0LLQsCIgIiIgIiIgIiIKICAgICAgICAgIG9wZXJhdG9yUmVwbyA9IGNvbXBvbmVudCAi0KDQtdC/0L7Qt9C40YLQvtGA0LjQuSDQvtC/0LXRgNCw0YLQvtGA0L7QsiIgIiIgIiIgIiIKICAgICAgICAgIG9wZXJhdG9yUGFnZSAtPiBvcGVyYXRvclJlcG8KICAgICAgICAgIHBhZ2VDb250cm9sbGVyIC0+IG9wZXJhdG9yUGFnZQoKICAgICAgICAgIHByaWNlbGlzdFBhZ2UgPSBjb21wb25lbnQgItCj0L/RgNCw0LLQu9C10L3QuNC1INC/0YDQsNC50YHQu9C40YHRgtCw0LzQuCDRgdC/0LjRgdC+0Lov0YHQstC+0LnRgdGC0LLQsCIgIiIgIiIgIiIKICAgICAgICAgIHByaWNlbGlzdFJlcG8gPSBjb21wb25lbnQgItCg0LXQv9C+0LfQuNGC0L7RgNC40Lkg0L/RgNCw0LnRgdC70LjRgdGC0L7QsiIgIiIgIiIgIiIKICAgICAgICAgIHByaWNlbGlzdFBhZ2UgLT4gcHJpY2VsaXN0UmVwbwogICAgICAgICAgcGFnZUNvbnRyb2xsZXIgLT4gcHJpY2VsaXN0UGFnZQoKICAgICAgICAgIHJlcG9ydFBhZ2UgPSBjb21wb25lbnQgItCe0YLRh9C10YLRiyIgIiIgIiIgIiIKICAgICAgICAgIHJlcG9ydFJlcG8gPSBjb21wb25lbnQgItCg0LXQv9C+0LfQuNGC0L7RgNC40Lkg0J7RgtGH0LXRgtC+0LIiICIiICIiICIiCiAgICAgICAgICByZXBvcnRQYWdlIC0+IHJlcG9ydFJlcG8KICAgICAgICAgIHBhZ2VDb250cm9sbGVyIC0+IHJlcG9ydFBhZ2UKCgogICAgICAgIH0KICAgIAogICAgICAgIGFkbWluQXBpRnJvbnQuYXV0aFJlcG8gLT4gYWRtaW5BcGlCYWNrZW5kLmh0dHBTZXJ2ZXIKICAgICAgICBhZG1pbkFwaUZyb250LmFib25lbnRSZXBvIC0+IGFkbWluQXBpQmFja2VuZC5odHRwU2VydmVyCiAgICAgICAgYWRtaW5BcGlGcm9udC5vcGVyYXRvclJlcG8gLT4gYWRtaW5BcGlCYWNrZW5kLmh0dHBTZXJ2ZXIKICAgICAgICBhZG1pbkFwaUZyb250LnByaWNlbGlzdFJlcG8gLT4gYWRtaW5BcGlCYWNrZW5kLmh0dHBTZXJ2ZXIKICAgICAgICBhZG1pbkFwaUZyb250LnJlcG9ydFJlcG8gLT4gYWRtaW5BcGlCYWNrZW5kLmh0dHBTZXJ2ZXIKICAgICAgICAKICAgICAgICBhZG1pbkFwaUJhY2tlbmQuYXV0aFJlcG8gLT4gZGIgCiAgICAgICAgYWRtaW5BcGlCYWNrZW5kLmFib25lbnRSZXBvIC0+IGRiIAogICAgICAgIGFkbWluQXBpQmFja2VuZC5vcGVyYXRvclJlcG8gLT4gZGIgCiAgICAgICAgYWRtaW5BcGlCYWNrZW5kLnByaWNlbGlzdFJlcG8gLT4gZGIgCiAgICAgICAgYWRtaW5BcGlCYWNrZW5kLnJlcG9ydFJlcG8gLT4gZGIgCgogICAgICAgIGxrQXBpQmFja2VuZC5hdXRoUmVwbyAtPiBkYgogICAgICAgIGxrQXBpQmFja2VuZC5hY2NvdW50UmVwbyAtPiBkYgogICAgICAgIGxrQXBpQmFja2VuZC5jYWxsc1JlcG8gLT4gZGIKICAgICAgICBsa0FwaUJhY2tlbmQuYmlsbHNSZXBvIC0+IGRiCgogICAgICAgICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwoKCiAgICAgICAgYWNjLmNkclJlcG8gLT4gZGIgItCh0L7RhdGA0LDQvdGP0LXRgiDQt9Cy0L7QvdC60LgiCgogICAgICAgICMgYWNjIC0+IGRiCiAgICAgICAgZGIgLT4gYXV0aC5kaWN0UmVwbyAi0J/QvtC70YPRh9Cw0LXQvCDRgdCy0LXQtNC10L3QuNGPIgogICAgICAgIGRiIC0+IGFjYy5jZHJCdWZmICLQn9C+0LvRg9GH0LDQtdC8INC90L7QstGL0LUg0LfQstC+0L3QutC4IgogICAgICAgIGRiIC0+IGFjYy5kaWN0UmVwbyAi0J/QvtC70YPRh9Cw0LXQvCDRgdCy0LXQtNC10L3QuNGPIgogICAgICAgIGFjYy5yYXdSZXBvIC0+IGRiICLQodC+0YXRgNCw0L3Rj9C10YIg0L7RgtCx0LjQu9C70LjQvdCz0L7QstCw0L3QvdGL0LUg0LfQstC+0L3QutC4IgoKICAgICAgICBkYiAtPiBlbGsgItCf0LXRgNC10LTQsNC10YIg0LTQsNC90L3Ri9C1INC+INC30LLQvtC90LrQsNGFIgogICAgICAgIGRiIC0+IHNvcm0gItCf0LXRgNC10LTQsNC10YIg0LTQsNC90L3Ri9C1INC+INC30LLQvtC90LrQsNGFIgogICAgICAgIGRiIC0+IGFjY291bnRpbmcgItCf0LXRgNC10LTQsNC10YIg0LTQsNC90L3Ri9C1INC+INC30LLQvtC90LrQsNGFIgoKICAgICAgICBuZ2lueCAtPiBhdXRoCiAgICAgICAgbmdpbnggLT4gYWNjCiAgICAgICAgbmdpbnggLT4gYWRtaW5BcGlGcm9udAogICAgICAgIG5naW54IC0+IGFkbWluQXBpQmFja2VuZAogICAgICAgIG5naW54IC0+IGxrQXBpRnJvbnQKICAgICAgICBuZ2lueCAtPiBsa0FwaUJhY2tlbmQKCiAgICAgICAgZGJfdm9sIC0+IGRiCgogICAgICAgIHNyY192b2wgLT4gYXV0aAogICAgICAgIHNyY192b2wgLT4gYWNjCiAgICAgICAgc3JjX3ZvbCAtPiBhZG1pbkFwaUZyb250CiAgICAgICAgc3JjX3ZvbCAtPiBhZG1pbkFwaUJhY2tlbmQKICAgICAgICBzcmNfdm9sIC0+IGxrQXBpRnJvbnQKICAgICAgICBzcmNfdm9sIC0+IGxrQXBpQmFja2VuZAogICAgICB9CgogICAgICBhYm9uZW50IC0+IHRlbGxiaWxsU2VydmljZS5sa0FwaUZyb250LnBhZ2VDb250cm9sbGVyCiAgICAgIAogICAgICBvcGVuU3dpdGNoIC0+ICB0ZWxsYmlsbFNlcnZpY2UuYWNjLnJhZGl1c1NlcnZlciAi0KLQsNGA0LjRhNC40YbQuNGA0YPQtdGCINC30LLQvtC90L7QuiIKICAgICAgb3BlblN3aXRjaCAtPiAgdGVsbGJpbGxTZXJ2aWNlLmF1dGgucmFkaXVzU2VydmVyICLQnNCw0YDRiNGA0YPRgtC40LfQuNGA0YPQtdGCINC30LLQvtC90L7QuiIKICAgICAgCiAgICAgICNhYm9uZW50IC0+IHRlbGxiaWxsU2VydmljZS5sa0FwaUZyb250ICLQodC80L7RgtGA0LjRgiDQm9CaIgogICAgICBhZG1pbiAgIC0+IHRlbGxiaWxsU2VydmljZS5hZG1pbkFwaUZyb250LnBhZ2VDb250cm9sbGVyICLQodC80L7RgtGA0LjRgiDQm9CaIgoKCgogICAgICAgIHN0YWdlID0gZGVwbG95bWVudEVudmlyb25tZW50ICJTdGFnZSIgewoKICAgICAgICAgICAgICAgICAgICBzb3Jtdm0gPSBkZXBsb3ltZW50Tm9kZSAic29ybS12bSIgIiIgIlVidW50dSAiICIiIDEgewoKICAgICAgICAgICAgICAgICAgICAgICAgY29udGFpbmVySW5zdGFuY2UgdGVsbGJpbGxTZXJ2aWNlLmF1dGgKICAgICAgICAgICAgICAgICAgICAgICAgY29udGFpbmVySW5zdGFuY2UgdGVsbGJpbGxTZXJ2aWNlLmFjYwoKICAgICAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgICAgICAgICBkZXBsb3ltZW50Tm9kZSAiRGF0YWJhc2UgU2VydmVyIiAiIzMiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbnRhaW5lckluc3RhbmNlIHRlbGxiaWxsU2VydmljZS5kYiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gImRibmFtZTogbGVncyIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQoKICAgICAgICBkZXZlbG9wbWVudCA9IGRlcGxveW1lbnRFbnZpcm9ubWVudCAiRGV2ZWxvcG1lbnQiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGVsbGJpbGwgPSBkZXBsb3ltZW50Tm9kZSAidGVsYmlsbCIgIiIgIlVidW50dSIgIiIgMSB7CgogICAgICAgICAgICAgICAgICAgICAgICAgIHRlbGJpbGxkZXYgPSBkZXBsb3ltZW50Tm9kZSAidGVsYmlsbC1kZXYiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgY29udGFpbmVySW5zdGFuY2UgdGVsbGJpbGxTZXJ2aWNlLm5naW54CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb250YWluZXJJbnN0YW5jZSB0ZWxsYmlsbFNlcnZpY2UuYXV0aAogICAgICAgICAgICAgICAgICAgICAgICAgICAgY29udGFpbmVySW5zdGFuY2UgdGVsbGJpbGxTZXJ2aWNlLmFjYwoKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbnRhaW5lckluc3RhbmNlIHRlbGxiaWxsU2VydmljZS5sa0FwaUJhY2tlbmQKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbnRhaW5lckluc3RhbmNlIHRlbGxiaWxsU2VydmljZS5sa0FwaUZyb250CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb250YWluZXJJbnN0YW5jZSB0ZWxsYmlsbFNlcnZpY2UuYWRtaW5BcGlCYWNrZW5kCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb250YWluZXJJbnN0YW5jZSB0ZWxsYmlsbFNlcnZpY2UuYWRtaW5BcGlGcm9udAoKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbnRhaW5lckluc3RhbmNlIHRlbGxiaWxsU2VydmljZS5kYgogICAgICAgICAgICAgICAgICAgICAgICAgICAgY29udGFpbmVySW5zdGFuY2UgdGVsbGJpbGxTZXJ2aWNlLnNyY192b2wKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbnRhaW5lckluc3RhbmNlIHRlbGxiaWxsU2VydmljZS5kYl92b2wKCiAgICAgICAgICAgICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICMgZGVwbG95bWVudE5vZGUgIkRhdGFiYXNlIFNlcnZlciIgIiMzIiB7CiAgICAgICAgICAgICAgIyAgICAgICAgICAgICAgIGNvbnRhaW5lckluc3RhbmNlIHRlbGxiaWxsU2VydmljZS5kYiB7CiAgICAgICAgICAgICAgIyAgICAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiAiZGJuYW1lOiBsZWdzIgogICAgICAgICAgICAgICMgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgIyAgICAgICAgICAgfQogICAgICAgIH0KCiAgICB9CiAgICB2aWV3cyB7CiAgICAgICAgIyDQv9C+0LTQutC70Y7Rh9Cw0LXQvCDRgdGC0LjQu9C4CiAgICAgICAgc3R5bGVzIHsKICAgICAgICAKICAgICAgICAgICAgICAgICAgICBlbGVtZW50ICJJbmZyYXN0cnVjdHVyZSIgewogICAgICAgICAgICAgICAgICAgICAgYmFja2dyb3VuZCBncmVlbiAKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgZWxlbWVudCAiVm9sdW1lIiB7CiAgICAgICAgICAgICAgICAgICAgICAgY29sb3Igd2hpdGUKICAgICAgICAgICAgICAgICAgICAgICBzaGFwZSBGb2xkZXIKICAgICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM4ODg4ODgKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgZWxlbWVudCAiRWxlbWVudCIgewogICAgICAgICAgICAgICAgICAgICAgICBjb2xvciAjMDAwMDAwCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIGVsZW1lbnQgIlBlcnNvbiIgewogICAgICAgICAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgICAgICAgICAgICAgIGZvbnRTaXplIDIyCiAgICAgICAgICAgICAgICAgICAgICAgIHNoYXBlIFBlcnNvbgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBlbGVtZW50ICJTb2Z0d2FyZVN5c3RlbSIgewogICAgICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMxMTY4YmQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgIAogICAgICAgICAgICAgICAgICAgIGVsZW1lbnQgICJFeHRlcm5hbFN5c3RlbSIgewogICAgICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM5OTk5OTkKICAgICAgICAgICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAKICAgICAgICAgICAgICAgICAgICBlbGVtZW50ICJEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgICAgICAgICBzaGFwZSBDeWxpbmRlcgogICAgICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM0MzhkZDUKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgZWxlbWVudCAiS2Fma2EgIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHNoYXBlIFBpcGUgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzQzOGRkNQogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAKICAgICAgICAgICAgICAgICAgICBlbGVtZW50ICJEZXBsb3ltZW50IE5vZGUiIHsKICAgICAgICAgICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNDM4ZGQ1CiAgICAgICAgICAgICAgICAgICAgICAgIGNvbG9yIGdyZWVuCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgIAogICAgICAgICAgICAgICAgICAgIGVsZW1lbnQgIkNvbnRhaW5lciIgewogICAgICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM0MzhkZDUKICAgICAgICAgICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBlbGVtZW50ICJXZWIgQnJvd3NlciIgewogICAgICAgICAgICAgICAgICAgICAgICBzaGFwZSBXZWJCcm93c2VyCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIGVsZW1lbnQgIk1vYmlsZSBBcHAiIHsKICAgICAgICAgICAgICAgICAgICAgICAgc2hhcGUgTW9iaWxlRGV2aWNlTGFuZHNjYXBlCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIGVsZW1lbnQgIkRhdGFiYXNlIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHNoYXBlIEN5bGluZGVyCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIGVsZW1lbnQgIkNvbXBvbmVudCIgewogICAgICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM4NWJiZjAKICAgICAgICAgICAgICAgICAgICAgICAgY29sb3IgIzAwMDAwMAogICAgICAgICAgICAgICAgICAgICAgICBzaGFwZSBDb21wb25lbnQKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgZWxlbWVudCAiRmFpbG92ZXIiIHsKICAgICAgICAgICAgICAgICAgICAgICAgb3BhY2l0eSAwNQogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAKICAgICAgICAgICAgICAgICAgICBlbGVtZW50ICJHcm91cCIgewogICAgICAgICAgICAgICAgICAgICAgICBjb2xvciAjZmYwMDAwCiAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAKICAgICAgICAKICAgICAgICB9CgogICAgICAgIHN5c3RlbUxhbmRzY2FwZSAgIlN5c3RlbUxhbmRzY2FwZSIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgICAgICBleGNsdWRlICJlbGVtZW50LnRhZz09SW5mcmFzdHJ1Y3R1cmUiCiAgICAgICAgfQoKICAgICAgICBzeXN0ZW1Db250ZXh0IHRlbGxiaWxsU2VydmljZSAidGVsbGJpbGxTZXJ2aWNlQ29udGV4dCIgItCU0LjQsNCz0YDQsNC80LzQsCDQutC+0L3RgtC10LrRgtCwINGB0LXRgNCy0LjRgdCwIHRlbGxiaWxsIiB7CiAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgZXhjbHVkZSAqLT4qCiAgICAgICAgICAgaW5jbHVkZSAqLT50ZWxsYmlsbFNlcnZpY2UKICAgICAgICAgICBpbmNsdWRlIHRlbGxiaWxsU2VydmljZS0+KgogICAgICAgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICAgICBleGNsdWRlICJlbGVtZW50LnRhZz09SW5mcmFzdHJ1Y3R1cmUiCiAgICAgICAgfQogICAgCiAgICAgICAgY29udGFpbmVyIHRlbGxiaWxsU2VydmljZSAiQ29udGFpbmVycyIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYW5pbWF0aW9uIHsKICAgICAgICAgICAgICAgIHRlbGxiaWxsU2VydmljZS5hY2MKICAgICAgICAgICAgICAgIHRlbGxiaWxsU2VydmljZS5hdXRoCiAgICAgICAgICAgICAgICB0ZWxsYmlsbFNlcnZpY2UuZGIKICAgICAgICAgICAgfQogICAgICAgICAgICBkZXNjcmlwdGlvbiAi0JTQuNCw0LPRgNCw0LzQvNCwINC60L7QvdGC0LXQudC90LXRgNCwINCi0LXQu9CR0LjQu9C7IgogICAgICAgICAgICBhdXRvTGF5b3V0IHRiCiAgICAgICAgICAgIGV4Y2x1ZGUgImVsZW1lbnQudGFnPT1JbmZyYXN0cnVjdHVyZSIKICAgICAgICB9CgogICAgICAgIGNvbXBvbmVudCB0ZWxsYmlsbFNlcnZpY2UuYWNjICJDb21wb25lbnRfYWNjIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBkZXNjcmlwdGlvbiAiYWNjICjQotCw0YDQuNGE0LjQutCw0YLQvtGAINC30LLQvtC90LrQvtCyKSIKICAgICAgICAgICAgYXV0b0xheW91dCB0YgogICAgICAgICAgICBleGNsdWRlICJlbGVtZW50LnRhZz09SW5mcmFzdHJ1Y3R1cmUiCiAgICAgICAgfQoKCiAgICAgICAgY29tcG9uZW50IHRlbGxiaWxsU2VydmljZS5hdXRoICJDb21wb25lbnRfYXV0aCIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgZGVzY3JpcHRpb24gImF1dGggKNCc0LDRgNGI0YDRg9GC0LjQt9Cw0YLQvtGAINC30LLQvtC90LrQvtCyKSIKICAgICAgICAgICAgYXV0b0xheW91dCBidAogICAgICAgICAgICBleGNsdWRlICJlbGVtZW50LnRhZz09SW5mcmFzdHJ1Y3R1cmUiCiAgICAgICAgfQoKCiAgICAgICAgY29tcG9uZW50IHRlbGxiaWxsU2VydmljZS5sa0FwaUZyb250ICJDb21wb25lbnRfbGtGcm9udCIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgZGVzY3JpcHRpb24gImxrQXBpRnJvbnQgKNCS0LXQsSDQuNC90YLQtdGA0YTQtdC50YEg0JvQmi3Qv9C+0LvRjNC30L7QstCw0YLQtdC70Y8pIgogICAgICAgICAgICBhdXRvTGF5b3V0IGxyCiAgICAgICAgICAgIGV4Y2x1ZGUgImVsZW1lbnQudGFnPT1JbmZyYXN0cnVjdHVyZSIKICAgICAgICB9CgogICAgICAgIGNvbXBvbmVudCB0ZWxsYmlsbFNlcnZpY2UuQWRtaW5BcGlGcm9udCAiQ29tcG9uZW50X0FkbWluRnJvbnQiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGRlc2NyaXB0aW9uICJBZG1pbkFwaUZyb250ICjQktC10LEg0LjQvdGC0LXRgNGE0LXQudGBINCw0LTQvNC40L3QuNC80YHRgtGA0LDRgtC+0YDQsCkiCiAgICAgICAgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICAgICAgZXhjbHVkZSAiZWxlbWVudC50YWc9PUluZnJhc3RydWN0dXJlIgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IHRlbGxiaWxsU2VydmljZS5hZG1pbkFwaUJhY2tlbmQgIkNvbXBvbmVudF9hZG1pbkFwaUJhY2tlbmQiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGRlc2NyaXB0aW9uICJhZG1pbkFwaUJhY2tlbmQgKNCx0LXQutC10L3QtCDQuNC90YLQtdGA0YTQtdC50YHQsCDQsNC00LzQuNC90LjQvNGB0YLRgNCw0YLQvtGA0LApIgogICAgICAgICAgICBhdXRvTGF5b3V0IGxyCiAgICAgICAgICAgIGV4Y2x1ZGUgImVsZW1lbnQudGFnPT1JbmZyYXN0cnVjdHVyZSIKICAgICAgICB9CgogICAgICAgIGNvbXBvbmVudCB0ZWxsYmlsbFNlcnZpY2UubGtBcGlCYWNrZW5kICJDb21wb25lbnRfbGtBcGlCYWNrZW5kIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBkZXNjcmlwdGlvbiAibGtBcGlCYWNrZW5kICjQsdC10LrQtdC90LQg0LjQvdGC0LXRgNGE0LXQudGB0LAg0LDQsdC+0L3QtdC90YLQsCkiCiAgICAgICAgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICAgICAgZXhjbHVkZSAiZWxlbWVudC50YWc9PUluZnJhc3RydWN0dXJlIgogICAgICAgIH0KCgogICAgICAgICMgZGVwbG95bWVudCAqICJTdGFnZSIgIlN0YWdlRGVwbG95bWVudCIgewogICAgICAgICMgICAgIGluY2x1ZGUgKgogICAgICAgICMgICAgIGluY2x1ZGUgKi0+KgogICAgICAgICMgICAgIGRlc2NyaXB0aW9uICLQodGF0LXQvNCwINGA0LDQt9Cy0L7RgNC+0YLQsCDQvtC60YDRg9C20LXQvdC40Y8g0YLQtdGB0YLQuNGA0L7QstCw0L3QuNGPIgogICAgICAgICMgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICAgICAgCiAgICAgICAgIyB9CgogICAgICAgIGRlcGxveW1lbnQgKiAiRGV2ZWxvcG1lbnQiICJEZXZlbG9wbWVudERlcGxveW1lbnQiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGluY2x1ZGUgKi0+KgogICAgICAgICAgICBkZXNjcmlwdGlvbiAi0KHRhdC10LzQsCDRgNCw0LfQstC+0YDQvtGC0LAg0L7QutGA0YPQttC10L3QuNGPINGA0LDQt9GA0LDQsdC+0YLRh9C40LrQsCIKICAgICAgICAgICAgYXV0b0xheW91dAoKICAgICAgICB9CgoKICAgIH0KCn0="
   },
   "views" : {
     "componentViews" : [ {
@@ -1193,7 +1450,7 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "18",
+      "containerId" : "21",
       "description" : "acc (Тарификатор звонков)",
       "dimensions" : {
         "height" : 2591,
@@ -1204,31 +1461,31 @@
         "x" : 220,
         "y" : 199
       }, {
-        "id" : "19",
+        "id" : "22",
         "x" : 220,
         "y" : 799
       }, {
-        "id" : "20",
+        "id" : "23",
         "x" : 282,
         "y" : 1399
       }, {
-        "id" : "21",
+        "id" : "24",
         "x" : 970,
         "y" : 799
       }, {
-        "id" : "22",
+        "id" : "25",
         "x" : 1720,
         "y" : 799
       }, {
-        "id" : "23",
+        "id" : "26",
         "x" : 1091,
         "y" : 1399
       }, {
-        "id" : "24",
+        "id" : "27",
         "x" : 1357,
         "y" : 1999
       }, {
-        "id" : "29",
+        "id" : "32",
         "x" : 2378,
         "y" : 1999
       } ],
@@ -1236,21 +1493,21 @@
       "key" : "Component_acc",
       "order" : 4,
       "relationships" : [ {
-        "id" : "125",
+        "id" : "128",
         "vertices" : [ {
           "x" : 941,
           "y" : 1699
         } ]
       }, {
-        "id" : "129",
+        "id" : "132",
         "vertices" : [ {
           "x" : 2224,
           "y" : 1399
         } ]
       }, {
-        "id" : "131"
+        "id" : "134"
       }, {
-        "id" : "132",
+        "id" : "135",
         "vertices" : [ {
           "x" : 1922,
           "y" : 2149
@@ -1259,15 +1516,15 @@
           "y" : 2149
         } ]
       }, {
-        "id" : "142"
-      }, {
-        "id" : "25"
-      }, {
-        "id" : "26"
-      }, {
-        "id" : "27"
+        "id" : "158"
       }, {
         "id" : "28"
+      }, {
+        "id" : "29"
+      }, {
+        "id" : "30"
+      }, {
+        "id" : "31"
       } ]
     }, {
       "automaticLayout" : {
@@ -1279,68 +1536,62 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "8",
+      "containerId" : "11",
       "description" : "auth (Маршрутизатор звонков)",
       "dimensions" : {
-        "height" : 3120,
-        "width" : 1929
+        "height" : 2520,
+        "width" : 1640
       },
       "elements" : [ {
         "id" : "3",
-        "x" : 200,
-        "y" : 819
-      }, {
-        "id" : "9",
-        "x" : 950,
-        "y" : 219
-      }, {
-        "id" : "10",
-        "x" : 950,
-        "y" : 1419
-      }, {
-        "id" : "11",
-        "x" : 1259,
-        "y" : 819
-      }, {
-        "id" : "12",
-        "x" : 1104,
+        "x" : 219,
         "y" : 2019
       }, {
-        "id" : "29",
-        "x" : 1104,
-        "y" : 2619
+        "id" : "12",
+        "x" : 219,
+        "y" : 1419
+      }, {
+        "id" : "13",
+        "x" : 594,
+        "y" : 819
+      }, {
+        "id" : "14",
+        "x" : 594,
+        "y" : 219
+      }, {
+        "id" : "15",
+        "x" : 969,
+        "y" : 1419
+      }, {
+        "id" : "32",
+        "x" : 969,
+        "y" : 2019
       } ],
       "externalContainerBoundariesVisible" : false,
       "key" : "Component_auth",
       "order" : 5,
       "relationships" : [ {
-        "id" : "127"
+        "id" : "130"
       }, {
-        "id" : "13",
-        "vertices" : [ {
-          "x" : 1109,
-          "y" : 819
-        }, {
-          "x" : 1109,
-          "y" : 1119
-        } ]
+        "id" : "16"
       }, {
-        "id" : "14"
-      }, {
-        "id" : "145"
-      }, {
-        "id" : "15"
-      }, {
-        "id" : "16",
-        "vertices" : [ {
-          "x" : 1550,
-          "y" : 1719
-        }, {
-          "x" : 1550,
-          "y" : 1419
-        } ]
+        "id" : "161"
       }, {
         "id" : "17"
+      }, {
+        "id" : "18",
+        "vertices" : [ {
+          "x" : 444,
+          "y" : 819
+        } ]
+      }, {
+        "id" : "19",
+        "vertices" : [ {
+          "x" : 1194,
+          "y" : 819
+        } ]
+      }, {
+        "id" : "20"
       } ]
     }, {
       "automaticLayout" : {
@@ -1352,7 +1603,7 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "40",
+      "containerId" : "43",
       "description" : "lkApiFront (Веб интерфейс ЛК-пользователя)",
       "dimensions" : {
         "height" : 2611,
@@ -1361,59 +1612,53 @@
       "elements" : [ {
         "id" : "2",
         "x" : 200,
-        "y" : 1069
+        "y" : 1070
       }, {
-        "id" : "30",
+        "id" : "33",
         "x" : 3150,
-        "y" : 1119
-      }, {
-        "id" : "41",
-        "x" : 900,
-        "y" : 1119
-      }, {
-        "id" : "42",
-        "x" : 1650,
-        "y" : 2019
-      }, {
-        "id" : "43",
-        "x" : 1650,
-        "y" : 1419
+        "y" : 1120
       }, {
         "id" : "44",
-        "x" : 1650,
-        "y" : 819
+        "x" : 900,
+        "y" : 1120
       }, {
         "id" : "45",
         "x" : 1650,
-        "y" : 219
+        "y" : 2020
       }, {
         "id" : "46",
-        "x" : 2400,
-        "y" : 2019
+        "x" : 1650,
+        "y" : 1420
       }, {
         "id" : "47",
-        "x" : 2400,
-        "y" : 1419
+        "x" : 1650,
+        "y" : 820
       }, {
         "id" : "48",
-        "x" : 2400,
-        "y" : 819
+        "x" : 1650,
+        "y" : 220
       }, {
         "id" : "49",
         "x" : 2400,
-        "y" : 219
+        "y" : 2020
+      }, {
+        "id" : "50",
+        "x" : 2400,
+        "y" : 1420
+      }, {
+        "id" : "51",
+        "x" : 2400,
+        "y" : 820
+      }, {
+        "id" : "52",
+        "x" : 2400,
+        "y" : 220
       } ],
       "externalContainerBoundariesVisible" : false,
       "key" : "Component_lkFront",
       "order" : 6,
       "relationships" : [ {
-        "id" : "139"
-      }, {
-        "id" : "50"
-      }, {
-        "id" : "51"
-      }, {
-        "id" : "52"
+        "id" : "155"
       }, {
         "id" : "53"
       }, {
@@ -1425,20 +1670,26 @@
       }, {
         "id" : "57"
       }, {
-        "id" : "59",
+        "id" : "58"
+      }, {
+        "id" : "59"
+      }, {
+        "id" : "60"
+      }, {
+        "id" : "62",
         "vertices" : [ {
           "x" : 2954,
-          "y" : 1869
+          "y" : 1870
         } ]
       }, {
-        "id" : "63"
+        "id" : "66"
       }, {
-        "id" : "65"
+        "id" : "68"
       }, {
-        "id" : "67",
+        "id" : "70",
         "vertices" : [ {
           "x" : 2954,
-          "y" : 669
+          "y" : 670
         } ]
       } ]
     }, {
@@ -1451,7 +1702,7 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "80",
+      "containerId" : "83",
       "description" : "AdminApiFront (Веб интерфейс админимстратора)",
       "dimensions" : {
         "height" : 3211,
@@ -1462,105 +1713,105 @@
         "x" : 200,
         "y" : 1369
       }, {
-        "id" : "68",
+        "id" : "71",
         "x" : 3150,
         "y" : 1419
       }, {
-        "id" : "81",
+        "id" : "84",
         "x" : 900,
         "y" : 1419
       }, {
-        "id" : "82",
+        "id" : "85",
         "x" : 1650,
-        "y" : 2619
-      }, {
-        "id" : "83",
-        "x" : 2400,
-        "y" : 2619
+        "y" : 2019
       }, {
         "id" : "86",
-        "x" : 1650,
-        "y" : 2019
-      }, {
-        "id" : "87",
         "x" : 2400,
         "y" : 2019
+      }, {
+        "id" : "89",
+        "x" : 1650,
+        "y" : 1419
       }, {
         "id" : "90",
-        "x" : 1650,
-        "y" : 1419
-      }, {
-        "id" : "91",
         "x" : 2400,
         "y" : 1419
+      }, {
+        "id" : "93",
+        "x" : 1650,
+        "y" : 819
       }, {
         "id" : "94",
-        "x" : 1650,
-        "y" : 819
-      }, {
-        "id" : "95",
         "x" : 2400,
         "y" : 819
+      }, {
+        "id" : "97",
+        "x" : 1650,
+        "y" : 219
       }, {
         "id" : "98",
-        "x" : 1650,
-        "y" : 219
-      }, {
-        "id" : "99",
         "x" : 2400,
         "y" : 219
+      }, {
+        "id" : "101",
+        "x" : 1650,
+        "y" : 2619
+      }, {
+        "id" : "102",
+        "x" : 2400,
+        "y" : 2619
       } ],
       "externalContainerBoundariesVisible" : false,
       "key" : "Component_AdminFront",
       "order" : 7,
       "relationships" : [ {
-        "id" : "100"
-      }, {
-        "id" : "101",
+        "id" : "100",
         "vertices" : [ {
           "x" : 1650,
           "y" : 669
         } ]
       }, {
-        "id" : "103",
+        "id" : "103"
+      }, {
+        "id" : "104",
         "vertices" : [ {
-          "x" : 2954,
+          "x" : 1650,
           "y" : 2469
         } ]
       }, {
-        "id" : "107"
+        "id" : "106"
       }, {
-        "id" : "109"
+        "id" : "110"
       }, {
-        "id" : "111"
+        "id" : "112"
       }, {
-        "id" : "113",
+        "id" : "114",
         "vertices" : [ {
           "x" : 2954,
           "y" : 669
         } ]
       }, {
-        "id" : "147"
-      }, {
-        "id" : "84"
-      }, {
-        "id" : "85",
+        "id" : "116",
         "vertices" : [ {
-          "x" : 1650,
+          "x" : 2954,
           "y" : 2469
         } ]
+      }, {
+        "id" : "163"
+      }, {
+        "id" : "87"
       }, {
         "id" : "88"
       }, {
-        "id" : "89"
+        "id" : "91"
       }, {
         "id" : "92"
       }, {
-        "id" : "93"
+        "id" : "95"
       }, {
         "id" : "96"
       }, {
-        "id" : "97"
+        "id" : "99"
       } ]
     }, {
       "automaticLayout" : {
@@ -1572,42 +1823,42 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "68",
+      "containerId" : "71",
       "description" : "adminApiBackend (бекенд интерфейса админимстратора)",
       "dimensions" : {
         "height" : 3211,
         "width" : 3100
       },
       "elements" : [ {
-        "id" : "29",
+        "id" : "32",
         "x" : 2450,
         "y" : 1419
       }, {
-        "id" : "69",
-        "x" : 950,
-        "y" : 1419
-      }, {
-        "id" : "70",
-        "x" : 1700,
-        "y" : 2619
-      }, {
-        "id" : "71",
-        "x" : 1700,
-        "y" : 2019
-      }, {
         "id" : "72",
-        "x" : 1700,
+        "x" : 950,
         "y" : 1419
       }, {
         "id" : "73",
         "x" : 1700,
-        "y" : 819
+        "y" : 2619
       }, {
         "id" : "74",
         "x" : 1700,
+        "y" : 2019
+      }, {
+        "id" : "75",
+        "x" : 1700,
+        "y" : 1419
+      }, {
+        "id" : "76",
+        "x" : 1700,
+        "y" : 819
+      }, {
+        "id" : "77",
+        "x" : 1700,
         "y" : 219
       }, {
-        "id" : "80",
+        "id" : "83",
         "x" : 200,
         "y" : 1419
       } ],
@@ -1615,39 +1866,39 @@
       "key" : "Component_adminApiBackend",
       "order" : 8,
       "relationships" : [ {
-        "id" : "104"
+        "id" : "107"
       }, {
-        "id" : "114",
+        "id" : "117",
         "vertices" : [ {
           "x" : 2254,
           "y" : 2469
         } ]
       }, {
-        "id" : "116"
+        "id" : "119"
       }, {
-        "id" : "117"
+        "id" : "120"
       }, {
-        "id" : "118"
+        "id" : "121"
       }, {
-        "id" : "119",
+        "id" : "122",
         "vertices" : [ {
           "x" : 2254,
           "y" : 669
         } ]
       }, {
-        "id" : "75"
+        "id" : "78"
       }, {
-        "id" : "76"
+        "id" : "79"
       }, {
-        "id" : "77"
+        "id" : "80"
       }, {
-        "id" : "78",
+        "id" : "81",
         "vertices" : [ {
           "x" : 1700,
           "y" : 669
         } ]
       }, {
-        "id" : "79",
+        "id" : "82",
         "vertices" : [ {
           "x" : 1700,
           "y" : 2469
@@ -1663,79 +1914,87 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "30",
+      "containerId" : "33",
       "description" : "lkApiBackend (бекенд интерфейса абонента)",
       "dimensions" : {
         "height" : 2611,
         "width" : 3100
       },
       "elements" : [ {
-        "id" : "29",
-        "x" : 2450,
-        "y" : 1119
-      }, {
-        "id" : "31",
-        "x" : 950,
-        "y" : 1119
-      }, {
         "id" : "32",
-        "x" : 1700,
-        "y" : 2019
-      }, {
-        "id" : "33",
-        "x" : 1700,
-        "y" : 1419
+        "x" : 2450,
+        "y" : 1120
       }, {
         "id" : "34",
-        "x" : 1700,
-        "y" : 819
+        "x" : 950,
+        "y" : 1120
       }, {
         "id" : "35",
         "x" : 1700,
-        "y" : 219
+        "y" : 2020
       }, {
-        "id" : "40",
+        "id" : "36",
+        "x" : 1700,
+        "y" : 1420
+      }, {
+        "id" : "37",
+        "x" : 1700,
+        "y" : 820
+      }, {
+        "id" : "38",
+        "x" : 1700,
+        "y" : 220
+      }, {
+        "id" : "43",
         "x" : 200,
-        "y" : 1119
+        "y" : 1120
       } ],
       "externalContainerBoundariesVisible" : false,
       "key" : "Component_lkApiBackend",
       "order" : 9,
       "relationships" : [ {
-        "id" : "120",
+        "id" : "123",
         "vertices" : [ {
           "x" : 2254,
-          "y" : 1869
+          "y" : 1870
         } ]
       }, {
-        "id" : "122"
+        "id" : "125"
       }, {
-        "id" : "123"
+        "id" : "126"
       }, {
-        "id" : "124",
+        "id" : "127",
         "vertices" : [ {
           "x" : 2254,
-          "y" : 669
+          "y" : 670
         } ]
-      }, {
-        "id" : "36"
-      }, {
-        "id" : "37"
-      }, {
-        "id" : "38"
       }, {
         "id" : "39"
       }, {
-        "id" : "60"
+        "id" : "40"
+      }, {
+        "id" : "41"
+      }, {
+        "id" : "42"
+      }, {
+        "id" : "63"
       } ]
     } ],
     "configuration" : {
       "branding" : { },
-      "lastSavedView" : "Component_lkFront",
+      "lastSavedView" : "DevelopmentDeployment",
       "metadataSymbols" : "SquareBrackets",
       "styles" : {
         "elements" : [ {
+          "background" : "#008000",
+          "tag" : "Infrastructure"
+        }, {
+          "background" : "#888888",
           "color" : "#ffffff",
+          "shape" : "Folder",
+          "tag" : "Volume"
+        }, {
+          "color" : "#000000",
           "tag" : "Element"
         }, {
           "color" : "#ffffff",
@@ -1751,8 +2010,17 @@
           "color" : "#ffffff",
           "tag" : "ExternalSystem"
         }, {
+          "background" : "#438dd5",
           "shape" : "Cylinder",
           "tag" : "Database"
+        }, {
+          "background" : "#438dd5",
+          "shape" : "Pipe",
+          "tag" : "Kafka"
+        }, {
+          "background" : "#438dd5",
+          "color" : "#008000",
+          "tag" : "Deployment Node"
         }, {
           "background" : "#438dd5",
           "color" : "#ffffff",
@@ -1766,28 +2034,32 @@
         }, {
           "background" : "#85bbf0",
           "color" : "#000000",
+          "shape" : "Component",
           "tag" : "Component"
         }, {
-          "opacity" : 25,
+          "opacity" : 5,
           "tag" : "Failover"
+        }, {
+          "color" : "#ff0000",
+          "tag" : "Group"
         } ]
       },
       "terminology" : { }
     },
     "containerViews" : [ {
       "animations" : [ {
-        "elements" : [ "18" ],
+        "elements" : [ "21" ],
         "order" : 1
       }, {
-        "elements" : [ "8" ],
+        "elements" : [ "11" ],
         "order" : 2
       }, {
-        "elements" : [ "29" ],
+        "elements" : [ "32" ],
         "order" : 3,
-        "relationships" : [ "126", "128", "130" ]
+        "relationships" : [ "129", "131", "133" ]
       } ],
       "automaticLayout" : {
-        "applied" : true,
+        "applied" : false,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -1796,114 +2068,112 @@
         "vertices" : false
       },
       "description" : "Диаграмма контейнера ТелБилл",
-      "dimensions" : {
-        "height" : 3291,
-        "width" : 5175
-      },
       "elements" : [ {
         "id" : "1",
-        "x" : 2384,
-        "y" : 200
+        "x" : 0,
+        "y" : 0
       }, {
         "id" : "2",
-        "x" : 3134,
-        "y" : 200
+        "x" : 0,
+        "y" : 0
       }, {
         "id" : "3",
-        "x" : 4525,
-        "y" : 900
+        "x" : 0,
+        "y" : 0
       }, {
         "id" : "4",
-        "x" : 200,
-        "y" : 2700
+        "x" : 0,
+        "y" : 0
       }, {
         "id" : "5",
-        "x" : 950,
-        "y" : 2700
+        "x" : 0,
+        "y" : 0
       }, {
         "id" : "6",
-        "x" : 1700,
-        "y" : 2700
+        "x" : 0,
+        "y" : 0
       }, {
-        "id" : "8",
-        "x" : 3317,
-        "y" : 2700
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
       }, {
-        "id" : "18",
-        "x" : 3859,
-        "y" : 1500
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
       }, {
-        "id" : "29",
-        "x" : 2779,
-        "y" : 2100
+        "id" : "11",
+        "x" : 0,
+        "y" : 0
       }, {
-        "id" : "30",
-        "x" : 3109,
-        "y" : 1500
+        "id" : "21",
+        "x" : 0,
+        "y" : 0
       }, {
-        "id" : "40",
-        "x" : 3109,
-        "y" : 900
+        "id" : "32",
+        "x" : 0,
+        "y" : 0
       }, {
-        "id" : "68",
-        "x" : 2359,
-        "y" : 1500
+        "id" : "33",
+        "x" : 0,
+        "y" : 0
       }, {
-        "id" : "80",
-        "x" : 2359,
-        "y" : 900
+        "id" : "43",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "71",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "83",
+        "x" : 0,
+        "y" : 0
       } ],
       "externalSoftwareSystemBoundariesVisible" : false,
       "key" : "Containers",
       "order" : 3,
       "relationships" : [ {
-        "id" : "105"
+        "id" : "108"
       }, {
-        "id" : "115"
+        "id" : "118"
       }, {
-        "id" : "121"
+        "id" : "124"
       }, {
-        "id" : "126",
-        "vertices" : [ {
-          "x" : 3471,
-          "y" : 1818
-        } ]
+        "id" : "129"
       }, {
-        "id" : "128"
+        "id" : "131"
       }, {
-        "id" : "130",
-        "vertices" : [ {
-          "x" : 3616,
-          "y" : 2081
-        } ]
+        "id" : "133"
       }, {
-        "id" : "133",
-        "vertices" : [ {
-          "x" : 1550,
-          "y" : 2700
-        } ]
+        "id" : "136"
       }, {
-        "id" : "135"
-      }, {
-        "id" : "137",
-        "vertices" : [ {
-          "x" : 800,
-          "y" : 2700
-        } ]
+        "id" : "138"
       }, {
         "id" : "140"
       }, {
-        "id" : "143"
-      }, {
-        "id" : "146",
-        "vertices" : [ {
-          "x" : 4459,
-          "y" : 1800
-        } ]
-      }, {
         "id" : "148"
       }, {
-        "id" : "61"
+        "id" : "149"
+      }, {
+        "id" : "150"
+      }, {
+        "id" : "151"
+      }, {
+        "id" : "152"
+      }, {
+        "id" : "153"
+      }, {
+        "id" : "154"
+      }, {
+        "id" : "156"
+      }, {
+        "id" : "159"
+      }, {
+        "id" : "162"
+      }, {
+        "id" : "164"
+      }, {
+        "id" : "64"
       } ],
       "softwareSystemId" : "7"
     } ],
@@ -1913,107 +2183,157 @@
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
-        "rankDirection" : "LeftRight",
-        "rankSeparation" : 300,
-        "vertices" : false
-      },
-      "description" : "Схема разворота окружения тестирования",
-      "dimensions" : {
-        "height" : 1411,
-        "width" : 1640
-      },
-      "elements" : [ {
-        "id" : "150",
-        "x" : 175,
-        "y" : 175
-      }, {
-        "id" : "151",
-        "x" : 969,
-        "y" : 219
-      }, {
-        "id" : "152",
-        "x" : 969,
-        "y" : 819
-      }, {
-        "id" : "153",
-        "x" : 175,
-        "y" : 175
-      }, {
-        "id" : "154",
-        "x" : 219,
-        "y" : 519
-      } ],
-      "environment" : "Stage",
-      "key" : "StageDeployment",
-      "order" : 10,
-      "relationships" : [ {
-        "id" : "155"
-      }, {
-        "id" : "156",
-        "vertices" : [ {
-          "x" : 763,
-          "y" : 958
-        } ]
-      }, {
-        "id" : "157",
-        "vertices" : [ {
-          "x" : 874,
-          "y" : 679
-        } ]
-      } ]
-    }, {
-      "automaticLayout" : {
-        "applied" : true,
-        "edgeSeparation" : 0,
-        "implementation" : "Graphviz",
-        "nodeSeparation" : 300,
-        "rankDirection" : "LeftRight",
+        "rankDirection" : "TopBottom",
         "rankSeparation" : 300,
         "vertices" : false
       },
       "description" : "Схема разворота окружения разработчика",
       "dimensions" : {
-        "height" : 1411,
-        "width" : 1640
+        "height" : 3322,
+        "width" : 3650
       },
       "elements" : [ {
-        "id" : "158",
+        "id" : "174",
         "x" : 175,
         "y" : 175
       }, {
-        "id" : "159",
-        "x" : 969,
-        "y" : 219
-      }, {
-        "id" : "160",
-        "x" : 969,
-        "y" : 819
-      }, {
-        "id" : "161",
+        "id" : "175",
         "x" : 175,
         "y" : 175
       }, {
-        "id" : "162",
-        "x" : 219,
-        "y" : 519
+        "id" : "176",
+        "x" : 2166,
+        "y" : 239
+      }, {
+        "id" : "177",
+        "x" : 1966,
+        "y" : 2639
+      }, {
+        "id" : "179",
+        "x" : 2850,
+        "y" : 839
+      }, {
+        "id" : "181",
+        "x" : 1216,
+        "y" : 1439
+      }, {
+        "id" : "183",
+        "x" : 425,
+        "y" : 839
+      }, {
+        "id" : "186",
+        "x" : 1966,
+        "y" : 1439
+      }, {
+        "id" : "188",
+        "x" : 1483,
+        "y" : 839
+      }, {
+        "id" : "191",
+        "x" : 1966,
+        "y" : 2039
+      }, {
+        "id" : "197",
+        "x" : 687,
+        "y" : 239
+      }, {
+        "id" : "204",
+        "x" : 466,
+        "y" : 1439
       } ],
       "environment" : "Development",
       "key" : "DevelopmentDeployment",
-      "order" : 11,
+      "order" : 10,
       "relationships" : [ {
-        "id" : "163",
+        "id" : "178",
         "vertices" : [ {
-          "x" : 763,
-          "y" : 958
+          "x" : 3450,
+          "y" : 839
+        }, {
+          "x" : 3450,
+          "y" : 1139
+        }, {
+          "x" : 2566,
+          "y" : 2339
         } ]
       }, {
-        "id" : "164",
+        "id" : "180"
+      }, {
+        "id" : "182",
         "vertices" : [ {
-          "x" : 874,
-          "y" : 679
+          "x" : 2083,
+          "y" : 1139
         } ]
       }, {
-        "id" : "165"
+        "id" : "184"
+      }, {
+        "id" : "185"
+      }, {
+        "id" : "187",
+        "vertices" : [ {
+          "x" : 2316,
+          "y" : 1139
+        } ]
+      }, {
+        "id" : "189"
+      }, {
+        "id" : "190"
+      }, {
+        "id" : "192"
+      }, {
+        "id" : "193",
+        "vertices" : [ {
+          "x" : 2716,
+          "y" : 1739
+        } ]
+      }, {
+        "id" : "194",
+        "vertices" : [ {
+          "x" : 2416,
+          "y" : 1739
+        } ]
+      }, {
+        "id" : "195"
+      }, {
+        "id" : "196"
+      }, {
+        "id" : "198"
+      }, {
+        "id" : "199"
+      }, {
+        "id" : "200",
+        "vertices" : [ {
+          "x" : 200,
+          "y" : 839
+        }, {
+          "x" : 200,
+          "y" : 1139
+        }, {
+          "x" : 316,
+          "y" : 1739
+        } ]
+      }, {
+        "id" : "201"
+      }, {
+        "id" : "202",
+        "vertices" : [ {
+          "x" : 275,
+          "y" : 839
+        }, {
+          "x" : 275,
+          "y" : 1139
+        }, {
+          "x" : 1066,
+          "y" : 1439
+        } ]
+      }, {
+        "id" : "203",
+        "vertices" : [ {
+          "x" : 1333,
+          "y" : 1139
+        } ]
+      }, {
+        "id" : "205"
       } ]
     } ],
     "systemContextViews" : [ {
@@ -2060,17 +2380,17 @@
       "key" : "tellbillServiceContext",
       "order" : 2,
       "relationships" : [ {
-        "id" : "134"
+        "id" : "137"
       }, {
-        "id" : "136"
-      }, {
-        "id" : "138"
+        "id" : "139"
       }, {
         "id" : "141"
       }, {
-        "id" : "144"
+        "id" : "157"
       }, {
-        "id" : "149"
+        "id" : "160"
+      }, {
+        "id" : "165"
       } ],
       "softwareSystemId" : "7"
     } ],
@@ -2121,17 +2441,17 @@
       "key" : "SystemLandscape",
       "order" : 1,
       "relationships" : [ {
-        "id" : "134"
+        "id" : "137"
       }, {
-        "id" : "136"
-      }, {
-        "id" : "138"
+        "id" : "139"
       }, {
         "id" : "141"
       }, {
-        "id" : "144"
+        "id" : "157"
       }, {
-        "id" : "149"
+        "id" : "160"
+      }, {
+        "id" : "165"
       } ]
     } ]
   }

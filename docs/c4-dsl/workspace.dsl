@@ -25,6 +25,18 @@ workspace "telbill" "ИС управления телефонным узлом" 
 
       tellbillService = softwareSystem "tellbill" "ИС управления телефонным узлом" "InternalSystem" {
 
+        nginx = container "nginx" "Ingress" "" {
+          Tag "Infrastructure"
+        }
+
+        src_vol = container "src_vol" "Source volume" "Infrastructure" {
+          Tag "Volume"
+        }
+        db_vol = container "db_vol" "Database volume" "Infrastructure" {
+          Tag "Volume"
+        }
+
+      
         ##############################################################################
 
         auth = container "auth (Маршрутизатор звонков)" "" "typescript" "next.js" {
@@ -200,6 +212,21 @@ workspace "telbill" "ИС управления телефонным узлом" 
         db -> sorm "Передает данные о звонках"
         db -> accounting "Передает данные о звонках"
 
+        nginx -> auth
+        nginx -> acc
+        nginx -> adminApiFront
+        nginx -> adminApiBackend
+        nginx -> lkApiFront
+        nginx -> lkApiBackend
+
+        db_vol -> db
+
+        src_vol -> auth
+        src_vol -> acc
+        src_vol -> adminApiFront
+        src_vol -> adminApiBackend
+        src_vol -> lkApiFront
+        src_vol -> lkApiBackend
       }
 
       abonent -> tellbillService.lkApiFront.pageController
@@ -214,7 +241,7 @@ workspace "telbill" "ИС управления телефонным узлом" 
 
         stage = deploymentEnvironment "Stage" {
 
-                    sormvm = deploymentNode "sorm-vm" "" "Ubuntu 16.04 LTS" "" 1 {
+                    sormvm = deploymentNode "sorm-vm" "" "Ubuntu " "" 1 {
 
                         containerInstance tellbillService.auth
                         containerInstance tellbillService.acc
@@ -229,18 +256,32 @@ workspace "telbill" "ИС управления телефонным узлом" 
                 }
 
         development = deploymentEnvironment "Development" {
-                              sormvm = deploymentNode "sorm-vm" "" "Ubuntu 16.04 LTS" "" 1 {
+                        tellbill = deploymentNode "telbill" "" "Ubuntu" "" 1 {
 
-                        containerInstance tellbillService.auth
-                        containerInstance tellbillService.acc
+                          telbilldev = deploymentNode "telbill-dev" {
+                            
+                            containerInstance tellbillService.nginx
+                            containerInstance tellbillService.auth
+                            containerInstance tellbillService.acc
+
+                            containerInstance tellbillService.lkApiBackend
+                            containerInstance tellbillService.lkApiFront
+                            containerInstance tellbillService.adminApiBackend
+                            containerInstance tellbillService.adminApiFront
+
+                            containerInstance tellbillService.db
+                            containerInstance tellbillService.src_vol
+                            containerInstance tellbillService.db_vol
+
+                          }
 
                     }
 
-                        deploymentNode "Database Server" "#3" {
-                            containerInstance tellbillService.db {
-                                description "dbname: legs"
-                            }
-                        }
+              # deploymentNode "Database Server" "#3" {
+              #               containerInstance tellbillService.db {
+              #                   description "dbname: legs"
+              #               }
+              #           }
         }
 
     }
@@ -251,6 +292,7 @@ workspace "telbill" "ИС управления телефонным узлом" 
         systemLandscape  "SystemLandscape" {
             include *
             autoLayout lr
+            exclude "element.tag==Infrastructure"
         }
 
         systemContext tellbillService "tellbillServiceContext" "Диаграмма контекта сервиса tellbill" {
@@ -259,6 +301,7 @@ workspace "telbill" "ИС управления телефонным узлом" 
            include *->tellbillService
            include tellbillService->*
            autoLayout lr
+           exclude "element.tag==Infrastructure"
         }
     
         container tellbillService "Containers" {
@@ -270,34 +313,22 @@ workspace "telbill" "ИС управления телефонным узлом" 
             }
             description "Диаграмма контейнера ТелБилл"
             autoLayout tb
-
+            exclude "element.tag==Infrastructure"
         }
 
         component tellbillService.acc "Component_acc" {
             include *
-            # exclude *->*
-            # include *->tellbillService.acc
-            # include tellbillService.acc->*
-            # animation {
-            #      tellbillService.acc
-            # }
-
             description "acc (Тарификатор звонков)"
             autoLayout tb
+            exclude "element.tag==Infrastructure"
         }
 
 
         component tellbillService.auth "Component_auth" {
             include *
-            # exclude *->*
-            # include *->tellbillService.acc
-            # include tellbillService.acc->*
-            # animation {
-            #      tellbillService.acc
-            # }
-
             description "auth (Маршрутизатор звонков)"
             autoLayout bt
+            exclude "element.tag==Infrastructure"
         }
 
 
@@ -305,39 +336,45 @@ workspace "telbill" "ИС управления телефонным узлом" 
             include *
             description "lkApiFront (Веб интерфейс ЛК-пользователя)"
             autoLayout lr
+            exclude "element.tag==Infrastructure"
         }
 
         component tellbillService.AdminApiFront "Component_AdminFront" {
             include *
             description "AdminApiFront (Веб интерфейс админимстратора)"
             autoLayout lr
+            exclude "element.tag==Infrastructure"
         }
 
         component tellbillService.adminApiBackend "Component_adminApiBackend" {
             include *
             description "adminApiBackend (бекенд интерфейса админимстратора)"
             autoLayout lr
+            exclude "element.tag==Infrastructure"
         }
 
         component tellbillService.lkApiBackend "Component_lkApiBackend" {
             include *
             description "lkApiBackend (бекенд интерфейса абонента)"
             autoLayout lr
+            exclude "element.tag==Infrastructure"
         }
 
 
-        deployment * "Stage" "StageDeployment" {
-            include *
-            include *->*
-            description "Схема разворота окружения тестирования"
-            autoLayout lr
-        }
+        # deployment * "Stage" "StageDeployment" {
+        #     include *
+        #     include *->*
+        #     description "Схема разворота окружения тестирования"
+        #     autoLayout lr
+            
+        # }
 
         deployment * "Development" "DevelopmentDeployment" {
             include *
             include *->*
             description "Схема разворота окружения разработчика"
-            autoLayout lr
+            autoLayout
+
         }
 
 
