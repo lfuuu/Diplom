@@ -210,6 +210,39 @@ workspace "telbill" "ИС управления телефонным узлом" 
       #abonent -> tellbillService.lkApiFront "Смотрит ЛК"
       admin   -> tellbillService.adminApiFront.pageController "Смотрит ЛК"
 
+
+
+        stage = deploymentEnvironment "Stage" {
+
+                    sormvm = deploymentNode "sorm-vm" "" "Ubuntu 16.04 LTS" "" 1 {
+
+                        containerInstance tellbillService.auth
+                        containerInstance tellbillService.acc
+
+                    }
+
+                        deploymentNode "Database Server" "#3" {
+                            containerInstance tellbillService.db {
+                                description "dbname: legs"
+                            }
+                        }
+                }
+
+        development = deploymentEnvironment "Development" {
+                              sormvm = deploymentNode "sorm-vm" "" "Ubuntu 16.04 LTS" "" 1 {
+
+                        containerInstance tellbillService.auth
+                        containerInstance tellbillService.acc
+
+                    }
+
+                        deploymentNode "Database Server" "#3" {
+                            containerInstance tellbillService.db {
+                                description "dbname: legs"
+                            }
+                        }
+        }
+
     }
     views {
         # подключаем стили
@@ -293,6 +326,19 @@ workspace "telbill" "ИС управления телефонным узлом" 
         }
 
 
+        deployment * "Stage" "StageDeployment" {
+            include *
+            include *->*
+            description "Схема разворота окружения тестирования"
+            autoLayout lr
+        }
+
+        deployment * "Development" "DevelopmentDeployment" {
+            include *
+            include *->*
+            description "Схема разворота окружения разработчика"
+            autoLayout lr
+        }
 
 
     }
