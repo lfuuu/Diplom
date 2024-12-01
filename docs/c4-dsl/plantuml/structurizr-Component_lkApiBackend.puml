@@ -1,0 +1,84 @@
+@startuml
+set separator none
+title tellbill - lkApiBackend - Components
+
+left to right direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam component<<tellbill.lkApiBackend.Peпозиторийзвонкипользователя>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam component<<tellbill.lkApiBackend.Peпозиторийрасходыпользователя>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam component<<tellbill.lkApiBackend.httpсервер>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<tellbill.lkApiFront>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam component<<tellbill.lkApiBackend.Репозиторийбаланспользователя>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam component<<tellbill.lkApiBackend.Репозиторийпользователей>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam database<<tellbill.Хранилищесостояний>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<tellbill.lkApiBackend>> {
+  BorderColor #2e6295
+  FontColor #2e6295
+  shadowing false
+}
+
+database "==Хранилище состояний\n<size:10>[Container: posgresql]</size>\n\nDatabase" <<tellbill.Хранилищесостояний>> as tellbill.Хранилищесостояний
+rectangle "==lkApiFront\n<size:10>[Container: typescript]</size>" <<tellbill.lkApiFront>> as tellbill.lkApiFront
+
+rectangle "lkApiBackend\n<size:10>[Container: typescript]</size>" <<tellbill.lkApiBackend>> {
+  component "==http сервер\n<size:10>[Component]</size>" <<tellbill.lkApiBackend.httpсервер>> as tellbill.lkApiBackend.httpсервер
+  component "==Репозиторий пользователей\n<size:10>[Component]</size>" <<tellbill.lkApiBackend.Репозиторийпользователей>> as tellbill.lkApiBackend.Репозиторийпользователей
+  component "==Репозиторий баланс пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiBackend.Репозиторийбаланспользователя>> as tellbill.lkApiBackend.Репозиторийбаланспользователя
+  component "==Peпозиторий звонки пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiBackend.Peпозиторийзвонкипользователя>> as tellbill.lkApiBackend.Peпозиторийзвонкипользователя
+  component "==Peпозиторий расходы пользователя\n<size:10>[Component]</size>" <<tellbill.lkApiBackend.Peпозиторийрасходыпользователя>> as tellbill.lkApiBackend.Peпозиторийрасходыпользователя
+}
+
+tellbill.lkApiBackend.Репозиторийпользователей .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
+tellbill.lkApiBackend.Репозиторийбаланспользователя .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
+tellbill.lkApiBackend.Peпозиторийзвонкипользователя .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
+tellbill.lkApiBackend.Peпозиторийрасходыпользователя .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
+tellbill.lkApiBackend.httpсервер .[#707070,thickness=2].> tellbill.lkApiBackend.Репозиторийпользователей : "<color:#707070>"
+tellbill.lkApiBackend.httpсервер .[#707070,thickness=2].> tellbill.lkApiBackend.Репозиторийбаланспользователя : "<color:#707070>"
+tellbill.lkApiBackend.httpсервер .[#707070,thickness=2].> tellbill.lkApiBackend.Peпозиторийзвонкипользователя : "<color:#707070>"
+tellbill.lkApiBackend.httpсервер .[#707070,thickness=2].> tellbill.lkApiBackend.Peпозиторийрасходыпользователя : "<color:#707070>"
+tellbill.lkApiFront .[#707070,thickness=2].> tellbill.lkApiBackend.httpсервер : "<color:#707070>"
+@enduml

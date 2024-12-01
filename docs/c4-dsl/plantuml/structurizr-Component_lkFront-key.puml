@@ -16,12 +16,12 @@ skinparam rectangle<<_transparent>> {
   FontColor transparent
 }
 
-skinparam rectangle<<1>> {
+skinparam component<<1>> {
   BackgroundColor #85bbf0
   FontColor #000000
   BorderColor #5d82a8
 }
-rectangle "==Component" <<1>>
+component "==Component" <<1>>
 
 skinparam rectangle<<2>> {
   BackgroundColor #438dd5

@@ -4,8 +4,10 @@ THIS=`readlink -f "${BASH_SOURCE[0]}"`
 DIR=`dirname "${THIS}"`
 pushd $DIR
 
-mkdir -p workspace
+cd ../docs/c4-dsl
 
-docker run -it --rm -p 8080:8080 -v $PWD/workspace:/usr/local/structurizr structurizr/lite
+unset DOCKER_HOST
+
+docker run -it --rm -p 8044:8080 -v $PWD:/usr/local/structurizr structurizr/lite
 
 popd

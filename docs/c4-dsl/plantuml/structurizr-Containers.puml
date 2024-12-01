@@ -37,6 +37,12 @@ skinparam rectangle<<accounting>> {
   BorderColor #6b6b6b
   shadowing false
 }
+skinparam rectangle<<tellbill.authМаршрутизаторзвонков>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
 skinparam rectangle<<elk>> {
   BackgroundColor #999999
   FontColor #ffffff
@@ -79,12 +85,6 @@ skinparam person<<Администраторузла>> {
   BorderColor #9a9a9a
   shadowing false
 }
-skinparam rectangle<<tellbill.Маршрутизаторзвонков>> {
-  BackgroundColor #438dd5
-  FontColor #ffffff
-  BorderColor #2e6295
-  shadowing false
-}
 skinparam database<<tellbill.Хранилищесостояний>> {
   BackgroundColor #438dd5
   FontColor #ffffff
@@ -105,26 +105,27 @@ rectangle "==elk\n<size:10>[Software System]</size>\n\nАналитическа�
 rectangle "==sorm\n<size:10>[Software System]</size>\n\nВыгрузка в спецслужбы" <<sorm>> as sorm
 
 rectangle "tellbill\n<size:10>[Software System]</size>" <<tellbill>> {
-  rectangle "==Маршрутизатор звонков\n<size:10>[Container: typescript]</size>" <<tellbill.Маршрутизаторзвонков>> as tellbill.Маршрутизаторзвонков
+  rectangle "==auth (Маршрутизатор звонков)\n<size:10>[Container: typescript]</size>" <<tellbill.authМаршрутизаторзвонков>> as tellbill.authМаршрутизаторзвонков
+  rectangle "==acc (Тарификатор звонков)\n<size:10>[Container: typescript]</size>" <<tellbill.accТарификаторзвонков>> as tellbill.accТарификаторзвонков
   database "==Хранилище состояний\n<size:10>[Container: posgresql]</size>\n\nDatabase" <<tellbill.Хранилищесостояний>> as tellbill.Хранилищесостояний
   rectangle "==lkApiBackend\n<size:10>[Container: typescript]</size>" <<tellbill.lkApiBackend>> as tellbill.lkApiBackend
   rectangle "==lkApiFront\n<size:10>[Container: typescript]</size>" <<tellbill.lkApiFront>> as tellbill.lkApiFront
   rectangle "==AdminApiBackend\n<size:10>[Container: typescript]</size>" <<tellbill.AdminApiBackend>> as tellbill.AdminApiBackend
   rectangle "==AdminApiFront\n<size:10>[Container: typescript]</size>" <<tellbill.AdminApiFront>> as tellbill.AdminApiFront
-  rectangle "==acc (Тарификатор звонков)\n<size:10>[Container: typescript]</size>" <<tellbill.accТарификаторзвонков>> as tellbill.accТарификаторзвонков
 }
 
-tellbill.lkApiFront .[#707070,thickness=2].> tellbill.lkApiBackend : "<color:#707070>"
 tellbill.AdminApiFront .[#707070,thickness=2].> tellbill.AdminApiBackend : "<color:#707070>"
+tellbill.AdminApiBackend .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
+tellbill.lkApiBackend .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
 tellbill.accТарификаторзвонков .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>Сохраняет звонки"
-tellbill.Маршрутизаторзвонков .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
+tellbill.Хранилищесостояний .[#707070,thickness=2].> tellbill.authМаршрутизаторзвонков : "<color:#707070>Получаем сведения"
+tellbill.Хранилищесостояний .[#707070,thickness=2].> tellbill.accТарификаторзвонков : "<color:#707070>Получаем новые звонки"
 tellbill.Хранилищесостояний .[#707070,thickness=2].> elk : "<color:#707070>Передает данные о звонках"
 tellbill.Хранилищесостояний .[#707070,thickness=2].> sorm : "<color:#707070>Передает данные о звонках"
 tellbill.Хранилищесостояний .[#707070,thickness=2].> accounting : "<color:#707070>Передает данные о звонках"
-tellbill.lkApiBackend .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
-tellbill.AdminApiBackend .[#707070,thickness=2].> tellbill.Хранилищесостояний : "<color:#707070>"
 Абонент .[#707070,thickness=2].> tellbill.lkApiFront : "<color:#707070>"
 openSwitch .[#707070,thickness=2].> tellbill.accТарификаторзвонков : "<color:#707070>Тарифицирует звонок"
-openSwitch .[#707070,thickness=2].> tellbill.Маршрутизаторзвонков : "<color:#707070>Маршрутизирует звонок"
+openSwitch .[#707070,thickness=2].> tellbill.authМаршрутизаторзвонков : "<color:#707070>Маршрутизирует звонок"
 Администраторузла .[#707070,thickness=2].> tellbill.AdminApiFront : "<color:#707070>Смотрит ЛК"
+tellbill.lkApiFront .[#707070,thickness=2].> tellbill.lkApiBackend : "<color:#707070>"
 @enduml

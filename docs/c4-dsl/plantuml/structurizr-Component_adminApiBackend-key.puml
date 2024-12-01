@@ -16,26 +16,26 @@ skinparam rectangle<<_transparent>> {
   FontColor transparent
 }
 
-skinparam rectangle<<1>> {
-  BackgroundColor #dddddd
+skinparam component<<1>> {
+  BackgroundColor #85bbf0
   FontColor #000000
-  BorderColor #9a9a9a
+  BorderColor #5d82a8
 }
-rectangle "==Element" <<1>>
+component "==Component" <<1>>
 
 skinparam rectangle<<2>> {
-  BackgroundColor #999999
+  BackgroundColor #438dd5
   FontColor #ffffff
-  BorderColor #6b6b6b
+  BorderColor #2e6295
 }
-rectangle "==ExternalSystem" <<2>>
+rectangle "==Container" <<2>>
 
-skinparam person<<3>> {
-  BackgroundColor #dddddd
+skinparam database<<3>> {
+  BackgroundColor #438dd5
   FontColor #ffffff
-  BorderColor #9a9a9a
+  BorderColor #2e6295
 }
-person "==Person" <<3>>
+database "==Container, Database" <<3>>
 
 rectangle "." <<_transparent>> as 4
 4 .[#707070,thickness=2].> 4 : "<color:#707070>Relationship"
