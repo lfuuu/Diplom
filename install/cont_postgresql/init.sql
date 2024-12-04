@@ -1,8 +1,15 @@
-SET default_transaction_read_only = off;
-
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-
 CREATE ROLE bill_daemon_local;
 ALTER ROLE bill_daemon_local WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB LOGIN NOREPLICATION PASSWORD 'md50b11a11686f194f92e10fa9eb342771c';
 
+
+CREATE SCHEMA IF NOT EXISTS bill;
+-- Создание таблицы REGIONS
+
+CREATE TABLE IF NOT EXISTS bill.clients (
+  id serial PRIMARY KEY,
+  begin_time TIMESTAMP,
+  end_time TIMESTAMP,
+  description VARCHAR(256),
+  mcc VARCHAR(3),
+  mnc VARCHAR(3)
+);
