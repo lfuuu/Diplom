@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+
+  db:
+    #image: postgres:16
+    ports:
+      - "43432:5432"
+    build:
+      context: ./cont_postgresql
+      dockerfile: Dockerfile
+    env_file: ./cont_postgresql/.env
+    volumes:
+      - pg_nispd_test_vol:/var/lib/postgresql/data
+      - ./cont_postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - /etc/hosts:/etc/hosts
+      - ./cont_postgresql/prepare.sh:/opt/prepare.sh
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    restart: unless-stopped
+
+    networks:
+      - lanbill
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@mcn.ru
+      - PGADMIN_DEFAULT_PASSWORD=adminmcn
+    depends_on:
+      - db
+    volumes:
+      - ./var_pgadmin4/pgadmin4_conf:/var/lib/pgadmin
+    logging:
+        driver: "none"
+
+    networks:
+      - lanbill
