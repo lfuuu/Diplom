@@ -1,4 +1,5 @@
 #!/bin/bash
 
-docker-compose down
+docker-compose --project-name dev-telbill -f docker-compose.yml down
+
 
