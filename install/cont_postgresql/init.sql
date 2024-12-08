@@ -14,13 +14,23 @@ CREATE TABLE IF NOT EXISTS billing.clients (
   name text
 );
 
+COMMENT ON COLUMN billing.clients.id IS 'номер лицевого счета абонента или внешнего оператора Узла Связи';
+COMMENT ON COLUMN billing.clients.balance IS 'Баланс лицевого счета на начало расчетного периода';
+COMMENT ON COLUMN billing.clients.is_blocked IS 'ЛС заблокирован: Да/Нет';
+
 CREATE TABLE IF NOT EXISTS billing.pricelist
 (
     id serial PRIMARY KEY,
     name text,
     date_from date NOT NULL,
-    date_to date NOT NULL
+    date_to date
 );
+
+COMMENT ON COLUMN billing.pricelist.id IS 'код прайслиста';
+COMMENT ON COLUMN billing.pricelist.name IS 'имя прайслиста';
+COMMENT ON COLUMN billing.pricelist.date_from IS 'Дата начала действия прайслиста';
+COMMENT ON COLUMN billing.pricelist.date_to IS 'Дата окончания действия прайслиста';
+
 
 CREATE TABLE IF NOT EXISTS auth.trunk
 (
@@ -30,17 +40,29 @@ CREATE TABLE IF NOT EXISTS auth.trunk
     CONSTRAINT trunk_idx PRIMARY KEY (id)
 );
 
+COMMENT ON COLUMN auth.trunk.id IS 'код транка';
+COMMENT ON COLUMN auth.trunk.trunk_name IS 'Имя транка';
+COMMENT ON COLUMN auth.trunk.auth_by_number IS 'Режим тракна: абоненты на Ватс/внешний оператор';
+
 CREATE TABLE IF NOT EXISTS billing.pricelist_item
 (
     id serial,
     pricelist_id int NOT NULL,
     ndef bigint NOT NULL,    
     date_from date NOT NULL,
-    date_to date NOT NULL,
+    date_to date,
     price numeric(8,4) NOT NULL,    
     CONSTRAINT defs_pkey PRIMARY KEY (ndef, pricelist_id),
     CONSTRAINT fk_pricelist_id FOREIGN KEY (pricelist_id) REFERENCES billing.pricelist (id) MATCH SIMPLE
 );
+
+COMMENT ON COLUMN billing.pricelist_item.id IS 'код элемента прайслиста';
+COMMENT ON COLUMN billing.pricelist_item.pricelist_id IS 'Элемент принадлежит прайслисту';
+COMMENT ON COLUMN billing.pricelist_item.ndef IS 'Префикс вматичивания: Например - 7495';
+COMMENT ON COLUMN billing.pricelist_item.date_from IS 'Дата начала действия префикса';
+COMMENT ON COLUMN billing.pricelist_item.date_to IS 'Дата окончания действия';
+COMMENT ON COLUMN billing.pricelist_item.price IS 'Цена минуты разговора по префиксу';
+
 
 CREATE TABLE IF NOT EXISTS billing.service_number
 (
@@ -52,6 +74,12 @@ CREATE TABLE IF NOT EXISTS billing.service_number
     CONSTRAINT service_number_pkey PRIMARY KEY (id),
     CONSTRAINT fk_clients_id FOREIGN KEY (client_id) REFERENCES billing.clients (id) MATCH SIMPLE
 );
+
+COMMENT ON COLUMN billing.service_number.id IS 'Код услуги "Номер"';
+COMMENT ON COLUMN billing.service_number.client_id IS 'принадлежит Лицевому Счету';
+COMMENT ON COLUMN billing.service_number.did IS 'Абоенентский номер, Например: 79263321122';
+COMMENT ON COLUMN billing.service_number.activation_dt IS 'Время начала действия услуги';
+COMMENT ON COLUMN billing.service_number.expire_dt IS 'Время окончания действия услуги';
 
 CREATE TABLE IF NOT EXISTS billing.service_trunk
 (
@@ -66,6 +94,15 @@ CREATE TABLE IF NOT EXISTS billing.service_trunk
     CONSTRAINT fk_clients_id FOREIGN KEY (client_id) REFERENCES billing.clients (id) MATCH SIMPLE,
     CONSTRAINT fk_trunk_id FOREIGN KEY (trunk_id) REFERENCES auth.trunk (id) MATCH SIMPLE
 );
+
+COMMENT ON COLUMN billing.service_trunk.id IS 'Код услуги "Транк"';
+COMMENT ON COLUMN billing.service_trunk.client_id IS 'принадлежит Лицевому Счету';
+COMMENT ON COLUMN billing.service_trunk.trunk_id IS 'Услуга привязана к транку';
+COMMENT ON COLUMN billing.service_trunk.activation_dt IS 'Время начала действия услуги';
+COMMENT ON COLUMN billing.service_trunk.expire_dt IS 'Время окончания действия услуги';
+COMMENT ON COLUMN billing.service_trunk.orig_enabled IS 'может ли транк принимать звонки на Узел Связи';
+COMMENT ON COLUMN billing.service_trunk.term_enabled IS 'может ли транк отправлять звонки на внешний узел связи';
+
 
 CREATE TABLE IF NOT EXISTS calls.cdr
 (
