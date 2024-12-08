@@ -55,7 +55,8 @@ CREATE TABLE IF NOT EXISTS billing.service_trunk
     orig_enabled boolean NOT NULL DEFAULT false,
     term_enabled boolean NOT NULL DEFAULT false,
     CONSTRAINT service_trunk_pkey PRIMARY KEY (id),
-    CONSTRAINT fk_clients_id FOREIGN KEY (client_id) REFERENCES billing.clients (id) MATCH SIMPLE
+    CONSTRAINT fk_clients_id FOREIGN KEY (client_id) REFERENCES billing.clients (id) MATCH SIMPLE,
+    CONSTRAINT fk_trunk_id FOREIGN KEY (trunk_id) REFERENCES auth.trunk (id) MATCH SIMPLE
 );
 
 CREATE TABLE IF NOT EXISTS auth.trunk
