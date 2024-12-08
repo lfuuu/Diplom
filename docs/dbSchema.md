@@ -2,6 +2,8 @@
 
 ![Структура БД](db/db_schema.png)
 
+Схема БД сгенерирована автоматически с использованием инструмента [ERD Tool](https://www.pgadmin.org/docs/pgadmin4/development/erd_tool.html) PgAdmin4.0
+
 ## Файл генерации БД
 
 - [init.sql](/install/cont_postgresql/init.sql)
