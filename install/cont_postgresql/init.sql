@@ -101,7 +101,6 @@ CREATE TABLE IF NOT EXISTS calls.raw
     cost numeric(12,2) NOT NULL DEFAULT 0,
     pricelist_id integer,
     disconnect_cause smallint,
-    trunk_settings_stats_id integer,
     CONSTRAINT calls_raw_pkey PRIMARY KEY (id),
     CONSTRAINT fk_cdr_id FOREIGN KEY (cdr_id) REFERENCES calls.cdr (id) MATCH SIMPLE,
     CONSTRAINT fk_trunk_id FOREIGN KEY (trunk_id) REFERENCES auth.trunk (id) MATCH SIMPLE,
