@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS billing.clients (
 );
 
 COMMENT ON COLUMN billing.clients.id IS 'номер лицевого счета абонента или внешнего оператора Узла Связи';
+COMMENT ON COLUMN billing.clients.dt_create IS 'Время создания абонента';
 COMMENT ON COLUMN billing.clients.balance IS 'Баланс лицевого счета на начало расчетного периода';
 COMMENT ON COLUMN billing.clients.is_blocked IS 'ЛС заблокирован: Да/Нет';
 
@@ -23,13 +24,15 @@ CREATE TABLE IF NOT EXISTS billing.pricelist
     id serial PRIMARY KEY,
     name text,
     date_from date NOT NULL,
-    date_to date
+    date_to date,
+    round_to_sec boolean DEFAULT false
 );
 
 COMMENT ON COLUMN billing.pricelist.id IS 'код прайслиста';
 COMMENT ON COLUMN billing.pricelist.name IS 'имя прайслиста';
 COMMENT ON COLUMN billing.pricelist.date_from IS 'Дата начала действия прайслиста';
 COMMENT ON COLUMN billing.pricelist.date_to IS 'Дата окончания действия прайслиста';
+COMMENT ON COLUMN billing.pricelist.round_to_sec IS 'режим округления  до миинут/до секунд';
 
 
 CREATE TABLE IF NOT EXISTS auth.trunk
@@ -51,7 +54,7 @@ CREATE TABLE IF NOT EXISTS billing.pricelist_item
     ndef bigint NOT NULL,    
     date_from date NOT NULL,
     date_to date,
-    price numeric(8,4) NOT NULL,    
+    price numeric(8,4) NOT NULL,
     CONSTRAINT defs_pkey PRIMARY KEY (ndef, pricelist_id),
     CONSTRAINT fk_pricelist_id FOREIGN KEY (pricelist_id) REFERENCES billing.pricelist (id) MATCH SIMPLE
 );
@@ -120,6 +123,18 @@ CREATE TABLE IF NOT EXISTS calls.cdr
     CONSTRAINT cdr_pkey PRIMARY KEY (id)
 );
 
+COMMENT ON COLUMN calls.cdr.id IS 'код записи CDR звонка который прошел через узел связи';
+COMMENT ON COLUMN calls.cdr.call_id IS 'id звонка присвоенный на коммутаторе';
+COMMENT ON COLUMN calls.cdr.src_number IS 'Номер А';
+COMMENT ON COLUMN calls.cdr.dst_number IS 'Номер B';
+COMMENT ON COLUMN calls.cdr.setup_time IS 'Время маршутизации вызова';
+COMMENT ON COLUMN calls.cdr.connect_time IS 'Время поднятия трубки вызываемым абонентом';
+COMMENT ON COLUMN calls.cdr.disconnect_time IS 'Время окончания разговора';
+COMMENT ON COLUMN calls.cdr.session_time IS 'Длительность разговора в секундах';
+COMMENT ON COLUMN calls.cdr.disconnect_cause IS 'Причина завершения разговора';
+COMMENT ON COLUMN calls.cdr.src_route IS 'Название оригинационного транка вызова';
+COMMENT ON COLUMN calls.cdr.dst_route IS 'Название терминационного транка вызова';
+
 CREATE TABLE IF NOT EXISTS calls.raw
 (
     id bigserial,
@@ -146,3 +161,21 @@ CREATE TABLE IF NOT EXISTS calls.raw
     CONSTRAINT fk_service_number_id FOREIGN KEY (service_number_id) REFERENCES billing.service_number (id) MATCH SIMPLE,
     CONSTRAINT fk_pricelist_id FOREIGN KEY (pricelist_id) REFERENCES billing.pricelist (id) MATCH SIMPLE
 );
+
+COMMENT ON COLUMN calls.raw.id IS 'код плеча тарификации';
+COMMENT ON COLUMN calls.raw.orig IS 'Это оригинационное или терминационное плечо';
+COMMENT ON COLUMN calls.raw.peer_id IS 'Cсылка на второе плечо этого вызова. в этой же таблице';
+COMMENT ON COLUMN calls.raw.cdr_id IS 'Cсылка на CDR-факт звонка, который тарифицируется плечами';
+COMMENT ON COLUMN calls.raw.connect_time IS 'Время начала звонка';
+COMMENT ON COLUMN calls.raw.trunk_id IS 'Транк, на который легло плечо вызова';
+COMMENT ON COLUMN calls.raw.client_id IS 'Лицевой счет на который легло плечо вызова';
+COMMENT ON COLUMN calls.raw.service_trunk_id IS 'Услуга "Транк" на которую легло плечо вызова, если плечо операторское';
+COMMENT ON COLUMN calls.raw.service_trunk_id IS 'Услуга "Номер" на которую легло плечо вызова, если плечо рознечное';
+COMMENT ON COLUMN calls.raw.src_number IS 'Номер А плеча';
+COMMENT ON COLUMN calls.raw.dst_number IS 'Номер B плеча';
+COMMENT ON COLUMN calls.raw.billed_time IS 'Тарифицированная длительность вызова. Может отличаться от фактической в зависимости от режима округления';
+COMMENT ON COLUMN calls.raw.rate IS 'Цена минуты разговора для абонента/оператора';
+COMMENT ON COLUMN calls.raw.cost IS 'Стоимость разговора для абонента/оператора';
+COMMENT ON COLUMN calls.raw.pricelist_id IS 'Прайслист по которому было тарифицированно плечо';
+COMMENT ON COLUMN calls.raw.disconnect_cause IS 'причина завершения вызова';
+
