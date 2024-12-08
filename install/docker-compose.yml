@@ -47,5 +47,5 @@ services:
     volumes:
       - ./cont_pgadmin/pgadmin-servers.json:/mnt/pgadmin-servers.json
     logging:
-        driver: "none"
+      driver: "none"
 
