@@ -1,6 +1,6 @@
--- DROP SCHEMA IF EXISTS auth CASCADE;
--- DROP SCHEMA IF EXISTS billing CASCADE;
--- DROP SCHEMA IF EXISTS calls CASCADE;
+DROP SCHEMA IF EXISTS auth CASCADE;
+DROP SCHEMA IF EXISTS billing CASCADE;
+DROP SCHEMA IF EXISTS calls CASCADE;
 
 CREATE SCHEMA IF NOT EXISTS billing;
 CREATE SCHEMA IF NOT EXISTS auth;
@@ -20,6 +20,14 @@ CREATE TABLE IF NOT EXISTS billing.pricelist
     name text,
     date_from date NOT NULL,
     date_to date NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS auth.trunk
+(
+    id serial,
+    trunk_name text,
+    auth_by_number boolean NOT NULL DEFAULT false,
+    CONSTRAINT trunk_idx PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS billing.pricelist_item
@@ -57,14 +65,6 @@ CREATE TABLE IF NOT EXISTS billing.service_trunk
     CONSTRAINT service_trunk_pkey PRIMARY KEY (id),
     CONSTRAINT fk_clients_id FOREIGN KEY (client_id) REFERENCES billing.clients (id) MATCH SIMPLE,
     CONSTRAINT fk_trunk_id FOREIGN KEY (trunk_id) REFERENCES auth.trunk (id) MATCH SIMPLE
-);
-
-CREATE TABLE IF NOT EXISTS auth.trunk
-(
-    id serial,
-    trunk_name text,
-    auth_by_number boolean NOT NULL DEFAULT false,
-    CONSTRAINT trunk_idx PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS calls.cdr
