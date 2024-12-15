@@ -59,11 +59,29 @@
 
 <tr>
 <td>billing</td>
+<td>packet</td>
+<td>client_id -> billing.client.id</td>
+<td>Содержит информацию о принадлежности номеров абонентам узла. Услуга номер имеет время начала действия и время окончания. в один момент номер может принадлежать только одному абоненту</td>
+</tr>
+
+<tr>
+<td>billing</td>
 <td>service_trunk</td>
 <td>client_id -> billing.client.id
 <br>trunk_id -> auth.trunk.id
 </td>
 <td>Содержит информацию о принадлежности транков абонентам узла. Услуга номер имеет время начала действия и время окончания. Содержит настройки разрешающие Узлу связи принимать и отправлять звонки в этот транк</td>
+</tr>
+
+<tr>
+<td>auth</td>
+<td>client_id -> billing.client.id</td>
+<td>
+service_trunk_id -> billing.service_trunk.id<br>
+service_number_id -> billing.service_number.id<br>
+pricelist_id -> billing.pricelist.id
+</td>
+<td>Содержит привязку действующих прайслистов к услугам. прайслит может приненяться для оригинационных и терминационных плеч. имеет срок действия. прайслистов может быть много. выбирается с наименьшей ценой.</td>
 </tr>
 
 <tr>
