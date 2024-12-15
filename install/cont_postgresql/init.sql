@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS billing.pricelist_item
 (
     id serial,
     pricelist_id int NOT NULL,
-    ndef bigint NOT NULL,    
+    ndef bigint NOT NULL,
     date_from date NOT NULL,
     date_to date,
     price numeric(8,4) NOT NULL,
@@ -179,3 +179,42 @@ COMMENT ON COLUMN calls.raw.cost IS 'Стоимость разговора дл�
 COMMENT ON COLUMN calls.raw.pricelist_id IS 'Прайслист по которому было тарифицированно плечо';
 COMMENT ON COLUMN calls.raw.disconnect_cause IS 'причина завершения вызова';
 
+CREATE TABLE IF NOT EXISTS billing.packet
+(
+    id bigserial,
+    service_trunk_id integer,
+    service_number_id integer,
+    activation_dt timestamp without time zone NOT NULL,
+    expire_dt timestamp without time zone,    
+    orig boolean,
+    pricelist_id integer,
+    CONSTRAINT packets_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_service_trunk_id FOREIGN KEY (service_trunk_id) REFERENCES billing.service_trunk (id) MATCH SIMPLE,
+    CONSTRAINT fk_service_number_id FOREIGN KEY (service_number_id) REFERENCES billing.service_number (id) MATCH SIMPLE,
+    CONSTRAINT fk_pricelist_id FOREIGN KEY (pricelist_id) REFERENCES billing.pricelist (id) MATCH SIMPLE
+);
+
+COMMENT ON COLUMN billing.packet.id IS 'код пакета';
+COMMENT ON COLUMN billing.packet.service_trunk_id IS 'Привязка к Услуге Транк';
+COMMENT ON COLUMN billing.packet.service_number_id IS 'Привязка к Услуге Номер';
+COMMENT ON COLUMN billing.packet.activation_dt IS 'Время начала действия пакета';
+COMMENT ON COLUMN billing.packet.expire_dt IS 'Время окончания действия пакета';
+COMMENT ON COLUMN billing.packet.orig IS 'Для оригинации или терминации';
+COMMENT ON COLUMN billing.packet.pricelist_id IS 'Код прайслиста пакета';
+
+CREATE TABLE IF NOT EXISTS auth.user
+(
+    id bigserial,
+    client_id integer,
+    login text,
+    password text,
+    active boolean,
+    CONSTRAINT user_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_client_id FOREIGN KEY (client_id) REFERENCES billing.clients (id) MATCH SIMPLE
+);
+
+COMMENT ON COLUMN auth.user.id IS 'код пользователя';
+COMMENT ON COLUMN auth.user.client_id IS 'код клиента связанного с пользователем';
+COMMENT ON COLUMN auth.user.login IS 'логин пользователя в ЛК';
+COMMENT ON COLUMN auth.user.password IS 'Пароль пользователя в MD5';
+COMMENT ON COLUMN auth.user.active IS 'Включен ли пользователь?';
