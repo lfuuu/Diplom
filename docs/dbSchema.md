@@ -92,6 +92,13 @@ pricelist_id -> billing.pricelist.id
 </tr>
 
 <tr>
+<td>auth</td>
+<td>user</td>
+<td>client_id -> billing.client.id</td>
+<td>Содержит список пользователей для входа в ЛК. Логин, пароль, привязка к контрагенту.</td>
+</tr>
+
+<tr>
 <td>calls</td>
 <td>cdr</td>
 <td>-</td>
