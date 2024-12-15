@@ -75,7 +75,7 @@
 
 <tr>
 <td>auth</td>
-<td>client_id -> billing.client.id</td>
+<td>packet</td>
 <td>
 service_trunk_id -> billing.service_trunk.id<br>
 service_number_id -> billing.service_number.id<br>
