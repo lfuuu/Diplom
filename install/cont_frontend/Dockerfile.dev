@@ -1,0 +1,15 @@
+FROM node:18
+
+WORKDIR /app
+
+# Установка Angular CLI
+RUN npm install -g @angular/cli
+
+# Копируем зависимости
+#COPY package*.json ./
+#RUN npm install
+
+# Копируем исходный код
+#COPY . .
+
+EXPOSE 4200 49153

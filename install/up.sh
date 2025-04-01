@@ -6,7 +6,7 @@ pushd $DIR
 
 unset DOCKER_HOST
 
-docker-compose --project-name dev-telbill -f docker-compose.yml up
+docker-compose --project-name dev-diplom -f docker-compose.dev.yml up
 
 
 echo http://0.0.0.0:8022/pgadmin4/ - pgadmin
