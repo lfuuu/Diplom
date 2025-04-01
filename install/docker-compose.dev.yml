@@ -57,14 +57,10 @@ services:
       args:
         HOST_UID: ${HOST_UID}
         HOST_GID: ${HOST_GID}      
-    #volumes:
-      # - ./backend:/app
-      # - /app/node_modules
     environment:
       - HOST_UID=${HOST_UID}
       - HOST_GID=${HOST_GID}    
-      # NODE_ENV: development
-      # DATABASE_URL: postgres://devuser:devpass@postgres:5432/trunkdev
+      - DATABASE_URL="postgres://devuser:devpass@postgres:5432/trunkdev"
     # ports:
     #   - "3000:3000"
     #   - "9229:9229" # Node.js debug port
