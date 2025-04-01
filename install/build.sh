@@ -4,10 +4,14 @@ THIS=`readlink -f "${BASH_SOURCE[0]}"`
 DIR=`dirname "${THIS}"`
 pushd $DIR
 
-echo "Ваш UID: $(id -u), GID: $(id -g)"
+HOST_UID=$(id -u)
+HOST_GID=$(id -g)
 
-unset DOCKER_HOST
+export HOST_UID
+export HOST_GID
 
-docker-compose --project-name dev-diplom -f docker-compose.dev.yml build
+echo "Ваш UID: $HOST_UID, GID: $HOST_GID"
+
+docker-compose --project-name dev-diplom -f docker-compose.dev.yml build --build-arg HOST_UID=$HOST_UID --build-arg HOST_GID=$HOST_GID
 
 popd

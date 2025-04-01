@@ -70,7 +70,8 @@ services:
     #   - "9229:9229" # Node.js debug port
     #command: npm run dev:debug
     volumes:
-      - ./cont_backend/backend-admin:/app/src
+      - ./cont_backend/backend-admin:/home/appuser/src
+      - ./workspace:/workspace
     command: sleep infinity
 
 
