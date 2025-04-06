@@ -13,8 +13,6 @@ function build() {
 function up() {
   echo "Up:"  # --project-name dev-diplom
   docker compose -f docker-compose.dev.yml up
-      
-
   echo http://0.0.0.0:8022/pgadmin4/ - pgadmin
 }
 
@@ -64,7 +62,7 @@ export HOST_UID
 export HOST_GID
 export COMPOSE_PROJECT_NAME
 
-echo "Ваш UID: $HOST_UID, GID: $HOST_GID"
+echo "Ваш UID: $HOST_UID, GID: $HOST_GID, COMPOSE_PROJECT_NAME: $COMPOSE_PROJECT_NAME"
 
 main $@
 
