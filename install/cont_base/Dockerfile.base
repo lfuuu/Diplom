@@ -1,0 +1,30 @@
+FROM ubuntu:22.04
+
+# Аргументы для передачи UID/GID
+ARG HOST_UID
+ARG HOST_GID
+
+RUN apt-get update && apt-get install -y \
+    sudo \
+    curl \
+    git \
+    gnupg2 \
+    software-properties-common \
+    mc iputils-ping\
+    && rm -rf /var/lib/apt/lists/*
+
+# Создаем группу и пользователя с переданными UID/GID
+
+RUN groupadd -g $HOST_GID appuser && \
+    useradd -u $HOST_UID -g $HOST_GID -ms /bin/bash appuser && \
+    echo 'appuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+# Переключаемся на созданного пользователя
+USER appuser
+WORKDIR /home/appuser/app
+
+#Пример: Установка Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && \
+    sudo apt-get install -y nodejs
+
+RUN sudo npm install -g npm@latest nodemon ts-node typescript

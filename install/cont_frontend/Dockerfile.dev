@@ -1,15 +1,7 @@
-FROM node:18
-
-WORKDIR /app
+ARG COMPOSE_PROJECT_NAME
+FROM ${COMPOSE_PROJECT_NAME}-base:latest
 
 # Установка Angular CLI
-RUN npm install -g @angular/cli
+RUN sudo npm install -g @angular/cli
 
-# Копируем зависимости
-#COPY package*.json ./
-#RUN npm install
-
-# Копируем исходный код
-#COPY . .
-
-EXPOSE 4200 49153
+CMD ["sleep", "infinity"]
