@@ -3,7 +3,6 @@ import { AppDataSource } from "./data-source"
 import { serve, setup } from 'swagger-ui-express';
 import expressJSDocSwagger from 'express-jsdoc-swagger';
 
-
 export async function setupSwagger(app: Express) { // Указываем тип параметра
     const connection = AppDataSource;
 
@@ -45,6 +44,7 @@ export async function setupSwagger(app: Express) { // Указываем тип 
     };
 
     // Инициализация Swagger
+  //  expressJSDocSwagger(app)(options);
     app.use('/api-docs', serve, setup(undefined, options));
-    expressJSDocSwagger(app)(options);
+    
 }
