@@ -4,6 +4,7 @@ import { Request, Response } from "express"
 import { AppDataSource } from "./data-source"
 import { Routes } from "./routes"
 import { User } from "./entity/User"
+import { setupSwagger } from "./swagger"
 
 
 AppDataSource.initialize().then(async () => {
@@ -26,10 +27,9 @@ AppDataSource.initialize().then(async () => {
     })
 
     // setup express app here
-    // ...
-    //expressJSDocSwagger(app)(options);
-    //app.use('/api-docs', serve, setup(undefined, options));
-    // start express server
+
+    await setupSwagger(app);
+
     app.listen(3000)
 
     // insert new users for test

@@ -1,47 +1,50 @@
+import { Express } from 'express'; // Добавляем импорт типа
 import { AppDataSource } from "./data-source"
 import { serve, setup } from 'swagger-ui-express';
-import { Express } from 'express';
+import expressJSDocSwagger from 'express-jsdoc-swagger';
 
-export async function setupSwagger(app: Express) {
+
+export async function setupSwagger(app: Express) { // Указываем тип параметра
     const connection = AppDataSource;
-    const entityMetadatas = connection.entityMetadatas;
 
-    const schemas = entityMetadatas.reduce((acc, entity) => {
-        const properties = entity.columns.reduce((acc, column) => {
-            const type = column.type instanceof Function ? column.type.name : column.type;
-            acc[column.propertyName] = {
-                type,
+    // Генерация схем из TypeORM метаданных
+    const schemas = connection.entityMetadatas.reduce((acc, entity) => {
+        const properties = entity.columns.reduce((props, column) => ({
+            ...props,
+            [column.propertyName]: {
+                type: column.type instanceof Function ? column.type.name : column.type,
                 nullable: column.isNullable,
                 description: column.comment || '',
-            };
-            return acc;
-        }, {});
+            }
+        }), {});
 
-        acc[entity.name] = {
-            type: 'object',
-            properties,
+        return {
+            ...acc,
+            [entity.name]: {
+                type: 'object',
+                properties,
+                required: entity.columns
+                    .filter(col => !col.isNullable)
+                    .map(col => col.propertyName)
+            }
         };
-
-        return acc;
     }, {});
 
     const options = {
         info: {
             title: 'API Documentation',
-            version: '1.0.0',
-            description: 'Automatically generated from TypeORM entities',
+            version: '1.0.0'
         },
         baseDir: __dirname,
-        filesPattern: ['**/*.ts'],
+        filesPattern: './**/*.ts',
         swaggerUIPath: '/api-docs',
         exposeSwaggerUI: true,
-        exposeApiDocs: false,
         swaggerOptions: {
-            components: {
-                schemas
-            }
+            components: { schemas }
         }
     };
 
-
+    // Инициализация Swagger
+    app.use('/api-docs', serve, setup(undefined, options));
+    expressJSDocSwagger(app)(options);
 }
