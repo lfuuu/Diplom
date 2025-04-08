@@ -5,6 +5,7 @@ import { AppDataSource } from "./data-source"
 import { Routes } from "./routes"
 import { User } from "./entity/User"
 
+
 AppDataSource.initialize().then(async () => {
 
     // create express app
@@ -26,7 +27,8 @@ AppDataSource.initialize().then(async () => {
 
     // setup express app here
     // ...
-
+    //expressJSDocSwagger(app)(options);
+    //app.use('/api-docs', serve, setup(undefined, options));
     // start express server
     app.listen(3000)
 
