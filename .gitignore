@@ -3,3 +3,4 @@ docs/c4-dsl/.structurizr
 docs/c4-dsl/workspace.json
 
 src/backend-admin/node_modules/*
+target/*
