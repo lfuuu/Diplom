@@ -1,6 +1,11 @@
 ARG COMPOSE_PROJECT_NAME
 FROM ${COMPOSE_PROJECT_NAME}-base:latest
 
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && \
+    sudo apt-get install -y nodejs
+
+RUN sudo npm install -g npm@latest nodemon ts-node typescript
+
 # Установка Angular CLI
 RUN sudo npm install -g @angular/cli
 

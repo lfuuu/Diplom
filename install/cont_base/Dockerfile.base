@@ -4,13 +4,28 @@ FROM ubuntu:22.04
 ARG HOST_UID
 ARG HOST_GID
 
-RUN apt-get update && apt-get install -y \
+ENV TZ=Europe/Moscow
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+
+# Объединяем все операции в один RUN с явной настройкой tzdata
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
     sudo \
     curl \
     git \
     gnupg2 \
     software-properties-common \
-    mc iputils-ping\
+    mc \
+    iputils-ping \
+    locales \
+    tzdata \
+    && ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && dpkg-reconfigure --frontend noninteractive tzdata \
+    && sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen \
+    && locale-gen en_US.UTF-8 \
+    && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
     && rm -rf /var/lib/apt/lists/*
 
 # Создаем группу и пользователя с переданными UID/GID
@@ -19,12 +34,13 @@ RUN groupadd -g $HOST_GID appuser && \
     useradd -u $HOST_UID -g $HOST_GID -ms /bin/bash appuser && \
     echo 'appuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
+# Настройки для оболочки
+RUN echo "export LANG=$LANG" >> ~/.bashrc \
+    && echo "export LC_ALL=$LC_ALL" >> ~/.bashrc \
+    && echo "export TZ=$TZ" >> ~/.bashrc
+
 # Переключаемся на созданного пользователя
 USER appuser
 WORKDIR /home/appuser/app
 
 #Пример: Установка Node.js
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && \
-    sudo apt-get install -y nodejs
-
-RUN sudo npm install -g npm@latest nodemon ts-node typescript

@@ -1,14 +1,17 @@
 ARG COMPOSE_PROJECT_NAME
 FROM ${COMPOSE_PROJECT_NAME}-base:latest
 
+RUN echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | sudo tee /etc/apt/sources.list.d/sbt.list && \
+    echo "deb https://repo.scala-sbt.org/scalasbt/debian /" | sudo tee /etc/apt/sources.list.d/sbt_old.list && \
+    curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | sudo -H gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/scalasbt-release.gpg --import && \
+    sudo chmod 644 /etc/apt/trusted.gpg.d/scalasbt-release.gpg
+
+RUN sudo apt update -y
+RUN sudo apt-get install -y  openjdk-17-jdk sbt
+
 # Копируем зависимости
 #COPY package*.json ./
 #RUN npm install
-
-# Копируем исходный код
-#COPY . .
-
-# Сервис-специфичные настройки
 
 CMD ["sleep", "infinity"]
 
