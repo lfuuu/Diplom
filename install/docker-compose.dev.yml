@@ -1,5 +1,4 @@
 
-
 services:
 
   base-image:
@@ -11,8 +10,9 @@ services:
       dockerfile: Dockerfile.base
       args:
           HOST_UID: ${HOST_UID}
-          HOST_GID: ${HOST_GID}      
-    image: ${COMPOSE_PROJECT_NAME}-base:latest
+          HOST_GID: ${HOST_GID}
+          COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}      
+    image: diplom-base:latest
 
   nginx:
     image: nginx
@@ -60,8 +60,8 @@ services:
     logging:
       driver: "none"
 
-  backend-admin:
-    hostname: backend-admin
+  backend:
+    hostname: backend
     build:
       context: ./cont_backend
       dockerfile: Dockerfile.dev
@@ -70,28 +70,13 @@ services:
     environment:
     - DATABASE_URL="postgres://devuser:devpass@postgres:5432/trunkdev"
     volumes:
-    - ./cont_backend/backend-admin:/home/appuser/src
+    - ./cont_backend/backend:/home/appuser/src
     - ./workspace:/workspace
     command: sleep infinity
 
 
-  backend-lk:
-    hostname: backend-lk
-    build:
-      context: ./cont_backend
-      dockerfile: Dockerfile.dev
-      args:
-      - COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME}
-    environment:
-      - NODE_ENV=development
-      - DATABASE_URL=postgres://devuser:devpass@postgres:5432/trunkdev
-    volumes:
-      - ./cont_backend/backend-lk:/home/appuser/src
-      - ./workspace:/workspace
-    command: sleep infinity
-
-  frontend-admin:
-    hostname: frontend-admin
+  frontend:
+    hostname: frontend
     build:
       context: ./cont_frontend
       dockerfile: Dockerfile.dev
@@ -101,21 +86,6 @@ services:
       - NODE_ENV=development
       - DATABASE_URL=postgres://devuser:devpass@postgres:5432/trunkdev
     volumes:
-      - ./cont_frontend/frontend-admin:/home/appuser/src
-      - ./workspace:/workspace
-    command: sleep infinity
-
-  frontend-lk:
-    hostname: frontend-admin
-    build:
-      context: ./cont_frontend
-      dockerfile: Dockerfile.dev
-      args:
-      - COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME}    
-    environment:
-      - NODE_ENV=development
-      - DATABASE_URL=postgres://devuser:devpass@postgres:5432/trunkdev
-    volumes:
-      - ./cont_frontend/frontend-lk:/home/appuser/src
+      - ./cont_frontend/frontend:/home/appuser/src
       - ./workspace:/workspace
     command: sleep infinity

@@ -1,5 +1,4 @@
-ARG COMPOSE_PROJECT_NAME
-FROM ${COMPOSE_PROJECT_NAME}-base:latest
+FROM diplom-base:latest
 
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && \
     sudo apt-get install -y nodejs
