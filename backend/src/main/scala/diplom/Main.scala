@@ -26,15 +26,14 @@ object Main extends IOApp.Simple {
                   val services = Services.make[IO](cfg, res)
                   val programs = Programs.make[IO](cfg, services, clients)
                   val api      = HttpApi.make[IO](services, programs, res, security)
-                  
+
                   (cfg, api)
                 }
               }
               .flatMap {
                 case (cfg, api) =>
-                  
-                    MkHttpServer[IO].newEmber(cfg.httpServerConfig, api.httpApp)
-                  
+                  MkHttpServer[IO].newEmber(cfg.httpServerConfig, api.httpApp)
+
               }
               .useForever
 

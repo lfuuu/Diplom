@@ -22,7 +22,6 @@ object types {
     uri: RestPusherURI
   )
 
-
   case class AdminUserTokenConfig(secret: NonEmptyString)
 
   case class JwtSecretKeyConfig(secret: NonEmptyString)
