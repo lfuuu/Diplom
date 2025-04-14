@@ -3,24 +3,16 @@ package com.mcn.diplom.http.routes
 import cats.Monad
 import cats.effect.kernel.{ Async, Sync }
 import cats.syntax.all._
-import com.mcn.diplom.domain.CallMetricIncoming._
-import com.mcn.diplom.domain.DvoNumberCheckRequest._
-import com.mcn.diplom.domain.DvoNumberCheckResponse._
-import com.mcn.diplom.domain.ExtEventReciever._
-import com.mcn.diplom.domain.TransitCallMetricIncoming._
-import com.mcn.diplom.domain.VpbxEvent._
-import com.mcn.diplom.domain.{ AuthMetricEvent, AuthTransitMetricEvent, ShutUpEvent, ShutUpIncoming }
+import com.mcn.diplom.domain.StatusResponse
 import com.mcn.diplom.lib.Time
 import com.mcn.diplom.modules.Services
 import io.circe.generic.auto._
-import io.circe.syntax._
 import org.http4s._
 import org.http4s.dsl.Http4sDsl
 import org.http4s.server.Router
 import org.typelevel.log4cats.slf4j.Slf4jLogger
 import org.typelevel.log4cats.{ Logger, SelfAwareStructuredLogger }
 import sttp.tapir._
-import sttp.tapir.codec.newtype._
 import sttp.tapir.generic.auto._
 import sttp.tapir.json.circe._
 import sttp.tapir.server.ServerEndpoint
@@ -28,14 +20,6 @@ import sttp.tapir.server.http4s.{ Http4sServerInterpreter, Http4sServerOptions }
 import sttp.tapir.server.metrics.prometheus.PrometheusMetrics
 import sttp.tapir.swagger.SwaggerUIOptions
 import sttp.tapir.swagger.bundle.SwaggerInterpreter
-import com.mcn.diplom.domain.DvoEventOutcomingError
-import com.mcn.diplom.domain.DidForwartTypesRequest
-import com.mcn.diplom.domain.DvoDidSettingsOutcoming._
-import com.mcn.diplom.domain.DvoEventOutcomingErrorStatus
-import com.mcn.diplom.domain.DvoEventOutcomingErrorMessage
-import com.mcn.diplom.domain.SormTrunkRequest
-import com.mcn.diplom.domain.SormTrunkResponse
-import com.mcn.diplom.domain.StatusResponse
 
 class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
 

@@ -3,8 +3,6 @@ package com.mcn.diplom.services
 import cats.Applicative
 import cats.effect._
 import cats.syntax.all._
-import com.mcn.diplom.domain.Cdr
-import com.mcn.diplom.domain.CdrAccountStatusTypeEnum._
 import com.mcn.diplom.retries.Retry
 import com.mcn.diplom.sql.codecs._
 import org.typelevel.log4cats.slf4j.Slf4jLogger

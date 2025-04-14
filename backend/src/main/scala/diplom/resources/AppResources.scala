@@ -2,17 +2,12 @@ package com.mcn.diplom.resources
 
 import cats.Applicative
 import cats.effect.kernel.Async
-import cats.effect.std.{ Console, Queue }
+import cats.effect.std.Console
 import cats.effect.{ Concurrent, Resource }
 import cats.syntax.all._
 import com.mcn.diplom.config.types._
-import com.mcn.diplom.domain.VpbxEvent._
-import com.mcn.diplom.domain.{ Cdr, _ }
-import com.mcn.diplom.lib.{ MD5Hasher, Producer }
-import com.mcn.diplom.services.cdrInserter.{ CdrInserterService, ChunkInserterData }
 import eu.timepit.refined.auto._
 import fs2.io.net.Network
-import io.circe.Json
 import natchez.Trace.Implicits.noop
 import org.http4s.client.Client
 import org.typelevel.log4cats.Logger

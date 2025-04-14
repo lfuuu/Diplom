@@ -2,7 +2,6 @@ package com.mcn.diplom.retries
 
 import derevo.cats.show
 import derevo.derive
-import fs2.io.file.Path
 
 @derive(show)
 sealed trait Retriable

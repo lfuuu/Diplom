@@ -12,9 +12,16 @@ import eu.timepit.refined.types.string.NonEmptyString
 import io.estatico.newtype.macros.newtype
 import pureconfig.ConfigReader
 import pureconfig.error._
-import pureconfig.generic.semiauto._
 
 object types {
+
+  case class RestPusherURI(value: NonEmptyString)
+  case class GrayLogPusherURI(value: NonEmptyString)
+
+  case class RestPusherConfig(
+    uri: RestPusherURI
+  )
+
 
   case class AdminUserTokenConfig(secret: NonEmptyString)
 

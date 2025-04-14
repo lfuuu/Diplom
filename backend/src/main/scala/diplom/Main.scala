@@ -2,10 +2,8 @@ package com.mcn.diplom
 
 import cats.effect._
 import cats.effect.std.Supervisor
-import cats.syntax.all._
 import com.mcn.diplom.modules._
 import com.mcn.diplom.resources.{ AppResources, MkHttpServer }
-import fs2.io.file.Path
 import org.typelevel.log4cats.slf4j.Slf4jLogger
 import org.typelevel.log4cats.{ Logger, SelfAwareStructuredLogger }
 
@@ -28,20 +26,15 @@ object Main extends IOApp.Simple {
                   val services = Services.make[IO](cfg, res)
                   val programs = Programs.make[IO](cfg, services, clients)
                   val api      = HttpApi.make[IO](services, programs, res, security)
-                  R
+                  
                   (cfg, api)
                 }
               }
               .flatMap {
                 case (cfg, api) =>
-                  (
-                    MkHttpServer[IO].newEmber(cfg.httpServerConfig, api.httpApp),
-                    MkRadiusServer.make[IO](radiusAccounting),
-                    MkChunkInserter.make[IO](cdrChunkInserter),
-                    MkMetricCollector.make[IO](cfg.metricTransmitter, metricTransmitter),
-                    MkDVOConsumer.make[IO](cfg.kafkaBrokerConfig, vpbxEventModule),
-                    MkTransitCallCollector.make[IO](cfg.transitCallCollectorConfig, transitCallCollectorModule)
-                  ).parTupled
+                  
+                    MkHttpServer[IO].newEmber(cfg.httpServerConfig, api.httpApp)
+                  
               }
               .useForever
 
