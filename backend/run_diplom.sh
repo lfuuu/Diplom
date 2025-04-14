@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sbt "project diplom; runMain com.mcn.diplom.Main"
+sbt "runMain com.mcn.diplom.Main"
