@@ -1,0 +1,108 @@
+package com.mcn.diplom.http.routes
+
+import cats.Monad
+import cats.effect.kernel.{ Async, Sync }
+import cats.syntax.all._
+import com.mcn.diplom.domain.CallMetricIncoming._
+import com.mcn.diplom.domain.DvoNumberCheckRequest._
+import com.mcn.diplom.domain.DvoNumberCheckResponse._
+import com.mcn.diplom.domain.ExtEventReciever._
+import com.mcn.diplom.domain.TransitCallMetricIncoming._
+import com.mcn.diplom.domain.VpbxEvent._
+import com.mcn.diplom.domain.{ AuthMetricEvent, AuthTransitMetricEvent, ShutUpEvent, ShutUpIncoming }
+import com.mcn.diplom.lib.Time
+import com.mcn.diplom.modules.Services
+import io.circe.generic.auto._
+import io.circe.syntax._
+import org.http4s._
+import org.http4s.dsl.Http4sDsl
+import org.http4s.server.Router
+import org.typelevel.log4cats.slf4j.Slf4jLogger
+import org.typelevel.log4cats.{ Logger, SelfAwareStructuredLogger }
+import sttp.tapir._
+import sttp.tapir.codec.newtype._
+import sttp.tapir.generic.auto._
+import sttp.tapir.json.circe._
+import sttp.tapir.server.ServerEndpoint
+import sttp.tapir.server.http4s.{ Http4sServerInterpreter, Http4sServerOptions }
+import sttp.tapir.server.metrics.prometheus.PrometheusMetrics
+import sttp.tapir.swagger.SwaggerUIOptions
+import sttp.tapir.swagger.bundle.SwaggerInterpreter
+import com.mcn.diplom.domain.DvoEventOutcomingError
+import com.mcn.diplom.domain.DidForwartTypesRequest
+import com.mcn.diplom.domain.DvoDidSettingsOutcoming._
+import com.mcn.diplom.domain.DvoEventOutcomingErrorStatus
+import com.mcn.diplom.domain.DvoEventOutcomingErrorMessage
+import com.mcn.diplom.domain.SormTrunkRequest
+import com.mcn.diplom.domain.SormTrunkResponse
+import com.mcn.diplom.domain.StatusResponse
+
+class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
+
+  implicit val logger: SelfAwareStructuredLogger[F] = Slf4jLogger.getLogger
+  // val responsesTotal = Metric[F, Counter](
+  //   Counter
+  //     .builder()
+  //     .name("tapir_responses_total")
+  //     .help("HTTP responses")
+  //     .labelNames("path", "method", "status")
+  //     .register(PrometheusRegistry.defaultRegistry),
+  //   onRequest = { (req, counter, m) =>
+  //     m.unit {
+  //       EndpointMetric()
+  //         .onResponseBody { (ep, res) =>
+  //           val path   = ep.showPathTemplate()
+  //           val method = req.method.method
+  //           val status = res.code.toString()
+  //           m.eval(counter.labelValues(path, method, status).inc())
+  //         }
+  //     }
+  //   }
+  // )
+
+  val statusEndpoint: PublicEndpoint[Unit, Unit, StatusResponse, Any] = endpoint.get
+    .in("status")
+    .out(jsonBody[StatusResponse])
+    .description("проверка статуса приложения.")
+
+  val statusServerEndpoint: ServerEndpoint[Any, F] =
+    statusEndpoint.serverLogicSuccess(transitCallMetricIncoming => StatusResponse("OK", "Сообщение").pure[F])
+
+  val apiEndpoints =
+    List(
+      statusServerEndpoint
+    )
+
+  val docEndpoints: List[ServerEndpoint[Any, F]] =
+    SwaggerInterpreter(swaggerUIOptions = SwaggerUIOptions.default.copy(contextPath = List("v1", "api")).withAbsolutePaths)
+      .fromServerEndpoints[F](apiEndpoints, "acc2", "1.0.0")
+
+  val prometheusMetrics: PrometheusMetrics[F] = PrometheusMetrics.default[F]()
+  val metricsEndpoint: ServerEndpoint[Any, F] = prometheusMetrics.metricsEndpoint
+
+  val all: List[ServerEndpoint[Any, F]] = apiEndpoints ++ docEndpoints ++ List(metricsEndpoint)
+}
+
+final case class TapirRoutes[F[_]: Monad: Async: Logger](
+  services: Services[F]
+) extends Http4sDsl[F] {
+
+  implicit val logger: SelfAwareStructuredLogger[F] = Slf4jLogger.getLogger
+
+  private[routes] val prefixPath = "/api"
+
+  val endoints = new Endpoints(services)
+
+  val serverOptions: Http4sServerOptions[F] =
+    Http4sServerOptions
+      .customiseInterceptors[F]
+      .metricsInterceptor(endoints.prometheusMetrics.metricsInterceptor())
+      .options
+
+  private val tapirRoutes = Http4sServerInterpreter[F](serverOptions).toRoutes(endoints.all)
+
+  val routes: HttpRoutes[F] = Router(
+    prefixPath -> tapirRoutes
+  )
+
+}

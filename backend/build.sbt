@@ -34,7 +34,6 @@ val commonSettings = List(
     Libraries.circeGeneric,
     Libraries.circeParser,
     Libraries.circeRefined,
-    Libraries.circeLiteral,
     Libraries.http4sServer,
     Libraries.http4sJwtAuth,
     Libraries.http4sClient,
@@ -80,9 +79,6 @@ val commonSettings = List(
     Libraries.log4catsNoOp,
     Libraries.scodecCore,
     Libraries.meowmtlCore,
-    Libraries.kafkaStreams,
-    Libraries.kafkaStreamsTestUtils % Test,
-    Libraries.munit % Test,
     Libraries.scodecTestKit % Test,
     Libraries.monocleLaw        % Test,
     Libraries.refinedScalacheck % Test,
@@ -99,20 +95,20 @@ val commonSettings = List(
 
 lazy val root = (project in file("."))
   .settings(
-    name := "diplom"
+    name := "acc2"
   )
-  .aggregate(diplom)
+  .aggregate(acc2)
 
 // https://docs.scala-lang.org/overviews/compiler-options/index.html
 
-lazy val diplom = (project in file("src"))
+lazy val acc2 = (project in file("src-acc2"))
   .settings(commonSettings: _*)
   .settings(
-    name := "diplom",
+    name := "acc2",
     Compile / mainClass := Some("com.mcn.diplom.Main"),
     makeBatScripts := Seq(),
     Compile / run / fork := true,
-    assembly / assemblyJarName := "diplom.jar",
+    assembly / assemblyJarName := "acc2.jar",
     assembly / mainClass := Some("com.mcn.diplom.Main"),
     assembly / assemblyMergeStrategy := {
 

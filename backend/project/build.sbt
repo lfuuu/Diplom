@@ -99,21 +99,21 @@ val commonSettings = List(
 
 lazy val root = (project in file("."))
   .settings(
-    name := "diplom"
+    name := "calligrapherProc"
   )
-  .aggregate(diplom)
+  .aggregate(calligrapherProc)
 
 // https://docs.scala-lang.org/overviews/compiler-options/index.html
 
-lazy val diplom = (project in file("src"))
+lazy val calligrapherProc = (project in file("src/calligrapherProc"))
   .settings(commonSettings: _*)
   .settings(
-    name := "diplom",
-    Compile / mainClass := Some("com.mcn.diplom.Main"),
+    name := "calligrapherProc",
+    Compile / mainClass := Some("com.mcn.calligrapherProc.Main"),
     makeBatScripts := Seq(),
     Compile / run / fork := true,
-    assembly / assemblyJarName := "diplom.jar",
-    assembly / mainClass := Some("com.mcn.diplom.Main"),
+    assembly / assemblyJarName := "calligrapherProc.jar",
+    assembly / mainClass := Some("com.mcn.calligrapherProc.Main"),
     assembly / assemblyMergeStrategy := {
 
       case PathList("reference.conf")                                         => MergeStrategy.concat
