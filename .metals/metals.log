@@ -1,0 +1,612 @@
+2025.04.14 21:42:23 INFO  Started: Metals version 1.5.2 in folders '/workspace' for client Visual Studio Code 1.98.2.
+2025.04.14 21:42:25 INFO  no build target found for /workspace/backend/src/main/scala/diplom/Main.scala. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:42:25 INFO  Attempting to connect to the build server...
+2025.04.14 21:42:25 INFO  Found a Bloop server running
+2025.04.14 21:42:25 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /workspace/.metals/bsp.trace.json or /home/appuser/.cache/metals/bsp.trace.json
+2025.04.14 21:42:25 INFO  time: Connected to build server in 0.41s
+2025.04.14 21:42:25 INFO  Connected to Build server: Bloop v2.0.9
+Apr 14, 2025 9:42:25 PM scala.meta.internal.metals.StdReporter $anonfun$create$1
+WARNING: Empty build targets. Expected at least one build target identifier. (full report at: /workspace/.metals/.reports/bloop/2025-04-14/r_Empty build targets...._21-42-25-838.md)
+Apr 14, 2025 9:42:25 PM scala.meta.internal.metals.StdReporter $anonfun$create$1
+WARNING: Empty build targets. Expected at least one build target identifier. (full report at: /workspace/.metals/.reports/bloop/2025-04-14/r_Empty build targets...._21-42-25-838.md)
+Apr 14, 2025 9:42:25 PM scala.meta.internal.metals.StdReporter $anonfun$create$1
+WARNING: Empty build targets. Expected at least one build target identifier. (full report at: /workspace/.metals/.reports/bloop/2025-04-14/r_Empty build targets...._21-42-25-838.md)
+Apr 14, 2025 9:42:25 PM scala.meta.internal.metals.StdReporter $anonfun$create$1
+WARNING: Empty build targets. Expected at least one build target identifier. (full report at: /workspace/.metals/.reports/bloop/2025-04-14/r_Empty build targets...._21-42-25-838.md)
+Apr 14, 2025 9:42:25 PM scala.meta.internal.metals.StdReporter $anonfun$create$1
+WARNING: Empty build targets. Expected at least one build target identifier. (full report at: /workspace/.metals/.reports/bloop/2025-04-14/r_Empty build targets...._21-42-25-838.md)
+2025.04.14 21:42:26 INFO  time: Imported build in 0.24s
+Align: top-level presets deprecated; use 'preset' subsection
+DanglingParentheses: top-level presets deprecated; use 'preset' subsection
+2025.04.14 21:42:27 WARN  Could not find java sources in /usr/lib/jvm/src.zip, /usr/lib/jvm/lib/src.zip, /usr/lib/jvm/java-17-openjdk-amd64/src.zip, /usr/lib/jvm/java-17-openjdk-amd64/lib/src.zip. Java symbols will not be available.
+2025.04.14 21:42:27 INFO  time: indexed workspace in 1.16s
+2025.04.14 21:42:27 WARN  no build target for: /workspace/backend/src/main/scala/diplom/Main.scala
+2025.04.14 21:42:27 WARN  no build target for: /workspace/backend/src/main/scala/diplom/Main.scala
+2025.04.14 21:42:27 INFO  no build target found for /workspace/backend/src/main/scala/diplom/Main.scala. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:42:27 INFO  no build target found for /workspace/backend/src/main/scala/diplom/Main.scala. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:42:29 INFO  time: code lens generation in 1.49s
+2025.04.14 21:42:29 INFO  time: code lens generation in 1.77s
+2025.04.14 21:42:29 INFO  time: code lens generation in 1.77s
+2025.04.14 21:42:31 INFO  no build target found for /workspace/backend/src/main/scala/diplom/Main.scala. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:42:41 INFO  running '/usr/bin/sbt -Dbloop.export-jar-classifiers=sources bloopInstall'
+2025.04.14 21:42:42 INFO  no build target found for /workspace/backend/src/main/scala/diplom/Main.scala. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:42:42 INFO  [info] welcome to sbt 1.9.9 (Ubuntu Java 17.0.14)
+2025.04.14 21:42:42 INFO  no build target found for /workspace/backend/src/main/scala/diplom/Main.scala. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:42:45 INFO  [info] loading settings for project workspace-build-build-build from metals.sbt ...
+2025.04.14 21:42:45 INFO  [info] loading project definition from /workspace/project/project/project
+2025.04.14 21:42:48 INFO  [info] loading settings for project workspace-build-build from metals.sbt ...
+2025.04.14 21:42:48 INFO  [info] loading project definition from /workspace/project/project
+2025.04.14 21:42:49 INFO  no build target found for /workspace/backend/src/main/scala/diplom/Main.scala. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:42:50 INFO  [success] Generated .bloop/workspace-build-build.json
+2025.04.14 21:42:50 INFO  [warn] Removed stale /workspace/project/project/.bloop/backend-build-build.json
+2025.04.14 21:42:50 INFO  [success] Total time: 2 s, completed Apr 14, 2025, 9:42:50 PM
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:1: error: not found: object Dependencies
+2025.04.14 21:42:51 ERROR import Dependencies._
+2025.04.14 21:42:51 ERROR        ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:18: error: not found: value scalafmtOnCompile
+2025.04.14 21:42:51 ERROR   scalafmtOnCompile := true, // recommended in Scala 3 = false
+2025.04.14 21:42:51 ERROR   ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:26: error: not found: value CompilerPlugin
+2025.04.14 21:42:51 ERROR     CompilerPlugin.kindProjector,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:27: error: not found: value CompilerPlugin
+2025.04.14 21:42:51 ERROR     CompilerPlugin.betterMonadicFor,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:28: error: not found: value CompilerPlugin
+2025.04.14 21:42:51 ERROR     CompilerPlugin.semanticDB,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:29: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.cirisCore,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:30: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.cats,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:31: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.catsEffect,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:32: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.catsRetry,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:33: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.circeCore,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:34: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.circeGeneric,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:35: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.circeParser,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:36: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.circeRefined,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:37: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.circeLiteral,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:38: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.http4sServer,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:39: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.http4sJwtAuth,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:40: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.http4sClient,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:41: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.http4sCirce,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:42: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.derevoCore,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:43: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.derevoCats,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:44: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.derevoCirce,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:45: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.pureconfigCore,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:46: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.pureconfigCatsEffects,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:47: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.pureconfigIp4s,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:48: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.fs2,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:49: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.fs2Codecs,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:50: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.fs2Protocols,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:51: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.fs2Kafka,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:52: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.http4sDsl,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:53: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.log4cats,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:54: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.logback % Runtime,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:55: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.monocleCore,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:56: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.monocleMacro,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:57: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.newtype,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:58: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.refinedCore,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:59: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.refinedCats,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:60: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.tapirCore,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:61: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.tapirHttp4s,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:62: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.tapirSwagger,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:63: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.tapirCirce,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:64: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.tapirPrometheusMetrics,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:65: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.tapirCats,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:66: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.tapirRefined,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:67: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.tapirNewType,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:68: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.tapirDerevo,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:69: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.tapirSttpStubServer % Test,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:70: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.tapirSttpClient3 % Test,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:71: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.skunkCore,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:72: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.skunkCirce,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:73: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.skunkRefined,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:74: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.squants,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:75: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.fs2Kafka,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:76: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.bouncyCastle,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:77: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.http4sJwtAuth,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:78: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.refinedPureconfig,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:79: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.catsLaws % Test,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:80: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.log4catsNoOp,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:81: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.scodecCore,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:82: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.meowmtlCore,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:83: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.kafkaStreams,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:84: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.kafkaStreamsTestUtils % Test,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:85: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.munit % Test,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:86: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.scodecTestKit % Test,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:87: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.monocleLaw        % Test,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:88: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.refinedScalacheck % Test,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:89: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.weaverCats        % Test,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:90: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.weaverDiscipline  % Test,
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:91: error: not found: value Libraries
+2025.04.14 21:42:51 ERROR     Libraries.weaverScalaCheck  % Test
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:94: error: not found: value assembly
+2025.04.14 21:42:51 ERROR   assembly / assemblyMergeStrategy := {
+2025.04.14 21:42:51 ERROR   ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:94: error: not found: value assemblyMergeStrategy
+2025.04.14 21:42:51 ERROR   assembly / assemblyMergeStrategy := {
+2025.04.14 21:42:51 ERROR              ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:95: error: not found: value PathList
+2025.04.14 21:42:51 ERROR     case PathList("META-INF", "io.netty.versions.properties") => MergeStrategy.first
+2025.04.14 21:42:51 ERROR          ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:95: error: not found: value MergeStrategy
+2025.04.14 21:42:51 ERROR     case PathList("META-INF", "io.netty.versions.properties") => MergeStrategy.first
+2025.04.14 21:42:51 ERROR                                                                  ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:96: error: not found: value MergeStrategy
+2025.04.14 21:42:51 ERROR     case _                                                    => MergeStrategy.first
+2025.04.14 21:42:51 ERROR                                                                  ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:113: error: not found: value makeBatScripts
+2025.04.14 21:42:51 ERROR     makeBatScripts := Seq(),
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:115: error: not found: value assembly
+2025.04.14 21:42:51 ERROR     assembly / assemblyJarName := "diplom.jar",
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:115: error: not found: value assemblyJarName
+2025.04.14 21:42:51 ERROR     assembly / assemblyJarName := "diplom.jar",
+2025.04.14 21:42:51 ERROR                ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:116: error: not found: value assembly
+2025.04.14 21:42:51 ERROR     assembly / mainClass := Some("com.mcn.diplom.Main"),
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:117: error: not found: value assembly
+2025.04.14 21:42:51 ERROR     assembly / assemblyMergeStrategy := {
+2025.04.14 21:42:51 ERROR     ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:117: error: not found: value assemblyMergeStrategy
+2025.04.14 21:42:51 ERROR     assembly / assemblyMergeStrategy := {
+2025.04.14 21:42:51 ERROR                ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:119: error: not found: value PathList
+2025.04.14 21:42:51 ERROR       case PathList("reference.conf")                                         => MergeStrategy.concat
+2025.04.14 21:42:51 ERROR            ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:119: error: not found: value MergeStrategy
+2025.04.14 21:42:51 ERROR       case PathList("reference.conf")                                         => MergeStrategy.concat
+2025.04.14 21:42:51 ERROR                                                                                  ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:120: error: not found: value MergeStrategy
+2025.04.14 21:42:51 ERROR       case "logback.xml" | "logback-prod.xml"                                 => MergeStrategy.discard
+2025.04.14 21:42:51 ERROR                                                                                  ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:121: error: not found: value MergeStrategy
+2025.04.14 21:42:51 ERROR       case "application.conf"                                                 => MergeStrategy.discard
+2025.04.14 21:42:51 ERROR                                                                                  ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:122: error: not found: value MergeStrategy
+2025.04.14 21:42:51 ERROR       case "application-test.conf" | "logback-test.xml_" | "logback-test.xml" => MergeStrategy.discard
+2025.04.14 21:42:51 ERROR                                                                                  ^
+2025.04.14 21:42:51 ERROR /workspace/project/build.sbt:123: error: not found: value MergeStrategy
+2025.04.14 21:42:51 ERROR       case _                                                                  => MergeStrategy.first
+2025.04.14 21:42:51 ERROR                                                                                  ^
+2025.04.14 21:42:51 ERROR sbt.compiler.EvalException: Type error in expression
+2025.04.14 21:42:52 INFO  [error] sbt.compiler.EvalException: Type error in expression
+2025.04.14 21:42:52 INFO  [error] Use 'last' for the full log.
+2025.04.14 21:42:52 INFO  [warn] Project loading failed: (r)etry, (q)uit, (l)ast, or (i)gnore? (default: r)
+2025.04.14 21:42:52 INFO  time: ran 'sbt bloopInstall' in 11s
+2025.04.14 21:42:52 ERROR sbt command failed: /usr/bin/sbt -Dbloop.export-jar-classifiers=sources bloopInstall
+2025.04.14 21:42:54 WARN  no build target for: /workspace/build.sbt
+2025.04.14 21:42:54 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:42:54 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:42:54 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:42:54 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:42:54 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:42:56 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:42:56 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:42:56 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:43:02 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:43:41 WARN  Build server is not auto-connectable.
+2025.04.14 21:43:47 INFO  Disconnecting from Bloop session...
+2025.04.14 21:43:47 INFO  Shut down connection with build server.
+2025.04.14 21:43:49 INFO  running '/usr/bin/sbt -Dbloop.export-jar-classifiers=sources bloopInstall'
+2025.04.14 21:43:49 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:43:50 INFO  [info] welcome to sbt 1.9.9 (Ubuntu Java 17.0.14)
+2025.04.14 21:43:50 INFO  [info] loading settings for project workspace-build-build-build from metals.sbt ...
+2025.04.14 21:43:52 INFO  [info] loading project definition from /workspace/project/project/project
+2025.04.14 21:43:52 INFO  [info] loading settings for project workspace-build-build from metals.sbt ...
+2025.04.14 21:43:53 INFO  [info] loading project definition from /workspace/project/project
+2025.04.14 21:43:54 WARN  no build target for: /workspace/build.sbt
+2025.04.14 21:43:54 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:43:55 INFO  [success] Generated .bloop/workspace-build-build.json
+2025.04.14 21:43:55 INFO  [success] Total time: 2 s, completed Apr 14, 2025, 9:43:55 PM
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:1: error: not found: object Dependencies
+2025.04.14 21:43:56 ERROR import Dependencies._
+2025.04.14 21:43:56 ERROR        ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:18: error: not found: value scalafmtOnCompile
+2025.04.14 21:43:56 ERROR   scalafmtOnCompile := true, // recommended in Scala 3 = false
+2025.04.14 21:43:56 ERROR   ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:26: error: not found: value CompilerPlugin
+2025.04.14 21:43:56 ERROR     CompilerPlugin.kindProjector,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:27: error: not found: value CompilerPlugin
+2025.04.14 21:43:56 ERROR     CompilerPlugin.betterMonadicFor,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:28: error: not found: value CompilerPlugin
+2025.04.14 21:43:56 ERROR     CompilerPlugin.semanticDB,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:29: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.cirisCore,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:30: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.cats,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:31: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.catsEffect,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:32: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.catsRetry,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:33: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.circeCore,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:34: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.circeGeneric,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:35: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.circeParser,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:36: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.circeRefined,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:37: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.circeLiteral,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:38: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.http4sServer,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:39: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.http4sJwtAuth,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:40: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.http4sClient,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:41: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.http4sCirce,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:42: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.derevoCore,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:43: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.derevoCats,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:44: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.derevoCirce,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:45: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.pureconfigCore,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:46: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.pureconfigCatsEffects,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:47: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.pureconfigIp4s,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:48: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.fs2,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:49: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.fs2Codecs,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:50: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.fs2Protocols,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:51: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.fs2Kafka,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:52: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.http4sDsl,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:53: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.log4cats,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:54: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.logback % Runtime,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:55: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.monocleCore,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:56: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.monocleMacro,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:57: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.newtype,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:58: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.refinedCore,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:59: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.refinedCats,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:60: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.tapirCore,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:61: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.tapirHttp4s,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:62: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.tapirSwagger,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:63: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.tapirCirce,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:64: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.tapirPrometheusMetrics,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:65: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.tapirCats,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:66: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.tapirRefined,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:67: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.tapirNewType,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:68: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.tapirDerevo,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:69: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.tapirSttpStubServer % Test,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:70: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.tapirSttpClient3 % Test,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:71: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.skunkCore,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:72: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.skunkCirce,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:73: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.skunkRefined,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:74: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.squants,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:75: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.fs2Kafka,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:76: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.bouncyCastle,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:77: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.http4sJwtAuth,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:78: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.refinedPureconfig,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:79: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.catsLaws % Test,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:80: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.log4catsNoOp,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:81: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.scodecCore,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:82: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.meowmtlCore,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:83: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.kafkaStreams,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:84: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.kafkaStreamsTestUtils % Test,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:85: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.munit % Test,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:86: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.scodecTestKit % Test,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:87: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.monocleLaw        % Test,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:88: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.refinedScalacheck % Test,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:89: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.weaverCats        % Test,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:90: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.weaverDiscipline  % Test,
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:91: error: not found: value Libraries
+2025.04.14 21:43:56 ERROR     Libraries.weaverScalaCheck  % Test
+2025.04.14 21:43:56 ERROR     ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:94: error: not found: value assembly
+2025.04.14 21:43:56 ERROR   assembly / assemblyMergeStrategy := {
+2025.04.14 21:43:56 ERROR   ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:94: error: not found: value assemblyMergeStrategy
+2025.04.14 21:43:56 ERROR   assembly / assemblyMergeStrategy := {
+2025.04.14 21:43:56 ERROR              ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:95: error: not found: value PathList
+2025.04.14 21:43:56 ERROR     case PathList("META-INF", "io.netty.versions.properties") => MergeStrategy.first
+2025.04.14 21:43:56 ERROR          ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:95: error: not found: value MergeStrategy
+2025.04.14 21:43:56 ERROR     case PathList("META-INF", "io.netty.versions.properties") => MergeStrategy.first
+2025.04.14 21:43:56 ERROR                                                                  ^
+2025.04.14 21:43:56 ERROR /workspace/project/build.sbt:96: error: not found: value MergeStrategy
+2025.04.14 21:43:56 ERROR     case _                                                    => MergeStrategy.first
+2025.04.14 21:43:56 ERROR                                                                  ^
+2025.04.14 21:43:57 ERROR /workspace/project/build.sbt:113: error: not found: value makeBatScripts
+2025.04.14 21:43:57 ERROR     makeBatScripts := Seq(),
+2025.04.14 21:43:57 ERROR     ^
+2025.04.14 21:43:57 ERROR /workspace/project/build.sbt:115: error: not found: value assembly
+2025.04.14 21:43:57 ERROR     assembly / assemblyJarName := "diplom.jar",
+2025.04.14 21:43:57 ERROR     ^
+2025.04.14 21:43:57 ERROR /workspace/project/build.sbt:115: error: not found: value assemblyJarName
+2025.04.14 21:43:57 ERROR     assembly / assemblyJarName := "diplom.jar",
+2025.04.14 21:43:57 ERROR                ^
+2025.04.14 21:43:57 ERROR /workspace/project/build.sbt:116: error: not found: value assembly
+2025.04.14 21:43:57 ERROR     assembly / mainClass := Some("com.mcn.diplom.Main"),
+2025.04.14 21:43:57 ERROR     ^
+2025.04.14 21:43:57 ERROR /workspace/project/build.sbt:117: error: not found: value assembly
+2025.04.14 21:43:57 ERROR     assembly / assemblyMergeStrategy := {
+2025.04.14 21:43:57 ERROR     ^
+2025.04.14 21:43:57 ERROR /workspace/project/build.sbt:117: error: not found: value assemblyMergeStrategy
+2025.04.14 21:43:57 ERROR     assembly / assemblyMergeStrategy := {
+2025.04.14 21:43:57 ERROR                ^
+2025.04.14 21:43:57 ERROR /workspace/project/build.sbt:119: error: not found: value PathList
+2025.04.14 21:43:57 ERROR       case PathList("reference.conf")                                         => MergeStrategy.concat
+2025.04.14 21:43:57 ERROR            ^
+2025.04.14 21:43:57 ERROR /workspace/project/build.sbt:119: error: not found: value MergeStrategy
+2025.04.14 21:43:57 ERROR       case PathList("reference.conf")                                         => MergeStrategy.concat
+2025.04.14 21:43:57 ERROR                                                                                  ^
+2025.04.14 21:43:57 ERROR /workspace/project/build.sbt:120: error: not found: value MergeStrategy
+2025.04.14 21:43:57 ERROR       case "logback.xml" | "logback-prod.xml"                                 => MergeStrategy.discard
+2025.04.14 21:43:57 ERROR                                                                                  ^
+2025.04.14 21:43:57 ERROR /workspace/project/build.sbt:121: error: not found: value MergeStrategy
+2025.04.14 21:43:57 ERROR       case "application.conf"                                                 => MergeStrategy.discard
+2025.04.14 21:43:57 ERROR                                                                                  ^
+2025.04.14 21:43:57 ERROR /workspace/project/build.sbt:122: error: not found: value MergeStrategy
+2025.04.14 21:43:57 ERROR       case "application-test.conf" | "logback-test.xml_" | "logback-test.xml" => MergeStrategy.discard
+2025.04.14 21:43:57 ERROR                                                                                  ^
+2025.04.14 21:43:57 ERROR /workspace/project/build.sbt:123: error: not found: value MergeStrategy
+2025.04.14 21:43:57 ERROR       case _                                                                  => MergeStrategy.first
+2025.04.14 21:43:57 ERROR                                                                                  ^
+2025.04.14 21:43:57 ERROR sbt.compiler.EvalException: Type error in expression
+2025.04.14 21:43:57 INFO  [error] sbt.compiler.EvalException: Type error in expression
+2025.04.14 21:43:57 INFO  [error] Use 'last' for the full log.
+2025.04.14 21:43:57 INFO  [warn] Project loading failed: (r)etry, (q)uit, (l)ast, or (i)gnore? (default: r)
+2025.04.14 21:43:57 INFO  time: ran 'sbt bloopInstall' in 8.94s
+2025.04.14 21:43:57 ERROR sbt command failed: /usr/bin/sbt -Dbloop.export-jar-classifiers=sources bloopInstall
+2025.04.14 21:43:59 WARN  no build target for: /workspace/build.sbt
+2025.04.14 21:43:59 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:06 WARN  no build target for: /workspace/build.sbt
+2025.04.14 21:44:06 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:47 WARN  no build target for: /workspace/build.sbt
+2025.04.14 21:44:47 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:50 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:50 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:50 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:50 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:52 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:52 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:52 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:52 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:52 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:53 WARN  no build target for: /workspace/build.sbt
+2025.04.14 21:44:53 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:53 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:53 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:55 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:44:58 INFO  no build target found for /workspace/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5
+2025.04.14 21:45:02 INFO  Shutting down server
+2025.04.14 21:45:02 INFO  shutting down Metals
+2025.04.14 21:45:02 INFO  Exiting server

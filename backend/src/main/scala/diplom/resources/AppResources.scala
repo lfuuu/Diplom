@@ -53,10 +53,9 @@ object AppResources {
         )
     //.evalTap(checkPostgresConnection)
 
-
     for {
-      client                     <- MkHttpClient[F].newEmber(cfg.httpClientConfig)
-      postgres                   <- mkPostgreSqlResource(cfg.postgreSQL)
+      client   <- MkHttpClient[F].newEmber(cfg.httpClientConfig)
+      postgres <- mkPostgreSqlResource(cfg.postgreSQL)
     } yield new AppResources[F](
       client,
       postgres

@@ -9,7 +9,7 @@ sealed trait Retriable
 
 object Retriable {
 
-  case class RestPushs(msg: String)                      extends Retriable
-  case class RobinBobinRestApiCall(msg: String)          extends Retriable
+  case class RestPushs(msg: String)             extends Retriable
+  case class RobinBobinRestApiCall(msg: String) extends Retriable
 
 }

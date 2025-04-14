@@ -34,7 +34,6 @@ val commonSettings = List(
     Libraries.circeGeneric,
     Libraries.circeParser,
     Libraries.circeRefined,
-    Libraries.circeLiteral,
     Libraries.http4sServer,
     Libraries.http4sJwtAuth,
     Libraries.http4sClient,
@@ -80,9 +79,6 @@ val commonSettings = List(
     Libraries.log4catsNoOp,
     Libraries.scodecCore,
     Libraries.meowmtlCore,
-    Libraries.kafkaStreams,
-    Libraries.kafkaStreamsTestUtils % Test,
-    Libraries.munit % Test,
     Libraries.scodecTestKit % Test,
     Libraries.monocleLaw        % Test,
     Libraries.refinedScalacheck % Test,
@@ -99,29 +95,28 @@ val commonSettings = List(
 
 lazy val root = (project in file("."))
   .settings(
-    name := "calligrapherProc"
+    name := "diplom"
   )
-  .aggregate(calligrapherProc)
+  .aggregate(diplom)
 
-// https://docs.scala-lang.org/overviews/compiler-options/index.html
 
-lazy val calligrapherProc = (project in file("src/calligrapherProc"))
+lazy val diplom = (project in file("."))
   .settings(commonSettings: _*)
   .settings(
-    name := "calligrapherProc",
-    Compile / mainClass := Some("com.mcn.calligrapherProc.Main"),
+    name := "diplom",
+    Compile / mainClass := Some("com.mcn.diplom.Main"),
     makeBatScripts := Seq(),
     Compile / run / fork := true,
-    assembly / assemblyJarName := "calligrapherProc.jar",
-    assembly / mainClass := Some("com.mcn.calligrapherProc.Main"),
-    assembly / assemblyMergeStrategy := {
+    assembly / assemblyJarName := "diplom.jar",
+    assembly / mainClass := Some("com.mcn.diplom.Main"),
+    // assembly / assemblyMergeStrategy := {
 
-      case PathList("reference.conf")                                         => MergeStrategy.concat
-      case "logback.xml" | "logback-prod.xml"                                 => MergeStrategy.discard
-      case "application.conf"                                                 => MergeStrategy.discard
-      case "application-test.conf" | "logback-test.xml_" | "logback-test.xml" => MergeStrategy.discard
-      case _                                                                  => MergeStrategy.first
-    }
+    //   // case PathList("reference.conf")                                         => MergeStrategy.concat
+    //   // case "logback.xml" | "logback-prod.xml"                                 => MergeStrategy.discard
+    //   // case "application.conf"                                                 => MergeStrategy.discard
+    //   // case "application-test.conf" | "logback-test.xml_" | "logback-test.xml" => MergeStrategy.discard
+    //   // case _                                                                  => MergeStrategy.first
+    // }
   )
 
 addCommandAlias("lint", ";scalafixAll --rules OrganizeImports")

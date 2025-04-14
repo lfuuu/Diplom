@@ -16,7 +16,6 @@ import pureconfig.generic.semiauto._
 
 object types {
 
-
   case class AdminUserTokenConfig(secret: NonEmptyString)
 
   case class JwtSecretKeyConfig(secret: NonEmptyString)
@@ -33,13 +32,11 @@ object types {
   implicit val tokenExpirationConfigReader: ConfigReader[TokenExpiration] =
     ConfigReader[FiniteDuration].map(TokenExpiration(_))
 
-
   case class AdminJwtConfig(
     secretKey: JwtSecretKeyConfig,
     claimStr: JwtClaimConfig,
     adminToken: AdminUserTokenConfig
   )
-
 
   case class AppConfig(
     adminJwtConfig: AdminJwtConfig,
@@ -48,7 +45,7 @@ object types {
     tokenExpiration: TokenExpiration,
     httpClientConfig: HttpClientConfig,
     postgreSQL: PostgreSQLConfig,
-    httpServerConfig: HttpServerConfig,
+    httpServerConfig: HttpServerConfig
   )
 
   case class PostgreSQLConfig(
@@ -69,7 +66,6 @@ object types {
     timeout: FiniteDuration,
     idleTimeInPool: FiniteDuration
   )
-
 
   implicit val SecretShow: Show[NonEmptyString] = Show.show(_.value)
 
