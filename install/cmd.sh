@@ -4,6 +4,7 @@ set -e
 
 function build() {
   echo "Build:"
+
   docker compose  -f docker-compose.dev.yml build \
     --build-arg COMPOSE_PROJECT_NAME=$COMPOSE_PROJECT_NAME \
     --build-arg HOST_GID=$HOST_GID \

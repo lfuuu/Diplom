@@ -1,17 +1,16 @@
-
 services:
 
   base-image:
     environment:
       - HOST_UID=${HOST_UID}
-      - HOST_GID=${HOST_GID}    
+      - HOST_GID=${HOST_GID}
     build:
       context: ./cont_base
       dockerfile: Dockerfile.base
       args:
           HOST_UID: ${HOST_UID}
           HOST_GID: ${HOST_GID}
-          COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}      
+          COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}
     image: diplom-base:latest
 
   nginx:
@@ -73,7 +72,9 @@ services:
     - ./cont_backend/backend:/home/appuser/src
     - ./workspace:/workspace
     command: sleep infinity
-
+    depends_on:
+      - db
+      - base-image
 
   frontend:
     hostname: frontend
@@ -89,3 +90,6 @@ services:
       - ./cont_frontend/frontend:/home/appuser/src
       - ./workspace:/workspace
     command: sleep infinity
+    depends_on:
+      - db
+      - base-image
