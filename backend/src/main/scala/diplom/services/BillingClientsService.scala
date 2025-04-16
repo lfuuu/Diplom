@@ -53,13 +53,13 @@ private object BillingClientsSQL {
   val isBlocked: Codec[BillingClientIsBlocked] = bool.imap(BillingClientIsBlocked(_))(_.value)
   val name: Codec[BillingClientName]           = text.imap(BillingClientName(_))(_.value)
 
-  val allCodec           = id *: dtCreate *: balance *: isBlocked *: name
+  val findAllCodec           = id *: dtCreate *: balance *: isBlocked *: name
   val createRequestCodec = balance *: isBlocked *: name
 
   val selectAll: Query[Void, BillingClient] =
     sql"""
         SELECT id, dt_create, balance, is_blocked, name FROM billing.clients        
-       """.query(allCodec).to[BillingClient]
+       """.query(findAllCodec).to[BillingClient]
 
   val insertBillingClient: Query[BillingClientCreateRequest, BillingClientId] =
     sql"""
@@ -74,7 +74,7 @@ private object BillingClientsSQL {
   val findByIdBillingClient: Query[BillingClientId, BillingClient]            =
     sql"""
         SELECT id, dt_create, balance, is_blocked, name FROM billing.clients  where id = $id      
-       """.query(allCodec).to[BillingClient]
+       """.query(findAllCodec).to[BillingClient]
 
   val deleteByIdBillingClient: Command[BillingClientId] =
     sql"""
