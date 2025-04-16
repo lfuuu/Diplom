@@ -67,7 +67,7 @@ private object BillingClientsSQL {
       """
       .query(int4)
       .contramap[BillingClientCreateRequest] { c =>
-        (c.balance, c.isBlocked, c.name)
+        c.balance *: c.isBlocked *: c.name *: EmptyTuple
       }
       .map { case f => BillingClientId(f) }
 
