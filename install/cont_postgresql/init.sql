@@ -8,7 +8,7 @@ CREATE SCHEMA IF NOT EXISTS calls;
 
 CREATE TABLE IF NOT EXISTS billing.clients (
   id serial PRIMARY KEY,
-  dt_create timestamp without time zone DEFAULT now(),
+  dt_create timestamptz DEFAULT now(),
   balance numeric(12,2) NOT NULL DEFAULT 0,
   is_blocked boolean NOT NULL DEFAULT false,
   name text
