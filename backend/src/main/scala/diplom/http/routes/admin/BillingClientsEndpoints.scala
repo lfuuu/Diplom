@@ -11,7 +11,6 @@ import sttp.tapir.generic.auto._
 import sttp.tapir.json.circe._
 import sttp.tapir.server.ServerEndpoint
 
-
 class BillingClientsEndpoints[F[_]: Sync](billingClientsService: BillingClientsService[F]) {
 
   private val basePath = "billing-clients"
