@@ -16,7 +16,7 @@ trait BillingClientsService[F[_]] {
   def deleteById(id: BillingClientId): F[Unit]
 }
 
-object BillingClients {
+object BillingClientsService {
 
   def make[F[_]: MonadCancelThrow](
     postgres: Resource[F, Session[F]]
@@ -53,7 +53,7 @@ private object BillingClientsSQL {
   val isBlocked: Codec[BillingClientIsBlocked] = bool.imap(BillingClientIsBlocked(_))(_.value)
   val name: Codec[BillingClientName]           = text.imap(BillingClientName(_))(_.value)
 
-  val findAllCodec           = id *: dtCreate *: balance *: isBlocked *: name
+  val findAllCodec       = id *: dtCreate *: balance *: isBlocked *: name
   val createRequestCodec = balance *: isBlocked *: name
 
   val selectAll: Query[Void, BillingClient] =

@@ -30,7 +30,7 @@ object Dependencies {
     val organizeImports  = "0.6.0"
     val semanticDB       = "4.11.2"
     val scodecs          = "1.11.9"
-    val tapir            = "1.11.2"
+    val tapir            = "1.11.25"
     val tapirSttpClient3 = "3.9.7"
     val kafkaVersion     = "3.4.0"
 

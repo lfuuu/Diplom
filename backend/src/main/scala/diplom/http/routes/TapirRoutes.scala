@@ -20,29 +20,14 @@ import sttp.tapir.server.http4s.{ Http4sServerInterpreter, Http4sServerOptions }
 import sttp.tapir.server.metrics.prometheus.PrometheusMetrics
 import sttp.tapir.swagger.SwaggerUIOptions
 import sttp.tapir.swagger.bundle.SwaggerInterpreter
+import com.mcn.diplom.http.routes.admin.BillingClientsEndpoints
 
 class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
 
   implicit val logger: SelfAwareStructuredLogger[F] = Slf4jLogger.getLogger
-  // val responsesTotal = Metric[F, Counter](
-  //   Counter
-  //     .builder()
-  //     .name("tapir_responses_total")
-  //     .help("HTTP responses")
-  //     .labelNames("path", "method", "status")
-  //     .register(PrometheusRegistry.defaultRegistry),
-  //   onRequest = { (req, counter, m) =>
-  //     m.unit {
-  //       EndpointMetric()
-  //         .onResponseBody { (ep, res) =>
-  //           val path   = ep.showPathTemplate()
-  //           val method = req.method.method
-  //           val status = res.code.toString()
-  //           m.eval(counter.labelValues(path, method, status).inc())
-  //         }
-  //     }
-  //   }
-  // )
+
+  private val billingClientsEndpoints =
+    new BillingClientsEndpoints[F](services.billingClients).endpoints
 
   val statusEndpoint: PublicEndpoint[Unit, Unit, StatusResponse, Any] = endpoint.get
     .in("status")
@@ -53,9 +38,7 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
     statusEndpoint.serverLogicSuccess(transitCallMetricIncoming => StatusResponse("OK", "Сообщение").pure[F])
 
   val apiEndpoints =
-    List(
-      statusServerEndpoint
-    )
+    List(statusServerEndpoint) ++ billingClientsEndpoints
 
   val docEndpoints: List[ServerEndpoint[Any, F]] =
     SwaggerInterpreter(swaggerUIOptions = SwaggerUIOptions.default.copy(contextPath = List("v1", "api")).withAbsolutePaths)
