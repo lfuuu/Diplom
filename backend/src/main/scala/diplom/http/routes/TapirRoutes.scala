@@ -42,7 +42,7 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
 
   val docEndpoints: List[ServerEndpoint[Any, F]] =
     SwaggerInterpreter(swaggerUIOptions = SwaggerUIOptions.default.copy(contextPath = List("v1", "api")).withAbsolutePaths)
-      .fromServerEndpoints[F](apiEndpoints, "acc2", "1.0.0")
+      .fromServerEndpoints[F](apiEndpoints, "Diplom-NispD", "1.0.0")
 
   val prometheusMetrics: PrometheusMetrics[F] = PrometheusMetrics.default[F]()
   val metricsEndpoint: ServerEndpoint[Any, F] = prometheusMetrics.metricsEndpoint
