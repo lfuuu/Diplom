@@ -20,7 +20,8 @@ import sttp.tapir.server.http4s.{ Http4sServerInterpreter, Http4sServerOptions }
 import sttp.tapir.server.metrics.prometheus.PrometheusMetrics
 import sttp.tapir.swagger.SwaggerUIOptions
 import sttp.tapir.swagger.bundle.SwaggerInterpreter
-import com.mcn.diplom.http.routes.admin.BillingClientsEndpoints
+import com.mcn.http.routes.admin.BillingClientsEndpoints
+
 
 class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
 

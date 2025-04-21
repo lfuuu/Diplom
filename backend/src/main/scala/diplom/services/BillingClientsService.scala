@@ -4,10 +4,10 @@ import java.time.ZoneOffset
 
 import cats.effect._
 import cats.syntax.all._
-import com.mcn.diplom.domain.nispd.BillingClient._
 import skunk._
 import skunk.codec.all._
 import skunk.implicits._
+import com.mcn.diplom.domain.nispd.BillingClient._
 
 trait BillingClientsService[F[_]] {
   def create(client: BillingClientCreateRequest): F[Option[BillingClientId]]

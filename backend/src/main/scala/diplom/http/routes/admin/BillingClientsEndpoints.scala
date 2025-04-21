@@ -1,4 +1,7 @@
-package com.mcn.diplom.http.routes.admin
+package com.mcn.http.routes.admin
+
+import com.mcn.diplom.services.BillingClientsService
+import com.mcn.diplom.domain.nispd.BillingClient._
 
 import cats.effect.Sync
 import cats.syntax.all._
@@ -7,8 +10,7 @@ import sttp.tapir._
 import sttp.tapir.generic.auto._
 import sttp.tapir.json.circe._
 import sttp.tapir.server.ServerEndpoint
-import _root_.com.mcn.diplom.services.BillingClientsService
-import _root_.com.mcn.diplom.domain.nispd.BillingClient._
+
 
 class BillingClientsEndpoints[F[_]: Sync](billingClientsService: BillingClientsService[F]) {
 
@@ -24,7 +26,6 @@ class BillingClientsEndpoints[F[_]: Sync](billingClientsService: BillingClientsS
     getAllEndpoint.serverLogicSuccess(_ => billingClientsService.findAll)
 
   // Get billing client by ID
-  //val getByIdEndpoint: PublicEndpoint[Int, (StatusCode, String), BillingClient, Any] = endpoint.get
   val getByIdEndpoint: PublicEndpoint[Int, String, BillingClient, Any] = endpoint.get
     .in(basePath / path[Int]("id"))
     .errorOut(statusCode(StatusCode.NotFound).and(stringBody))
