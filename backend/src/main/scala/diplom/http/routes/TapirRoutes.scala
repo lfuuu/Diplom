@@ -22,7 +22,6 @@ import sttp.tapir.swagger.SwaggerUIOptions
 import sttp.tapir.swagger.bundle.SwaggerInterpreter
 import com.mcn.http.routes.admin.BillingClientsEndpoints
 
-
 class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
 
   implicit val logger: SelfAwareStructuredLogger[F] = Slf4jLogger.getLogger
