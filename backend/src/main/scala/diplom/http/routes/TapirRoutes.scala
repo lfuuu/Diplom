@@ -23,6 +23,7 @@ import sttp.tapir.swagger.bundle.SwaggerInterpreter
 import com.mcn.http.routes.admin.BillingClientsEndpoints
 import com.mcn.diplom.http.routes.admin.BillingBillingPacketsEndpoints
 import com.mcn.diplom.http.routes.admin.BillingServiceNumbersEndpoints
+import com.mcn.diplom.http.routes.admin.BillingServiceTrunksEndpoints
 
 class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
 
@@ -37,6 +38,9 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
   private val billingServiceNumbersEndpoints =
     new BillingServiceNumbersEndpoints[F](services.billingServiceNumbersService).endpoints
 
+  private val billingServiceTrunksEndpoints =
+    new BillingServiceTrunksEndpoints[F](services.billingServiceTrunksService).endpoints
+
   val statusEndpoint: PublicEndpoint[Unit, Unit, StatusResponse, Any] = endpoint.get
     .in("status")
     .out(jsonBody[StatusResponse])
@@ -46,7 +50,12 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
     statusEndpoint.serverLogicSuccess(transitCallMetricIncoming => StatusResponse("OK", "Сообщение").pure[F])
 
   val apiEndpoints =
-    List(statusServerEndpoint) ++ billingClientsEndpoints ++ billingPacketsEndpoints ++ billingServiceNumbersEndpoints
+    List(
+      statusServerEndpoint
+    ) ++ billingClientsEndpoints ++
+      billingPacketsEndpoints ++
+      billingServiceNumbersEndpoints ++
+      billingServiceTrunksEndpoints
 
   val docEndpoints: List[ServerEndpoint[Any, F]] =
     SwaggerInterpreter(swaggerUIOptions = SwaggerUIOptions.default.copy(contextPath = List("v1", "api")).withAbsolutePaths)
