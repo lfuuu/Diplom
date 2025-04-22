@@ -8,11 +8,13 @@ import org.typelevel.log4cats.Logger
 import com.mcn.diplom.services.HealthCheck
 import com.mcn.diplom.services.BillingClientsService
 import com.mcn.diplom.services.BillingPacketsService
+import com.mcn.diplom.services.BillingServiceNumbersService
 
 sealed abstract class Services[F[_]] private (
   val healthCheck: HealthCheck[F],
   val billingClients: BillingClientsService[F],
-  val billingPacketsService: BillingPacketsService[F]
+  val billingPacketsService: BillingPacketsService[F],
+  val billingServiceNumbersService: BillingServiceNumbersService[F]
 )
 
 object Services {
@@ -24,6 +26,7 @@ object Services {
     new Services[F](
       healthCheck = HealthCheck.make[F](appResources.postgres),
       billingClients = BillingClientsService.make[F](appResources.postgres),
-      billingPacketsService = BillingPacketsService.make[F](appResources.postgres)
+      billingPacketsService = BillingPacketsService.make[F](appResources.postgres),
+      billingServiceNumbersService = BillingServiceNumbersService.make[F](appResources.postgres)
     ) {}
 }

@@ -1,0 +1,48 @@
+package com.mcn.diplom.domain.nispd
+
+import derevo.cats._
+import derevo.circe.magnolia.{ decoder, encoder }
+import derevo.derive
+import io.estatico.newtype.macros.newtype
+import java.time.Instant
+import sttp.tapir.derevo.schema
+
+object BillingServiceNumber {
+
+  @derive(decoder, encoder, schema)
+  @newtype
+  case class BillingServiceNumberId(value: Int)
+
+  @derive(decoder, encoder, schema)
+  @newtype
+  case class BillingClientId(value: Int)
+
+  @derive(decoder, encoder, schema)
+  @newtype
+  case class BillingServiceNumberDID(value: String)
+
+  @derive(decoder, encoder, schema)
+  @newtype
+  case class BillingServiceNumberActivationDt(value: Instant)
+
+  @derive(decoder, encoder, schema)
+  @newtype
+  case class BillingServiceNumberExpireDt(value: Instant)
+
+  @derive(decoder, encoder, schema)
+  case class BillingServiceNumberCreateRequest(
+    clientId: BillingClientId,
+    did: BillingServiceNumberDID,
+    activationDt: BillingServiceNumberActivationDt,
+    expireDt: Option[BillingServiceNumberExpireDt]
+  )
+
+  @derive(decoder, encoder, schema)
+  case class BillingServiceNumber(
+    id: BillingServiceNumberId,
+    clientId: BillingClientId,
+    did: BillingServiceNumberDID,
+    activationDt: BillingServiceNumberActivationDt,
+    expireDt: Option[BillingServiceNumberExpireDt]
+  )
+}

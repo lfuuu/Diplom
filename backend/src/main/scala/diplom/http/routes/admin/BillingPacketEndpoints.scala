@@ -13,7 +13,7 @@ import _root_.com.mcn.diplom.services.BillingPacketsService
 
 class BillingBillingPacketsEndpoints[F[_]: Sync](service: BillingPacketsService[F]) {
 
-  private val basePath = "BillingPackets"
+  private val basePath = "billing-packets"
 
   val getAllEndpoint: PublicEndpoint[Unit, Unit, List[BillingPacket], Any] = endpoint.get
     .in(basePath)
