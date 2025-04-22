@@ -1,6 +1,5 @@
 package com.mcn.diplom.domain.nispd
 
-import derevo.cats._
 import derevo.circe.magnolia.{ decoder, encoder }
 import derevo.derive
 import io.estatico.newtype.macros.newtype

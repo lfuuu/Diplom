@@ -10,13 +10,17 @@ import com.mcn.diplom.services.BillingClientsService
 import com.mcn.diplom.services.BillingPacketsService
 import com.mcn.diplom.services.BillingServiceNumbersService
 import com.mcn.diplom.services.BillingServiceTrunksService
+import com.mcn.diplom.services.BillingPricelistsService
+import com.mcn.diplom.services.BillingPricelistItemsService
 
 sealed abstract class Services[F[_]] private (
   val healthCheck: HealthCheck[F],
   val billingClients: BillingClientsService[F],
   val billingPacketsService: BillingPacketsService[F],
   val billingServiceNumbersService: BillingServiceNumbersService[F],
-  val billingServiceTrunksService: BillingServiceTrunksService[F]
+  val billingServiceTrunksService: BillingServiceTrunksService[F],
+  val billingPricelistsService: BillingPricelistsService[F],
+  val billingPricelistItemsService: BillingPricelistItemsService[F]
 )
 
 object Services {
@@ -30,6 +34,8 @@ object Services {
       billingClients = BillingClientsService.make[F](appResources.postgres),
       billingPacketsService = BillingPacketsService.make[F](appResources.postgres),
       billingServiceNumbersService = BillingServiceNumbersService.make[F](appResources.postgres),
-      billingServiceTrunksService = BillingServiceTrunksService.make[F](appResources.postgres)
+      billingServiceTrunksService = BillingServiceTrunksService.make[F](appResources.postgres),
+      billingPricelistsService = BillingPricelistsService.make[F](appResources.postgres),
+      billingPricelistItemsService = BillingPricelistItemsService.make[F](appResources.postgres)
     ) {}
 }

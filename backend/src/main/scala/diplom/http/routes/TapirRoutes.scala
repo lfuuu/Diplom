@@ -24,6 +24,8 @@ import com.mcn.http.routes.admin.BillingClientsEndpoints
 import com.mcn.diplom.http.routes.admin.BillingBillingPacketsEndpoints
 import com.mcn.diplom.http.routes.admin.BillingServiceNumbersEndpoints
 import com.mcn.diplom.http.routes.admin.BillingServiceTrunksEndpoints
+import com.mcn.diplom.http.routes.admin.BillingPricelistsEndpoints
+import com.mcn.diplom.http.routes.admin.BillingPricelistItemsEndpoints
 
 class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
 
@@ -41,6 +43,12 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
   private val billingServiceTrunksEndpoints =
     new BillingServiceTrunksEndpoints[F](services.billingServiceTrunksService).endpoints
 
+  private val billingPricelistsEndpoints =
+    new BillingPricelistsEndpoints[F](services.billingPricelistsService).endpoints
+
+  private val billingPricelistItemsEndpoints =
+    new BillingPricelistItemsEndpoints[F](services.billingPricelistItemsService).endpoints
+
   val statusEndpoint: PublicEndpoint[Unit, Unit, StatusResponse, Any] = endpoint.get
     .in("status")
     .out(jsonBody[StatusResponse])
@@ -55,7 +63,9 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
     ) ++ billingClientsEndpoints ++
       billingPacketsEndpoints ++
       billingServiceNumbersEndpoints ++
-      billingServiceTrunksEndpoints
+      billingServiceTrunksEndpoints ++
+      billingPricelistsEndpoints ++
+      billingPricelistItemsEndpoints
 
   val docEndpoints: List[ServerEndpoint[Any, F]] =
     SwaggerInterpreter(swaggerUIOptions = SwaggerUIOptions.default.copy(contextPath = List("v1", "api")).withAbsolutePaths)
