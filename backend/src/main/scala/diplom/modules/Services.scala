@@ -12,6 +12,8 @@ import com.mcn.diplom.services.BillingServiceNumbersService
 import com.mcn.diplom.services.BillingServiceTrunksService
 import com.mcn.diplom.services.BillingPricelistsService
 import com.mcn.diplom.services.BillingPricelistItemsService
+import com.mcn.diplom.services.AuthTrunksService
+import com.mcn.diplom.services.AuthUsersService
 
 sealed abstract class Services[F[_]] private (
   val healthCheck: HealthCheck[F],
@@ -20,7 +22,9 @@ sealed abstract class Services[F[_]] private (
   val billingServiceNumbersService: BillingServiceNumbersService[F],
   val billingServiceTrunksService: BillingServiceTrunksService[F],
   val billingPricelistsService: BillingPricelistsService[F],
-  val billingPricelistItemsService: BillingPricelistItemsService[F]
+  val billingPricelistItemsService: BillingPricelistItemsService[F],
+  val authTrunksService: AuthTrunksService[F],
+  val authUsersService: AuthUsersService[F]
 )
 
 object Services {
@@ -36,6 +40,8 @@ object Services {
       billingServiceNumbersService = BillingServiceNumbersService.make[F](appResources.postgres),
       billingServiceTrunksService = BillingServiceTrunksService.make[F](appResources.postgres),
       billingPricelistsService = BillingPricelistsService.make[F](appResources.postgres),
-      billingPricelistItemsService = BillingPricelistItemsService.make[F](appResources.postgres)
+      billingPricelistItemsService = BillingPricelistItemsService.make[F](appResources.postgres),
+      authTrunksService = AuthTrunksService.make[F](appResources.postgres),
+      authUsersService = AuthUsersService.make[F](appResources.postgres)
     ) {}
 }
