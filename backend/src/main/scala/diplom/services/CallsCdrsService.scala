@@ -46,15 +46,15 @@ object CallsCdrsService {
 
 private object CallsCdrsSQL {
 
-  val id: Codec[CallsCdrId]                         = int8.imap(CallsCdrId(_))(_.value)
-  val callId: Codec[CallId]                         = int8.imap(CallId(_))(_.value)
-  val srcNumber: Codec[SrcNumber]                   = text.imap(SrcNumber(_))(_.value)
-  val dstNumber: Codec[DstNumber]                   = text.imap(DstNumber(_))(_.value)
+  val id: Codec[CallsCdrId]       = int8.imap(CallsCdrId(_))(_.value)
+  val callId: Codec[CallId]       = int8.imap(CallId(_))(_.value)
+  val srcNumber: Codec[SrcNumber] = text.imap(SrcNumber(_))(_.value)
+  val dstNumber: Codec[DstNumber] = text.imap(DstNumber(_))(_.value)
 
-  val setupTime: Codec[Option[SetupTime]]           =
+  val setupTime: Codec[Option[SetupTime]] =
     timestamptz.opt.imap(_.map(t => SetupTime(t.toInstant)))(_.map(_.value.atOffset(ZoneOffset.UTC)))
 
-  val connectTime: Codec[ConnectTime]               =
+  val connectTime: Codec[ConnectTime] =
     timestamptz.imap(t => ConnectTime(t.toInstant))(_.value.atOffset(ZoneOffset.UTC))
 
   val disconnectTime: Codec[Option[DisconnectTime]] =

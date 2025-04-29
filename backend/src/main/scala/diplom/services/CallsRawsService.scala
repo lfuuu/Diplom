@@ -45,10 +45,10 @@ object CallsRawsService {
 
 private object CallsRawsSQL {
 
-  val id: Codec[CallsRawsId]                           = int8.imap(CallsRawsId(_))(_.value)
-  val orig: Codec[CallsRawsOrig]                       = bool.imap(CallsRawsOrig(_))(_.value)
-  val peerId: Codec[CallsRawsPeerId]                   = int8.imap(CallsRawsPeerId(_))(_.value)
-  val cdrId: Codec[CallsRawsCdrId]                     = int8.imap(CallsRawsCdrId(_))(_.value)
+  val id: Codec[CallsRawsId]         = int8.imap(CallsRawsId(_))(_.value)
+  val orig: Codec[CallsRawsOrig]     = bool.imap(CallsRawsOrig(_))(_.value)
+  val peerId: Codec[CallsRawsPeerId] = int8.imap(CallsRawsPeerId(_))(_.value)
+  val cdrId: Codec[CallsRawsCdrId]   = int8.imap(CallsRawsCdrId(_))(_.value)
 
   val connectTime: Codec[CallsRawsConnectTime]         =
     timestamptz.imap(t => CallsRawsConnectTime(t.toInstant))(_.value.atOffset(ZoneOffset.UTC))

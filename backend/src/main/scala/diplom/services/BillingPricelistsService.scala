@@ -44,12 +44,12 @@ object BillingPricelistsService {
 
 private object BillingPricelistsSQL {
 
-  val id: Codec[BillingPricelistId]                 = int4.imap(BillingPricelistId(_))(_.value)
+  val id: Codec[BillingPricelistId] = int4.imap(BillingPricelistId(_))(_.value)
 
-  val name: Codec[BillingPricelistName]             =
+  val name: Codec[BillingPricelistName] =
     text.imap(BillingPricelistName(_))(_.value)
 
-  val dateFrom: Codec[BillingPricelistDateFrom]     =
+  val dateFrom: Codec[BillingPricelistDateFrom] =
     date.imap(BillingPricelistDateFrom(_))(_.value)
 
   val dateTo: Codec[Option[BillingPricelistDateTo]] =
