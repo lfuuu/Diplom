@@ -1,14 +1,31 @@
 @startmindmap
-* Debian
-** Ubuntu
-*** Linux Mint
-*** Kubuntu
-*** Lubuntu
-*** KDE Neon
-** LMDE
-** SolydXK
-** SteamOS
-** Raspbian with a very long name
-*** <s>Raspmbc</s> => OSMC
-*** <s>Raspyfi</s> => Volumio
+* Диплом
+** Backend
+***[#lightgreen] Rest-интерфейс к сущностям БД <<green>>
+** Front
+*** Пробный CRUD к любой сущности
+*** Страничка логина
+*** Админская часть
+**** crud-клиенты
+**** сrud-транки
+**** сrud-прайслисты
+**** сrud-услуги номера
+**** сrud-услуги транк
+**** Просмотр звонков
+**** Тест маршутизации
+**** Тест биллингации
+*** Клиентская часть.
+**** баланс счета
+**** принадлежащие номера
+**** выполненные звонки
+**[#lightgreen] dev-окружение
+** prod-окружение
+**[#lightgreen] база данных
+***[#lightgreen] тестовые данные
+** тестирование
+** Документы
+*** 1 ?
+*** 2 ?
+
+
 @endmindmap
