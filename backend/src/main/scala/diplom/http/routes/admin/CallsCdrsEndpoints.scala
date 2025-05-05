@@ -38,7 +38,7 @@ class CallsCdrsEndpoints[F[_]: Sync](service: CallsCdrsService[F]) {
     }
 
   val createEndpoint: PublicEndpoint[CallsCdrCreateRequest, String, CallsCdrId, Any] = endpoint.post
-    .in(basePath)
+    .in("acc")
     .in(jsonBody[CallsCdrCreateRequest])
     .errorOut(statusCode(StatusCode.BadRequest).and(stringBody))
     .out(statusCode(StatusCode.Created).and(jsonBody[CallsCdrId]))
@@ -52,24 +52,9 @@ class CallsCdrsEndpoints[F[_]: Sync](service: CallsCdrsService[F]) {
       }
     }
 
-  val deleteEndpoint: PublicEndpoint[Long, String, Unit, Any] = endpoint.delete
-    .in(basePath / path[Long]("id"))
-    .errorOut(statusCode(StatusCode.NotFound).and(stringBody))
-    .out(statusCode(StatusCode.NoContent))
-    .description("Delete CDR by ID")
-
-  val deleteServerEndpoint: ServerEndpoint[Any, F] =
-    deleteEndpoint.serverLogic { id =>
-      service
-        .deleteById(CallsCdrId(id))
-        .flatMap(_ => ().asRight[String].pure[F])
-        .handleErrorWith(ex => ex.getMessage.asLeft[Unit].pure[F])
-    }
-
   val endpoints: List[ServerEndpoint[Any, F]] = List(
     getAllServerEndpoint,
     getByIdServerEndpoint,
-    createServerEndpoint,
-    deleteServerEndpoint
+    createServerEndpoint
   )
 }
