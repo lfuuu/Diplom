@@ -1,0 +1,45 @@
+<section class="card">
+    <h2 class="title">Список клиентов</h2>
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th><th>Имя</th><th>Баланс</th><th>Заблокирован</th><th>Дата создания</th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of clients">
+          <td>{{ c.id }}</td>
+          <td>{{ c.name }}</td>
+          <td class="num">{{ c.balance | number:'1.2-2' }}</td>
+          <td><span [class.blocked]="c.isBlocked">{{ c.isBlocked ? 'Да' : 'Нет' }}</span></td>
+          <td>{{ c.dtCreate | date:'short' }}</td>
+          <td class="actions">
+            <button (click)="remove(c.id)">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+      <h3>Новый клиент</h3>
+  
+      <label>
+        Имя
+        <input type="text" formControlName="name">
+      </label>
+  
+      <label>
+        Баланс
+        <input type="number" step="0.01" formControlName="balance">
+      </label>
+  
+      <label class="chk">
+        <input type="checkbox" formControlName="isBlocked">
+        Заблокирован
+      </label>
+  
+      <button type="submit" [disabled]="form.invalid">Добавить</button>
+    </form>
+  </section>
+  

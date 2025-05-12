@@ -1,0 +1,137 @@
+/* Карточка‑контейнер */
+.card {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 0.08);
+    background: #fff;
+  }
+  
+  /* Заголовок */
+  .title {
+    margin: 0 0 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  /* Таблица */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.55rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .table th {
+    background: #fafafa;
+    font-weight: 600;
+    color: #444;
+  }
+  
+  /* Чётная зебра */
+  .table tbody tr:nth-child(even) {
+    background: #fafafa;
+  }
+  
+  /* Выравнивание чисел по правому краю */
+  .num {
+    text-align: right;
+  }
+  
+  /* Маркер блокировки */
+  .blocked {
+    color: #c62828;
+    font-weight: 600;
+  }
+  
+  /* Адаптация под узкий экран */
+  @media (max-width: 600px) {
+    .table,
+    .table thead,
+    .table tbody,
+    .table th,
+    .table td,
+    .table tr {
+      display: block;
+    }
+  
+    .table thead {
+      display: none;              /* скрываем шапку */
+    }
+  
+    .table tr {
+      margin-bottom: 0.75rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+  
+    .table td {
+      border: none;
+      padding: 0.65rem 0.9rem;
+      position: relative;
+    }
+  
+    .table td::before {
+      content: attr(data-label);
+      font-weight: 600;
+      color: #666;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+  }
+  .actions button {
+    margin-right: .25rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .form {
+    margin-top: 1.5rem;
+    display: grid;
+    gap: .8rem;
+    max-width: 400px;
+  }
+  
+  .form label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+  }
+  
+  .form input[type="text"],
+  .form input[type="number"] {
+    padding: .4rem .5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .chk {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .chk input { margin-right: .5rem; }
+  
+  .btns { display: flex; gap: .5rem; }
+  
+  .btns button {
+    padding: .4rem .8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btns button[type="submit"] { background: #1976d2; color: #fff; }
+  .btns button[type="button"]  { background: #9e9e9e; color: #fff; }
+  
