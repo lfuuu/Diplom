@@ -8,40 +8,40 @@ import sttp.tapir.generic.auto._
 import sttp.tapir.json.circe._
 import sttp.tapir.server.ServerEndpoint
 
-import _root_.com.mcn.diplom.services.CallsRawsService
-import _root_.com.mcn.diplom.domain.calls.CallsRaws._
+import _root_.com.mcn.diplom.services.CallRawService
+import _root_.com.mcn.diplom.domain.calls.CallRaw._
 
-class CallsRawsEndpoints[F[_]: Sync](service: CallsRawsService[F]) {
+class CallRawEndpoints[F[_]: Sync](service: CallRawService[F]) {
 
-  private val basePath = "calls-raws"
+  private val basePath = "call-raw"
 
-  val getAllEndpoint: PublicEndpoint[Unit, Unit, List[CallsRaws], Any] = endpoint.get
+  val getAllEndpoint: PublicEndpoint[Unit, Unit, List[CallRaw], Any] = endpoint.get
     .in(basePath)
-    .out(jsonBody[List[CallsRaws]])
+    .out(jsonBody[List[CallRaw]])
     .description("Get all raw call records")
 
   val getAllServerEndpoint: ServerEndpoint[Any, F] =
     getAllEndpoint.serverLogicSuccess(_ => service.findAll)
 
-  val getByIdEndpoint: PublicEndpoint[Long, String, CallsRaws, Any] = endpoint.get
+  val getByIdEndpoint: PublicEndpoint[Long, String, CallRaw, Any] = endpoint.get
     .in(basePath / path[Long]("id"))
     .errorOut(statusCode(StatusCode.NotFound).and(stringBody))
-    .out(jsonBody[CallsRaws])
+    .out(jsonBody[CallRaw])
     .description("Get raw call record by ID")
 
   val getByIdServerEndpoint: ServerEndpoint[Any, F] =
     getByIdEndpoint.serverLogic { id =>
-      service.findById(CallsRawsId(id)).flatMap {
+      service.findById(CallRawId(id)).flatMap {
         case Some(raw) => raw.asRight[String].pure[F]
-        case None      => s"Raw record $id not found".asLeft[CallsRaws].pure[F]
+        case None      => s"Raw record $id not found".asLeft[CallRaw].pure[F]
       }
     }
 
-  val createEndpoint: PublicEndpoint[CallsRawsCreateRequest, String, CallsRawsId, Any] = endpoint.post
+  val createEndpoint: PublicEndpoint[CallRawCreateRequest, String, CallRawId, Any] = endpoint.post
     .in(basePath)
-    .in(jsonBody[CallsRawsCreateRequest])
+    .in(jsonBody[CallRawCreateRequest])
     .errorOut(statusCode(StatusCode.BadRequest).and(stringBody))
-    .out(statusCode(StatusCode.Created).and(jsonBody[CallsRawsId]))
+    .out(statusCode(StatusCode.Created).and(jsonBody[CallRawId]))
     .description("Create new raw call record")
 
   val createServerEndpoint: ServerEndpoint[Any, F] =
@@ -61,7 +61,7 @@ class CallsRawsEndpoints[F[_]: Sync](service: CallsRawsService[F]) {
   val deleteServerEndpoint: ServerEndpoint[Any, F] =
     deleteEndpoint.serverLogic { id =>
       service
-        .deleteById(CallsRawsId(id))
+        .deleteById(CallRawId(id))
         .flatMap(_ => ().asRight[String].pure[F])
         .handleErrorWith(ex => ex.getMessage.asLeft[Unit].pure[F])
     }

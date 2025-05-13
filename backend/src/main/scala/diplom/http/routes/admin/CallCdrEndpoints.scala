@@ -8,40 +8,40 @@ import sttp.tapir.generic.auto._
 import sttp.tapir.json.circe._
 import sttp.tapir.server.ServerEndpoint
 
-import _root_.com.mcn.diplom.services.CallsCdrsService
-import _root_.com.mcn.diplom.domain.calls.CallsCdr._
+import _root_.com.mcn.diplom.services.CallCdrService
+import _root_.com.mcn.diplom.domain.calls.CallCdr._
 
-class CallsCdrsEndpoints[F[_]: Sync](service: CallsCdrsService[F]) {
+class CallCdrEndpoints[F[_]: Sync](service: CallCdrService[F]) {
 
-  private val basePath = "calls-cdrs"
+  private val basePath = "call-cdr"
 
-  val getAllEndpoint: PublicEndpoint[Unit, Unit, List[CallsCdr], Any] = endpoint.get
+  val getAllEndpoint: PublicEndpoint[Unit, Unit, List[CallCdr], Any] = endpoint.get
     .in(basePath)
-    .out(jsonBody[List[CallsCdr]])
+    .out(jsonBody[List[CallCdr]])
     .description("Get all CDRs")
 
   val getAllServerEndpoint: ServerEndpoint[Any, F] =
     getAllEndpoint.serverLogicSuccess(_ => service.findAll)
 
-  val getByIdEndpoint: PublicEndpoint[Long, String, CallsCdr, Any] = endpoint.get
+  val getByIdEndpoint: PublicEndpoint[Long, String, CallCdr, Any] = endpoint.get
     .in(basePath / path[Long]("id"))
     .errorOut(statusCode(StatusCode.NotFound).and(stringBody))
-    .out(jsonBody[CallsCdr])
+    .out(jsonBody[CallCdr])
     .description("Get CDR by ID")
 
   val getByIdServerEndpoint: ServerEndpoint[Any, F] =
     getByIdEndpoint.serverLogic { id =>
-      service.findById(CallsCdrId(id)).flatMap {
+      service.findById(CallCdrId(id)).flatMap {
         case Some(cdr) => cdr.asRight[String].pure[F]
-        case None      => s"CDR $id not found".asLeft[CallsCdr].pure[F]
+        case None      => s"CDR $id not found".asLeft[CallCdr].pure[F]
       }
     }
 
-  val createEndpoint: PublicEndpoint[CallsCdrCreateRequest, String, CallsCdrId, Any] = endpoint.post
+  val createEndpoint: PublicEndpoint[CallCdrCreateRequest, String, CallCdrId, Any] = endpoint.post
     .in("acc")
-    .in(jsonBody[CallsCdrCreateRequest])
+    .in(jsonBody[CallCdrCreateRequest])
     .errorOut(statusCode(StatusCode.BadRequest).and(stringBody))
-    .out(statusCode(StatusCode.Created).and(jsonBody[CallsCdrId]))
+    .out(statusCode(StatusCode.Created).and(jsonBody[CallCdrId]))
     .description("Create new CDR")
 
   val createServerEndpoint: ServerEndpoint[Any, F] =

@@ -6,11 +6,11 @@ import io.estatico.newtype.macros.newtype
 import java.time.Instant
 import sttp.tapir.derevo.schema
 
-object CallsCdr {
+object CallCdr {
 
   @derive(decoder, encoder, schema)
   @newtype
-  case class CallsCdrId(value: Long)
+  case class CallCdrId(value: Long)
 
   @derive(decoder, encoder, schema)
   @newtype
@@ -53,7 +53,7 @@ object CallsCdr {
   case class DstRoute(value: String)
 
   @derive(decoder, encoder, schema)
-  case class CallsCdrCreateRequest(
+  case class CallCdrCreateRequest(
     callId: CallId,
     srcNumber: SrcNumber,
     dstNumber: DstNumber,
@@ -67,8 +67,8 @@ object CallsCdr {
   )
 
   @derive(decoder, encoder, schema)
-  case class CallsCdr(
-    id: CallsCdrId,
+  case class CallCdr(
+    id: CallCdrId,
     callId: CallId,
     srcNumber: SrcNumber,
     dstNumber: DstNumber,
