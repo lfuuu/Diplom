@@ -12,6 +12,7 @@ trait AuthTrunksService[F[_]] {
   def findAll: F[List[AuthTrunk]]
   def findById(id: AuthTrunkId): F[Option[AuthTrunk]]
   def deleteById(id: AuthTrunkId): F[Unit]
+  def findByName(name: AuthTrunkName): F[Option[AuthTrunk]]
 }
 
 object AuthTrunksService {
@@ -39,6 +40,11 @@ object AuthTrunksService {
         postgres.use { session =>
           session.execute(deleteTrunkById)(id).void
         }
+
+      override def findByName(name: AuthTrunkName): F[Option[AuthTrunk]] =
+        postgres.use { session =>
+          session.prepare(findTrunkByName).flatMap(_.option(name))
+        }
     }
 }
 
@@ -48,6 +54,9 @@ private object AuthTrunksSQL {
 
   val trunkName: Codec[Option[AuthTrunkName]] =
     text.opt.imap(_.map(AuthTrunkName(_)))(_.map(_.value))
+
+  val trunkNameWo: Codec[AuthTrunkName] =
+    text.imap(AuthTrunkName(_))(_.value)
 
   val authByNumber: Codec[AuthTrunkAuthByNumber] =
     bool.imap(AuthTrunkAuthByNumber(_))(_.value)
@@ -78,6 +87,14 @@ private object AuthTrunksSQL {
       SELECT id, trunk_name, auth_by_number
       FROM auth.trunk
       WHERE id = $id
+    """.query(findAllCodec).to[AuthTrunk]
+
+  val findTrunkByName: Query[AuthTrunkName, AuthTrunk] =
+    sql"""
+      SELECT id, trunk_name, auth_by_number
+      FROM auth.trunk
+      WHERE trunk_name = $trunkNameWo
+      
     """.query(findAllCodec).to[AuthTrunk]
 
   val deleteTrunkById: Command[AuthTrunkId] =

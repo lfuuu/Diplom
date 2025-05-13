@@ -13,7 +13,7 @@ trait BillingClientsService[F[_]] {
   def create(client: BillingClientCreateRequest): F[Option[BillingClientId]]
   def findAll: F[List[BillingClient]]
   def findById(id: BillingClientId): F[Option[BillingClient]]
-  def deleteById(id: BillingClientId): F[Unit]
+  def deleteById(id: BillingClientId): F[Unit]  
 }
 
 object BillingClientsService {
