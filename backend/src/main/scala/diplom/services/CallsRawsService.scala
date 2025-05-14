@@ -6,77 +6,77 @@ import cats.syntax.all._
 import skunk._
 import skunk.codec.all._
 import skunk.implicits._
-import _root_.com.mcn.diplom.domain.calls.CallsRaws._
+import _root_.com.mcn.diplom.domain.calls.CallRaw._
 
-trait CallsRawsService[F[_]] {
-  def create(raw: CallsRawsCreateRequest): F[Option[CallsRawsId]]
-  def findAll: F[List[CallsRaws]]
-  def findById(id: CallsRawsId): F[Option[CallsRaws]]
-  def deleteById(id: CallsRawsId): F[Unit]
+trait CallRawService[F[_]] {
+  def create(raw: CallRawCreateRequest): F[Option[CallRawId]]
+  def findAll: F[List[CallRaw]]
+  def findById(id: CallRawId): F[Option[CallRaw]]
+  def deleteById(id: CallRawId): F[Unit]
 }
 
-object CallsRawsService {
+object CallRawService {
 
   def make[F[_]: MonadCancelThrow](
     postgres: Resource[F, Session[F]]
-  ): CallsRawsService[F] =
-    new CallsRawsService[F] {
-      import CallsRawsSQL._
+  ): CallRawService[F] =
+    new CallRawService[F] {
+      import CallRawSQL._
 
-      override def findAll: F[List[CallsRaws]] =
+      override def findAll: F[List[CallRaw]] =
         postgres.use(_.execute(selectAll))
 
-      override def create(request: CallsRawsCreateRequest): F[Option[CallsRawsId]] =
+      override def create(request: CallRawCreateRequest): F[Option[CallRawId]] =
         postgres.use { session =>
           session.prepare(insertRaw).flatMap(_.option(request))
         }
 
-      override def findById(id: CallsRawsId): F[Option[CallsRaws]] =
+      override def findById(id: CallRawId): F[Option[CallRaw]] =
         postgres.use { session =>
           session.prepare(findRawById).flatMap(_.option(id))
         }
 
-      override def deleteById(id: CallsRawsId): F[Unit] =
+      override def deleteById(id: CallRawId): F[Unit] =
         postgres.use { session =>
           session.execute(deleteRawById)(id).void
         }
     }
 }
 
-private object CallsRawsSQL {
+private object CallRawSQL {
 
-  val id: Codec[CallsRawsId]                           = int8.imap(CallsRawsId(_))(_.value)
-  val orig: Codec[CallsRawsOrig]                       = bool.imap(CallsRawsOrig(_))(_.value)
-  val peerId: Codec[CallsRawsPeerId]                   = int8.imap(CallsRawsPeerId(_))(_.value)
-  val cdrId: Codec[CallsRawsCdrId]                     = int8.imap(CallsRawsCdrId(_))(_.value)
+  val id: Codec[CallRawId]         = int8.imap(CallRawId(_))(_.value)
+  val orig: Codec[CallRawOrig]     = bool.imap(CallRawOrig(_))(_.value)
+  val peerId: Codec[CallRawPeerId] = int8.imap(CallRawPeerId(_))(_.value)
+  val cdrId: Codec[CallRawCdrId]   = int8.imap(CallRawCdrId(_))(_.value)
 
-  val connectTime: Codec[CallsRawsConnectTime]         =
-    timestamptz.imap(t => CallsRawsConnectTime(t.toInstant))(_.value.atOffset(ZoneOffset.UTC))
-  val trunkId: Codec[CallsRawsTrunkId]                 = int4.imap(CallsRawsTrunkId(_))(_.value)
-  val clientId: Codec[CallsRawsClientId]               = int4.imap(CallsRawsClientId(_))(_.value)
-  val serviceTrunkId: Codec[CallsRawsServiceTrunkId]   = int4.imap(CallsRawsServiceTrunkId(_))(_.value)
-  val serviceNumberId: Codec[CallsRawsServiceNumberId] = int4.imap(CallsRawsServiceNumberId(_))(_.value)
-  val srcNumber: Codec[CallsRawsSrcNumber]             = text.imap(CallsRawsSrcNumber(_))(_.value)
-  val dstNumber: Codec[CallsRawsDstNumber]             = text.imap(CallsRawsDstNumber(_))(_.value)
-  val billedTime: Codec[CallsRawsBilledTime]           = int4.imap(CallsRawsBilledTime(_))(_.value)
-  val rate: Codec[CallsRawsRate]                       = numeric(12, 2).imap(CallsRawsRate(_))(_.value)
-  val cost: Codec[CallsRawsCost]                       = numeric(12, 2).imap(CallsRawsCost(_))(_.value)
-  val pricelistId: Codec[CallsRawsPricelistId]         = int4.imap(CallsRawsPricelistId(_))(_.value)
-  val disconnectCause: Codec[CallsRawsDisconnectCause] = int2.imap(CallsRawsDisconnectCause(_))(_.value)
+  val connectTime: Codec[CallRawConnectTime]         =
+    timestamptz.imap(t => CallRawConnectTime(t.toInstant))(_.value.atOffset(ZoneOffset.UTC))
+  val trunkId: Codec[CallRawTrunkId]                 = int4.imap(CallRawTrunkId(_))(_.value)
+  val clientId: Codec[CallRawClientId]               = int4.imap(CallRawClientId(_))(_.value)
+  val serviceTrunkId: Codec[CallRawServiceTrunkId]   = int4.imap(CallRawServiceTrunkId(_))(_.value)
+  val serviceNumberId: Codec[CallRawServiceNumberId] = int4.imap(CallRawServiceNumberId(_))(_.value)
+  val srcNumber: Codec[CallRawSrcNumber]             = text.imap(CallRawSrcNumber(_))(_.value)
+  val dstNumber: Codec[CallRawDstNumber]             = text.imap(CallRawDstNumber(_))(_.value)
+  val billedTime: Codec[CallRawBilledTime]           = int4.imap(CallRawBilledTime(_))(_.value)
+  val rate: Codec[CallRawRate]                       = numeric(12, 2).imap(CallRawRate(_))(_.value)
+  val cost: Codec[CallRawCost]                       = numeric(12, 2).imap(CallRawCost(_))(_.value)
+  val pricelistId: Codec[CallRawPricelistId]         = int4.imap(CallRawPricelistId(_))(_.value)
+  val disconnectCause: Codec[CallRawDisconnectCause] = int2.imap(CallRawDisconnectCause(_))(_.value)
 
   val findAllCodec = id *: orig *: peerId *: cdrId *: connectTime *: trunkId *:
     clientId *: serviceTrunkId *: serviceNumberId *: srcNumber *: dstNumber *:
     billedTime *: rate *: cost *: pricelistId *: disconnectCause
 
-  val selectAll: Query[Void, CallsRaws] =
+  val selectAll: Query[Void, CallRaw] =
     sql"""
       SELECT id, orig, peer_id, cdr_id, connect_time, trunk_id,
              client_id, service_trunk_id, service_number_id, src_number,
              dst_number, billed_time, rate, cost, pricelist_id, disconnect_cause
       FROM calls."raw"
-    """.query(findAllCodec).to[CallsRaws]
+    """.query(findAllCodec).to[CallRaw]
 
-  val insertRaw: Query[CallsRawsCreateRequest, CallsRawsId] =
+  val insertRaw: Query[CallRawCreateRequest, CallRawId] =
     sql"""
       INSERT INTO calls."raw" (
         orig, peer_id, cdr_id, connect_time, trunk_id, client_id,
@@ -90,25 +90,25 @@ private object CallsRawsSQL {
       RETURNING id
     """
       .query(int8)
-      .contramap[CallsRawsCreateRequest] { req =>
+      .contramap[CallRawCreateRequest] { req =>
         req.orig *: req.peerId *: req.cdrId *: req.connectTime *:
           req.trunkId *: req.clientId *: req.serviceTrunkId *:
           req.serviceNumberId *: req.srcNumber *: req.dstNumber *:
           req.billedTime *: req.rate *: req.cost *: req.pricelistId *:
           req.disconnectCause *: EmptyTuple
       }
-      .map(CallsRawsId(_))
+      .map(CallRawId(_))
 
-  val findRawById: Query[CallsRawsId, CallsRaws] =
+  val findRawById: Query[CallRawId, CallRaw] =
     sql"""
       SELECT id, orig, peer_id, cdr_id, connect_time, trunk_id,
              client_id, service_trunk_id, service_number_id, src_number,
              dst_number, billed_time, rate, cost, pricelist_id, disconnect_cause
       FROM calls."raw"
       WHERE id = $id
-    """.query(findAllCodec).to[CallsRaws]
+    """.query(findAllCodec).to[CallRaw]
 
-  val deleteRawById: Command[CallsRawsId] =
+  val deleteRawById: Command[CallRawId] =
     sql"""
       DELETE FROM calls."raw"
       WHERE id = $id

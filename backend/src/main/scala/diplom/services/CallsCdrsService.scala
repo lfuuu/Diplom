@@ -6,55 +6,55 @@ import cats.syntax.all._
 import skunk._
 import skunk.codec.all._
 import skunk.implicits._
-import _root_.com.mcn.diplom.domain.calls.CallsCdr.CallsCdrCreateRequest
-import _root_.com.mcn.diplom.domain.calls.CallsCdr._
+import _root_.com.mcn.diplom.domain.calls.CallCdr.CallCdrCreateRequest
+import _root_.com.mcn.diplom.domain.calls.CallCdr._
 
-trait CallsCdrsService[F[_]] {
-  def create(cdr: CallsCdrCreateRequest): F[Option[CallsCdrId]]
-  def findAll: F[List[CallsCdr]]
-  def findById(id: CallsCdrId): F[Option[CallsCdr]]
-  def deleteById(id: CallsCdrId): F[Unit]
+trait CallCdrService[F[_]] {
+  def create(cdr: CallCdrCreateRequest): F[Option[CallCdrId]]
+  def findAll: F[List[CallCdr]]
+  def findById(id: CallCdrId): F[Option[CallCdr]]
+  def deleteById(id: CallCdrId): F[Unit]
 }
 
-object CallsCdrsService {
+object CallCdrService {
 
   def make[F[_]: MonadCancelThrow](
     postgres: Resource[F, Session[F]]
-  ): CallsCdrsService[F] =
-    new CallsCdrsService[F] {
-      import CallsCdrsSQL._
+  ): CallCdrService[F] =
+    new CallCdrService[F] {
+      import CallCdrSQL._
 
-      override def findAll: F[List[CallsCdr]] =
+      override def findAll: F[List[CallCdr]] =
         postgres.use(_.execute(selectAll))
 
-      override def create(request: CallsCdrCreateRequest): F[Option[CallsCdrId]] =
+      override def create(request: CallCdrCreateRequest): F[Option[CallCdrId]] =
         postgres.use { session =>
           session.prepare(insertCdr).flatMap(_.option(request))
         }
 
-      override def findById(id: CallsCdrId): F[Option[CallsCdr]] =
+      override def findById(id: CallCdrId): F[Option[CallCdr]] =
         postgres.use { session =>
           session.prepare(findCdrById).flatMap(_.option(id))
         }
 
-      override def deleteById(id: CallsCdrId): F[Unit] =
+      override def deleteById(id: CallCdrId): F[Unit] =
         postgres.use { session =>
           session.execute(deleteCdrById)(id).void
         }
     }
 }
 
-private object CallsCdrsSQL {
+private object CallCdrSQL {
 
-  val id: Codec[CallsCdrId]                         = int8.imap(CallsCdrId(_))(_.value)
-  val callId: Codec[CallId]                         = int8.imap(CallId(_))(_.value)
-  val srcNumber: Codec[SrcNumber]                   = text.imap(SrcNumber(_))(_.value)
-  val dstNumber: Codec[DstNumber]                   = text.imap(DstNumber(_))(_.value)
+  val id: Codec[CallCdrId]        = int8.imap(CallCdrId(_))(_.value)
+  val callId: Codec[CallId]       = int8.imap(CallId(_))(_.value)
+  val srcNumber: Codec[SrcNumber] = text.imap(SrcNumber(_))(_.value)
+  val dstNumber: Codec[DstNumber] = text.imap(DstNumber(_))(_.value)
 
-  val setupTime: Codec[Option[SetupTime]]           =
+  val setupTime: Codec[Option[SetupTime]] =
     timestamptz.opt.imap(_.map(t => SetupTime(t.toInstant)))(_.map(_.value.atOffset(ZoneOffset.UTC)))
 
-  val connectTime: Codec[ConnectTime]               =
+  val connectTime: Codec[ConnectTime] =
     timestamptz.imap(t => ConnectTime(t.toInstant))(_.value.atOffset(ZoneOffset.UTC))
 
   val disconnectTime: Codec[Option[DisconnectTime]] =
@@ -67,14 +67,14 @@ private object CallsCdrsSQL {
   val findAllCodec = id *: callId *: srcNumber *: dstNumber *: setupTime *: connectTime *:
     disconnectTime *: sessionTime *: disconnectCause *: srcRoute *: dstRoute
 
-  val selectAll: Query[Void, CallsCdr] =
+  val selectAll: Query[Void, CallCdr] =
     sql"""
       SELECT id, call_id, src_number, dst_number, setup_time, connect_time,
              disconnect_time, session_time, disconnect_cause, src_route, dst_route
       FROM calls.cdr
-    """.query(findAllCodec).to[CallsCdr]
+    """.query(findAllCodec).to[CallCdr]
 
-  val insertCdr: Query[CallsCdrCreateRequest, CallsCdrId] =
+  val insertCdr: Query[CallCdrCreateRequest, CallCdrId] =
     sql"""
       INSERT INTO calls.cdr (
         call_id, src_number, dst_number, setup_time, connect_time,
@@ -86,22 +86,22 @@ private object CallsCdrsSQL {
       RETURNING id
     """
       .query(int8)
-      .contramap[CallsCdrCreateRequest] { req =>
+      .contramap[CallCdrCreateRequest] { req =>
         req.callId *: req.srcNumber *: req.dstNumber *: req.setupTime *:
           req.connectTime *: req.disconnectTime *: req.sessionTime *:
           req.disconnectCause *: req.srcRoute *: req.dstRoute *: EmptyTuple
       }
-      .map(CallsCdrId(_))
+      .map(CallCdrId(_))
 
-  val findCdrById: Query[CallsCdrId, CallsCdr] =
+  val findCdrById: Query[CallCdrId, CallCdr] =
     sql"""
       SELECT id, call_id, src_number, dst_number, setup_time, connect_time,
              disconnect_time, session_time, disconnect_cause, src_route, dst_route
       FROM calls.cdr
       WHERE id = $id
-    """.query(findAllCodec).to[CallsCdr]
+    """.query(findAllCodec).to[CallCdr]
 
-  val deleteCdrById: Command[CallsCdrId] =
+  val deleteCdrById: Command[CallCdrId] =
     sql"""
       DELETE FROM calls.cdr
       WHERE id = $id

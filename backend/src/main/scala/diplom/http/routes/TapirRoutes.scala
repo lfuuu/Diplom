@@ -28,8 +28,8 @@ import com.mcn.diplom.http.routes.admin.BillingPricelistsEndpoints
 import com.mcn.diplom.http.routes.admin.BillingPricelistItemsEndpoints
 import com.mcn.diplom.http.routes.admin.AuthTrunksEndpoints
 import com.mcn.diplom.http.routes.admin.AuthUsersEndpoints
-import com.mcn.diplom.http.routes.admin.CallsCdrsEndpoints
-import com.mcn.diplom.http.routes.admin.CallsRawsEndpoints
+import com.mcn.diplom.http.routes.admin.CallCdrEndpoints
+import com.mcn.diplom.http.routes.admin.CallRawEndpoints
 
 class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
 
@@ -59,11 +59,11 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
   private val authUsersEndpoints =
     new AuthUsersEndpoints[F](services.authUsersService).endpoints
 
-  private val callsCdrsEndpoints =
-    new CallsCdrsEndpoints[F](services.callsCdrsService).endpoints
+  private val CallCdrEndpoints =
+    new CallCdrEndpoints[F](services.CallCdrService).endpoints
 
-  private val callsRawsEndpoints =
-    new CallsRawsEndpoints[F](services.callsRawsService).endpoints
+  private val CallRawEndpoints =
+    new CallRawEndpoints[F](services.CallRawService).endpoints
 
   val statusEndpoint: PublicEndpoint[Unit, Unit, StatusResponse, Any] = endpoint.get
     .in("status")
@@ -84,8 +84,8 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
       billingPricelistItemsEndpoints ++
       authTrunksEndpoints ++
       authUsersEndpoints ++
-      callsCdrsEndpoints ++
-      callsRawsEndpoints
+      CallCdrEndpoints ++
+      CallRawEndpoints
 
   val docEndpoints: List[ServerEndpoint[Any, F]] =
     SwaggerInterpreter(swaggerUIOptions = SwaggerUIOptions.default.copy(contextPath = List("v1", "api")).withAbsolutePaths)
