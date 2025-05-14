@@ -1,7 +1,6 @@
 package com.mcn.diplom.programs
 
 import cats.MonadThrow
-import cats.syntax.all._
 import org.typelevel.log4cats.Logger
 import com.mcn.diplom.services.AuthTrunksService
 import com.mcn.diplom.services.BillingServiceNumbersService
@@ -14,71 +13,89 @@ import java.time.Instant
 import com.mcn.diplom.domain.auth.AuthTrunk._
 import cats.data.EitherT
 import com.mcn.diplom.domain.nispd.BillingCallError._
-import com.mcn.diplom.domain.nispd
+import com.mcn.diplom.domain.nispd.BillingServiceTrunk._
+import com.mcn.diplom.domain.nispd.BillingServiceNumber._
+
+import com.mcn.diplom.lib.Time
 
 @nowarn
-final case class BillingCall[F[_]: Logger: MonadThrow](
+final case class BillingCall[F[_]: Logger: Time: MonadThrow](
   client: BillingClientsService[F],
   trunk: AuthTrunksService[F],
   serviceNumber: BillingServiceNumbersService[F],
   serviceTrunk: BillingServiceTrunksService[F]
 ) {
 
-  def findTrunk(cdr: CallCdr, orig: Boolean): EitherT[F, BillingCallError, AuthTrunk] = {
-    val trunkName = if (orig) cdr.srcRoute.value else cdr.dstRoute.value
-    EitherT.fromOptionF(trunk.findByName(AuthTrunkName(trunkName)), ifNone = TrunkNotFound(s"Транк $trunkName не найден."))
-  }
+  def billing(cdr: CallCdr, orig: Boolean): EitherT[F, BillingCallError, CallRaw] = {
 
-  def billing(cdr: CallCdr, orig: Boolean) = {
+    def findTrunk: EitherT[F, BillingCallError, AuthTrunk] = {
+      val trunkName = if (orig) cdr.srcRoute.value else cdr.dstRoute.value
+      EitherT.fromOptionF(trunk.findByName(AuthTrunkName(trunkName)), ifNone = TrunkNotFound(s"Транк $trunkName не найден."))
+    }
 
-    def billingByNumber(trunk: AuthTrunk): EitherT[F, BillingCallError, CallRaw] = for {
-        serviceNumber <- findServiceNumber()
+    def findServiceNumber(tm: Instant, num: BillingServiceNumberDID): EitherT[F, BillingCallError, BillingServiceNumber] =
+      EitherT.fromOptionF(serviceNumber.findServiceNumberByNum(tm, num), ifNone = NumberNotFound(s"Номер $num никому не принадлежит."))
 
-    } yield      CallRaw(
-      id = CallRawId(1L),
-      orig = CallRawOrig(true),
-      peerId = CallRawPeerId(123L),
-      cdrId = CallRawCdrId(456L),
-      connectTime = CallRawConnectTime(Instant.parse("2023-10-01T12:00:00Z")),
-      trunkId = CallRawTrunkId(789),
-      clientId = CallRawClientId(10),
-      serviceTrunkId = CallRawServiceTrunkId(11),
-      serviceNumberId = CallRawServiceNumberId(12),
-      srcNumber = CallRawSrcNumber("+1234567890"),
-      dstNumber = CallRawDstNumber("+0987654321"),
-      billedTime = CallRawBilledTime(60),
-      rate = CallRawRate(BigDecimal("0.05")),
-      cost = CallRawCost(BigDecimal("3.00")),
-      pricelistId = CallRawPricelistId(42),
-      disconnectCause = CallRawDisconnectCause(0.toShort)
-    )
+    def findServiceTrunk(tm: Instant, trunk: AuthTrunk): EitherT[F, BillingCallError, BillingServiceTrunk] =
+      EitherT.fromOptionF(
+        serviceTrunk.findServiceTrunkByTrunk(tm, BillingTrunkId(trunk.id.value)),
+        ifNone = ServiceTrunkNotFound(s"К транку $trunk не подключен оператор")
+      )
 
+    def billingByNumber: EitherT[F, BillingCallError, CallRaw] =
+      for {
+        tm            <- EitherT.liftF(Time[F].getInstantNow)
+        num            = BillingServiceNumberDID(if (orig) cdr.srcNumber.value else cdr.dstNumber.value)
+        serviceNumber <- findServiceNumber(tm, num)
 
-    def billingByTrunk(trunk: AuthTrunk): EitherT[F, BillingCallError, CallRaw] = ???
+      } yield CallRaw(
+        id = CallRawId(1L),
+        orig = CallRawOrig(true),
+        peerId = CallRawPeerId(123L),
+        cdrId = CallRawCdrId(456L),
+        connectTime = CallRawConnectTime(Instant.parse("2023-10-01T12:00:00Z")),
+        trunkId = CallRawTrunkId(789),
+        clientId = CallRawClientId(10),
+        serviceTrunkId = CallRawServiceTrunkId(11),
+        serviceNumberId = CallRawServiceNumberId(12),
+        srcNumber = CallRawSrcNumber("+1234567890"),
+        dstNumber = CallRawDstNumber("+0987654321"),
+        billedTime = CallRawBilledTime(60),
+        rate = CallRawRate(BigDecimal("0.05")),
+        cost = CallRawCost(BigDecimal("3.00")),
+        pricelistId = CallRawPricelistId(42),
+        disconnectCause = CallRawDisconnectCause(0.toShort)
+      )
+
+    def billingByTrunk(trunk: AuthTrunk): EitherT[F, BillingCallError, CallRaw] =
+      for {
+        tm            <- EitherT.liftF(Time[F].getInstantNow)
+        serviceTrunks <- findServiceTrunk(tm, trunk)
+
+      } yield CallRaw(
+        id = CallRawId(1L),
+        orig = CallRawOrig(true),
+        peerId = CallRawPeerId(123L),
+        cdrId = CallRawCdrId(456L),
+        connectTime = CallRawConnectTime(Instant.parse("2023-10-01T12:00:00Z")),
+        trunkId = CallRawTrunkId(789),
+        clientId = CallRawClientId(10),
+        serviceTrunkId = CallRawServiceTrunkId(11),
+        serviceNumberId = CallRawServiceNumberId(12),
+        srcNumber = CallRawSrcNumber("+1234567890"),
+        dstNumber = CallRawDstNumber("+0987654321"),
+        billedTime = CallRawBilledTime(60),
+        rate = CallRawRate(BigDecimal("0.05")),
+        cost = CallRawCost(BigDecimal("3.00")),
+        pricelistId = CallRawPricelistId(42),
+        disconnectCause = CallRawDisconnectCause(0.toShort)
+      )
 
     for {
-      trunk <- findTrunk(cdr, orig)
-      raw   <- if (trunk.authByNumber.value) billingByNumber(trunk) else billingByTrunk(trunk)
+      trunk <- findTrunk
+      raw   <- if (trunk.authByNumber.value) billingByNumber else billingByTrunk(trunk)
     } yield raw
 
-    // CallRaw(
-    //   id = CallRawId(1L),
-    //   orig = CallRawOrig(true),
-    //   peerId = CallRawPeerId(123L),
-    //   cdrId = CallRawCdrId(456L),
-    //   connectTime = CallRawConnectTime(Instant.parse("2023-10-01T12:00:00Z")),
-    //   trunkId = CallRawTrunkId(789),
-    //   clientId = CallRawClientId(10),
-    //   serviceTrunkId = CallRawServiceTrunkId(11),
-    //   serviceNumberId = CallRawServiceNumberId(12),
-    //   srcNumber = CallRawSrcNumber("+1234567890"),
-    //   dstNumber = CallRawDstNumber("+0987654321"),
-    //   billedTime = CallRawBilledTime(60),
-    //   rate = CallRawRate(BigDecimal("0.05")),
-    //   cost = CallRawCost(BigDecimal("3.00")),
-    //   pricelistId = CallRawPricelistId(42),
-    //   disconnectCause = CallRawDisconnectCause(0.toShort)
-    // )
   }
   // 1. вычисляем trunk
   // 2. Вычисляем услугу ( в зависимости от типа авторизации - транк или нумбер)

@@ -7,12 +7,14 @@ import skunk._
 import skunk.codec.all._
 import skunk.implicits._
 import _root_.com.mcn.diplom.domain.nispd.BillingServiceNumber._
+import java.time.Instant
 
 trait BillingServiceNumbersService[F[_]] {
   def create(number: BillingServiceNumberCreateRequest): F[Option[BillingServiceNumberId]]
   def findAll: F[List[BillingServiceNumber]]
   def findById(id: BillingServiceNumberId): F[Option[BillingServiceNumber]]
   def deleteById(id: BillingServiceNumberId): F[Unit]
+  def findServiceNumberByNum(tm: Instant, num: BillingServiceNumberDID): F[Option[BillingServiceNumber]]
 }
 
 object BillingServiceNumbersService {
@@ -40,6 +42,13 @@ object BillingServiceNumbersService {
         postgres.use { session =>
           session.execute(deleteByIdServiceNumber)(id).void
         }
+
+      override def findServiceNumberByNum(tm: Instant, num: BillingServiceNumberDID): F[Option[BillingServiceNumber]] =
+        postgres.use { session =>
+          session
+            .prepare(findServiceNumberByNumServiceNumber)
+            .flatMap(_.option((BillingServiceNumberActivationDt(tm), BillingServiceNumberExpireDt(tm), num)))
+        }
     }
 }
 
@@ -55,8 +64,19 @@ private object BillingServiceNumbersSQL {
   val expireDt: Codec[Option[BillingServiceNumberExpireDt]] =
     timestamptz.opt.imap(_.map(t => BillingServiceNumberExpireDt(t.toInstant)))(_.map(_.value.atOffset(ZoneOffset.UTC)))
 
+  val expireDtWo: Codec[BillingServiceNumberExpireDt] =
+    timestamptz.imap(t => BillingServiceNumberExpireDt(t.toInstant))(_.value.atOffset(ZoneOffset.UTC))
+
   val findAllCodec       = id *: clientId *: did *: activationDt *: expireDt
   val createRequestCodec = clientId *: did *: activationDt *: expireDt
+
+  val findServiceNumberByNumServiceNumber
+    : Query[BillingServiceNumberActivationDt *: BillingServiceNumberExpireDt *: BillingServiceNumberDID *: EmptyTuple, BillingServiceNumber] =
+    sql"""
+      SELECT id, client_id, did, activation_dt, expire_dt
+      FROM billing.service_number  where activation_dt <= $activationDt and  ( expire_dt > $expireDtWo or expire_dt is Null)
+      and did = $did
+      """.query(findAllCodec).to[BillingServiceNumber]
 
   val selectAll: Query[Void, BillingServiceNumber] =
     sql"""
