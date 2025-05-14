@@ -55,7 +55,7 @@ object BillingServiceNumbersService {
 private object BillingServiceNumbersSQL {
 
   val id: Codec[BillingServiceNumberId]   = int4.imap(BillingServiceNumberId(_))(_.value)
-  val clientId: Codec[BillingClientId]    = int4.imap(BillingClientId(_))(_.value)
+  val clientId: Codec[BillingServiceNumberClientId]    = int4.imap(BillingServiceNumberClientId(_))(_.value)
   val did: Codec[BillingServiceNumberDID] = text.imap(BillingServiceNumberDID(_))(_.value)
 
   val activationDt: Codec[BillingServiceNumberActivationDt] =

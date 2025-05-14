@@ -17,10 +17,11 @@ import com.mcn.diplom.domain.nispd.BillingServiceTrunk._
 import com.mcn.diplom.domain.nispd.BillingServiceNumber._
 
 import com.mcn.diplom.lib.Time
+import com.mcn.diplom.domain.nispd.BillingClient._
 
 @nowarn
 final case class BillingCall[F[_]: Logger: Time: MonadThrow](
-  client: BillingClientsService[F],
+  serviceClient: BillingClientsService[F],
   trunk: AuthTrunksService[F],
   serviceNumber: BillingServiceNumbersService[F],
   serviceTrunk: BillingServiceTrunksService[F]
@@ -42,11 +43,18 @@ final case class BillingCall[F[_]: Logger: Time: MonadThrow](
         ifNone = ServiceTrunkNotFound(s"К транку $trunk не подключен оператор")
       )
 
+    def findClientById(clientId: BillingClientId): EitherT[F, BillingCallError, BillingClient] = 
+             EitherT.fromOptionF(
+        serviceClient.findById(clientId),
+        ifNone = ClientNotFound(s"К клиент #$clientId не найден")
+      )  
+
     def billingByNumber: EitherT[F, BillingCallError, CallRaw] =
       for {
         tm            <- EitherT.liftF(Time[F].getInstantNow)
         num            = BillingServiceNumberDID(if (orig) cdr.srcNumber.value else cdr.dstNumber.value)
         serviceNumber <- findServiceNumber(tm, num)
+        client <- findClientById(BillingClientId(serviceNumber.clientId.value))
 
       } yield CallRaw(
         id = CallRawId(1L),
@@ -71,7 +79,7 @@ final case class BillingCall[F[_]: Logger: Time: MonadThrow](
       for {
         tm            <- EitherT.liftF(Time[F].getInstantNow)
         serviceTrunks <- findServiceTrunk(tm, trunk)
-
+        client <- findClientById(BillingClientId(serviceTrunks.clientId.value))
       } yield CallRaw(
         id = CallRawId(1L),
         orig = CallRawOrig(true),

@@ -14,7 +14,7 @@ object BillingServiceTrunk {
 
   @derive(decoder, encoder, schema)
   @newtype
-  case class BillingClientId(value: Int)
+  case class BillingServiceTrunkClientId(value: Int)
 
   @derive(decoder, encoder, schema)
   @newtype
@@ -38,7 +38,7 @@ object BillingServiceTrunk {
 
   @derive(decoder, encoder, schema)
   case class BillingServiceTrunkCreateRequest(
-    clientId: BillingClientId,
+    clientId: BillingServiceTrunkClientId,
     trunkId: BillingTrunkId,
     activationDt: BillingServiceTrunkActivationDt,
     expireDt: Option[BillingServiceTrunkExpireDt],
@@ -49,7 +49,7 @@ object BillingServiceTrunk {
   @derive(decoder, encoder, schema)
   case class BillingServiceTrunk(
     id: BillingServiceTrunkId,
-    clientId: BillingClientId,
+    clientId: BillingServiceTrunkClientId,
     trunkId: BillingTrunkId,
     activationDt: BillingServiceTrunkActivationDt,
     expireDt: Option[BillingServiceTrunkExpireDt],
