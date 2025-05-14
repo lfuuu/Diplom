@@ -21,10 +21,9 @@ object BillingCallError {
   case class ServiceTrunkNotFound(cause: String) extends BillingCallError
 
   @derive(eqv, show, schema, decoder, encoder)
-  case class NumberNotFound(cause: String)       extends BillingCallError
+  case class NumberNotFound(cause: String) extends BillingCallError
 
   @derive(eqv, show, schema, decoder, encoder)
-  case class ClientNotFound(cause: String)       extends BillingCallError
+  case class ClientNotFound(cause: String) extends BillingCallError
 
-  
 }

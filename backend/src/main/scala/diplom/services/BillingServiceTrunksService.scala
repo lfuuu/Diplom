@@ -54,9 +54,9 @@ object BillingServiceTrunksService {
 
 private object BillingServiceTrunksSQL {
 
-  val id: Codec[BillingServiceTrunkId] = int4.imap(BillingServiceTrunkId(_))(_.value)
+  val id: Codec[BillingServiceTrunkId]             = int4.imap(BillingServiceTrunkId(_))(_.value)
   val clientId: Codec[BillingServiceTrunkClientId] = int4.imap(BillingServiceTrunkClientId(_))(_.value)
-  val trunkId: Codec[BillingTrunkId]   = int4.imap(BillingTrunkId(_))(_.value)
+  val trunkId: Codec[BillingTrunkId]               = int4.imap(BillingTrunkId(_))(_.value)
 
   val activationDt: Codec[BillingServiceTrunkActivationDt] =
     timestamptz.imap(t => BillingServiceTrunkActivationDt(t.toInstant))(_.value.atOffset(ZoneOffset.UTC))
