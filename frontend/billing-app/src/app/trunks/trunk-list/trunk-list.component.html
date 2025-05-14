@@ -1,0 +1,18 @@
+<section class="card">
+  <h2 class="title">Список транков</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th><th>Имя</th><th>Auth by Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of trunks">
+        <td>{{ t.id }}</td>
+        <td>{{ t.trunkName }}</td>
+        <td>{{ t.authByNumber ? 'Да' : 'Нет' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

@@ -4,6 +4,12 @@
       "secure": false,
       "changeOrigin": true,
       "logLevel": "debug"
-    }
+    },
+    "/v1/api/auth-trunks": {
+      "target": "http://localhost:8084",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
   }
   
