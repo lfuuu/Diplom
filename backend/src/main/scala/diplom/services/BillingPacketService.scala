@@ -7,17 +7,20 @@ import skunk._
 import skunk.codec.all._
 import skunk.implicits._
 import _root_.com.mcn.diplom.domain.nispd.BillingPacket._
+import java.time.Instant
 
 trait BillingPacketsService[F[_]] {
   def create(packet: BillingPacketCreateRequest): F[Option[BillingPacketId]]
   def findAll: F[List[BillingPacket]]
   def findById(id: BillingPacketId): F[Option[BillingPacket]]
   def deleteById(id: BillingPacketId): F[Unit]
+  def getPricelistsForServiceNumberId(serviceNumberId: BillingServiceNumberId, tm: Instant): F[List[BillingPricelistId]]
+  def getPricelistsForServiceTrunkId(serviceTrunkId: BillingServiceTrunkId, tm: Instant): F[List[BillingPricelistId]]
 }
 
 object BillingPacketsService {
 
-  def make[F[_]: MonadCancelThrow](
+  def make[F[_]: MonadCancelThrow: Concurrent](
     postgres: Resource[F, Session[F]]
   ): BillingPacketsService[F] =
     new BillingPacketsService[F] {
@@ -40,6 +43,13 @@ object BillingPacketsService {
         postgres.use { session =>
           session.execute(deleteByIdPacket)(id).void
         }
+
+      override def getPricelistsForServiceNumberId(serviceNumberId: BillingServiceNumberId, tm: Instant): F[List[BillingPricelistId]] =
+        postgres.use(_.execute(findPricelistsForServiceNumberId)((BillingPacketActivationDt(tm), BillingPacketExpireDt(tm), serviceNumberId)))
+
+      override def getPricelistsForServiceTrunkId(serviceTrunkId: BillingServiceTrunkId, tm: Instant): F[List[BillingPricelistId]] =
+        postgres.use(_.execute(findPricelistsForServiceTrunkId)((BillingPacketActivationDt(tm), BillingPacketExpireDt(tm), serviceTrunkId)))
+
     }
 }
 
@@ -52,11 +62,33 @@ private object BillingPacketsSQL {
 
   val expireDt: Codec[Option[BillingPacketExpireDt]] =
     timestamptz.opt.imap(_.map(t => BillingPacketExpireDt(t.toInstant)))(_.map(_.value.atOffset(ZoneOffset.UTC)))
-  val orig: Codec[BillingPacketOrig]                 = bool.imap(BillingPacketOrig(_))(_.value)
-  val pricelistId: Codec[BillingPricelistId]         = int4.imap(BillingPricelistId(_))(_.value)
+
+  val expireDtWo: Codec[BillingPacketExpireDt] =
+    timestamptz.imap(t => BillingPacketExpireDt(t.toInstant))(_.value.atOffset(ZoneOffset.UTC))
+
+  val orig: Codec[BillingPacketOrig]         = bool.imap(BillingPacketOrig(_))(_.value)
+  val pricelistId: Codec[BillingPricelistId] = int4.imap(BillingPricelistId(_))(_.value)
 
   val findAllCodec       = id *: serviceTrunkId *: serviceNumberId *: activationDt *: expireDt *: orig *: pricelistId
   val createRequestCodec = serviceTrunkId *: serviceNumberId *: activationDt *: expireDt *: orig *: pricelistId
+
+  val findPricelistsForServiceNumberId
+    : Query[BillingPacketActivationDt *: BillingPacketExpireDt *: BillingServiceNumberId *: EmptyTuple, BillingPricelistId] =
+    sql"""
+      SELECT pricelist_id
+      FROM billing.packet
+      where activation_dt <= $activationDt and  ( expire_dt > $expireDtWo or expire_dt is Null)
+      and service_number_id = $serviceNumberId    
+      """.query(pricelistId)
+
+  val findPricelistsForServiceTrunkId
+    : Query[BillingPacketActivationDt *: BillingPacketExpireDt *: BillingServiceTrunkId *: EmptyTuple, BillingPricelistId] =
+    sql"""
+      SELECT pricelist_id
+      FROM billing.packet
+      where activation_dt <= $activationDt and  ( expire_dt > $expireDtWo or expire_dt is Null)
+      and service_number_id = $serviceTrunkId    
+      """.query(pricelistId)
 
   val selectAll: Query[Void, BillingPacket] =
     sql"""
