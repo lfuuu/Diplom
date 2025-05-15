@@ -149,12 +149,12 @@ final case class BillingCall[F[_]: Logger: Time: MonadThrow](
     } yield raw
 
   }
-  // 1. вычисляем trunk
-  // 2. Вычисляем услугу ( в зависимости от типа авторизации - транк или нумбер)
-  // 3. Вычисляем клиента
-  // 4. Вычисляем прайслист
 
-  // Делаем функцию расчета по прайслисту.
-  // применяем пакеты
+  def billing(cdr: CallCdr): EitherT[F, BillingCallError, (CallRawCreateRequest, CallRawCreateRequest)] =
+    for {
+      origLeg <- billingLeg(cdr, true)
+      termLeg <- billingLeg(cdr, false)
+
+    } yield (origLeg, termLeg)
 
 }
