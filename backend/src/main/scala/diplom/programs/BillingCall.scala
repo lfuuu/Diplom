@@ -59,18 +59,20 @@ final case class BillingCall[F[_]: Logger: Time: MonadThrow](
 
     def findPriceListsForServiceNumber(
       tm: Instant,
-      serviceNumberId: BillingServiceNumberId
+      serviceNumberId: BillingServiceNumberId,
+      orig: Boolean
     ): EitherT[F, BillingCallError, List[BillingPacketPricelistId]] =
       EitherT.liftF(
-        servicePacket.getPricelistsForServiceNumberId(BillingPacketServiceNumberId(serviceNumberId.value), tm)
+        servicePacket.getPricelistsForServiceNumberId(BillingPacketServiceNumberId(serviceNumberId.value), tm, BillingPacketOrig(orig))
       )
 
     def findPriceListsForServiceTrunk(
       tm: Instant,
-      serviceTrunkId: BillingServiceTrunkId
+      serviceTrunkId: BillingServiceTrunkId,
+      orig: Boolean
     ): EitherT[F, BillingCallError, List[BillingPacketPricelistId]] =
       EitherT.liftF(
-        servicePacket.getPricelistsForServiceTrunkId(BillingPacketServiceTrunkId(serviceTrunkId.value), tm)
+        servicePacket.getPricelistsForServiceTrunkId(BillingPacketServiceTrunkId(serviceTrunkId.value), tm, BillingPacketOrig(orig))
       )
 
     def findBestPrice(
@@ -94,7 +96,7 @@ final case class BillingCall[F[_]: Logger: Time: MonadThrow](
         num            = BillingServiceNumberDID(if (orig) cdr.srcNumber.value else cdr.dstNumber.value)
         serviceNumber <- findServiceNumber(tm, num)
         client        <- findClientById(BillingClientId(serviceNumber.clientId.value))
-        pricelistIds  <- findPriceListsForServiceNumber(tm, serviceNumber.id)
+        pricelistIds  <- findPriceListsForServiceNumber(tm, serviceNumber.id, orig)
         price         <- findBestPrice(tm, pricelistIds, numB.value)
 
       } yield CallRawCreateRequest(
@@ -120,7 +122,7 @@ final case class BillingCall[F[_]: Logger: Time: MonadThrow](
         tm           <- EitherT.liftF(Time[F].getInstantNow)
         serviceTrunk <- findServiceTrunk(tm, trunk)
         client       <- findClientById(BillingClientId(serviceTrunk.clientId.value))
-        pricelistIds <- findPriceListsForServiceTrunk(tm, serviceTrunk.id)
+        pricelistIds <- findPriceListsForServiceTrunk(tm, serviceTrunk.id, orig)
         price        <- findBestPrice(tm, pricelistIds, numB.value)
 
       } yield CallRawCreateRequest(
