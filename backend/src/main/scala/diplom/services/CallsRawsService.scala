@@ -50,19 +50,19 @@ private object CallRawSQL {
   val peerId: Codec[CallRawPeerId] = int8.imap(CallRawPeerId(_))(_.value)
   val cdrId: Codec[CallRawCdrId]   = int8.imap(CallRawCdrId(_))(_.value)
 
-  val connectTime: Codec[CallRawConnectTime]         =
+  val connectTime: Codec[CallRawConnectTime]                 =
     timestamptz.imap(t => CallRawConnectTime(t.toInstant))(_.value.atOffset(ZoneOffset.UTC))
-  val trunkId: Codec[CallRawTrunkId]                 = int4.imap(CallRawTrunkId(_))(_.value)
-  val clientId: Codec[CallRawClientId]               = int4.imap(CallRawClientId(_))(_.value)
-  val serviceTrunkId: Codec[CallRawServiceTrunkId]   = int4.imap(CallRawServiceTrunkId(_))(_.value)
-  val serviceNumberId: Codec[CallRawServiceNumberId] = int4.imap(CallRawServiceNumberId(_))(_.value)
-  val srcNumber: Codec[CallRawSrcNumber]             = text.imap(CallRawSrcNumber(_))(_.value)
-  val dstNumber: Codec[CallRawDstNumber]             = text.imap(CallRawDstNumber(_))(_.value)
-  val billedTime: Codec[CallRawBilledTime]           = int4.imap(CallRawBilledTime(_))(_.value)
-  val rate: Codec[CallRawRate]                       = numeric(12, 2).imap(CallRawRate(_))(_.value)
-  val cost: Codec[CallRawCost]                       = numeric(12, 2).imap(CallRawCost(_))(_.value)
-  val pricelistId: Codec[CallRawPricelistId]         = int4.imap(CallRawPricelistId(_))(_.value)
-  val disconnectCause: Codec[CallRawDisconnectCause] = int2.imap(CallRawDisconnectCause(_))(_.value)
+  val trunkId: Codec[CallRawTrunkId]                         = int4.imap(CallRawTrunkId(_))(_.value)
+  val clientId: Codec[CallRawClientId]                       = int4.imap(CallRawClientId(_))(_.value)
+  val serviceTrunkId: Codec[Option[CallRawServiceTrunkId]]   = int4.opt.imap(_.map(CallRawServiceTrunkId(_)))(_.map(_.value))
+  val serviceNumberId: Codec[Option[CallRawServiceNumberId]] = int4.opt.imap(_.map(CallRawServiceNumberId(_)))(_.map(_.value))
+  val srcNumber: Codec[CallRawSrcNumber]                     = text.imap(CallRawSrcNumber(_))(_.value)
+  val dstNumber: Codec[CallRawDstNumber]                     = text.imap(CallRawDstNumber(_))(_.value)
+  val billedTime: Codec[CallRawBilledTime]                   = int4.imap(CallRawBilledTime(_))(_.value)
+  val rate: Codec[CallRawRate]                               = numeric(12, 2).imap(CallRawRate(_))(_.value)
+  val cost: Codec[CallRawCost]                               = numeric(12, 2).imap(CallRawCost(_))(_.value)
+  val pricelistId: Codec[CallRawPricelistId]                 = int4.imap(CallRawPricelistId(_))(_.value)
+  val disconnectCause: Codec[CallRawDisconnectCause]         = int2.imap(CallRawDisconnectCause(_))(_.value)
 
   val findAllCodec = id *: orig *: peerId *: cdrId *: connectTime *: trunkId *:
     clientId *: serviceTrunkId *: serviceNumberId *: srcNumber *: dstNumber *:

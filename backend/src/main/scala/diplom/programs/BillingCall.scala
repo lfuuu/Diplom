@@ -19,7 +19,6 @@ import com.mcn.diplom.domain.nispd.BillingServiceNumber._
 
 import com.mcn.diplom.lib.Time
 import com.mcn.diplom.domain.nispd.BillingClient._
-import com.mcn.diplom.domain.nispd.BillingPricelist._
 import com.mcn.diplom.services.BillingPacketsService
 import com.mcn.diplom.domain.nispd.BillingPacket._
 import com.mcn.diplom.services.BillingPricelistItemsService
@@ -36,7 +35,7 @@ final case class BillingCall[F[_]: Logger: Time: MonadThrow](
   servicePricelistItems: BillingPricelistItemsService[F]
 ) {
 
-  def billingLeg(cdr: CallCdr, orig: Boolean): EitherT[F, BillingCallError, CallRaw] = {
+  def billingLeg(cdr: CallCdr, orig: Boolean): EitherT[F, BillingCallError, CallRawCreateRequest] = {
 
     def findTrunk: EitherT[F, BillingCallError, AuthTrunk] = {
       val trunkName = if (orig) cdr.srcRoute.value else cdr.dstRoute.value
@@ -89,7 +88,7 @@ final case class BillingCall[F[_]: Logger: Time: MonadThrow](
         ifNone = PricelistNotFound(s"К номераВ  #$numB не найден подходящий прайслист")
       )
 
-    def billingByNumber(numB: DstNumber): EitherT[F, BillingCallError, CallRaw] =
+    def billingByNumber(trunk: AuthTrunk, numB: DstNumber): EitherT[F, BillingCallError, CallRawCreateRequest] =
       for {
         tm            <- EitherT.liftF(Time[F].getInstantNow)
         num            = BillingServiceNumberDID(if (orig) cdr.srcNumber.value else cdr.dstNumber.value)
@@ -98,54 +97,53 @@ final case class BillingCall[F[_]: Logger: Time: MonadThrow](
         pricelistIds  <- findPriceListsForServiceNumber(tm, serviceNumber.id)
         price         <- findBestPrice(tm, pricelistIds, numB.value)
 
-      } yield CallRaw(
-        id = CallRawId(1L),
-        orig = CallRawOrig(true),
-        peerId = CallRawPeerId(123L),
-        cdrId = CallRawCdrId(456L),
-        connectTime = CallRawConnectTime(Instant.parse("2023-10-01T12:00:00Z")),
-        trunkId = CallRawTrunkId(789),
-        clientId = CallRawClientId(10),
-        serviceTrunkId = CallRawServiceTrunkId(11),
-        serviceNumberId = CallRawServiceNumberId(12),
-        srcNumber = CallRawSrcNumber("+1234567890"),
-        dstNumber = CallRawDstNumber("+0987654321"),
+      } yield CallRawCreateRequest(
+        orig = CallRawOrig(orig),
+        peerId = CallRawPeerId(-1),
+        cdrId = CallRawCdrId(cdr.id.value),
+        connectTime = CallRawConnectTime(cdr.connectTime.value),
+        trunkId = CallRawTrunkId(trunk.id.value),
+        clientId = CallRawClientId(client.id.value),
+        serviceTrunkId = None,
+        serviceNumberId = CallRawServiceNumberId(serviceNumber.id.value).some,
+        srcNumber = CallRawSrcNumber(cdr.srcNumber.value),
+        dstNumber = CallRawDstNumber(cdr.dstNumber.value),
         billedTime = CallRawBilledTime(60),
-        rate = CallRawRate(BigDecimal("0.05")),
-        cost = CallRawCost(BigDecimal("3.00")),
-        pricelistId = CallRawPricelistId(42),
-        disconnectCause = CallRawDisconnectCause(0.toShort)
+        rate = CallRawRate(price._2.value),
+        cost = CallRawCost(price._2.value * cdr.sessionTime.value),
+        pricelistId = CallRawPricelistId(price._1.value),
+        disconnectCause = CallRawDisconnectCause(cdr.disconnectCause.value)
       )
 
-    def billingByTrunk(trunk: AuthTrunk, numB: DstNumber): EitherT[F, BillingCallError, CallRaw] =
+    def billingByTrunk(trunk: AuthTrunk, numB: DstNumber): EitherT[F, BillingCallError, CallRawCreateRequest] =
       for {
         tm           <- EitherT.liftF(Time[F].getInstantNow)
         serviceTrunk <- findServiceTrunk(tm, trunk)
         client       <- findClientById(BillingClientId(serviceTrunk.clientId.value))
         pricelistIds <- findPriceListsForServiceTrunk(tm, serviceTrunk.id)
         price        <- findBestPrice(tm, pricelistIds, numB.value)
-      } yield CallRaw(
-        id = CallRawId(1L),
-        orig = CallRawOrig(true),
-        peerId = CallRawPeerId(123L),
-        cdrId = CallRawCdrId(456L),
-        connectTime = CallRawConnectTime(Instant.parse("2023-10-01T12:00:00Z")),
-        trunkId = CallRawTrunkId(789),
-        clientId = CallRawClientId(10),
-        serviceTrunkId = CallRawServiceTrunkId(11),
-        serviceNumberId = CallRawServiceNumberId(12),
-        srcNumber = CallRawSrcNumber("+1234567890"),
-        dstNumber = CallRawDstNumber("+0987654321"),
+
+      } yield CallRawCreateRequest(
+        orig = CallRawOrig(orig),
+        peerId = CallRawPeerId(-1),
+        cdrId = CallRawCdrId(cdr.id.value),
+        connectTime = CallRawConnectTime(cdr.connectTime.value),
+        trunkId = CallRawTrunkId(trunk.id.value),
+        clientId = CallRawClientId(client.id.value),
+        serviceTrunkId = CallRawServiceTrunkId(serviceTrunk.id.value).some,
+        serviceNumberId = None,
+        srcNumber = CallRawSrcNumber(cdr.srcNumber.value),
+        dstNumber = CallRawDstNumber(cdr.dstNumber.value),
         billedTime = CallRawBilledTime(60),
-        rate = CallRawRate(BigDecimal("0.05")),
-        cost = CallRawCost(BigDecimal("3.00")),
-        pricelistId = CallRawPricelistId(42),
-        disconnectCause = CallRawDisconnectCause(0.toShort)
+        rate = CallRawRate(price._2.value),
+        cost = CallRawCost(price._2.value * cdr.sessionTime.value),
+        pricelistId = CallRawPricelistId(price._1.value),
+        disconnectCause = CallRawDisconnectCause(cdr.disconnectCause.value)
       )
 
     for {
       trunk <- findTrunk
-      raw   <- if (trunk.authByNumber.value) billingByNumber(cdr.dstNumber) else billingByTrunk(trunk, cdr.dstNumber)
+      raw   <- if (trunk.authByNumber.value) billingByNumber(trunk, cdr.dstNumber) else billingByTrunk(trunk, cdr.dstNumber)
     } yield raw
 
   }
