@@ -14,11 +14,11 @@ object BillingPacket {
 
   @derive(decoder, encoder, schema)
   @newtype
-  case class BillingServiceTrunkId(value: Int)
+  case class BillingPacketServiceTrunkId(value: Int)
 
   @derive(decoder, encoder, schema)
   @newtype
-  case class BillingServiceNumberId(value: Int)
+  case class BillingPacketServiceNumberId(value: Int)
 
   @derive(decoder, encoder, schema)
   @newtype
@@ -34,26 +34,26 @@ object BillingPacket {
 
   @derive(decoder, encoder, schema)
   @newtype
-  case class BillingPricelistId(value: Int)
+  case class BillingPacketPricelistId(value: Int)
 
   @derive(decoder, encoder, schema)
   case class BillingPacketCreateRequest(
-    serviceTrunkId: BillingServiceTrunkId,
-    serviceNumberId: BillingServiceNumberId,
+    serviceTrunkId: BillingPacketServiceTrunkId,
+    serviceNumberId: BillingPacketServiceNumberId,
     activationDt: BillingPacketActivationDt,
     expireDt: Option[BillingPacketExpireDt],
     orig: BillingPacketOrig,
-    pricelistId: BillingPricelistId
+    pricelistId: BillingPacketPricelistId
   )
 
   @derive(decoder, encoder, schema)
   case class BillingPacket(
     id: BillingPacketId,
-    serviceTrunkId: BillingServiceTrunkId,
-    serviceNumberId: BillingServiceNumberId,
+    serviceTrunkId: BillingPacketServiceTrunkId,
+    serviceNumberId: BillingPacketServiceNumberId,
     activationDt: BillingPacketActivationDt,
     expireDt: Option[BillingPacketExpireDt],
     orig: BillingPacketOrig,
-    pricelistId: BillingPricelistId
+    pricelistId: BillingPacketPricelistId
   )
 }
