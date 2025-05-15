@@ -14,7 +14,7 @@ object BillingPricelistItem {
 
   @derive(decoder, encoder, schema)
   @newtype
-  case class BillingPricelistId(value: Int)
+  case class BillingPriceListItemPricelistId(value: Int)
 
   @derive(decoder, encoder, schema)
   @newtype
@@ -34,7 +34,7 @@ object BillingPricelistItem {
 
   @derive(decoder, encoder, schema)
   case class BillingPricelistItemCreateRequest(
-    pricelistId: BillingPricelistId,
+    pricelistId: BillingPriceListItemPricelistId,
     ndef: BillingPriceNdefId,
     dateFrom: BillingPriceDateFrom,
     dateTo: Option[BillingPriceDateTo],
@@ -44,7 +44,7 @@ object BillingPricelistItem {
   @derive(decoder, encoder, schema)
   case class BillingPricelistItem(
     id: BillingPricelistItemId,
-    pricelistId: BillingPricelistId,
+    pricelistId: BillingPriceListItemPricelistId,
     ndef: BillingPriceNdefId,
     dateFrom: BillingPriceDateFrom,
     dateTo: Option[BillingPriceDateTo],

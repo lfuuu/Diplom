@@ -26,4 +26,8 @@ object BillingCallError {
   @derive(eqv, show, schema, decoder, encoder)
   case class ClientNotFound(cause: String) extends BillingCallError
 
+  @derive(eqv, show, schema, decoder, encoder)
+  case class PricelistNotFound(cause: String) extends BillingCallError
+
+
 }

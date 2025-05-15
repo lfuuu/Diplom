@@ -14,8 +14,8 @@ trait BillingPacketsService[F[_]] {
   def findAll: F[List[BillingPacket]]
   def findById(id: BillingPacketId): F[Option[BillingPacket]]
   def deleteById(id: BillingPacketId): F[Unit]
-  def getPricelistsForServiceNumberId(serviceNumberId: BillingServiceNumberId, tm: Instant): F[List[BillingPricelistId]]
-  def getPricelistsForServiceTrunkId(serviceTrunkId: BillingServiceTrunkId, tm: Instant): F[List[BillingPricelistId]]
+  def getPricelistsForServiceNumberId(serviceNumberId: BillingPacketServiceNumberId, tm: Instant): F[List[BillingPacketPricelistId]]
+  def getPricelistsForServiceTrunkId(serviceTrunkId: BillingPacketServiceTrunkId, tm: Instant): F[List[BillingPacketPricelistId]]
 }
 
 object BillingPacketsService {
@@ -44,10 +44,10 @@ object BillingPacketsService {
           session.execute(deleteByIdPacket)(id).void
         }
 
-      override def getPricelistsForServiceNumberId(serviceNumberId: BillingServiceNumberId, tm: Instant): F[List[BillingPricelistId]] =
+      override def getPricelistsForServiceNumberId(serviceNumberId: BillingPacketServiceNumberId, tm: Instant): F[List[BillingPacketPricelistId]] =
         postgres.use(_.execute(findPricelistsForServiceNumberId)((BillingPacketActivationDt(tm), BillingPacketExpireDt(tm), serviceNumberId)))
 
-      override def getPricelistsForServiceTrunkId(serviceTrunkId: BillingServiceTrunkId, tm: Instant): F[List[BillingPricelistId]] =
+      override def getPricelistsForServiceTrunkId(serviceTrunkId: BillingPacketServiceTrunkId, tm: Instant): F[List[BillingPacketPricelistId]] =
         postgres.use(_.execute(findPricelistsForServiceTrunkId)((BillingPacketActivationDt(tm), BillingPacketExpireDt(tm), serviceTrunkId)))
 
     }
@@ -56,8 +56,8 @@ object BillingPacketsService {
 private object BillingPacketsSQL {
 
   val id: Codec[BillingPacketId]                     = int8.imap(BillingPacketId(_))(_.value)
-  val serviceTrunkId: Codec[BillingServiceTrunkId]   = int4.imap(BillingServiceTrunkId(_))(_.value)
-  val serviceNumberId: Codec[BillingServiceNumberId] = int4.imap(BillingServiceNumberId(_))(_.value)
+  val serviceTrunkId: Codec[BillingPacketServiceTrunkId]   = int4.imap(BillingPacketServiceTrunkId(_))(_.value)
+  val serviceNumberId: Codec[BillingPacketServiceNumberId] = int4.imap(BillingPacketServiceNumberId(_))(_.value)
   val activationDt: Codec[BillingPacketActivationDt] = timestamptz.imap(t => BillingPacketActivationDt(t.toInstant))(_.value.atOffset(ZoneOffset.UTC))
 
   val expireDt: Codec[Option[BillingPacketExpireDt]] =
@@ -67,13 +67,13 @@ private object BillingPacketsSQL {
     timestamptz.imap(t => BillingPacketExpireDt(t.toInstant))(_.value.atOffset(ZoneOffset.UTC))
 
   val orig: Codec[BillingPacketOrig]         = bool.imap(BillingPacketOrig(_))(_.value)
-  val pricelistId: Codec[BillingPricelistId] = int4.imap(BillingPricelistId(_))(_.value)
+  val pricelistId: Codec[BillingPacketPricelistId] = int4.imap(BillingPacketPricelistId(_))(_.value)
 
   val findAllCodec       = id *: serviceTrunkId *: serviceNumberId *: activationDt *: expireDt *: orig *: pricelistId
   val createRequestCodec = serviceTrunkId *: serviceNumberId *: activationDt *: expireDt *: orig *: pricelistId
 
   val findPricelistsForServiceNumberId
-    : Query[BillingPacketActivationDt *: BillingPacketExpireDt *: BillingServiceNumberId *: EmptyTuple, BillingPricelistId] =
+    : Query[BillingPacketActivationDt *: BillingPacketExpireDt *: BillingPacketServiceNumberId *: EmptyTuple, BillingPacketPricelistId] =
     sql"""
       SELECT pricelist_id
       FROM billing.packet
@@ -82,7 +82,7 @@ private object BillingPacketsSQL {
       """.query(pricelistId)
 
   val findPricelistsForServiceTrunkId
-    : Query[BillingPacketActivationDt *: BillingPacketExpireDt *: BillingServiceTrunkId *: EmptyTuple, BillingPricelistId] =
+    : Query[BillingPacketActivationDt *: BillingPacketExpireDt *: BillingPacketServiceTrunkId *: EmptyTuple, BillingPacketPricelistId] =
     sql"""
       SELECT pricelist_id
       FROM billing.packet

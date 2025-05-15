@@ -14,7 +14,7 @@ trait BillingPricelistItemsService[F[_]] {
   def findAll: F[List[BillingPricelistItem]]
   def findById(id: BillingPricelistItemId): F[Option[BillingPricelistItem]]
   def deleteById(id: BillingPricelistItemId): F[Unit]
-  def matchPrefix(tm: Instant, num: String, id: BillingPricelistId): F[Option[BillingPrice]]
+  def matchPrefix(tm: Instant, num: String, id: BillingPriceListItemPricelistId): F[Option[BillingPrice]]
 }
 
 object BillingPricelistItemsService {
@@ -43,7 +43,7 @@ object BillingPricelistItemsService {
           session.execute(deleteByIdPricelistItem)(id).void
         }
 
-      override def matchPrefix(tm: Instant, num: String, id: BillingPricelistId): F[Option[BillingPrice]] = {
+      override def matchPrefix(tm: Instant, num: String, id: BillingPriceListItemPricelistId): F[Option[BillingPrice]] = {
         val localDateUTC = tm.atZone(ZoneOffset.UTC).toLocalDate()
         postgres.use { session =>
           session
@@ -59,7 +59,7 @@ object BillingPricelistItemsService {
 private object BillingPricelistItemsSQL {
 
   val id: Codec[BillingPricelistItemId]         = int4.imap(BillingPricelistItemId(_))(_.value)
-  val pricelistId: Codec[BillingPricelistId]    = int4.imap(BillingPricelistId(_))(_.value)
+  val pricelistId: Codec[BillingPriceListItemPricelistId]    = int4.imap(BillingPriceListItemPricelistId(_))(_.value)
   val ndef: Codec[BillingPriceNdefId]           = int8.imap(BillingPriceNdefId(_))(_.value)
   val dateFrom: Codec[BillingPriceDateFrom]     = date.imap(BillingPriceDateFrom(_))(_.value)
   val dateTo: Codec[Option[BillingPriceDateTo]] = date.opt.imap(_.map(BillingPriceDateTo(_)))(_.map(_.value))
@@ -71,7 +71,7 @@ private object BillingPricelistItemsSQL {
   val findAllCodec       = id *: pricelistId *: ndef *: dateFrom *: dateTo *: price
   val createRequestCodec = pricelistId *: ndef *: dateFrom *: dateTo *: price
 
-  val matchPrefixPricelistItem: Query[String *: BillingPricelistId *: BillingPriceDateFrom *: BillingPriceDateTo *: EmptyTuple, BillingPrice] =
+  val matchPrefixPricelistItem: Query[String *: BillingPriceListItemPricelistId *: BillingPriceDateFrom *: BillingPriceDateTo *: EmptyTuple, BillingPrice] =
     sql"""
         WITH matches AS (
           SELECT 
