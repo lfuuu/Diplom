@@ -109,7 +109,7 @@ private object BillingPacketsSQL {
       SELECT pricelist_id
       FROM billing.packet
       where activation_dt <= $activationDt and  ( expire_dt > $expireDtWo or expire_dt is Null)
-      and service_number_id = $serviceTrunkId and orig = $orig
+      and service_trunk_id = $serviceTrunkId and orig = $orig
       """.query(pricelistId)
 
   val selectAll: Query[Void, BillingPacket] =

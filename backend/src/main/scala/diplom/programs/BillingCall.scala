@@ -87,7 +87,7 @@ final case class BillingCall[F[_]: Logger: Time: MonadThrow](
           )
           .sequence
           .map(_.filter(_._2.isDefined).map(v => (v._1, v._2.get)).sortBy(-_._2.value.abs).headOption),
-        ifNone = PricelistNotFound(s"К номераВ  #$numB не найден подходящий прайслист")
+        ifNone = PricelistNotFound(s"К номерВ  #$numB не найден подходящий прайслист")
       )
 
     def billingByNumber(trunk: AuthTrunk, numB: DstNumber): EitherT[F, BillingCallError, CallRawCreateRequest] =

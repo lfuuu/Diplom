@@ -44,7 +44,8 @@ object AppResources {
           user = c.user.value,
           password = Some(c.password.value),
           database = c.database.value,
-          max = c.max.value
+          max = c.max.value,
+          debug = true
         )
     //.evalTap(checkPostgresConnection)
 

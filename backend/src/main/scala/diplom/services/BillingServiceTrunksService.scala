@@ -77,7 +77,7 @@ private object BillingServiceTrunksSQL {
     : Query[BillingServiceTrunkActivationDt *: BillingServiceTrunkExpireDt *: BillingTrunkId *: EmptyTuple, BillingServiceTrunk] =
     sql"""
       SELECT id, client_id, trunk_id, activation_dt, expire_dt, orig_enabled, term_enabled
-      FROM billing.service_number  where activation_dt <= $activationDt and  ( expire_dt > $expireDtWo or expire_dt is Null)
+      FROM billing.service_trunk  where activation_dt <= $activationDt and  ( expire_dt > $expireDtWo or expire_dt is Null)
       and trunk_id = $trunkId
       """.query(findAllCodec).to[BillingServiceTrunk]
 
