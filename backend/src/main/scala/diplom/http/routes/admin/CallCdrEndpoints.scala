@@ -37,7 +37,6 @@ class CallCdrEndpoints[F[_]: Sync](service: CallCdrService[F]) {
       }
     }
 
-
   val endpoints: List[ServerEndpoint[Any, F]] = List(
     getAllServerEndpoint,
     getByIdServerEndpoint

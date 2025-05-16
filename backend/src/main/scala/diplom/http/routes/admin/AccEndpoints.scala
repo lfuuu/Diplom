@@ -33,16 +33,16 @@ class AccEndpoints[F[_]: Sync](callCdrService: CallCdrService[F], billingCall: B
       }
     }
 
-  val testCallEndpoint: PublicEndpoint[(CallCdr, Boolean), BillingCallError, CallRawCreateRequest, Any] = endpoint.post
+  val testCallEndpoint: PublicEndpoint[TestCall, BillingCallError, CallRawCreateRequest, Any] = endpoint.post
     .in("testCall")
-    .in(jsonBody[(CallCdr, Boolean)])
+    .in(jsonBody[TestCall])
     .errorOut(statusCode(StatusCode.BadRequest).and(jsonBody[BillingCallError]))
     .out(statusCode(StatusCode.Created).and(jsonBody[CallRawCreateRequest]))
-    .description("Create new CDR")
+    .description("testCall")
 
   val testCallServerEndpoint: ServerEndpoint[Any, F] =
     testCallEndpoint.serverLogic { req =>
-      billingCall.billingLeg(req._1,req._2).value
+      billingCall.billingLeg(req.cdr, req.orig).value
     }
 
   val endpoints: List[ServerEndpoint[Any, F]] = List(

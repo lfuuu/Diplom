@@ -67,8 +67,8 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F], programs: Progr
   private val callRawEndpoints =
     new CallRawEndpoints[F](services.callRawService).endpoints
 
-    private val accEndpoints =
-      new AccEndpoints[F](services.callCdrService,programs.billingCall).endpoints
+  private val accEndpoints =
+    new AccEndpoints[F](services.callCdrService, programs.billingCall).endpoints
 
   val statusEndpoint: PublicEndpoint[Unit, Unit, StatusResponse, Any] = endpoint.get
     .in("status")
@@ -104,7 +104,8 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F], programs: Progr
 }
 
 final case class TapirRoutes[F[_]: Monad: Async: Logger](
-  services: Services[F], programs: Programs[F]
+  services: Services[F],
+  programs: Programs[F]
 ) extends Http4sDsl[F] {
 
   implicit val logger: SelfAwareStructuredLogger[F] = Slf4jLogger.getLogger

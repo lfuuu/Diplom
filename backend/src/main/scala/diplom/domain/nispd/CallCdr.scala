@@ -9,6 +9,9 @@ import sttp.tapir.derevo.schema
 object CallCdr {
 
   @derive(decoder, encoder, schema)
+  case class TestCall(cdr: CallCdr, orig: Boolean)
+
+  @derive(decoder, encoder, schema)
   @newtype
   case class CallCdrId(value: Long)
 

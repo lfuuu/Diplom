@@ -58,11 +58,11 @@ object BillingPricelistItemsService {
 
 private object BillingPricelistItemsSQL {
 
-  val id: Codec[BillingPricelistItemId]         = int4.imap(BillingPricelistItemId(_))(_.value)
-  val pricelistId: Codec[BillingPriceListItemPricelistId]    = int4.imap(BillingPriceListItemPricelistId(_))(_.value)
-  val ndef: Codec[BillingPriceNdefId]           = int8.imap(BillingPriceNdefId(_))(_.value)
-  val dateFrom: Codec[BillingPriceDateFrom]     = date.imap(BillingPriceDateFrom(_))(_.value)
-  val dateTo: Codec[Option[BillingPriceDateTo]] = date.opt.imap(_.map(BillingPriceDateTo(_)))(_.map(_.value))
+  val id: Codec[BillingPricelistItemId]                   = int4.imap(BillingPricelistItemId(_))(_.value)
+  val pricelistId: Codec[BillingPriceListItemPricelistId] = int4.imap(BillingPriceListItemPricelistId(_))(_.value)
+  val ndef: Codec[BillingPriceNdefId]                     = int8.imap(BillingPriceNdefId(_))(_.value)
+  val dateFrom: Codec[BillingPriceDateFrom]               = date.imap(BillingPriceDateFrom(_))(_.value)
+  val dateTo: Codec[Option[BillingPriceDateTo]]           = date.opt.imap(_.map(BillingPriceDateTo(_)))(_.map(_.value))
 
   val dateToWo: Codec[BillingPriceDateTo] = date.imap(BillingPriceDateTo(_))(_.value)
 
@@ -71,7 +71,8 @@ private object BillingPricelistItemsSQL {
   val findAllCodec       = id *: pricelistId *: ndef *: dateFrom *: dateTo *: price
   val createRequestCodec = pricelistId *: ndef *: dateFrom *: dateTo *: price
 
-  val matchPrefixPricelistItem: Query[String *: BillingPriceListItemPricelistId *: BillingPriceDateFrom *: BillingPriceDateTo *: EmptyTuple, BillingPrice] =
+  val matchPrefixPricelistItem
+    : Query[String *: BillingPriceListItemPricelistId *: BillingPriceDateFrom *: BillingPriceDateTo *: EmptyTuple, BillingPrice] =
     sql"""
         WITH matches AS (
           SELECT 
