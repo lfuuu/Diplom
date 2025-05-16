@@ -7,7 +7,7 @@ RUN echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | sudo tee /e
 
 RUN sudo apt update -y
 RUN sudo apt-get install -y  openjdk-17-jdk sbt
-
+RUN sudo apt-get install -y postgresql-client-14
 # Копируем зависимости
 #COPY package*.json ./
 #RUN npm install
