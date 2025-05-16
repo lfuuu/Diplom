@@ -30,8 +30,10 @@ import com.mcn.diplom.http.routes.admin.AuthTrunksEndpoints
 import com.mcn.diplom.http.routes.admin.AuthUsersEndpoints
 import com.mcn.diplom.http.routes.admin.CallCdrEndpoints
 import com.mcn.diplom.http.routes.admin.CallRawEndpoints
+import com.mcn.diplom.http.routes.admin.com.mcn.diplom.http.routes.admin.AccEndpoints
+import com.mcn.diplom.modules.Programs
 
-class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
+class Endpoints[F[_]: Sync: Time: Logger](services: Services[F], programs: Programs[F]) {
 
   implicit val logger: SelfAwareStructuredLogger[F] = Slf4jLogger.getLogger
 
@@ -59,11 +61,14 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
   private val authUsersEndpoints =
     new AuthUsersEndpoints[F](services.authUsersService).endpoints
 
-  private val CallCdrEndpoints =
+  private val callCdrEndpoints =
     new CallCdrEndpoints[F](services.callCdrService).endpoints
 
-  private val CallRawEndpoints =
+  private val callRawEndpoints =
     new CallRawEndpoints[F](services.callRawService).endpoints
+
+    private val accEndpoints =
+      new AccEndpoints[F](services.callCdrService,programs.billingCall).endpoints
 
   val statusEndpoint: PublicEndpoint[Unit, Unit, StatusResponse, Any] = endpoint.get
     .in("status")
@@ -84,8 +89,9 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
       billingPricelistItemsEndpoints ++
       authTrunksEndpoints ++
       authUsersEndpoints ++
-      CallCdrEndpoints ++
-      CallRawEndpoints
+      callCdrEndpoints ++
+      callRawEndpoints ++
+      accEndpoints
 
   val docEndpoints: List[ServerEndpoint[Any, F]] =
     SwaggerInterpreter(swaggerUIOptions = SwaggerUIOptions.default.copy(contextPath = List("v1", "api")).withAbsolutePaths)
@@ -98,14 +104,14 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
 }
 
 final case class TapirRoutes[F[_]: Monad: Async: Logger](
-  services: Services[F]
+  services: Services[F], programs: Programs[F]
 ) extends Http4sDsl[F] {
 
   implicit val logger: SelfAwareStructuredLogger[F] = Slf4jLogger.getLogger
 
   private[routes] val prefixPath = "/api"
 
-  val endoints = new Endpoints(services)
+  val endoints = new Endpoints(services, programs)
 
   val serverOptions: Http4sServerOptions[F] =
     Http4sServerOptions

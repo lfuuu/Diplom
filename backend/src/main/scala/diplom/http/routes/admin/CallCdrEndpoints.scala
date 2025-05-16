@@ -37,24 +37,9 @@ class CallCdrEndpoints[F[_]: Sync](service: CallCdrService[F]) {
       }
     }
 
-  val createEndpoint: PublicEndpoint[CallCdrCreateRequest, String, CallCdrId, Any] = endpoint.post
-    .in("acc")
-    .in(jsonBody[CallCdrCreateRequest])
-    .errorOut(statusCode(StatusCode.BadRequest).and(stringBody))
-    .out(statusCode(StatusCode.Created).and(jsonBody[CallCdrId]))
-    .description("Create new CDR")
-
-  val createServerEndpoint: ServerEndpoint[Any, F] =
-    createEndpoint.serverLogic { req =>
-      service.create(req).map {
-        case Some(id) => Right(id)
-        case None     => Left("Invalid CDR data")
-      }
-    }
 
   val endpoints: List[ServerEndpoint[Any, F]] = List(
     getAllServerEndpoint,
-    getByIdServerEndpoint,
-    createServerEndpoint
+    getByIdServerEndpoint
   )
 }

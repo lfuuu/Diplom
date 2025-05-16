@@ -71,7 +71,7 @@ sealed abstract class HttpApi[F[_]: Async: Logger] private (
   private val openRoutes: HttpRoutes[F] =
     healthRoutes <+> testRoutes <+> loginRoutes <+> userRoutes
 
-  private val tapirRoutes: HttpRoutes[F] = TapirRoutes[F](services).routes
+  private val tapirRoutes: HttpRoutes[F] = TapirRoutes[F](services, programs).routes
 
   private val errorAction: HttpApp[F] => HttpApp[F] = { http: HttpApp[F] =>
     ErrorAction.httpApp[F](
