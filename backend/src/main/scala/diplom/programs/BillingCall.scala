@@ -112,7 +112,7 @@ final case class BillingCall[F[_]: Logger: Time: MonadThrow](
         dstNumber = CallRawDstNumber(cdr.dstNumber.value),
         billedTime = CallRawBilledTime(60),
         rate = CallRawRate(price._2.value),
-        cost = CallRawCost(price._2.value * cdr.sessionTime.value),
+        cost = CallRawCost(price._2.value * cdr.sessionTime.value / 60),
         pricelistId = CallRawPricelistId(price._1.value),
         disconnectCause = CallRawDisconnectCause(cdr.disconnectCause.value)
       )
@@ -138,7 +138,7 @@ final case class BillingCall[F[_]: Logger: Time: MonadThrow](
         dstNumber = CallRawDstNumber(cdr.dstNumber.value),
         billedTime = CallRawBilledTime(60),
         rate = CallRawRate(price._2.value),
-        cost = CallRawCost(price._2.value * cdr.sessionTime.value),
+        cost = CallRawCost(price._2.value * cdr.sessionTime.value / 60),
         pricelistId = CallRawPricelistId(price._1.value),
         disconnectCause = CallRawDisconnectCause(cdr.disconnectCause.value)
       )
