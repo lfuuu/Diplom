@@ -13,6 +13,8 @@ import sttp.tapir.server.ServerEndpoint
 import _root_.com.mcn.diplom.services.CallCdrService
 import _root_.com.mcn.diplom.domain.calls.CallCdr._
 import _root_.com.mcn.diplom.programs.BillingCall
+import _root_.com.mcn.diplom.domain.nispd.BillingCallError.BillingCallError
+import _root_.com.mcn.diplom.domain.calls.CallRaw.CallRawCreateRequest
 
 class AccEndpoints[F[_]: Sync](callCdrService: CallCdrService[F], billingCall: BillingCall[F]) {
 
@@ -31,14 +33,20 @@ class AccEndpoints[F[_]: Sync](callCdrService: CallCdrService[F], billingCall: B
       }
     }
 
-  val testCallEndpoint: PublicEndpoint[CallCdrCreateRequest, String, CallCdrId, Any] = endpoint.post
+  val testCallEndpoint: PublicEndpoint[(CallCdr, Boolean), BillingCallError, CallRawCreateRequest, Any] = endpoint.post
     .in("testCall")
-    .in(jsonBody[CallCdrCreateRequest])
-    .errorOut(statusCode(StatusCode.BadRequest).and(stringBody))
-    .out(statusCode(StatusCode.Created).and(jsonBody[CallCdrId]))
+    .in(jsonBody[(CallCdr, Boolean)])
+    .errorOut(statusCode(StatusCode.BadRequest).and(jsonBody[BillingCallError]))
+    .out(statusCode(StatusCode.Created).and(jsonBody[CallRawCreateRequest]))
     .description("Create new CDR")
 
+  val testCallServerEndpoint: ServerEndpoint[Any, F] =
+    testCallEndpoint.serverLogic { req =>
+      billingCall.billingLeg(req._1,req._2).value
+    }
+
   val endpoints: List[ServerEndpoint[Any, F]] = List(
-    accServerEndpoint
+    accServerEndpoint,
+    testCallServerEndpoint
   )
 }

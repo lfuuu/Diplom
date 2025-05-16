@@ -9,7 +9,7 @@ import sttp.tapir.derevo.schema
 
 object BillingCallError {
 
-  @derive(show)
+  @derive(show, decoder, encoder)
   sealed trait BillingCallError extends NoStackTrace {
     def cause: String
   }
