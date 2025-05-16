@@ -27,8 +27,8 @@ sealed abstract class Services[F[_]] private (
   val billingPricelistItemsService: BillingPricelistItemsService[F],
   val authTrunksService: AuthTrunksService[F],
   val authUsersService: AuthUsersService[F],
-  val CallCdrService: CallCdrService[F],
-  val CallRawService: CallRawService[F]
+  val callCdrService: CallCdrService[F],
+  val callRawService: CallRawService[F]
 )
 
 object Services {
@@ -47,7 +47,7 @@ object Services {
       billingPricelistItemsService = BillingPricelistItemsService.make[F](appResources.postgres),
       authTrunksService = AuthTrunksService.make[F](appResources.postgres),
       authUsersService = AuthUsersService.make[F](appResources.postgres),
-      CallCdrService = CallCdrService.make[F](appResources.postgres),
-      CallRawService = CallRawService.make[F](appResources.postgres)
+      callCdrService = CallCdrService.make[F](appResources.postgres),
+      callRawService = CallRawService.make[F](appResources.postgres)
     ) {}
 }

@@ -60,10 +60,10 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F]) {
     new AuthUsersEndpoints[F](services.authUsersService).endpoints
 
   private val CallCdrEndpoints =
-    new CallCdrEndpoints[F](services.CallCdrService).endpoints
+    new CallCdrEndpoints[F](services.callCdrService).endpoints
 
   private val CallRawEndpoints =
-    new CallRawEndpoints[F](services.CallRawService).endpoints
+    new CallRawEndpoints[F](services.callRawService).endpoints
 
   val statusEndpoint: PublicEndpoint[Unit, Unit, StatusResponse, Any] = endpoint.get
     .in("status")
