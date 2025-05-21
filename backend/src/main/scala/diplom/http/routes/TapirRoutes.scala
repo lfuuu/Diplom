@@ -30,8 +30,9 @@ import com.mcn.diplom.http.routes.admin.AuthTrunksEndpoints
 import com.mcn.diplom.http.routes.admin.AuthUsersEndpoints
 import com.mcn.diplom.http.routes.admin.CallCdrEndpoints
 import com.mcn.diplom.http.routes.admin.CallRawEndpoints
-import com.mcn.diplom.http.routes.admin.com.mcn.diplom.http.routes.admin.AccEndpoints
+import com.mcn.diplom.http.routes.admin.AccEndpoints
 import com.mcn.diplom.modules.Programs
+import com.mcn.diplom.http.routes.admin.AuthEndpoints
 
 class Endpoints[F[_]: Sync: Time: Logger](services: Services[F], programs: Programs[F]) {
 
@@ -70,6 +71,9 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F], programs: Progr
   private val accEndpoints =
     new AccEndpoints[F](services.callCdrService, programs.billingCall).endpoints
 
+  private val authEndpoints =
+    new AuthEndpoints[F](programs.authAndRouteCall).endpoints
+
   val statusEndpoint: PublicEndpoint[Unit, Unit, StatusResponse, Any] = endpoint.get
     .in("status")
     .out(jsonBody[StatusResponse])
@@ -91,7 +95,8 @@ class Endpoints[F[_]: Sync: Time: Logger](services: Services[F], programs: Progr
       authUsersEndpoints ++
       callCdrEndpoints ++
       callRawEndpoints ++
-      accEndpoints
+      accEndpoints ++
+      authEndpoints
 
   val docEndpoints: List[ServerEndpoint[Any, F]] =
     SwaggerInterpreter(swaggerUIOptions = SwaggerUIOptions.default.copy(contextPath = List("v1", "api")).withAbsolutePaths)

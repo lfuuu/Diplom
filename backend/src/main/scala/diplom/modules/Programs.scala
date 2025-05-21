@@ -5,6 +5,7 @@ import com.mcn.diplom.config.types._
 import com.mcn.diplom.lib._
 import org.typelevel.log4cats.Logger
 import com.mcn.diplom.programs.BillingCall
+import com.mcn.diplom.programs.AuthAndRouteCall
 
 object Programs {
 
@@ -30,6 +31,15 @@ sealed abstract class Programs[F[_]: Background: Logger: Temporal: Time] private
     services.billingPacketsService,
     services.billingPricelistItemsService
   )
-  //val grayLogPusher: GrayLogPusher[F] = GrayLogPusher[F](cfg.grayLogPusherConfig)
+
+  val authAndRouteCall = new AuthAndRouteCall(
+    billingCall,
+    services.billingClients,
+    services.authTrunksService,
+    services.billingServiceNumbersService,
+    services.billingServiceTrunksService,
+    services.billingPacketsService,
+    services.billingPricelistItemsService
+  )
 
 }

@@ -1,7 +1,5 @@
 package com.mcn.diplom.http.routes.admin
 
-package com.mcn.diplom.http.routes.admin
-
 import cats.effect.Sync
 import cats.syntax.all._
 import sttp.model.StatusCode
