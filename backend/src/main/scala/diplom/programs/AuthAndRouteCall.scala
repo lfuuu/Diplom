@@ -22,8 +22,8 @@ import java.time.Instant
 import com.mcn.diplom.domain.nispd.BillingServiceTrunk._
 import com.mcn.diplom.domain.nispd.BillingClient._
 import com.mcn.diplom.domain.calls.CallCdr._
-import com.mcn.diplom.services.CallCdrSQL.dstRoute
 import com.mcn.diplom.domain.calls.CallRaw.CallRawCreateRequest
+import com.mcn.diplom.domain.auth.AuthTrunk.AuthTrunkId
 
 @nowarn
 final case class AuthAndRouteCall[F[_]: Logger: Time: MonadThrow](
@@ -82,20 +82,30 @@ final case class AuthAndRouteCall[F[_]: Logger: Time: MonadThrow](
         _.map(termTrunk => origCdr.copy(dstRoute = DstRoute(termTrunk.trunkName.value)))
       )
 
-    def getDestTrunks(origCdr: CallCdr): F[List[CallRawCreateRequest]] =
-      getPossibleTermCdr(origCdr).flatMap { termCdrs =>
+    def getDestTrunks(origCdr: CallCdr) =
+      EitherT.liftF[F, AuthRequestError, List[CallRawCreateRequest]](getPossibleTermCdr(origCdr).flatMap { termCdrs =>
         termCdrs
           .traverse(termCdr => billingCall.billingLeg(termCdr, false).value)
           .map(_.collect { case Right(request) => request })
-      }
+      })
 
-    def getBestTermTrunk(possibleRaws: List[CallRawCreateRequest]) = possibleRaws.sortBy(-_.rate.value.abs).headOption.map(_.trunkId)
+    def getBestTermTrunk(possibleRaws: List[CallRawCreateRequest]): EitherT[F, AuthRequestError, AuthTrunk] =
+      EitherT.fromOptionF(
+        possibleRaws
+          .sortBy(-_.rate.value.abs)
+          .headOption
+          .map(_.trunkId)
+          .map(trunkId => trunk.findById(AuthTrunkId(trunkId.value)))
+          .getOrElse((None: Option[AuthTrunk]).pure),
+        ifNone = RouteNotFound(s"Маршрут не найден")
+      )
 
     for {
-      tm      <- EitherT.liftF(Time[F].getInstantNow)
-      trunk   <- findTrunk
-      _       <- if (trunk.authByNumber.value) billingByNumber(trunk, req.dstNumber) else billingByTrunk(trunk, req.dstNumber)
-      origCdr  = CallCdr(
+      tm        <- EitherT.liftF(Time[F].getInstantNow)
+      trunk     <- findTrunk
+      client    <- if (trunk.authByNumber.value) billingByNumber(trunk, req.dstNumber) else billingByTrunk(trunk, req.dstNumber)
+      // проверить блокировку
+      origCdr    = CallCdr(
                   CallCdrId(-1),
                   CallId(-1),
                   SrcNumber(req.srcNumber.value),
@@ -108,13 +118,14 @@ final case class AuthAndRouteCall[F[_]: Logger: Time: MonadThrow](
                   SrcRoute(trunk.trunkName.value),
                   DstRoute("unknow")
                 )
-      origRaw <- billingCall
+      origRaw   <- billingCall
                    .billingLeg(origCdr, true)
                    .leftMap(err => OrigLegBillError(s"Не смог протарифицировать оригинационное плечо: ${err.toString}"): AuthRequestError)
+      destTrunk <- getDestTrunks(origCdr)
+      bestTrunk <- getBestTermTrunk(destTrunk)
 
-    } yield AuthResponse(dstRoute = AuthResponseDstRoute("123"))
+    } yield AuthResponse(dstRoute = AuthResponseDstRoute(bestTrunk.trunkName.value))
 
-    //EitherT.fromOptionF((None: Option[AuthResponse]).pure[F], ifNone = AccessReject("Доступ запрещен"))
   }
 
 }
