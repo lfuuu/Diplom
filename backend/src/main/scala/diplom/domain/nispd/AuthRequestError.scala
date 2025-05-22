@@ -38,7 +38,6 @@ object AuthRequestError {
   @derive(eqv, show, schema, decoder, encoder)
   case class ClientIsBlocked(cause: String) extends AuthRequestError
 
-
   @derive(eqv, show, schema, decoder, encoder)
   case class PricelistNotFound(cause: String) extends AuthRequestError
 
