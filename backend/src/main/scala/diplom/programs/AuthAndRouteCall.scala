@@ -100,11 +100,17 @@ final case class AuthAndRouteCall[F[_]: Logger: Time: MonadThrow](
         ifNone = RouteNotFound(s"Маршрут не найден")
       )
 
+    def isBlocked(client: BillingClient) =
+      EitherT.fromEither(client.isBlocked.value match {
+        case true  => Left(ClientIsBlocked(s"Клиент #${client.id} Заблокирован"))
+        case false => Right(false)
+      })
+
     for {
       tm        <- EitherT.liftF(Time[F].getInstantNow)
       trunk     <- findTrunk
       client    <- if (trunk.authByNumber.value) billingByNumber(trunk, req.dstNumber) else billingByTrunk(trunk, req.dstNumber)
-      // проверить блокировку
+      _         <- isBlocked(client)
       origCdr    = CallCdr(
                   CallCdrId(-1),
                   CallId(-1),
