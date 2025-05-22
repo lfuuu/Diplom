@@ -22,6 +22,8 @@ import java.time.Instant
 import com.mcn.diplom.domain.nispd.BillingServiceTrunk._
 import com.mcn.diplom.domain.nispd.BillingClient._
 import com.mcn.diplom.domain.calls.CallCdr._
+import com.mcn.diplom.services.CallCdrSQL.dstRoute
+import com.mcn.diplom.domain.calls.CallRaw.CallRawCreateRequest
 
 @nowarn
 final case class AuthAndRouteCall[F[_]: Logger: Time: MonadThrow](
@@ -71,6 +73,23 @@ final case class AuthAndRouteCall[F[_]: Logger: Time: MonadThrow](
         serviceTrunk <- findServiceTrunk(tm, trunk)
         client       <- findClientById(BillingClientId(serviceTrunk.clientId.value))
       } yield client
+
+    def getAllTermTrunk(origTrunk: SrcRoute): F[List[AuthTrunk]] =
+      trunk.findAll.map(_.filterNot(_.trunkName.value == origTrunk.value))
+
+    def getPossibleTermCdr(origCdr: CallCdr) =
+      getAllTermTrunk(origCdr.srcRoute).map(
+        _.map(termTrunk => origCdr.copy(dstRoute = DstRoute(termTrunk.trunkName.value)))
+      )
+
+    def getDestTrunks(origCdr: CallCdr): F[List[CallRawCreateRequest]] =
+      getPossibleTermCdr(origCdr).flatMap { termCdrs =>
+        termCdrs
+          .traverse(termCdr => billingCall.billingLeg(termCdr, false).value)
+          .map(_.collect { case Right(request) => request })
+      }
+
+    def getBestTermTrunk(possibleRaws: List[CallRawCreateRequest]) = possibleRaws.sortBy(-_.rate.value.abs).headOption.map(_.trunkId)
 
     for {
       tm      <- EitherT.liftF(Time[F].getInstantNow)
