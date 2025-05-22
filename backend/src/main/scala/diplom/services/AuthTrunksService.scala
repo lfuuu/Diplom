@@ -52,10 +52,7 @@ private object AuthTrunksSQL {
 
   val id: Codec[AuthTrunkId] = int4.imap(AuthTrunkId(_))(_.value)
 
-  val trunkName: Codec[Option[AuthTrunkName]] =
-    text.opt.imap(_.map(AuthTrunkName(_)))(_.map(_.value))
-
-  val trunkNameWo: Codec[AuthTrunkName] =
+  val trunkName: Codec[AuthTrunkName] =
     text.imap(AuthTrunkName(_))(_.value)
 
   val authByNumber: Codec[AuthTrunkAuthByNumber] =
@@ -93,7 +90,7 @@ private object AuthTrunksSQL {
     sql"""
       SELECT id, trunk_name, auth_by_number
       FROM auth.trunk
-      WHERE trunk_name = $trunkNameWo
+      WHERE trunk_name = $trunkName
       
     """.query(findAllCodec).to[AuthTrunk]
 

@@ -20,4 +20,25 @@ object AuthRequestError {
   @derive(eqv, show, schema, decoder, encoder)
   case class RouteNotFound(cause: String) extends AuthRequestError
 
+  @derive(eqv, show, schema, decoder, encoder)
+  case class SrcTrunkNotFound(cause: String) extends AuthRequestError
+
+  @derive(eqv, show, schema, decoder, encoder)
+  case class TrunkNotFound(cause: String) extends AuthRequestError
+
+  @derive(eqv, show, schema, decoder, encoder)
+  case class ServiceTrunkNotFound(cause: String) extends AuthRequestError
+
+  @derive(eqv, show, schema, decoder, encoder)
+  case class NumberNotFound(cause: String) extends AuthRequestError
+
+  @derive(eqv, show, schema, decoder, encoder)
+  case class ClientNotFound(cause: String) extends AuthRequestError
+
+  @derive(eqv, show, schema, decoder, encoder)
+  case class PricelistNotFound(cause: String) extends AuthRequestError
+
+  @derive(eqv, show, schema, decoder, encoder)
+  case class OrigLegBillError(cause: String) extends AuthRequestError
+
 }

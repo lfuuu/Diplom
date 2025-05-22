@@ -21,14 +21,14 @@ object AuthTrunk {
 
   @derive(decoder, encoder, schema)
   case class AuthTrunkCreateRequest(
-    trunkName: Option[AuthTrunkName],
+    trunkName: AuthTrunkName,
     authByNumber: AuthTrunkAuthByNumber
   )
 
   @derive(decoder, encoder, schema)
   case class AuthTrunk(
     id: AuthTrunkId,
-    trunkName: Option[AuthTrunkName],
+    trunkName: AuthTrunkName,
     authByNumber: AuthTrunkAuthByNumber
   )
 }
