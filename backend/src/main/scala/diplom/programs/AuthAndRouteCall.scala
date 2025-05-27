@@ -60,10 +60,14 @@ final case class AuthAndRouteCall[F[_]: Logger: Time: MonadThrow](
 
     def billingByNumber(trunk: AuthTrunk, numB: AuthRequestDstNumber): EitherT[F, AuthRequestError, BillingClient] =
       for {
+        _             <- EitherT.liftF(Logger[F].debug(s"billingByNumber: numB=${numB.toString}"))
         tm            <- EitherT.liftF(Time[F].getInstantNow)
         num            = BillingServiceNumberDID(req.srcNumber.value)
+        _             <- EitherT.liftF(Logger[F].debug(s"num=${num.toString}"))
         serviceNumber <- findServiceNumber(tm, num)
+        _             <- EitherT.liftF(Logger[F].debug(s"serviceNumber=${serviceNumber.toString}"))
         client        <- findClientById(BillingClientId(serviceNumber.clientId.value))
+        _             <- EitherT.liftF(Logger[F].debug(s"client=${client.toString}"))
 
       } yield client
 
@@ -109,6 +113,7 @@ final case class AuthAndRouteCall[F[_]: Logger: Time: MonadThrow](
     for {
       tm        <- EitherT.liftF(Time[F].getInstantNow)
       trunk     <- findTrunk
+      _         <- EitherT.liftF(Logger[F].debug(s"trunk=${trunk.toString}"))
       client    <- if (trunk.authByNumber.value) billingByNumber(trunk, req.dstNumber) else billingByTrunk(trunk, req.dstNumber)
       _         <- isBlocked(client)
       origCdr    = CallCdr(
@@ -124,9 +129,11 @@ final case class AuthAndRouteCall[F[_]: Logger: Time: MonadThrow](
                   SrcRoute(trunk.trunkName.value),
                   DstRoute("unknow")
                 )
+      _         <- EitherT.liftF(Logger[F].debug(s"origCdr=${origCdr.toString}"))
       origRaw   <- billingCall
                    .billingLeg(origCdr, true)
                    .leftMap(err => OrigLegBillError(s"Не смог протарифицировать оригинационное плечо: ${err.toString}"): AuthRequestError)
+      _         <- EitherT.liftF(Logger[F].debug(s"origRaw=${origRaw.toString}"))
       destTrunk <- getDestTrunks(origCdr)
       bestTrunk <- getBestTermTrunk(destTrunk)
 

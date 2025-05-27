@@ -25,7 +25,6 @@ import com.mcn.diplom.services.BillingPricelistItemsService
 import com.mcn.diplom.domain.nispd.BillingPricelistItem.BillingPriceListItemPricelistId
 import com.mcn.diplom.domain.nispd.BillingPricelistItem.BillingPrice
 
-@nowarn
 final case class BillingCall[F[_]: Logger: Time: MonadThrow](
   serviceClient: BillingClientsService[F],
   trunk: AuthTrunksService[F],
@@ -92,12 +91,18 @@ final case class BillingCall[F[_]: Logger: Time: MonadThrow](
 
     def billingByNumber(trunk: AuthTrunk, numB: DstNumber): EitherT[F, BillingCallError, CallRawCreateRequest] =
       for {
+        _             <- EitherT.liftF(Logger[F].debug(s"billingByNumber: num=${numB.toString}"))
         tm            <- EitherT.liftF(Time[F].getInstantNow)
         num            = BillingServiceNumberDID(if (orig) cdr.srcNumber.value else cdr.dstNumber.value)
+        _             <- EitherT.liftF(Logger[F].debug(s"num=${num.value}"))
         serviceNumber <- findServiceNumber(tm, num)
+        _             <- EitherT.liftF(Logger[F].debug(s"serviceNumber=${serviceNumber.toString}"))
         client        <- findClientById(BillingClientId(serviceNumber.clientId.value))
+        _             <- EitherT.liftF(Logger[F].debug(s"client=${client.toString}"))
         pricelistIds  <- findPriceListsForServiceNumber(tm, serviceNumber.id, orig)
+        _             <- EitherT.liftF(Logger[F].debug(s"pricelistIds=${pricelistIds.toString}"))
         price         <- findBestPrice(tm, pricelistIds, numB.value)
+        _             <- EitherT.liftF(Logger[F].debug(s"price=${price.toString}"))
 
       } yield CallRawCreateRequest(
         orig = CallRawOrig(orig),
@@ -119,12 +124,16 @@ final case class BillingCall[F[_]: Logger: Time: MonadThrow](
 
     def billingByTrunk(trunk: AuthTrunk, numB: DstNumber): EitherT[F, BillingCallError, CallRawCreateRequest] =
       for {
+        _            <- EitherT.liftF(Logger[F].debug(s"billingByTrunk: trunk=${trunk.toString} num=${numB.toString}"))
         tm           <- EitherT.liftF(Time[F].getInstantNow)
         serviceTrunk <- findServiceTrunk(tm, trunk)
+        _            <- EitherT.liftF(Logger[F].debug(s"serviceTrunk: serviceTrunk=${serviceTrunk.toString}"))
         client       <- findClientById(BillingClientId(serviceTrunk.clientId.value))
+        _            <- EitherT.liftF(Logger[F].debug(s"client=${client.toString}"))
         pricelistIds <- findPriceListsForServiceTrunk(tm, serviceTrunk.id, orig)
+        _            <- EitherT.liftF(Logger[F].debug(s"pricelistIds=${pricelistIds.toString}"))
         price        <- findBestPrice(tm, pricelistIds, numB.value)
-
+        _            <- EitherT.liftF(Logger[F].debug(s"price=${price.toString}"))
       } yield CallRawCreateRequest(
         orig = CallRawOrig(orig),
         peerId = CallRawPeerId(-1),
