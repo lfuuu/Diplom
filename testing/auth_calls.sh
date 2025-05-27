@@ -27,7 +27,7 @@ curl -X 'POST' \
 echo "\n"
 
 curl -X 'POST' \
-  ''$URL'' \
+  'http://localhost:8084/v1/api/doAuth' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -39,7 +39,7 @@ curl -X 'POST' \
 echo "\n"
 
 curl -X 'POST' \
-  ''$URL'' \
+  'http://localhost:8084/v1/api/doAuth' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -51,7 +51,7 @@ curl -X 'POST' \
 echo "\n"
 
 curl -X 'POST' \
-  ''$URL'' \
+  'http://localhost:8084/v1/api/doAuth' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -63,7 +63,7 @@ curl -X 'POST' \
 echo "\n"
 
 curl -X 'POST' \
-  ''$URL'' \
+  'http://localhost:8084/v1/api/doAuth' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{

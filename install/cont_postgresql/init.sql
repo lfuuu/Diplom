@@ -1022,6 +1022,9 @@ COPY billing.clients (id, dt_create, balance, is_blocked, name) FROM stdin;
 
 COPY billing.packet (id, service_trunk_id, service_number_id, activation_dt, expire_dt, orig, pricelist_id) FROM stdin;
 2	1	\N	2001-01-01 00:00:00+00	\N	t	3
+3	\N	4	2001-01-01 00:00:00+00	\N	t	3
+5	2	\N	2001-01-01 00:00:00+00	\N	f	5
+6	3	\N	2001-01-01 00:00:00+00	\N	f	6
 \.
 
 
@@ -1035,6 +1038,7 @@ COPY billing.pricelist (id, name, date_from, date_to, round_to_sec) FROM stdin;
 3	Операторский1	2020-01-01	\N	t
 4	Операторский2	2019-01-01	\N	t
 5	Операторский3	2019-06-06	\N	t
+6	Операторкий4	2000-01-01	\N	t
 \.
 
 
@@ -1047,6 +1051,12 @@ COPY billing.pricelist_item (id, pricelist_id, ndef, date_from, date_to, price) 
 4	1	7903	2020-01-02	\N	1.5000
 5	3	7495	2001-01-01	\N	1.1100
 6	3	7903	2001-01-02	\N	1.4000
+7	3	7496	2001-01-01	\N	3.2500
+8	5	7496	2020-01-01	\N	0.9000
+11	6	7495	2020-01-01	\N	0.8000
+12	3	7888	2000-01-01	\N	4.4400
+13	6	7498	2000-01-01	\N	0.7500
+14	3	7498	2000-01-01	\N	3.0100
 \.
 
 
@@ -1096,6 +1106,10 @@ COPY calls.cdr (id, call_id, src_number, dst_number, setup_time, connect_time, d
 16	3321	74963330003	79031233344	2025-05-05 01:01:01+00	2025-05-05 01:01:02+00	2025-05-05 01:01:42+00	41	16	vpbx1	op2
 17	3321	79241233344	74951110002	2025-05-05 01:01:01+00	2025-05-05 01:01:02+00	2025-05-05 01:01:32+00	31	16	op1	vpbx1
 18	3321	79162345666	74951110002	2025-05-05 01:01:01+00	2025-05-05 01:01:02+00	2025-05-05 01:01:02+00	0	31	op3	vpbx1
+19	1234	74963330003	79261231111	2025-05-05 01:01:01+00	2025-05-05 01:01:02+00	2025-05-05 01:01:52+00	51	16	vpbx1	op1
+20	3321	74963330003	79031233344	2025-05-05 01:01:01+00	2025-05-05 01:01:02+00	2025-05-05 01:01:42+00	41	16	vpbx1	op2
+21	3321	79241233344	74951110002	2025-05-05 01:01:01+00	2025-05-05 01:01:02+00	2025-05-05 01:01:32+00	31	16	op1	vpbx1
+22	3321	79162345666	74951110002	2025-05-05 01:01:01+00	2025-05-05 01:01:02+00	2025-05-05 01:01:02+00	0	31	op3	vpbx1
 \.
 
 
@@ -1132,21 +1146,21 @@ SELECT pg_catalog.setval('billing.clients_id_seq', 6, true);
 -- Name: packet_id_seq; Type: SEQUENCE SET; Schema: billing; Owner: postgres
 --
 
-SELECT pg_catalog.setval('billing.packet_id_seq', 2, true);
+SELECT pg_catalog.setval('billing.packet_id_seq', 6, true);
 
 
 --
 -- Name: pricelist_id_seq; Type: SEQUENCE SET; Schema: billing; Owner: postgres
 --
 
-SELECT pg_catalog.setval('billing.pricelist_id_seq', 5, true);
+SELECT pg_catalog.setval('billing.pricelist_id_seq', 6, true);
 
 
 --
 -- Name: pricelist_item_id_seq; Type: SEQUENCE SET; Schema: billing; Owner: postgres
 --
 
-SELECT pg_catalog.setval('billing.pricelist_item_id_seq', 6, true);
+SELECT pg_catalog.setval('billing.pricelist_item_id_seq', 14, true);
 
 
 --
@@ -1167,7 +1181,7 @@ SELECT pg_catalog.setval('billing.service_trunk_id_seq', 3, true);
 -- Name: cdr_id_seq; Type: SEQUENCE SET; Schema: calls; Owner: postgres
 --
 
-SELECT pg_catalog.setval('calls.cdr_id_seq', 18, true);
+SELECT pg_catalog.setval('calls.cdr_id_seq', 22, true);
 
 
 --
